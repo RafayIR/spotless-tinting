@@ -20,7 +20,7 @@ export const services: Service[] = [
     id: 'automotive',
     name: 'Automotive Window Tinting',
     slug: 'automotive-window-tinting',
-    shortDescription: 'Premium ceramic, carbon and dyed window films for cars, utes and SUVs — heat, UV and glare reduction with a flawless finish.',
+    shortDescription: 'Heat reduction, UV protection, privacy and a refined finish with premium window films.',
     description:
       'Our automotive window tinting service delivers premium heat rejection, UV protection and enhanced privacy for your vehicle. We offer a range of film technologies — ceramic, carbon and dyed — in multiple VLT (Visible Light Transmission) options to suit your style and legal requirements. Every installation is carried out by experienced technicians with meticulous attention to detail, ensuring a clean, bubble-free finish that lasts.',
     heroImage: images.sportsCar,
@@ -44,7 +44,7 @@ export const services: Service[] = [
     id: 'residential',
     name: 'Residential Window Tinting',
     slug: 'residential-window-tinting',
-    shortDescription: 'Home window films that cut heat, glare and UV while improving privacy and comfort — without blocking your view.',
+    shortDescription: 'Improve comfort, privacy and UV protection while maintaining the look of your home.',
     description:
       'Residential window tinting keeps your home cooler in summer, warmer in winter and protects your furnishings from UV fading. Our solar control and privacy films reduce glare on screens and surfaces while maintaining natural light. We also offer security films that help hold broken glass in place. Every film is professionally installed with minimal disruption to your home.',
     heroImage: images.residentialWindow,
@@ -67,7 +67,7 @@ export const services: Service[] = [
     id: 'commercial',
     name: 'Commercial Window Tinting',
     slug: 'commercial-window-tinting',
-    shortDescription: 'Office, retail and shopfront window film solutions for comfort, privacy, branding and protection.',
+    shortDescription: 'Solar control, privacy and protection for offices, shopfronts and commercial spaces.',
     description:
       'Commercial window tinting improves comfort and energy efficiency for offices, retail stores and commercial buildings. Our films reduce solar heat and glare, enhance privacy for meeting rooms and street-facing spaces, and can include anti-graffiti or branded film options. We work with businesses across Hobart to deliver tailored solutions with minimal disruption to operations.',
     heroImage: images.commercialBuilding,
@@ -90,10 +90,10 @@ export const services: Service[] = [
     id: 'ppf',
     name: 'Paint Protection Film',
     slug: 'paint-protection-film',
-    shortDescription: 'Self-healing PPF that shields your paint from stone chips, scratches and road debris — virtually invisible protection.',
+    shortDescription: "Preserve your paintwork against stone chips, scratches and everyday road damage.",
     description:
       'Paint Protection Film (PPF) is a transparent, self-healing urethane film applied to your vehicle\'s paint to protect against stone chips, scratches and road debris. We offer full-vehicle coverage and targeted protection for high-impact areas including the bonnet, bumper, mirrors and door edges. The film is virtually invisible, self-healing and maintains the gloss and clarity of your paintwork.',
-    heroImage: images.ppfFilm,
+    heroImage: images.heroCar,
     benefits: [
       'Self-healing technology',
       'Protection against stone chips and scratches',
@@ -114,7 +114,7 @@ export const services: Service[] = [
     id: 'wrapping',
     name: 'Vehicle Wrapping',
     slug: 'vehicle-wrapping',
-    shortDescription: 'Full and partial vehicle wraps in matte, gloss, satin and custom finishes — colour changes and fleet branding.',
+    shortDescription: 'Transform, personalise or promote your vehicle with professionally installed wraps.',
     description:
       'Vehicle wrapping transforms the appearance of your car, ute or fleet with premium vinyl films. Choose from full colour changes, partial wraps and commercial fleet branding. We offer matte, gloss, satin and custom finishes from leading vinyl brands. Every wrap is precision-cut and professionally applied for a seamless, showroom-quality result that protects your original paint underneath.',
     heroImage: images.matteWrap,

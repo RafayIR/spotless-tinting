@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
-import {
-  Shield, Sun, Eye, Wrench, Award, MapPin, Star, ArrowRight, Check,
-} from 'lucide-react';
-import SEO from '@/components/CTA';
+import { MapPin, Star, ArrowRight, Check } from 'lucide-react';
 import CTA from '@/components/CTA';
 import ServicesShowcase from '@/components/ServicesShowcase';
+import WhyChooseFeatures from '@/components/WhyChooseFeatures';
 import GalleryGrid from '@/components/GalleryGrid';
 import TestimonialCard from '@/components/TestimonialCard';
 import FAQAccordion from '@/components/FAQAccordion';
@@ -16,15 +14,6 @@ import { faqs } from '@/data/faqs';
 import { projects } from '@/data/projects';
 import { business } from '@/data/business';
 import { images } from '@/data/images';
-
-const whyChoose = [
-  { icon: Shield, title: 'Premium Films', desc: 'We use quality film technologies selected for performance and longevity.' },
-  { icon: Wrench, title: 'Professional Installation', desc: 'Experienced technicians with meticulous attention to detail.' },
-  { icon: Sun, title: 'Heat & UV Reduction', desc: 'Significant heat rejection and up to 99% UV protection.' },
-  { icon: Eye, title: 'Enhanced Privacy', desc: 'Improved privacy and security for vehicles and properties.' },
-  { icon: Award, title: 'Quality Workmanship', desc: 'We stand behind our work with warranty-backed installation.' },
-  { icon: MapPin, title: 'Local Hobart Business', desc: 'Proudly serving Moonah, Hobart and greater southern Tasmania.' },
-];
 
 const trustIndicators = [
   'Professional installation',
@@ -68,7 +57,7 @@ export default function HomePage() {
           <img
             src={images.heroCar}
             alt="Premium tinted luxury vehicle at Spotless Tinting Hobart"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-[70%_center]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/60 to-ink-950/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-ink-950/10" />
@@ -113,7 +102,8 @@ export default function HomePage() {
                 What We Do
               </span>
               <h2 className="mt-5 text-4xl font-bold md:text-5xl">
-                Premium Film <span className="font-normal">&amp; Protection Solutions</span>
+                Premium <span className="font-bold">Film</span>{' '}
+                <span className="font-normal">&amp; Protection Solutions</span>
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-ink-600">
                 From automotive window tinting to property films, paint protection and vehicle wraps, we deliver professional solutions designed for protection, comfort and style.
@@ -121,54 +111,31 @@ export default function HomePage() {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <ServicesShowcase services={services.slice(0, 5)} />
+            <ServicesShowcase services={services} />
           </Reveal>
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section className="section bg-ink-50">
-        <div className="container">
-          <Reveal>
-            <div className="mx-auto max-w-2xl text-center">
-              <span className="eyebrow">Why Spotless</span>
-              <h2 className="mt-3 text-3xl font-bold md:text-4xl">Why Choose Spotless Tinting</h2>
-              <p className="mt-4 text-ink-600">
-                We combine premium materials, experienced workmanship and a commitment to every customer.
-              </p>
-            </div>
-          </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {whyChoose.map((item, i) => (
-              <Reveal key={item.title} delay={i * 60}>
-                <div className="flex h-full gap-4 rounded-2xl border border-ink-100 bg-white p-6">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-ink-950">{item.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{item.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* WHY CHOOSE US — car hotspot features */}
+      <WhyChooseFeatures />
 
       {/* SPOTLESS PROCESS */}
-      <section className="section bg-white">
+      <section className="section overflow-hidden bg-white">
         <div className="container">
           <Reveal>
-            <div className="mx-auto max-w-2xl text-center">
-              <span className="eyebrow">How It Works</span>
-              <h2 className="mt-3 text-3xl font-bold md:text-4xl">The Spotless Process</h2>
-              <p className="mt-4 text-ink-600">
-                A simple, transparent process from first enquiry to final inspection.
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="eyebrow inline-flex items-center gap-5 before:h-px before:w-12 before:bg-accent-400 after:h-px after:w-12 after:bg-accent-400">
+                The Spotless Process
+              </span>
+              <h2 className="mt-5 text-3xl font-bold md:text-4xl lg:text-5xl">
+                Precision. <span className="text-accent-500">Protection.</span> Perfection.
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-ink-600">
+                From the moment you arrive to the moment you drive away, we ensure a seamless experience and flawless results.
               </p>
             </div>
           </Reveal>
-          <div className="mt-12">
+          <div className="mt-14">
             <ProcessTimeline />
           </div>
         </div>

@@ -2,12 +2,14 @@
 // Swap these for real business photography when available.
 
 export const images = {
-  heroCar: 'https://images.unsplash.com/photo-1605559424843-9e4c38d2e6c4?auto=format&fit=crop&w=2000&q=80',
+  heroCar: '/banner-image-01.jpeg',
+  banner02: '/banner-02.jpeg',
+  carIllustration: '/car-illustrator.jpeg',
   heroCarAlt: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=80',
   tintDetail: 'https://images.unsplash.com/photo-1583121274162-4e1f4b9a6e3a?auto=format&fit=crop&w=1600&q=80',
   installerWork: 'https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=1600&q=80',
   luxurySedan: 'https://images.unsplash.com/photo-1555215697-3a5a2e5d2d4a?auto=format&fit=crop&w=1600&q=80',
-  sportsCar: 'https://images.unsplash.com/photo-1583267746898-3daa4f4d2c2a?auto=format&fit=crop&w=1600&q=80',
+  sportsCar: '/banner-02.jpeg',
   blackCar: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1600&q=80',
   modernHome: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
   residentialWindow: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80',

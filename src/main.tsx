@@ -17,7 +17,7 @@ import HomePage from '@/pages/HomePage';
 // import WarrantyPage from '@/pages/WarrantyPage';
 // import ContactPage from '@/pages/ContactPage';
 // import QuotePage from '@/pages/QuotePage';
-// import BookPage from '@/pages/BookPage';
+import BookPage from '@/pages/BookPage';
 // import PrivacyPolicy from '@/pages/PrivacyPolicy';
 // import TermsPage from '@/pages/TermsPage';
 // import CancellationPolicy from '@/pages/CancellationPolicy';
@@ -29,9 +29,9 @@ createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            {/* <Route path="/about" element={<AboutPage />} />
-            <Route path="/services" element={<ServicesHub />} />
+           <Route path="/" element={<HomePage />} />
+            {/* <Route path="/about" element={<AboutPage />} /> */}
+            {/* <Route path="/services" element={<ServicesHub />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/gallery/:slug" element={<ProjectDetail />} />
@@ -40,9 +40,9 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/tint-aftercare" element={<TintAftercare />} />
             <Route path="/warranty" element={<WarrantyPage />} />
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/quote" element={<QuotePage />} />
+            <Route path="/quote" element={<QuotePage />} />  */}
             <Route path="/book" element={<BookPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/cancellation-policy" element={<CancellationPolicy />} />
             <Route path="*" element={<NotFoundPage />} /> */}
