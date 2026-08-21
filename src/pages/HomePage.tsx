@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Star, ArrowRight, Check } from 'lucide-react';
+import { MapPin, Star, ArrowRight, Check, Award } from 'lucide-react';
 import CTA from '@/components/CTA';
 import ServicesShowcase from '@/components/ServicesShowcase';
 import WhyChooseFeatures from '@/components/WhyChooseFeatures';
@@ -113,6 +113,75 @@ export default function HomePage() {
           <Reveal delay={100}>
             <ServicesShowcase services={services} />
           </Reveal>
+        </div>
+      </section>
+
+
+      {/* ABOUT US PREVIEW */}
+      <section className="section bg-ink-50">
+        <div className="container">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <Reveal>
+              <div className="relative">
+                <div className="overflow-hidden rounded-2xl">
+                  <img
+                    src={images.installerWork}
+                    alt="Spotless Tinting technician installing window film in Hobart"
+                    loading="lazy"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 hidden rounded-2xl border border-ink-100 bg-white p-6 shadow-lg sm:block">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-500 text-white">
+                      <Award className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-ink-950">5+</p>
+                      <p className="text-xs font-medium text-ink-500">Years Experience</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div>
+                <span className="eyebrow">About Us</span>
+                <h2 className="mt-3 text-3xl font-bold text-ink-950 md:text-4xl">
+                  Your Local Tinting &amp; Protection Specialists
+                </h2>
+                <p className="mt-5 leading-relaxed text-ink-600">
+                  Spotless Tinting is a Moonah-based business serving customers across Hobart and southern Tasmania. We specialise in automotive, residential and commercial window tinting, along with paint protection film, vehicle wrapping and ceramic coating.
+                </p>
+                <p className="mt-4 leading-relaxed text-ink-600">
+                  Our experienced technicians combine premium materials with meticulous attention to detail, delivering flawless results that stand the test of time. Every vehicle and property is treated with the same care we'd give our own.
+                </p>
+                <div className="mt-6 grid grid-cols-3 gap-4">
+                  <div className="rounded-xl border border-ink-100 bg-white p-4 text-center">
+                    <p className="text-2xl font-bold text-accent-600">6</p>
+                    <p className="mt-1 text-xs font-medium text-ink-500">Services Offered</p>
+                  </div>
+                  <div className="rounded-xl border border-ink-100 bg-white p-4 text-center">
+                    <p className="text-2xl font-bold text-accent-600">500+</p>
+                    <p className="mt-1 text-xs font-medium text-ink-500">Jobs Completed</p>
+                  </div>
+                  <div className="rounded-xl border border-ink-100 bg-white p-4 text-center">
+                    <p className="text-2xl font-bold text-accent-600">100%</p>
+                    <p className="mt-1 text-xs font-medium text-ink-500">Satisfaction</p>
+                  </div>
+                </div>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link to="/about" className="btn-primary">
+                    More About Us
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link to="/contact" className="btn-outline">
+                    Get in Touch
+                  </Link>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
