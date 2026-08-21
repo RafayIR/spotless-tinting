@@ -43,7 +43,7 @@ export default function AboutPage() {
                   Spotless Tinting is a Moonah-based business serving customers across Hobart and southern Tasmania. We specialise in automotive, residential and commercial window tinting, along with paint protection film, vehicle wrapping and ceramic coating.
                 </p>
                 <p className="mt-4 leading-relaxed text-ink-600">
-                  [INSERT REAL BUSINESS HISTORY — Replace this placeholder with the actual story of how Spotless Tinting was founded, its journey and milestones once supplied.]
+                  [BUSINESS HISTORY]
                 </p>
               </div>
             </Reveal>
@@ -88,7 +88,7 @@ export default function AboutPage() {
                 <span className="eyebrow">Our Team</span>
                 <h2 className="mt-3 text-2xl font-bold md:text-3xl">Meet the People Behind the Work</h2>
                 <p className="mt-4 leading-relaxed text-ink-600">
-                  [INSERT REAL TEAM INFORMATION — Replace this placeholder with actual team member names, roles and brief bios once supplied.]
+                  [TEAM INFORMATION]
                 </p>
               </div>
             </Reveal>
