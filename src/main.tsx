@@ -6,7 +6,7 @@ import "./index.css"
 
 import Layout from '@/components/Layout';
 import HomePage from '@/pages/HomePage';
-// import AboutPage from '@/pages/AboutPage';
+import AboutPage from '@/pages/AboutPage';
 // import ServicesHub from '@/pages/ServicesHub';
 // import ServiceDetail from '@/pages/ServiceDetail';
 // import GalleryPage from '@/pages/GalleryPage';
@@ -15,8 +15,8 @@ import HomePage from '@/pages/HomePage';
 // import FAQPage from '@/pages/FAQPage';
 // import TintAftercare from '@/pages/TintAftercare';
 // import WarrantyPage from '@/pages/WarrantyPage';
-// import ContactPage from '@/pages/ContactPage';
-// import QuotePage from '@/pages/QuotePage';
+import ContactPage from '@/pages/ContactPage';
+import QuotePage from '@/pages/QuotePage';
 import BookPage from '@/pages/BookPage';
 // import PrivacyPolicy from '@/pages/PrivacyPolicy';
 // import TermsPage from '@/pages/TermsPage';
@@ -30,7 +30,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route element={<Layout />}>
            <Route path="/" element={<HomePage />} />
-            {/* <Route path="/about" element={<AboutPage />} /> */}
+            <Route path="/about" element={<AboutPage />} />
             {/* <Route path="/services" element={<ServicesHub />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/gallery" element={<GalleryPage />} />
@@ -38,9 +38,9 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/reviews" element={<ReviewsPage />} />
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/tint-aftercare" element={<TintAftercare />} />
-            <Route path="/warranty" element={<WarrantyPage />} />
+            <Route path="/warranty" element={<WarrantyPage />} /> */}
             <Route path="/contact" element={<ContactPage />} />
-            <Route path="/quote" element={<QuotePage />} />  */}
+            <Route path="/quote" element={<QuotePage />} /> 
             <Route path="/book" element={<BookPage />} />
             {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsPage />} />
