@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram } from 'lucide-react';
+import Logo from '@/components/Logo';
 import { business } from '@/data/business';
 import { services } from '@/data/services';
 
@@ -10,10 +11,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand + NAP */}
           <div>
-            <Link to="/" className="flex items-center gap-2">
-              <span className="font-display text-xl font-bold tracking-tight text-ink-950">Spotless</span>
-              <span className="font-display text-xl font-light tracking-tight text-accent-500">Tinting</span>
-            </Link>
+            <Logo className="h-10 w-auto" />
             <p className="mt-4 text-sm leading-relaxed text-ink-500">
               Premium automotive, residential and commercial window tinting, PPF and vehicle wrapping in Moonah, Hobart.
             </p>

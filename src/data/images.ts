@@ -2,6 +2,7 @@
 // Swap these for real business photography when available.
 
 export const images = {
+  logo: '/logo.avif',
   heroCar: '/banner-image-01.jpeg',
   banner02: '/banner-02.jpeg',
   carIllustration: '/car-illustrator.jpeg',
@@ -27,5 +28,6 @@ export const images = {
   coupeSide: 'https://images.unsplash.com/photo-1583121274162-4e1f4b9a6e40?auto=format&fit=crop&w=1600&q=80',
   garageWork: 'https://images.unsplash.com/photo-1632823471565-1ec5e0c8e5c1?auto=format&fit=crop&w=1600&q=80',
   tintRoll: 'https://images.unsplash.com/photo-1632823469799-2d2a2c4d4e3a?auto=format&fit=crop&w=1600&q=80',
+  filmTechnology: 'https://images.unsplash.com/photo-1583121274162-4e1f4b9a6e3a?auto=format&fit=crop&w=1200&q=80',
   squeegee: 'https://images.unsplash.com/photo-1632823471565-1ec5e0c8e5c2?auto=format&fit=crop&w=1600&q=80',
 };

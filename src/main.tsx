@@ -7,8 +7,8 @@ import "./index.css"
 import Layout from '@/components/Layout';
 import HomePage from '@/pages/HomePage';
 import AboutPage from '@/pages/AboutPage';
-// import ServicesHub from '@/pages/ServicesHub';
-// import ServiceDetail from '@/pages/ServiceDetail';
+import ServicesHubPage from '@/pages/ServicesHubPage';
+import ServiceDetailPage from '@/pages/ServiceDetailPage';
 // import GalleryPage from '@/pages/GalleryPage';
 // import ProjectDetail from '@/pages/ProjectDetail';
 // import ReviewsPage from '@/pages/ReviewsPage';
@@ -31,9 +31,9 @@ createRoot(document.getElementById('root')!).render(
           <Route element={<Layout />}>
            <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            {/* <Route path="/services" element={<ServicesHub />} />
-            <Route path="/services/:slug" element={<ServiceDetail />} />
-            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/services" element={<ServicesHubPage />} />
+            <Route path="/services/:slug" element={<ServiceDetailPage />} />
+            {/* <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/gallery/:slug" element={<ProjectDetail />} />
             <Route path="/reviews" element={<ReviewsPage />} />
             <Route path="/faq" element={<FAQPage />} />

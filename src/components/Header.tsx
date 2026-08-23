@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone } from 'lucide-react';
+import Logo from '@/components/Logo';
 import { navLinks, business } from '@/data/business';
 import { services } from '@/data/services';
 
@@ -30,7 +31,8 @@ export default function Header() {
         }`}
     >
       <div className="container flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2" aria-label="Spotless Tinting home">
+        <Link to="/" className="flex items-center gap-1.5" aria-label="Spotless Tinting home">
+          <Logo className="h-9 w-auto sm:h-10" asLink={false} />
           <span className="font-display text-xl font-bold tracking-tight text-ink-950">Spotless</span>
           <span className="font-display text-xl font-light tracking-tight text-accent-500">Tinting</span>
         </Link>
