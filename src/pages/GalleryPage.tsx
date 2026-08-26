@@ -154,7 +154,7 @@ export default function GalleryPage() {
       />
 
       {/* HERO — angled image panels */}
-      <section className="relative min-h-[78vh] overflow-hidden bg-ink-950 lg:min-h-[100vh]">
+      <section className="relative min-h-[78vh] overflow-hidden bg-ink-950 lg:min-h-[92vh]">
         <div className="relative flex min-h-[78vh] flex-col lg:min-h-[92vh] lg:flex-row">
           {/* Text panel */}
           <div className="relative z-20 flex w-full flex-col justify-center px-6 py-16 sm:px-10 lg:w-[38%] lg:max-w-xl lg:px-12 lg:py-24 xl:px-16">
