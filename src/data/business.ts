@@ -32,7 +32,7 @@ export const navLinks = [
   { label: 'Services', path: '/services', dropdown: true },
   { label: 'Our Work', path: '/gallery' },
   { label: 'About', path: '/about' },
-  { label: 'Reviews', path: '/reviews' },
-  { label: 'FAQs', path: '/faq' },
+  { label: 'Reviews', path: '/#reviews' },
+  { label: 'FAQs', path: '/#faqs' },
   { label: 'Contact', path: '/contact' },
 ];

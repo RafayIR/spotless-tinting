@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import {
   MapPin,
   Star,
@@ -234,6 +234,19 @@ const workFilters = ['All', 'Window Tinting', 'PPF', 'Vehicle Wraps', 'Residenti
 
 export default function HomePage() {
   const [workFilter, setWorkFilter] = useState<(typeof workFilters)[number]>('All');
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.replace('#', '');
+    const el = document.getElementById(id);
+    if (el) {
+      const t = window.setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+      return () => window.clearTimeout(t);
+    }
+  }, [hash]);
 
   const filteredProjects = projects
     .filter((p) => (workFilter === 'All' ? true : p.category === workFilter))
@@ -580,7 +593,7 @@ export default function HomePage() {
         </section>
 
         {/* REVIEWS */}
-        <section className="section bg-white">
+        <section id="reviews" className="section bg-white">
           <div className="container">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
@@ -639,7 +652,7 @@ export default function HomePage() {
         </section>
 
         {/* FAQ */}
-        <section className="section bg-ink-50">
+        <section id="faqs" className="section bg-ink-50">
           <div className="container">
             <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
               <Reveal>

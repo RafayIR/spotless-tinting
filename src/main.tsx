@@ -19,10 +19,10 @@ import GalleryPage from '@/pages/GalleryPage';
 import ContactPage from '@/pages/Contactpage';
 import QuotePage from '@/pages/QuotePage';
 import BookPage from '@/pages/BookPage';
+import NotFoundPage from '@/pages/NotFoundPage';
 // import PrivacyPolicy from '@/pages/PrivacyPolicy';
 // import TermsPage from '@/pages/TermsPage';
 // import CancellationPolicy from '@/pages/CancellationPolicy';
-// import NotFoundPage from '@/pages/NotFoundPage';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -46,8 +46,8 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/book" element={<BookPage />} />
               {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsPage />} />
-              <Route path="/cancellation-policy" element={<CancellationPolicy />} />
-              <Route path="*" element={<NotFoundPage />} /> */}
+              <Route path="/cancellation-policy" element={<CancellationPolicy />} /> */}
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

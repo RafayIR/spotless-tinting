@@ -42,16 +42,22 @@
     @apply btn bg-ink-900 text-white hover:bg-ink-800 active:scale-[0.98] dark:bg-ink-100 dark:text-ink-950 dark:hover:bg-white;
   }
   .btn-outline {
-    @apply btn border border-ink-300 bg-transparent hover:border-accent-500 hover:bg-accent-50 active:scale-[0.98];
-    color: #0d0f11; /* ink-950 — always readable on light surfaces */
+    @apply btn border bg-transparent active:scale-[0.98];
+    border-color: #aeb4bd; /* ink-300 */
+    color: #0d0f11; /* ink-950 */
+  }
+  .btn-outline:hover {
+    border-color: #f97316; /* accent-500 */
+    background-color: #fff7ed; /* accent-50 */
   }
   html.dark .btn-outline {
-    border-color: #4d555f; /* ink-600 */
+    border-color: rgba(255, 255, 255, 0.4);
     color: #ffffff;
+    background-color: transparent;
   }
   html.dark .btn-outline:hover {
     border-color: #fb923c; /* accent-400 */
-    background-color: rgb(255 255 255 / 0.05);
+    background-color: rgba(255, 255, 255, 0.1);
   }
   .btn-light {
     @apply btn border border-accent-300 bg-accent-500 text-white hover:bg-accent-600 active:scale-[0.98];

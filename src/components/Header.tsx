@@ -131,6 +131,14 @@ export default function Header() {
                   </div>
                 )}
               </div>
+            ) : link.path.includes('#') ? (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${navIdle}`}
+              >
+                {link.label}
+              </Link>
             ) : (
               <NavLink
                 key={link.path}
@@ -267,6 +275,16 @@ export default function Header() {
                       </div>
                     )}
                   </div>
+                ) : link.path.includes('#') ? (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`rounded-lg px-3 py-3 text-base font-medium ${
+                      isDark ? 'text-ink-300 hover:text-accent-400' : 'text-ink-700 hover:text-accent-600'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
                 ) : (
                   <NavLink
                     key={link.path}

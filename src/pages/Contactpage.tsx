@@ -106,7 +106,7 @@ export default function ContactPage() {
       />
 
       {/* HERO — diagonal split */}
-      <section className="relative overflow-hidden bg-white">
+      <section className="relative overflow-hidden bg-white dark:bg-ink-950">
         <div className="relative flex min-h-[560px] flex-col lg:min-h-[660px] lg:flex-row">
           {/* Text */}
           <div className="relative z-20 flex w-full flex-col justify-center px-6 py-14 sm:px-10 lg:w-[48%] lg:px-12 lg:py-20 xl:w-[42%] xl:px-16">
@@ -115,14 +115,14 @@ export default function ContactPage() {
                 <span className="text-xs font-bold uppercase tracking-[0.22em] text-accent-500">
                   Contact Spotless Tinting —
                 </span>
-                <h1 className="mt-4 text-4xl font-bold uppercase leading-[1.08] text-ink-950 sm:text-5xl lg:text-[2.85rem]">
+                <h1 className="mt-4 text-4xl font-bold uppercase leading-[1.08] text-ink-950 dark:text-white sm:text-5xl lg:text-[2.85rem]">
                   Get in Touch with
                   <span className="mt-1 block text-accent-500">
                     Spotless Tinting
                     <span className="mt-2 block h-1.5 w-28 bg-accent-500" aria-hidden />
                   </span>
                 </h1>
-                <p className="mt-5 max-w-md text-base leading-relaxed text-ink-700">
+                <p className="mt-5 max-w-md text-base leading-relaxed text-ink-700 dark:text-ink-300">
                   Whether you&apos;re looking for automotive window tinting, residential or commercial
                   film, PPF, vehicle wraps or Smart Tint, our team is here to help.
                 </p>
@@ -131,7 +131,10 @@ export default function ContactPage() {
                     Get a Free Quote
                     <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <a href={business.phoneHref} className="btn-outline">
+                  <a
+                    href={business.phoneHref}
+                    className="btn border border-ink-900 bg-transparent text-ink-950 hover:bg-ink-950 hover:text-white dark:border-white/50 dark:text-white dark:hover:bg-white dark:hover:text-ink-950"
+                  >
                     <Phone className="h-4 w-4" />
                     Call {business.phone}
                   </a>
@@ -144,7 +147,7 @@ export default function ContactPage() {
           <div className="relative hidden min-h-full flex-1 lg:block" aria-hidden>
             <div
               className="absolute inset-0 overflow-hidden"
-              style={{ clipPath: 'polygon(18% 0, 100% 0, 100% 100%, 0 100%)' }}
+              style={{ clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0 100%)' }}
             >
               <img
                 src={images.banner03}
@@ -153,9 +156,9 @@ export default function ContactPage() {
               />
               {/* Soft feather along the diagonal edge */}
               <div
-                className="pointer-events-none absolute inset-y-0 left-0 w-[28%] bg-gradient-to-r from-white via-white/70 to-transparent"
+                className="pointer-events-none absolute inset-y-0 left-0 w-[28%] bg-gradient-to-r from-white via-white/70 to-transparent dark:from-ink-950 dark:via-ink-950/70"
                 style={{
-                  clipPath: 'polygon(0 0, 70% 0, 35% 100%, 0 100%)',
+                  clipPath: 'polygon(0 0, 70% 0, 0% 100%, 0 100%)',
                 }}
               />
             </div>
@@ -168,13 +171,13 @@ export default function ContactPage() {
               alt="Spotless Tinting — premium automotive window tinting"
               className="h-full w-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-ink-950" />
           </div>
         </div>
       </section>
 
       {/* QUICK CONTACT CARDS */}
-      <section className="border-b border-ink-100 bg-white py-12 md:py-14">
+      <section className="border-b border-ink-100 bg-white py-12 md:py-14 dark:border-ink-800 dark:bg-ink-950">
         <div className="container">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {quickCards.map((card, i) => (
@@ -183,20 +186,20 @@ export default function ContactPage() {
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border-2 border-accent-500 text-accent-500 lg:mx-0">
                     <card.icon className="h-5 w-5" strokeWidth={1.75} />
                   </div>
-                  <h3 className="mt-4 text-xs font-bold uppercase tracking-wide text-ink-950">
+                  <h3 className="mt-4 text-xs font-bold uppercase tracking-wide text-ink-950 dark:text-white">
                     {card.title}
                   </h3>
                   {card.href ? (
                     <a
                       href={card.href}
-                      className="mt-1.5 block text-sm font-semibold text-ink-800 hover:text-accent-600"
+                      className="mt-1.5 block text-sm font-semibold text-ink-800 hover:text-accent-600 dark:text-ink-200 dark:hover:text-accent-400"
                     >
                       {card.primary}
                     </a>
                   ) : (
-                    <p className="mt-1.5 text-sm font-semibold text-ink-800">{card.primary}</p>
+                    <p className="mt-1.5 text-sm font-semibold text-ink-800 dark:text-ink-200">{card.primary}</p>
                   )}
-                  <p className="mt-1 text-xs leading-relaxed text-ink-500">{card.note}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">{card.note}</p>
                 </div>
               </Reveal>
             ))}
@@ -205,12 +208,12 @@ export default function ContactPage() {
       </section>
 
       {/* FORM + FASTER QUOTE */}
-      <section className="section bg-ink-50">
+      <section className="section bg-ink-50 dark:bg-ink-900">
         <div className="container">
           <Reveal>
             <div className="mx-auto mb-10 max-w-2xl text-center">
               <span className="eyebrow">Enquiry</span>
-              <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl">
+              <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl">
                 Tell Us What You Need
               </h2>
             </div>
@@ -218,14 +221,14 @@ export default function ContactPage() {
 
           <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
             <Reveal>
-              <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-sm md:p-8">
+              <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-sm dark:border-ink-800 dark:bg-ink-950 md:p-8">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-50 text-accent-600">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-50 text-accent-600 dark:bg-accent-500/15">
                       <Check className="h-8 w-8" />
                     </div>
-                    <h3 className="mt-4 text-xl font-bold text-ink-950">Enquiry Sent!</h3>
-                    <p className="mt-2 max-w-sm text-sm text-ink-600">
+                    <h3 className="mt-4 text-xl font-bold text-ink-950 dark:text-white">Enquiry Sent!</h3>
+                    <p className="mt-2 max-w-sm text-sm text-ink-600 dark:text-ink-300">
                       Thanks for reaching out. We&apos;ll get back to you as soon as possible.
                     </p>
                     <button type="button" onClick={() => setSubmitted(false)} className="btn-outline mt-6">
@@ -356,11 +359,11 @@ export default function ContactPage() {
       </section>
 
       {/* LOCATION */}
-      <section className="section bg-white">
+      <section className="section bg-white dark:bg-ink-950">
         <div className="container">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
             <Reveal>
-              <div className="overflow-hidden rounded-2xl border border-ink-100">
+              <div className="overflow-hidden rounded-2xl border border-ink-100 dark:border-ink-800">
                 <iframe
                   title="Spotless Tinting location — Moonah, Hobart"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.5!2d147.302!3d-42.86!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDUxJzM2LjAiUyAxNDfCsDE4JzA3LjIiRQ!5e0!3m2!1sen!2sau!4v1700000000000"
@@ -375,22 +378,22 @@ export default function ContactPage() {
             <Reveal delay={80}>
               <div>
                 <span className="eyebrow">Location</span>
-                <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl">
+                <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl">
                   Visit Spotless Tinting
                 </h2>
                 <ul className="mt-8 space-y-5">
                   <li className="flex gap-4">
                     <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-sm font-bold text-ink-950">Address</p>
-                      <p className="mt-0.5 text-sm text-ink-600">{business.address}</p>
+                      <p className="text-sm font-bold text-ink-950 dark:text-white">Address</p>
+                      <p className="mt-0.5 text-sm text-ink-600 dark:text-ink-300">{business.address}</p>
                     </div>
                   </li>
                   <li className="flex gap-4">
                     <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-sm font-bold text-ink-950">Phone</p>
-                      <a href={business.phoneHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600">
+                      <p className="text-sm font-bold text-ink-950 dark:text-white">Phone</p>
+                      <a href={business.phoneHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600 dark:text-ink-300 dark:hover:text-accent-400">
                         {business.phone}
                       </a>
                     </div>
@@ -398,8 +401,8 @@ export default function ContactPage() {
                   <li className="flex gap-4">
                     <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-sm font-bold text-ink-950">Email</p>
-                      <a href={business.emailHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600">
+                      <p className="text-sm font-bold text-ink-950 dark:text-white">Email</p>
+                      <a href={business.emailHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600 dark:text-ink-300 dark:hover:text-accent-400">
                         {business.email}
                       </a>
                     </div>
@@ -407,19 +410,19 @@ export default function ContactPage() {
                   <li className="flex gap-4">
                     <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-sm font-bold text-ink-950">Workshop Access</p>
-                      <p className="mt-0.5 text-sm text-ink-600">
+                      <p className="text-sm font-bold text-ink-950 dark:text-white">Workshop Access</p>
+                      <p className="mt-0.5 text-sm text-ink-600 dark:text-ink-300">
                         Visits are by appointment — please call ahead so we can prepare for your arrival.
                       </p>
                     </div>
                   </li>
                 </ul>
-                <div className="mt-8 rounded-2xl border border-ink-100 bg-ink-50 p-5">
+                <div className="mt-8 rounded-2xl border border-ink-100 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
                   <div className="flex gap-3">
                     <Car className="h-6 w-6 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-sm font-bold text-ink-950">Tip for best results</p>
-                      <p className="mt-1 text-sm leading-relaxed text-ink-600">
+                      <p className="text-sm font-bold text-ink-950 dark:text-white">Tip for best results</p>
+                      <p className="mt-1 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
                         Bring a clean, dry vehicle (or clear access to windows for property jobs) so we can
                         inspect and install to the highest standard.
                       </p>
