@@ -10,6 +10,10 @@ import { servicePageBySlug } from '@/data/servicePages';
 import { business } from '@/data/business';
 import { projects } from '@/data/projects';
 import type { ServicePageContent } from '@/data/servicePages';
+import AutomotiveTintingPage from '@/pages/AutomotiveTintingPage';
+import CommercialTintingPage from '@/pages/CommercialTintingPage';
+import ResidentialTintingPage from '@/pages/ResidentialTintingPage';
+import PaintProtectionFilmPage from '@/pages/PaintProtectionFilmPage';
 
 function ServiceHero({
   name,
@@ -499,6 +503,22 @@ export default function ServiceDetailPage() {
 
   if (!service) {
     return <Navigate to="/" replace />;
+  }
+
+  if (slug === 'automotive-window-tinting') {
+    return <AutomotiveTintingPage />;
+  }
+
+  if (slug === 'commercial-window-tinting') {
+    return <CommercialTintingPage />;
+  }
+
+  if (slug === 'residential-window-tinting') {
+    return <ResidentialTintingPage />;
+  }
+
+  if (slug === 'paint-protection-film') {
+    return <PaintProtectionFilmPage />;
   }
 
   if (!pageContent) {

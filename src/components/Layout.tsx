@@ -12,9 +12,9 @@ export default function Layout() {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-white transition-colors duration-300 dark:bg-ink-950">
       <Header />
-      <main className="flex-1 pt-16 lg:pt-14">
+      <main className="relative z-10 flex-1 pt-16 lg:pt-14">
         <Outlet />
       </main>
       <Footer />

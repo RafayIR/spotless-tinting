@@ -12,30 +12,30 @@ export interface Review {
 export const reviews: Review[] = [
   {
     id: 'rev1',
-    customerName: '[CUSTOMER NAME]',
+    customerName: 'Ryan Seibring',
     rating: 5,
-    review: '[INSERT REAL REVIEW — Replace this placeholder with a genuine customer review once available.]',
+    review: 'I am in the business of buying and then selling cars. Have had  several cars tinted from Spotless Tiring. I have always admired the professionalism and quality in their work',
     service: 'Automotive Window Tinting',
-    date: '[DATE]',
+    date: '',
     source: 'Google',
   },
   {
     id: 'rev2',
-    customerName: '[CUSTOMER NAME]',
+    customerName: 'Angela Clark',
     rating: 5,
-    review: '[INSERT REAL REVIEW — Replace this placeholder with a genuine customer review once available.]',
-    service: 'Paint Protection Film',
-    date: '[DATE]',
+    review: 'Amazing service at great price. Had my car tinted first and recommended  Spotless tinting to all my family members',
+    date: '',
     source: 'Google',
+    service: ""
   },
   {
     id: 'rev3',
-    customerName: '[CUSTOMER NAME]',
+    customerName: 'James Fox',
     rating: 5,
-    review: '[INSERT REAL REVIEW — Replace this placeholder with a genuine customer review once available.]',
+    review: 'Had my car tinted from Spotless Tinting and am very satisfied with the finishing of the job. They really look after their customers.',
     service: 'Residential Window Tinting',
-    date: '[DATE]',
-    source: 'Facebook',
+    date: '',
+    source: 'Google',
   },
 ];
 

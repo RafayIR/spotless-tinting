@@ -4,12 +4,27 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/avif" href="/logo.avif" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spotless Tinting | Car, Home & Commercial Window Tinting — Moonah, Hobart</title>
+    <title>Window Tinting Hobart | Spotless Tinting</title>
+    <meta
+      name="description"
+      content="Professional window tinting in Hobart for cars, homes and businesses. Explore automotive, residential and commercial tinting, PPF, vehicle wraps and Smart Tint."
+    />
     <meta property="og:image" content="https://bolt.new/static/og_default.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://bolt.new/static/og_default.png" />
   </head>
   <body>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('spotless-theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          if (theme === 'dark') document.documentElement.classList.add('dark');
+          else document.documentElement.classList.remove('dark');
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

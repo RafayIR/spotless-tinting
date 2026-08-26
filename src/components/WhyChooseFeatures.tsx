@@ -58,7 +58,7 @@ const features: Feature[] = [
     desc: 'From preparation to the final inspection, we focus on the small details that make a big difference.',
     cardClass: 'lg:top-[78%] lg:left-1/2 lg:w-[280px] lg:-translate-x-1/2',
     align: 'center',
-    spot: { left: '46%', top: '68%' },
+    spot: { left: '49.5%', top: '68%' },
   },
 ];
 
@@ -68,7 +68,7 @@ const lineAnchors: Record<string, { x: number; y: number }> = {
   precision: { x: 24, y: 48 },
   films: { x: 76, y: 14 },
   ppf: { x: 76, y: 52 },
-  detail: { x: 46, y: 78 },
+  detail: { x: 50, y: 78 },
 };
 
 function FeatureCard({ feature }: { feature: Feature }) {

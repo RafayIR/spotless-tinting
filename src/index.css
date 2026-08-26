@@ -10,7 +10,7 @@
     -webkit-font-smoothing: antialiased;
   }
   body {
-    @apply bg-white font-sans text-ink-800 antialiased;
+    @apply bg-white font-sans text-ink-800 antialiased transition-colors duration-300;
   }
   h1, h2, h3, h4, h5 {
     @apply font-display tracking-tight text-ink-950;
@@ -18,20 +18,40 @@
   ::selection {
     @apply bg-accent-500 text-white;
   }
+
+  html.dark body {
+    @apply bg-ink-950 text-ink-200;
+  }
+  html.dark h1,
+  html.dark h2,
+  html.dark h3,
+  html.dark h4,
+  html.dark h5 {
+    @apply text-white;
+  }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-ink-950;
   }
   .btn-primary {
     @apply btn bg-accent-500 text-white hover:bg-accent-600 hover:shadow-lg hover:shadow-accent-500/30 active:scale-[0.98];
   }
   .btn-dark {
-    @apply btn bg-ink-900 text-white hover:bg-ink-800 active:scale-[0.98];
+    @apply btn bg-ink-900 text-white hover:bg-ink-800 active:scale-[0.98] dark:bg-ink-100 dark:text-ink-950 dark:hover:bg-white;
   }
   .btn-outline {
-    @apply btn border border-ink-300 bg-transparent text-ink-900 hover:border-accent-500 hover:bg-accent-50 active:scale-[0.98];
+    @apply btn border border-ink-300 bg-transparent hover:border-accent-500 hover:bg-accent-50 active:scale-[0.98];
+    color: #0d0f11; /* ink-950 — always readable on light surfaces */
+  }
+  html.dark .btn-outline {
+    border-color: #4d555f; /* ink-600 */
+    color: #ffffff;
+  }
+  html.dark .btn-outline:hover {
+    border-color: #fb923c; /* accent-400 */
+    background-color: rgb(255 255 255 / 0.05);
   }
   .btn-light {
     @apply btn border border-accent-300 bg-accent-500 text-white hover:bg-accent-600 active:scale-[0.98];
@@ -40,16 +60,16 @@
     @apply py-20 md:py-28;
   }
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent-600;
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400;
   }
   .card-surface {
-    @apply rounded-2xl border border-ink-100 bg-white shadow-sm;
+    @apply rounded-2xl border border-ink-100 bg-white shadow-sm dark:border-ink-800 dark:bg-ink-900;
   }
   .input-field {
-    @apply w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 placeholder-ink-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20;
+    @apply w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 placeholder-ink-400 transition-colors focus:border-accent-500 focus:outline-none focus:ring-2 focus:ring-accent-500/20 dark:border-ink-700 dark:bg-ink-900 dark:text-white dark:placeholder-ink-500;
   }
   .label-field {
-    @apply mb-1.5 block text-sm font-medium text-ink-700;
+    @apply mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300;
   }
 }
 
@@ -67,6 +87,52 @@
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Content surface remaps for dark theme (keeps CTA white buttons intact) */
+html.dark main section.bg-white,
+html.dark main .section.bg-white {
+  background-color: theme('colors.ink.950');
+}
+html.dark main section.bg-ink-50,
+html.dark main .section.bg-ink-50 {
+  background-color: theme('colors.ink.900');
+}
+html.dark main .bg-ink-50 {
+  background-color: theme('colors.ink.900');
+}
+html.dark main .border-ink-100,
+html.dark main .border-ink-200 {
+  border-color: theme('colors.ink.800');
+}
+html.dark main .divide-ink-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: theme('colors.ink.800');
+}
+html.dark main .ring-ink-100 {
+  --tw-ring-color: theme('colors.ink.800');
+}
+html.dark main .text-ink-950:not(.btn):not([class*='btn']):not(a.btn),
+html.dark main .text-ink-900:not(.btn):not([class*='btn']):not(a.btn) {
+  color: theme('colors.white');
+}
+html.dark main .text-ink-800:not(.btn):not([class*='btn']):not(a.btn),
+html.dark main .text-ink-700:not(.btn):not([class*='btn']):not(a.btn) {
+  color: theme('colors.ink.200');
+}
+html.dark main .text-ink-600:not(.btn):not([class*='btn']):not(a.btn) {
+  color: theme('colors.ink.300');
+}
+html.dark main .text-ink-500:not(.btn):not([class*='btn']):not(a.btn),
+html.dark main .text-ink-400:not(.btn):not([class*='btn']):not(a.btn) {
+  color: theme('colors.ink.400');
+}
+html.dark main .bg-white:not(.btn):not([class*='btn-']):not(a.btn) {
+  background-color: theme('colors.ink.900');
+}
+html.dark main a.bg-white,
+html.dark main .btn.bg-white,
+html.dark main button.bg-white {
+  background-color: #fff;
 }
 
 @media (prefers-reduced-motion: reduce) {

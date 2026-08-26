@@ -54,7 +54,7 @@ const tintingCards: {
     title: 'Automotive Window Tinting',
     desc: 'Premium window films for cars, utes and SUVs — heat rejection, UV protection and style.',
     features: ['Heat Reduction', 'UV Protection', 'Glare Reduction', 'Privacy & Style'],
-    cta: 'Explore Automotive Tinting',
+    cta: 'Automotive Window Tinting',
     image: images.blackCar,
   },
   {

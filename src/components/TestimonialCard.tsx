@@ -3,7 +3,7 @@ import type { Review } from '@/data/reviews';
 
 export default function TestimonialCard({ review }: { review: Review }) {
   return (
-    <div className="card-surface flex flex-col p-6">
+    <div className="card-surface h-[100%] flex flex-col p-6">
       <div className="flex items-center gap-1">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star

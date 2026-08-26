@@ -35,9 +35,9 @@ export const services: Service[] = [
     ],
     ctaLabel: 'Get a Free Quote',
     ctaPath: '/quote',
-    metaTitle: 'Car Window Tinting Hobart & Moonah | Spotless Tinting',
+    metaTitle: 'Car Window Tinting Hobart | Spotless Tinting',
     metaDescription:
-      'Premium automotive window tinting in Moonah, Hobart. Ceramic, carbon and dyed films with expert installation. Get a free quote today.',
+      'Professional car window tinting in Hobart for heat reduction, UV protection, glare control, privacy and style. Explore tint options or get a quote from Spotless Tinting.',
     crossLinks: ['paint-protection-film', 'vehicle-wrapping'],
   },
   {

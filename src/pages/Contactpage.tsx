@@ -1,10 +1,78 @@
 import { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  ArrowRight,
+  Check,
+  Camera,
+  MessageCircle,
+  Car,
+  Star,
+  Shield,
+  Wrench
+} from 'lucide-react';
 import SEO from '@/components/SEO';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
 import { business } from '@/data/business';
 import { services } from '@/data/services';
+import { images } from '@/data/images';
+
+const quickCards = [
+  {
+    icon: Phone,
+    title: 'Call Us',
+    primary: business.phone,
+    href: business.phoneHref,
+    note: 'Speak directly with our team.',
+  },
+  {
+    icon: Mail,
+    title: 'Email Us',
+    primary: business.email,
+    href: business.emailHref,
+    note: 'We reply as soon as possible.',
+  },
+  {
+    icon: MapPin,
+    title: 'Visit Us',
+    primary: 'Moonah, Hobart',
+    href: undefined,
+    note: 'Workshop by appointment.',
+  },
+  {
+    icon: Clock,
+    title: 'Business Hours',
+    primary: 'Mon–Fri · Sat · Sun',
+    href: undefined,
+    note: business.hours.map((h) => `${h.day}: ${h.hours}`).slice(0, 3).join(' · '),
+  },
+];
+
+const vehicleTips = [
+  'Vehicle make, model and year',
+  'Which windows you want tinted',
+  'Preferred tint darkness / film type',
+  'Any existing tint to remove',
+  'Photos of the vehicle (optional)',
+];
+
+const propertyTips = [
+  'Property type (home / office / shopfront)',
+  'Approximate number of windows',
+  'Goals: heat, glare, privacy or safety',
+  'Suburb / location',
+  'Photos of the glass areas (optional)',
+];
+
+const trustBadges = [
+  { icon: Star, label: '5 Star Google Reviews' },
+  { icon: Shield, label: 'Premium Films' },
+  { icon: Wrench, label: 'Expert Installation' },
+  { icon: MapPin, label: 'Local Hobart Business' },
+];
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -16,7 +84,7 @@ export default function ContactPage() {
 
   const localBusinessSchema = {
     '@context': 'https://schema.org',
-    '@type': 'AutoWash',
+    '@type': 'LocalBusiness',
     name: business.name,
     telephone: business.phone,
     email: business.email,
@@ -26,121 +94,168 @@ export default function ContactPage() {
       addressRegion: 'TAS',
       addressCountry: 'AU',
     },
-    openingHours: 'Mo-Sa',
   };
 
   return (
     <>
       <SEO
         title="Contact Us | Spotless Tinting — Hobart"
-        description="Contact Spotless Tinting in Moonah, Hobart. Call, email or send us a message for window tinting, PPF and vehicle wrapping enquiries."
+        description="Contact Spotless Tinting in Moonah, Hobart. Call, email or send an enquiry for window tinting, PPF and vehicle wrapping."
         path="/contact"
         schema={localBusinessSchema}
       />
 
-      <section className="bg-accent-50 py-16">
-        <div className="container">
-          <Breadcrumbs crumbs={[{ label: 'Home', path: '/' }, { label: 'Contact' }]} />
-          <h1 className="mt-6 text-4xl font-bold text-ink-950 md:text-5xl">Contact Us</h1>
-          <p className="mt-4 max-w-2xl text-ink-600">
-            Get in touch with Spotless Tinting. We're here to help with all your tinting and vehicle protection enquiries.
-          </p>
-        </div>
-      </section>
-
-      <section className="section bg-white">
-        <div className="container">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
-            {/* Contact info */}
+      {/* HERO — diagonal split */}
+      <section className="relative overflow-hidden bg-white">
+        <div className="relative flex min-h-[560px] flex-col lg:min-h-[660px] lg:flex-row">
+          {/* Text */}
+          <div className="relative z-20 flex w-full flex-col justify-center px-6 py-14 sm:px-10 lg:w-[48%] lg:px-12 lg:py-20 xl:w-[42%] xl:px-16">
             <Reveal>
               <div>
-                <h2 className="text-2xl font-bold">Get in Touch</h2>
-                <div className="mt-6 space-y-5">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                      <Phone className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-ink-900">Phone</p>
-                      <a href={business.phoneHref} className="text-sm text-ink-600 hover:text-accent-600">{business.phone}</a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                      <Mail className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-ink-900">Email</p>
-                      <a href={business.emailHref} className="text-sm text-ink-600 hover:text-accent-600">{business.email}</a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                      <MapPin className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-ink-900">Address</p>
-                      <p className="text-sm text-ink-600">{business.address}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                      <Clock className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-ink-900">Business Hours</p>
-                      <ul className="mt-1 space-y-0.5 text-sm text-ink-600">
-                        {business.hours.map((h) => (
-                          <li key={h.day} className="flex justify-between gap-3">
-                            <span>{h.day}</span>
-                            <span>{h.hours}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <p className="text-sm font-semibold text-ink-900">Service Areas</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {business.serviceAreas.map((a) => (
-                      <span key={a} className="rounded-full bg-ink-50 px-3 py-1 text-xs text-ink-600">{a}</span>
-                    ))}
-                  </div>
+                <span className="text-xs font-bold uppercase tracking-[0.22em] text-accent-500">
+                  Contact Spotless Tinting —
+                </span>
+                <h1 className="mt-4 text-4xl font-bold uppercase leading-[1.08] text-ink-950 sm:text-5xl lg:text-[2.85rem]">
+                  Get in Touch with
+                  <span className="mt-1 block text-accent-500">
+                    Spotless Tinting
+                    <span className="mt-2 block h-1.5 w-28 bg-accent-500" aria-hidden />
+                  </span>
+                </h1>
+                <p className="mt-5 max-w-md text-base leading-relaxed text-ink-700">
+                  Whether you&apos;re looking for automotive window tinting, residential or commercial
+                  film, PPF, vehicle wraps or Smart Tint, our team is here to help.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link to="/quote" className="btn-primary">
+                    Get a Free Quote
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a href={business.phoneHref} className="btn-outline">
+                    <Phone className="h-4 w-4" />
+                    Call {business.phone}
+                  </a>
                 </div>
               </div>
             </Reveal>
+          </div>
 
-            {/* Contact form */}
-            <Reveal delay={100}>
-              <div className="card-surface p-6 md:p-8">
+          {/* Diagonal image — desktop */}
+          <div className="relative hidden min-h-full flex-1 lg:block" aria-hidden>
+            <div
+              className="absolute inset-0 overflow-hidden"
+              style={{ clipPath: 'polygon(18% 0, 100% 0, 100% 100%, 0 100%)' }}
+            >
+              <img
+                src={images.banner03}
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
+              {/* Soft feather along the diagonal edge */}
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 w-[28%] bg-gradient-to-r from-white via-white/70 to-transparent"
+                style={{
+                  clipPath: 'polygon(0 0, 70% 0, 35% 100%, 0 100%)',
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Image — mobile */}
+          <div className="relative h-64 sm:h-80 lg:hidden">
+            <img
+              src={images.contactHero}
+              alt="Spotless Tinting — premium automotive window tinting"
+              className="h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      {/* QUICK CONTACT CARDS */}
+      <section className="border-b border-ink-100 bg-white py-12 md:py-14">
+        <div className="container">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {quickCards.map((card, i) => (
+              <Reveal key={card.title} delay={i * 40}>
+                <div className="text-center lg:text-left">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border-2 border-accent-500 text-accent-500 lg:mx-0">
+                    <card.icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="mt-4 text-xs font-bold uppercase tracking-wide text-ink-950">
+                    {card.title}
+                  </h3>
+                  {card.href ? (
+                    <a
+                      href={card.href}
+                      className="mt-1.5 block text-sm font-semibold text-ink-800 hover:text-accent-600"
+                    >
+                      {card.primary}
+                    </a>
+                  ) : (
+                    <p className="mt-1.5 text-sm font-semibold text-ink-800">{card.primary}</p>
+                  )}
+                  <p className="mt-1 text-xs leading-relaxed text-ink-500">{card.note}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FORM + FASTER QUOTE */}
+      <section className="section bg-ink-50">
+        <div className="container">
+          <Reveal>
+            <div className="mx-auto mb-10 max-w-2xl text-center">
+              <span className="eyebrow">Enquiry</span>
+              <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl">
+                Tell Us What You Need
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+            <Reveal>
+              <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-sm md:p-8">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-50 text-accent-600">
                       <Check className="h-8 w-8" />
                     </div>
-                    <h3 className="mt-4 text-xl font-bold text-ink-950">Message Sent!</h3>
-                    <p className="mt-2 text-sm text-ink-600">Thanks for reaching out. We'll get back to you as soon as possible.</p>
-                    <button onClick={() => setSubmitted(false)} className="btn-outline mt-6">Send Another Message</button>
+                    <h3 className="mt-4 text-xl font-bold text-ink-950">Enquiry Sent!</h3>
+                    <p className="mt-2 max-w-sm text-sm text-ink-600">
+                      Thanks for reaching out. We&apos;ll get back to you as soon as possible.
+                    </p>
+                    <button type="button" onClick={() => setSubmitted(false)} className="btn-outline mt-6">
+                      Send Another Enquiry
+                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="name" className="label-field">Name *</label>
-                        <input id="name" name="name" required className="input-field" placeholder="Your name" />
+                        <label htmlFor="name" className="label-field">Full Name *</label>
+                        <input id="name" name="name" required className="input-field" placeholder="Your full name" />
                       </div>
                       <div>
-                        <label htmlFor="phone" className="label-field">Phone *</label>
+                        <label htmlFor="phone" className="label-field">Phone Number *</label>
                         <input id="phone" name="phone" required className="input-field" placeholder="Your phone" />
                       </div>
                     </div>
-                    <div>
-                      <label htmlFor="email" className="label-field">Email *</label>
-                      <input id="email" name="email" type="email" required className="input-field" placeholder="your@email.com" />
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="email" className="label-field">Email *</label>
+                        <input id="email" name="email" type="email" required className="input-field" placeholder="your@email.com" />
+                      </div>
+                      <div>
+                        <label htmlFor="suburb" className="label-field">Suburb / Location</label>
+                        <input id="suburb" name="suburb" className="input-field" placeholder="e.g. Moonah" />
+                      </div>
                     </div>
                     <div>
-                      <label htmlFor="service" className="label-field">Service</label>
+                      <label htmlFor="service" className="label-field">Service Required</label>
                       <select id="service" name="service" className="input-field">
                         <option value="">Select a service</option>
                         {services.map((s) => (
@@ -149,45 +264,263 @@ export default function ContactPage() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="vehicle" className="label-field">Vehicle / Property Type</label>
-                      <input id="vehicle" name="vehicle" className="input-field" placeholder="e.g. 2022 Toyota Hilux or residential home" />
+                      <label htmlFor="vehicle" className="label-field">Vehicle Make &amp; Model</label>
+                      <input
+                        id="vehicle"
+                        name="vehicle"
+                        className="input-field"
+                        placeholder="e.g. 2022 Toyota Hilux — or leave blank for property jobs"
+                      />
                     </div>
                     <div>
-                      <label htmlFor="message" className="label-field">Message *</label>
-                      <textarea id="message" name="message" required rows={4} className="input-field" placeholder="How can we help?" />
+                      <label htmlFor="message" className="label-field">Enquiry Details *</label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={4}
+                        className="input-field"
+                        placeholder="Tell us about your project, goals and any preferences…"
+                      />
                     </div>
                     <div>
                       <label htmlFor="contact-method" className="label-field">Preferred Contact Method</label>
                       <select id="contact-method" name="contact-method" className="input-field">
                         <option value="phone">Phone</option>
                         <option value="email">Email</option>
+                        <option value="whatsapp">WhatsApp / SMS</option>
                         <option value="either">Either</option>
                       </select>
                     </div>
                     <button type="submit" className="btn-primary w-full">
-                      <Send className="h-4 w-4" /> Send Message
+                      Send Enquiry
+                      <ArrowRight className="h-4 w-4" />
                     </button>
                   </form>
                 )}
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className="flex h-full flex-col rounded-2xl bg-ink-950 p-6 text-white md:p-8">
+                <h3 className="text-lg font-bold uppercase tracking-wide">Want a Faster Quote?</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-300">
+                  Call or message us directly — photos of your vehicle or windows help us quote accurately.
+                </p>
+                <ul className="mt-8 space-y-5">
+                  <li className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-500/15 text-accent-400">
+                      <Phone className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-accent-400">Phone</p>
+                      <a href={business.phoneHref} className="mt-0.5 text-sm font-semibold hover:text-accent-400">
+                        {business.phone}
+                      </a>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-500/15 text-accent-400">
+                      <MessageCircle className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-accent-400">WhatsApp / SMS</p>
+                      <a href={business.phoneHref} className="mt-0.5 text-sm font-semibold hover:text-accent-400">
+                        Message us on {business.phone}
+                      </a>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-500/15 text-accent-400">
+                      <Camera className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-accent-400">Send Photos</p>
+                      <p className="mt-0.5 text-sm text-ink-300">
+                        Vehicle or window photos speed up your quote.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+                <a
+                  href={business.phoneHref}
+                  className="btn mt-auto border border-accent-500 bg-transparent text-accent-400 hover:bg-accent-500 hover:text-white"
+                >
+                  Call / Message Us
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Map */}
-      <section className="bg-ink-50 py-12">
+      {/* LOCATION */}
+      <section className="section bg-white">
         <div className="container">
-          <div className="overflow-hidden rounded-2xl border border-ink-100">
-            <iframe
-              title="Spotless Tinting location — Moonah, Hobart"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5473.2!2d147.2667!3d42.8499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDUwJzU5LjYiUyAxNDfCsDE1JzU2LjEiRQ!5e0!3m2!1sen!2sau!4v0000000000000"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
+            <Reveal>
+              <div className="overflow-hidden rounded-2xl border border-ink-100">
+                <iframe
+                  title="Spotless Tinting location — Moonah, Hobart"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.5!2d147.302!3d-42.86!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDUxJzM2LjAiUyAxNDfCsDE4JzA3LjIiRQ!5e0!3m2!1sen!2sau!4v1700000000000"
+                  width="100%"
+                  height="420"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <div>
+                <span className="eyebrow">Location</span>
+                <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl">
+                  Visit Spotless Tinting
+                </h2>
+                <ul className="mt-8 space-y-5">
+                  <li className="flex gap-4">
+                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+                    <div>
+                      <p className="text-sm font-bold text-ink-950">Address</p>
+                      <p className="mt-0.5 text-sm text-ink-600">{business.address}</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+                    <div>
+                      <p className="text-sm font-bold text-ink-950">Phone</p>
+                      <a href={business.phoneHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600">
+                        {business.phone}
+                      </a>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+                    <div>
+                      <p className="text-sm font-bold text-ink-950">Email</p>
+                      <a href={business.emailHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600">
+                        {business.email}
+                      </a>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
+                    <div>
+                      <p className="text-sm font-bold text-ink-950">Workshop Access</p>
+                      <p className="mt-0.5 text-sm text-ink-600">
+                        Visits are by appointment — please call ahead so we can prepare for your arrival.
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+                <div className="mt-8 rounded-2xl border border-ink-100 bg-ink-50 p-5">
+                  <div className="flex gap-3">
+                    <Car className="h-6 w-6 shrink-0 text-accent-500" />
+                    <div>
+                      <p className="text-sm font-bold text-ink-950">Tip for best results</p>
+                      <p className="mt-1 text-sm leading-relaxed text-ink-600">
+                        Bring a clean, dry vehicle (or clear access to windows for property jobs) so we can
+                        inspect and install to the highest standard.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* QUOTE ACCURATELY */}
+      <section className="section bg-ink-50">
+        <div className="container">
+          <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
+            <div>
+              <Reveal>
+                <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
+                  To Help Us Quote Accurately
+                </h2>
+              </Reveal>
+              <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                <Reveal delay={40}>
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-accent-600">
+                      For Vehicle Jobs
+                    </h3>
+                    <ul className="mt-4 space-y-2.5">
+                      {vehicleTips.map((tip) => (
+                        <li key={tip} className="flex items-start gap-2.5 text-sm text-ink-700">
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" strokeWidth={2.5} />
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+                <Reveal delay={80}>
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-accent-600">
+                      For Home / Commercial Jobs
+                    </h3>
+                    <ul className="mt-4 space-y-2.5">
+                      {propertyTips.map((tip) => (
+                        <li key={tip} className="flex items-start gap-2.5 text-sm text-ink-700">
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" strokeWidth={2.5} />
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+            <Reveal delay={100}>
+              <div className="grid grid-cols-2 gap-3">
+                {trustBadges.map((badge) => (
+                  <div
+                    key={badge.label}
+                    className="flex flex-col items-center rounded-2xl border border-ink-100 bg-white p-5 text-center shadow-sm"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-50 text-accent-600">
+                      <badge.icon className="h-5 w-5" />
+                    </div>
+                    <p className="mt-3 text-[11px] font-bold uppercase tracking-wide text-ink-800">
+                      {badge.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER CTA */}
+      <section className="relative overflow-hidden bg-ink-950">
+        <div className="absolute inset-0 opacity-35">
+          <img src={images.heroCar} alt="" className="h-full w-full object-cover object-center" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/70" />
+        </div>
+        <div className="container relative z-10 py-20 text-center">
+          <h2 className="text-3xl font-bold uppercase tracking-tight text-white md:text-4xl">
+            Ready to Get Started?
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-ink-300">
+            Request a free quote or call Spotless Tinting today.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link to="/quote" className="btn-primary">
+              Get a Free Quote
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={business.phoneHref}
+              className="btn border border-white/30 bg-transparent text-white hover:bg-white/10"
+            >
+              <Phone className="h-4 w-4" />
+              Call {business.phone}
+            </a>
           </div>
         </div>
       </section>
