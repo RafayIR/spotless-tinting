@@ -23,7 +23,7 @@ export const services: Service[] = [
     shortDescription: 'Heat reduction, UV protection, privacy and a refined finish with premium window films.',
     description:
       'Our automotive window tinting service delivers premium heat rejection, UV protection and enhanced privacy for your vehicle. We offer a range of film technologies — ceramic, carbon and dyed — in multiple VLT (Visible Light Transmission) options to suit your style and legal requirements. Every installation is carried out by experienced technicians with meticulous attention to detail, ensuring a clean, bubble-free finish that lasts.',
-    heroImage: images.sportsCar,
+    heroImage: images.banner02,
     benefits: [
       'Up to 99% UV protection',
       'Significant heat reduction',

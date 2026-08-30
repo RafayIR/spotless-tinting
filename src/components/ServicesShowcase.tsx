@@ -16,21 +16,21 @@ function ShowcaseCard({
   return (
     <Link
       to={`/services/${service.slug}`}
-      className={`group relative isolate flex min-h-[240px] overflow-hidden rounded-2xl border border-ink-100 bg-[#f7f7f8] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-xl hover:shadow-ink-950/5 ${
+      className={`service-showcase-card group relative isolate flex min-h-[240px] overflow-hidden rounded-2xl border border-ink-100 bg-[#f7f7f8] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-200 hover:shadow-xl hover:shadow-ink-950/5 dark:border-ink-700 dark:bg-ink-900 dark:hover:border-accent-500/40 dark:hover:shadow-black/30 ${
         featured ? 'lg:col-span-3 lg:min-h-[300px]' : 'lg:col-span-2 lg:min-h-[230px]'
       }`}
     >
       <div
-        className={`relative z-10 flex w-[55%] flex-col justify-between p-6 sm:p-7 ${
+        className={`relative z-10 flex w-[55%] flex-col justify-between bg-[#f7f7f8] p-6 dark:bg-ink-900 sm:p-7 ${
           featured ? 'lg:w-[48%] lg:p-8' : ''
         }`}
       >
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent-500">
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent-500 dark:text-accent-400">
             {category}
           </span>
           <h3
-            className={`mt-3 max-w-[240px] font-display font-semibold leading-[1.1] text-ink-950 ${
+            className={`mt-3 max-w-[240px] font-display font-semibold leading-[1.1] text-ink-950 dark:text-white ${
               featured ? 'text-2xl sm:text-[1.7rem]' : 'text-lg sm:text-xl'
             }`}
           >
@@ -39,14 +39,14 @@ function ShowcaseCard({
               : service.name}
           </h3>
           <p
-            className={`mt-3 max-w-[260px] leading-relaxed text-ink-600 ${
+            className={`mt-3 max-w-[260px] leading-relaxed text-ink-600 dark:text-ink-300 ${
               featured ? 'text-sm sm:text-[15px]' : 'text-sm'
             }`}
           >
             {service.shortDescription}
           </p>
         </div>
-        <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-ink-900 transition-colors group-hover:text-accent-600">
+        <span className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-ink-900 transition-colors group-hover:text-accent-600 dark:text-ink-200 dark:group-hover:text-accent-400">
           {cta}
           <ArrowRight className="h-4 w-4 text-accent-500 transition-transform group-hover:translate-x-1" />
         </span>
@@ -56,7 +56,7 @@ function ShowcaseCard({
           src={service.heroImage}
           alt={service.name}
           loading="lazy"
-          className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 dark:brightness-90"
         />
       </div>
     </Link>

@@ -132,6 +132,43 @@ html.dark main .text-ink-500:not(.btn):not([class*='btn']):not(a.btn),
 html.dark main .text-ink-400:not(.btn):not([class*='btn']):not(a.btn) {
   color: theme('colors.ink.400');
 }
+
+/* Service showcase cards — explicit dark text on their own surfaces */
+html.dark main .service-showcase-card h3 {
+  color: theme('colors.white');
+}
+html.dark main .service-showcase-card p {
+  color: theme('colors.ink.300');
+}
+html.dark main .service-showcase-card .text-ink-900,
+html.dark main .service-showcase-card span.text-xs {
+  color: theme('colors.ink.200');
+}
+html.dark main .service-showcase-card span.text-xs:hover,
+html.dark main .service-showcase-card.group:hover span.text-xs {
+  color: theme('colors.accent.400');
+}
+
+/* PPF package cards — keep mockup light surfaces in dark mode */
+html.dark main .ppf-package-card {
+  background-color: #fff !important;
+  border-color: #e5e5e5 !important;
+}
+html.dark main .ppf-package-card h3,
+html.dark main .ppf-package-card .text-ink-700,
+html.dark main .ppf-package-card .text-ink-600 {
+  color: #0d0f11 !important;
+}
+html.dark main .ppf-packages-section {
+  background-color: #f7f7f8 !important;
+}
+html.dark main .ppf-packages-section h2 {
+  color: #0d0f11 !important;
+}
+html.dark main .ppf-packages-section > .container > p.text-ink-500 {
+  color: #737373 !important;
+}
+
 html.dark main .bg-white:not(.btn):not([class*='btn-']):not(a.btn) {
   background-color: theme('colors.ink.900');
 }
@@ -139,6 +176,30 @@ html.dark main a.bg-white,
 html.dark main .btn.bg-white,
 html.dark main button.bg-white {
   background-color: #fff;
+}
+
+/* PPF page split panels — keep mockup colors in both themes */
+.ppf-split-light {
+  background-color: #f5f5f5 !important;
+  color: #171717 !important;
+}
+.ppf-split-light .ppf-split-muted {
+  color: #525252 !important;
+}
+.ppf-split-dark {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.ppf-split-dark h2,
+.ppf-split-dark h3,
+.ppf-split-dark h4 {
+  color: #fff !important;
+}
+.ppf-split-dark .ppf-split-muted {
+  color: #a3a3a3 !important;
+}
+.ppf-split-dark .ppf-feature-title {
+  color: #f97316 !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

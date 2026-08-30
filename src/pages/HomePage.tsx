@@ -23,6 +23,16 @@ import SEO from '@/components/SEO';
 import FAQAccordion from '@/components/FAQAccordion';
 import Reveal from '@/components/Reveal';
 import ParallaxHero from '@/components/ParallaxHero';
+import WhyChooseFeatures from '@/components/WhyChooseFeatures';
+import ServicesShowcase from '@/components/ServicesShowcase';
+import ProcessTimeline from '@/components/ProcessTimeline';
+import GalleryGrid from '@/components/GalleryGrid';
+import TestimonialCard from '@/components/TestimonialCard';
+import {
+  MoreThanDarkerGlassSection,
+  WindowFilmTechnologySection,
+} from '@/components/WindowFilmSections';
+import { services } from '@/data/services';
 import { reviews, overallRating } from '@/data/reviews';
 import { projects } from '@/data/projects';
 import { business } from '@/data/business';
@@ -48,65 +58,6 @@ const uspItems: { icon: LucideIcon; title: string; desc: string }[] = [
     icon: Award,
     title: 'Quality Finish',
     desc: 'Every installation is inspected before handover.',
-  },
-];
-
-const serviceCards: {
-  title: string;
-  desc: string;
-  benefits?: string;
-  cta: string;
-  path: string;
-  image: string;
-  featured?: boolean;
-}[] = [
-  {
-    title: 'Automotive Window Tinting',
-    desc: 'Improve comfort, privacy and protection with professionally installed automotive window film.',
-    benefits: 'Heat reduction · UV protection · Glare control · Privacy · Premium appearance',
-    cta: 'Explore Automotive Window Tinting',
-    path: '/services/automotive-window-tinting',
-    image: images.sportsCar,
-    featured: true,
-  },
-  {
-    title: 'Residential Window Tinting',
-    desc: 'Create a more comfortable and private home with window film designed to help manage heat, glare and UV exposure.',
-    benefits: 'Heat control · UV protection · Privacy · Glare reduction · Interior protection',
-    cta: 'Explore Residential Window Tinting',
-    path: '/services/residential-window-tinting',
-    image: images.modernHome,
-    featured: true,
-  },
-  {
-    title: 'Commercial Window Tinting',
-    desc: 'Professional window film solutions for offices, shopfronts and commercial spaces.',
-    benefits: 'Solar control · Privacy · Glare reduction · Safety & security · Decorative film options',
-    cta: 'Explore Commercial Window Tinting',
-    path: '/services/commercial-window-tinting',
-    image: images.officeGlass,
-    featured: true,
-  },
-  {
-    title: 'Paint Protection Film (PPF)',
-    desc: "Help protect your vehicle's paintwork from stone chips, scratches and everyday road exposure with professionally installed clear protection film.",
-    cta: 'Explore PPF',
-    path: '/services/paint-protection-film',
-    image: images.ppfHero,
-  },
-  {
-    title: 'Vehicle Wraps',
-    desc: 'Transform the appearance of your vehicle with full or partial wraps, colour changes and custom finishes.',
-    cta: 'Explore Vehicle Wraps',
-    path: '/services/vehicle-wrapping',
-    image: images.matteWrap,
-  },
-  {
-    title: 'Smart Tint',
-    desc: 'Switch suitable glass from clear to frosted for privacy at the touch of a button with modern switchable smart film.',
-    cta: 'Explore Smart Tint',
-    path: '/services/residential-window-tinting#smart-tint',
-    image: images.residentialWindow,
   },
 ];
 
@@ -161,39 +112,6 @@ const benefits: { icon: LucideIcon; title: string; desc: string }[] = [
     icon: Sparkles,
     title: 'Premium Appearance',
     desc: 'Enhance the look of your vehicle or property with a clean, professionally installed finish.',
-  },
-];
-
-const processSteps = [
-  {
-    num: '01',
-    title: 'Customer Arrival',
-    desc: 'We take the time to understand your needs, preferences and the result you are looking for.',
-  },
-  {
-    num: '02',
-    title: 'Inspection',
-    desc: 'Your vehicle, glass or project area is inspected before work begins.',
-  },
-  {
-    num: '03',
-    title: 'Film Selection',
-    desc: 'We help you select the right film based on privacy, performance, appearance and application.',
-  },
-  {
-    num: '04',
-    title: 'Precision Installation',
-    desc: 'Your chosen film is professionally installed with careful preparation and attention to detail.',
-  },
-  {
-    num: '05',
-    title: 'Quality Inspection',
-    desc: 'We inspect the completed work to ensure a clean and professional finish.',
-  },
-  {
-    num: '06',
-    title: 'Delivery & Aftercare',
-    desc: 'We explain the relevant aftercare before handing your vehicle or project back to you.',
   },
 ];
 
@@ -338,12 +256,16 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* WHY CHOOSE — car hotspot section (visual; copy is real HTML for SEO) */}
+        <WhyChooseFeatures />
+
         {/* SERVICES */}
         <section className="section bg-white">
           <div className="container">
             <Reveal>
               <div className="mx-auto mb-12 max-w-3xl text-center">
-                <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
+                <span className="eyebrow">What We Do</span>
+                <h2 className="mt-3 text-3xl font-bold md:text-4xl lg:text-5xl">
                   Window Tinting &amp; Vehicle Protection Services
                 </h2>
                 <p className="mx-auto mt-5 max-w-2xl text-ink-600">
@@ -353,40 +275,15 @@ export default function HomePage() {
               </div>
             </Reveal>
 
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {serviceCards.map((card, i) => (
-                <Reveal key={card.title} delay={i * 50}>
-                  <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-100 bg-ink-50 shadow-sm transition-shadow hover:shadow-lg">
-                    <div className={`overflow-hidden ${card.featured ? 'aspect-[16/10]' : 'aspect-[16/9]'}`}>
-                      <img
-                        src={card.image}
-                        alt={`${card.title} in Hobart by Spotless Tinting`}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      <h3 className="text-lg font-bold text-ink-950">{card.title}</h3>
-                      <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{card.desc}</p>
-                      {card.benefits && (
-                        <p className="mt-3 text-xs font-medium leading-relaxed text-ink-500">
-                          {card.benefits}
-                        </p>
-                      )}
-                      <Link
-                        to={card.path}
-                        className="mt-5 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-accent-600"
-                      >
-                        {card.cta}
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={80}>
+              <ServicesShowcase services={services} />
+            </Reveal>
           </div>
         </section>
+
+        {/* WINDOW FILM TECHNOLOGY */}
+        <MoreThanDarkerGlassSection />
+        <WindowFilmTechnologySection />
 
         {/* WINDOW TINTING FOCUS */}
         <section className="section bg-ink-50">
@@ -507,23 +404,15 @@ export default function HomePage() {
           <div className="container">
             <Reveal>
               <div className="mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold md:text-4xl lg:text-5xl">
-                  The Spotless Process — Precision.{' '}
-                  <span className="text-accent-500">Protection.</span> Perfection.
+                <span className="eyebrow">The Spotless Process</span>
+                <h2 className="mt-3 text-3xl font-bold md:text-4xl lg:text-5xl">
+                  Precision. <span className="text-accent-500">Protection.</span> Perfection.
                 </h2>
               </div>
             </Reveal>
-            <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {processSteps.map((step, i) => (
-                <Reveal key={step.num} delay={i * 50}>
-                  <div className="h-full rounded-2xl border border-ink-100 bg-ink-50 p-6">
-                    <span className="text-sm font-bold text-accent-500">{step.num}</span>
-                    <h3 className="mt-2 text-lg font-bold text-ink-950">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-600">{step.desc}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            <Reveal delay={80}>
+              <ProcessTimeline />
+            </Reveal>
           </div>
         </section>
 
@@ -540,7 +429,7 @@ export default function HomePage() {
               </div>
             </Reveal>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
+            <div className="mt-8 mb-8 flex flex-wrap justify-center gap-2">
               {workFilters.map((filter) => (
                 <button
                   key={filter}
@@ -557,38 +446,9 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProjects.map((project, i) => (
-                <Reveal key={project.id} delay={i * 40}>
-                  <article className="overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-sm">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={`${project.title} — ${project.service} in ${project.location}`}
-                        loading="lazy"
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="p-5">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-accent-500">
-                        {project.category}
-                      </span>
-                      <h3 className="mt-1.5 text-base font-bold text-ink-950">
-                        {project.title} — {project.location}
-                      </h3>
-                      <p className="mt-1.5 text-sm text-ink-600">{project.description}</p>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-
-            <div className="mt-10 text-center">
-              <Link to="/gallery" className="btn-primary">
-                View Our Work
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
+            <Reveal delay={80}>
+              <GalleryGrid projects={filteredProjects} showViewAll />
+            </Reveal>
           </div>
         </section>
 
@@ -618,22 +478,7 @@ export default function HomePage() {
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {reviews.slice(0, 3).map((r, i) => (
                 <Reveal key={r.id} delay={i * 60}>
-                  <blockquote className="flex h-full flex-col rounded-2xl border border-ink-100 bg-ink-50 p-6">
-                    <div className="flex gap-0.5" aria-hidden>
-                      {Array.from({ length: 5 }).map((_, si) => (
-                        <Star key={si} className="h-4 w-4 fill-accent-500 text-accent-500" />
-                      ))}
-                    </div>
-                    <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-700">
-                      &ldquo;{r.review}&rdquo;
-                    </p>
-                    <footer className="mt-5">
-                      <p className="text-sm font-bold text-ink-950">{r.customerName}</p>
-                      <p className="text-xs text-ink-500">
-                        {r.service || 'Spotless Tinting'} · {r.source}
-                      </p>
-                    </footer>
-                  </blockquote>
+                  <TestimonialCard review={r} />
                 </Reveal>
               ))}
             </div>

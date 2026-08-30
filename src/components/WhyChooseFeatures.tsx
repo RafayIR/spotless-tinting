@@ -82,7 +82,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
         isCenter ? 'flex-col items-center' : 'items-start'
       }`}
     >
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ink-100 bg-white shadow-md shadow-ink-950/5">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ink-100 bg-white shadow-md shadow-ink-950/5 dark:border-ink-700 dark:bg-ink-950">
         {feature.id === 'ppf' ? (
           <span className="text-[10px] font-extrabold tracking-wider text-accent-500">PPF</span>
         ) : (
@@ -90,8 +90,8 @@ function FeatureCard({ feature }: { feature: Feature }) {
         )}
       </div>
       <div className={isCenter ? 'text-center' : isRight ? 'text-right' : 'text-left'}>
-        <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950">{feature.title}</h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-ink-500">{feature.desc}</p>
+        <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950 dark:text-white">{feature.title}</h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-400">{feature.desc}</p>
       </div>
     </div>
   );
@@ -99,15 +99,15 @@ function FeatureCard({ feature }: { feature: Feature }) {
 
 export default function WhyChooseFeatures() {
   return (
-    <section className="section overflow-hidden bg-[#fafafa]">
+    <section className="section overflow-hidden bg-[#fafafa] dark:hidden">
       <div className="container">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <span className="eyebrow">Why Choose Spotless Tinting</span>
-            <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl lg:text-[2.75rem]">
+            <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl lg:text-[2.75rem]">
               Excellence in Every Detail
             </h2>
-            <p className="mt-5 text-ink-600">
+            <p className="mt-5 text-ink-600 dark:text-ink-300">
               We combine premium products, expert installation and unmatched attention to detail to
               deliver protection, performance and style you can rely on.
             </p>
@@ -119,7 +119,7 @@ export default function WhyChooseFeatures() {
           <Reveal>
             <div className="relative mx-auto max-w-lg">
               <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 top-1/3 opacity-40"
+                className="pointer-events-none absolute inset-x-0 bottom-0 top-1/3 opacity-40 dark:hidden"
                 aria-hidden
                 style={{
                   backgroundImage:
@@ -127,10 +127,19 @@ export default function WhyChooseFeatures() {
                   maskImage: 'radial-gradient(ellipse 65% 50% at 50% 75%, black, transparent)',
                 }}
               />
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 top-1/3 hidden opacity-25 dark:block"
+                aria-hidden
+                style={{
+                  backgroundImage:
+                    'repeating-radial-gradient(ellipse 60% 35% at 50% 80%, #4d555f 0, #4d555f 1px, transparent 1px, transparent 40px)',
+                  maskImage: 'radial-gradient(ellipse 65% 50% at 50% 75%, black, transparent)',
+                }}
+              />
               <img
                 src={images.carIllustration}
                 alt="Technical wireframe illustration of a sports car"
-                className="relative z-10 mx-auto w-full max-w-md object-contain"
+                className="relative z-10 mx-auto w-full max-w-md object-contain mix-blend-multiply dark:mix-blend-screen dark:invert"
                 loading="lazy"
               />
             </div>
@@ -149,7 +158,7 @@ export default function WhyChooseFeatures() {
           <div className="relative mx-auto mt-14 hidden aspect-[16/11] max-w-6xl lg:block">
             {/* Floor rings */}
             <div
-              className="pointer-events-none absolute inset-x-[10%] bottom-[6%] top-[22%] opacity-45"
+              className="pointer-events-none absolute inset-x-[10%] bottom-[6%] top-[22%] opacity-45 dark:opacity-25"
               aria-hidden
               style={{
                 backgroundImage:
@@ -157,13 +166,22 @@ export default function WhyChooseFeatures() {
                 maskImage: 'radial-gradient(ellipse 58% 42% at 50% 68%, black 15%, transparent 72%)',
               }}
             />
+            <div
+              className="pointer-events-none absolute inset-x-[10%] bottom-[6%] top-[22%] hidden opacity-30 dark:block"
+              aria-hidden
+              style={{
+                backgroundImage:
+                  'repeating-radial-gradient(ellipse 52% 26% at 50% 70%, #4d555f 0, #4d555f 1px, transparent 1px, transparent 38px)',
+                maskImage: 'radial-gradient(ellipse 58% 42% at 50% 68%, black 15%, transparent 72%)',
+              }}
+            />
 
-            {/* Car */}
+            {/* Car — multiply hides white PNG bg in light mode; screen + invert in dark mode */}
             <div className="absolute inset-[10%_20%_14%_20%] z-10 flex items-center justify-center">
               <img
                 src={images.carIllustration}
                 alt="Technical wireframe illustration of a sports car"
-                className="h-full w-full object-contain"
+                className="h-full w-full object-contain mix-blend-multiply dark:mix-blend-screen dark:invert"
                 loading="lazy"
               />
             </div>

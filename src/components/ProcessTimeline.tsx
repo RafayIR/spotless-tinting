@@ -64,7 +64,7 @@ export default function ProcessTimeline() {
         <img
           src={images.carIllustration}
           alt=""
-          className="mx-auto h-auto w-[72%] max-w-4xl object-contain"
+          className="mx-auto h-auto w-[72%] max-w-4xl object-contain opacity-[0.12] mix-blend-multiply dark:mix-blend-screen dark:invert dark:opacity-[0.18]"
         />
       </div>
 
