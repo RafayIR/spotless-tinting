@@ -60,6 +60,13 @@ export const images = {
       install: '/automotive-tinting/04-install.svg',
       inspect: '/automotive-tinting/05-inspect.svg',
     },
+    heroBenefits: {
+      heatReduction: '/automotive-tinting/icons/heat-reduction.svg',
+      uvProtection: '/automotive-tinting/icons/uv-protection.svg',
+      glareReduction: '/automotive-tinting/icons/glare-reduction.svg',
+      privacy: '/automotive-tinting/icons/privacy-enhanced.svg',
+      premiumLook: '/automotive-tinting/icons/premium-look.svg',
+    },
     whyTintYourVehicle: '/automotive-tinting/why-tint-your-vehicle.png',
     tasmaniaMap: '/automotive-tinting/tasmania-map.jpeg',
   },

@@ -1,20 +1,11 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
-  Sun,
-  Shield,
-  Eye,
-  Lock,
-  Sparkles,
   Star,
   Wrench,
   MapPin,
   CircleCheck,
-  KeyRound,
   Phone,
-  Mail,
-  ExternalLink,
   type LucideIcon,
 } from 'lucide-react';
 import SEO from '@/components/SEO';
@@ -22,16 +13,20 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
 import ParallaxHero from '@/components/ParallaxHero';
 import FAQAccordion from '@/components/FAQAccordion';
-import { FindYourPerfectShadeSection } from '@/components/WindowFilmSections';
+import {
+  AutomotiveTintingProcessSection,
+  FindYourPerfectShadeSection,
+  RecentAutomotiveProjectsSection,
+} from '@/components/WindowFilmSections';
 import { images } from '@/data/images';
 import { business } from '@/data/business';
 
-const heroBenefits: { icon: LucideIcon; label: string }[] = [
-  { icon: Sun, label: 'Heat Reduction' },
-  { icon: Shield, label: 'UV Protection' },
-  { icon: Eye, label: 'Glare Reduction' },
-  { icon: Lock, label: 'Privacy' },
-  { icon: Sparkles, label: 'Premium Look' },
+const heroBenefits: { iconSrc: string; label: string }[] = [
+  { iconSrc: images.automotiveTinting.heroBenefits.heatReduction, label: 'Heat Reduction' },
+  { iconSrc: images.automotiveTinting.heroBenefits.uvProtection, label: 'UV Protection' },
+  { iconSrc: images.automotiveTinting.heroBenefits.glareReduction, label: 'Glare Reduction' },
+  { iconSrc: images.automotiveTinting.heroBenefits.privacy, label: 'Privacy' },
+  { iconSrc: images.automotiveTinting.heroBenefits.premiumLook, label: 'Premium Look' },
 ];
 
 const trustItems: { icon: LucideIcon; title: string; desc: string }[] = [
@@ -147,113 +142,6 @@ const filmFactors: { title: string; desc: string }[] = [
   },
 ];
 
-const processSteps: {
-  num: string;
-  title: string;
-  desc: string;
-  iconSrc?: string;
-  icon?: LucideIcon;
-}[] = [
-  {
-    num: '01',
-    title: 'Consult',
-    desc: 'We discuss your vehicle, preferences and what you want from your window tint, then recommend suitable film options.',
-    iconSrc: images.automotiveTinting.process.consult,
-  },
-  {
-    num: '02',
-    title: 'Prepare',
-    desc: 'The glass is thoroughly cleaned and prepared to create the best possible surface for installation.',
-    iconSrc: images.automotiveTinting.process.prepare,
-  },
-  {
-    num: '03',
-    title: 'Cut',
-    desc: 'The automotive window film is precisely prepared to fit the required glass.',
-    iconSrc: images.automotiveTinting.process.select,
-  },
-  {
-    num: '04',
-    title: 'Install',
-    desc: 'Your selected film is professionally installed with care, precision and attention to detail.',
-    iconSrc: images.automotiveTinting.process.install,
-  },
-  {
-    num: '05',
-    title: 'Inspect',
-    desc: 'The completed tint is checked for quality and consistency before handover.',
-    iconSrc: images.automotiveTinting.process.inspect,
-  },
-  {
-    num: '06',
-    title: 'Deliver',
-    desc: 'Your vehicle is returned with the relevant window tint aftercare guidance.',
-    icon: KeyRound,
-  },
-];
-
-const aftercareItems = [
-  {
-    title: 'Allow the Film to Cure',
-    desc: 'Temporary haziness or small moisture pockets can be visible while freshly installed film settles. Follow the aftercare guidance provided for your installation.',
-  },
-  {
-    title: 'Wait Before Operating Windows',
-    desc: 'Avoid lowering freshly tinted windows until the recommended waiting period has passed.',
-  },
-  {
-    title: 'Clean Carefully',
-    desc: 'Use suitable cleaning products and soft materials when cleaning tinted glass. Avoid abrasive tools or harsh products that may damage the film.',
-  },
-];
-
-const galleryFilters = ['All', 'Sedans', 'SUVs', 'Utes', 'Sports'] as const;
-
-const galleryItems: { id: string; title: string; filter: (typeof galleryFilters)[number]; image: string; alt: string }[] = [
-  {
-    id: 'g1',
-    title: 'Sedan Window Tinting — Hobart',
-    filter: 'Sedans',
-    image: images.luxurySedan,
-    alt: 'Sedan with professionally installed automotive window tint',
-  },
-  {
-    id: 'g2',
-    title: 'SUV Window Tinting — Hobart',
-    filter: 'SUVs',
-    image: images.suvDark,
-    alt: 'SUV with dark automotive window film',
-  },
-  {
-    id: 'g3',
-    title: 'Ute Window Tinting — Hobart',
-    filter: 'Utes',
-    image: images.blackCar,
-    alt: 'Ute with automotive window tinting',
-  },
-  {
-    id: 'g4',
-    title: 'Sports Coupe Window Tinting — Hobart',
-    filter: 'Sports',
-    image: images.sportsCar,
-    alt: 'Sports coupe with premium window tint',
-  },
-  {
-    id: 'g5',
-    title: 'Coupe Window Tinting — Hobart',
-    filter: 'Sedans',
-    image: images.coupeSide,
-    alt: 'Coupe side profile showing window tint finish',
-  },
-  {
-    id: 'g6',
-    title: 'Family SUV Window Tinting — Hobart',
-    filter: 'SUVs',
-    image: images.heroCar,
-    alt: 'Family SUV with automotive window film installed',
-  },
-];
-
 const automotiveFaqs = [
   {
     question: 'Is car window tinting legal in Tasmania?',
@@ -332,12 +220,6 @@ const pageSchema = {
 };
 
 export default function AutomotiveTintingPage() {
-  const [activeFilter, setActiveFilter] = useState<(typeof galleryFilters)[number]>('All');
-  const filtered =
-    activeFilter === 'All'
-      ? galleryItems
-      : galleryItems.filter((g) => g.filter === activeFilter);
-
   return (
     <>
       <SEO
@@ -387,11 +269,17 @@ export default function AutomotiveTintingPage() {
               <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-          <ul className="mt-10 grid grid-cols-2 gap-4 border-t border-white/10 pt-8 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-5 border-t border-white/10 pt-8 sm:gap-x-8 md:gap-x-10">
             {heroBenefits.map((b) => (
-              <li key={b.label} className="flex flex-col items-center text-center sm:items-start sm:text-left">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-500/15 text-accent-400">
-                  <b.icon className="h-5 w-5" strokeWidth={1.75} />
+              <li key={b.label} className="flex w-[calc(50%-0.75rem)] flex-col items-center text-center sm:w-auto">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-500/15">
+                  <img
+                    src={b.iconSrc}
+                    alt=""
+                    className="h-5 w-5"
+                    aria-hidden
+                    loading="lazy"
+                  />
                 </div>
                 <span className="mt-2 text-xs font-semibold uppercase tracking-wide text-white sm:text-sm">
                   {b.label}
@@ -529,7 +417,7 @@ export default function AutomotiveTintingPage() {
           <div className="container">
             <Reveal>
               <div className="mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
+                <h2 className="text-3xl font-bold text-white uppercase tracking-tight md:text-4xl">
                   Choosing the Right Automotive Window Film
                 </h2>
                 <p className="mt-4 leading-relaxed text-ink-300">
@@ -559,144 +447,15 @@ export default function AutomotiveTintingPage() {
           </div>
         </section>
 
-        {/* Process */}
-        <section className="section bg-white">
-          <div className="container">
-            <Reveal>
-              <div className="mx-auto max-w-3xl text-center">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-600">
-                  The Spotless Standard
-                </p>
-                <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl">
-                  Our Automotive Window Tinting Process
-                </h2>
-                <p className="mt-4 leading-relaxed text-ink-600">
-                  A quality automotive tint starts with careful preparation. Our process is designed
-                  to give your vehicle a clean, professional finish from the first consultation
-                  through to final inspection.
-                </p>
-              </div>
-            </Reveal>
-            <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {processSteps.map((step, i) => (
-                <Reveal key={step.num} delay={i * 40}>
-                  <li className="relative border border-ink-100 bg-ink-50 p-6">
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-accent-500">{step.num}</span>
-                      {step.iconSrc ? (
-                        <img
-                          src={step.iconSrc}
-                          alt=""
-                          className="h-8 w-8"
-                          aria-hidden
-                          loading="lazy"
-                        />
-                      ) : step.icon ? (
-                        <step.icon className="h-5 w-5 text-ink-400" />
-                      ) : null}
-                    </div>
-                    <h3 className="mt-4 text-lg font-bold text-ink-950">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-600">{step.desc}</p>
-                  </li>
-                </Reveal>
-              ))}
-            </ol>
-          </div>
-        </section>
+        <AutomotiveTintingProcessSection />
 
-        {/* Aftercare */}
+        {/* Aftercare — commented out per design update
         <section id="aftercare" className="section bg-ink-50">
-          <div className="container">
-            <div className="grid items-start gap-10 lg:grid-cols-2">
-              <Reveal>
-                <div>
-                  <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
-                    Automotive Window Tint Aftercare
-                  </h2>
-                  <p className="mt-5 leading-relaxed text-ink-600">
-                    Newly installed window film needs time to settle. Before you leave, we&apos;ll
-                    explain the appropriate aftercare for the film installed on your vehicle so you
-                    know what to expect during the curing period.
-                  </p>
-                  <a href="#aftercare-tips" className="btn-outline mt-8 inline-flex">
-                    View Window Tint Aftercare
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </Reveal>
-              <Reveal delay={80}>
-                <div id="aftercare-tips" className="space-y-4">
-                  {aftercareItems.map((item) => (
-                    <article key={item.title} className="border-l-2 border-accent-500 bg-white p-5">
-                      <h3 className="font-bold text-ink-950">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-ink-600">{item.desc}</p>
-                    </article>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-          </div>
+          ...
         </section>
+        */}
 
-        {/* Projects */}
-        <section className="section bg-white">
-          <div className="container">
-            <Reveal>
-              <div className="mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
-                  Recent Car Window Tinting Projects
-                </h2>
-                <p className="mt-4 leading-relaxed text-ink-600">
-                  Explore recent automotive window tinting completed by Spotless Tinting for cars,
-                  SUVs, utes and performance vehicles in Hobart and surrounding areas.
-                </p>
-              </div>
-            </Reveal>
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
-              {galleryFilters.map((filter) => (
-                <button
-                  key={filter}
-                  type="button"
-                  onClick={() => setActiveFilter(filter)}
-                  className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide transition ${
-                    activeFilter === filter
-                      ? 'bg-accent-500 text-white'
-                      : 'bg-ink-100 text-ink-700 hover:bg-ink-200'
-                  }`}
-                >
-                  {filter}
-                </button>
-              ))}
-            </div>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filtered.map((item, i) => (
-                <Reveal key={item.id} delay={i * 40}>
-                  <article className="group overflow-hidden bg-ink-50">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={item.image}
-                        alt={item.alt}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                        loading="lazy"
-                        width={800}
-                        height={600}
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="text-sm font-bold text-ink-950 md:text-base">{item.title}</h3>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Link to="/gallery" className="btn-outline">
-                View All Projects
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <RecentAutomotiveProjectsSection />
 
         {/* FAQs */}
         <section id="faqs" className="section bg-ink-50">
@@ -742,73 +501,11 @@ export default function AutomotiveTintingPage() {
           </div>
         </section>
 
-        {/* Local SEO */}
+        {/* Local SEO — commented out per design update
         <section className="section bg-white">
-          <div className="container">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              <Reveal>
-                <div>
-                  <h2 className="text-3xl font-bold text-ink-950 md:text-4xl">
-                    Car Window Tinting in Moonah, Hobart
-                  </h2>
-                  <p className="mt-5 leading-relaxed text-ink-600">
-                    Spotless Tinting provides professional automotive window tinting from our workshop
-                    in Moonah, serving drivers across Hobart and surrounding areas. From everyday cars
-                    and family SUVs to utes and performance vehicles, we focus on careful preparation,
-                    precision installation and a clean, professional finish.
-                  </p>
-                  <div className="mt-6 space-y-3 text-sm">
-                    <a
-                      href={business.phoneHref}
-                      className="flex items-center gap-2.5 font-semibold text-ink-800 hover:text-accent-600"
-                    >
-                      <Phone className="h-4 w-4 text-accent-500" />
-                      {business.phone}
-                    </a>
-                    <a
-                      href={business.emailHref}
-                      className="flex items-center gap-2.5 font-semibold text-ink-800 hover:text-accent-600"
-                    >
-                      <Mail className="h-4 w-4 text-accent-500" />
-                      {business.email}
-                    </a>
-                    <p className="flex items-center gap-2.5 text-ink-700">
-                      <MapPin className="h-4 w-4 text-accent-500" />
-                      {business.location}
-                    </p>
-                  </div>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.location)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-outline"
-                    >
-                      Get Directions
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                    <Link to="/quote" className="btn-primary">
-                      Get a Free Quote
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
-              </Reveal>
-              <Reveal delay={80}>
-                <div className="aspect-[4/3] overflow-hidden bg-ink-100">
-                  <img
-                    src={images.garageWork}
-                    alt="Spotless Tinting workshop area for automotive window tinting in Moonah"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                    width={900}
-                    height={675}
-                  />
-                </div>
-              </Reveal>
-            </div>
-          </div>
+          ...
         </section>
+        */}
 
         {/* Final CTA */}
         <section className="section bg-accent-500 text-center">

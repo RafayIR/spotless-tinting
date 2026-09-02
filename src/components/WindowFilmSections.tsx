@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Plus } from 'lucide-react';
+import { ArrowRight, Check, KeyRound, Plus, type LucideIcon } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import { images } from '@/data/images';
 
@@ -228,6 +228,105 @@ const recentTintingProjects: {
     },
   ];
 
+type AutomotiveProjectFilter = 'All' | 'Sedans' | 'SUVs' | 'Utes' | 'Sports';
+
+const automotiveProjectFilters: AutomotiveProjectFilter[] = [
+  'All',
+  'Sedans',
+  'SUVs',
+  'Utes',
+  'Sports',
+];
+
+const recentAutomotiveProjects: {
+  id: string;
+  category: Exclude<AutomotiveProjectFilter, 'All'>;
+  image: string;
+  alt: string;
+}[] = [
+  {
+    id: 'g1',
+    category: 'Sedans',
+    image: images.luxurySedan,
+    alt: 'Sedan with professionally installed automotive window tint',
+  },
+  {
+    id: 'g2',
+    category: 'SUVs',
+    image: images.suvDark,
+    alt: 'SUV with dark automotive window film',
+  },
+  {
+    id: 'g3',
+    category: 'Utes',
+    image: images.blackCar,
+    alt: 'Ute with automotive window tinting',
+  },
+  {
+    id: 'g4',
+    category: 'Sports',
+    image: images.sportsCar,
+    alt: 'Sports coupe with premium window tint',
+  },
+  {
+    id: 'g5',
+    category: 'Sedans',
+    image: images.coupeSide,
+    alt: 'Coupe side profile showing window tint finish',
+  },
+  {
+    id: 'g6',
+    category: 'SUVs',
+    image: images.heroCar,
+    alt: 'Family SUV with automotive window film installed',
+  },
+];
+
+const automotiveProcessSteps: {
+  num: string;
+  title: string;
+  desc: string;
+  iconSrc?: string;
+  icon?: LucideIcon;
+}[] = [
+  {
+    num: '01',
+    title: 'Consult',
+    desc: 'We discuss your vehicle, preferences and what you want from your window tint, then recommend suitable film options.',
+    iconSrc: images.automotiveTinting.process.consult,
+  },
+  {
+    num: '02',
+    title: 'Prepare',
+    desc: 'The glass is thoroughly cleaned and prepared to create the best possible surface for installation.',
+    iconSrc: images.automotiveTinting.process.prepare,
+  },
+  {
+    num: '03',
+    title: 'Cut',
+    desc: 'The automotive window film is precisely prepared to fit the required glass.',
+    iconSrc: images.automotiveTinting.process.select,
+  },
+  {
+    num: '04',
+    title: 'Install',
+    desc: 'Your selected film is professionally installed with care, precision and attention to detail.',
+    iconSrc: images.automotiveTinting.process.install,
+  },
+  {
+    num: '05',
+    title: 'Inspect',
+    desc: 'The completed tint is checked for quality and consistency before handover.',
+    iconSrc: images.automotiveTinting.process.inspect,
+  },
+  {
+    num: '06',
+    title: 'Deliver',
+    desc: 'Your vehicle is returned with the relevant window tint aftercare guidance.',
+    icon: KeyRound,
+  },
+];
+
 const spotlessStandardSteps: {
   num: string;
   title: string;
@@ -451,7 +550,7 @@ function PerfectShadeCard({
 }) {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-sm border border-white/10 bg-[#141414]">
-      <div className="aspect-[4/5] overflow-hidden bg-[#1a1a1a]">
+      <div className="aspect-[3/4] overflow-hidden bg-[#1a1a1a] sm:aspect-[4/5]">
         <img
           src={shade.image}
           alt={`${shade.name} window tint — ${shade.vlt}`}
@@ -459,7 +558,7 @@ function PerfectShadeCard({
           className="h-full w-full scale-[1.45] object-cover object-[58%_54%]"
         />
       </div>
-      <div className="flex flex-1 flex-col p-2.5 text-left sm:p-3">
+      <div className="flex flex-1 flex-col p-2.5 text-left sm:p-3 min-h-[5.5rem] sm:min-h-[6rem]">
         <p className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
           {shade.name}
         </p>
@@ -490,30 +589,22 @@ export function FindYourPerfectShadeSection({
           </p>
         </Reveal>
 
-        <div className="mt-6 grid items-stretch gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-8 xl:grid-cols-[minmax(0,1fr)_260px]">
-          <Reveal delay={60}>
-            <div>
-              <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 sm:gap-2 lg:grid-cols-5">
-                {automotiveTintShades.map((shade) => (
-                  <PerfectShadeCard key={shade.image} shade={shade} />
-                ))}
-              </div>
-              <p className="mt-4 max-w-3xl text-[9px] leading-relaxed text-ink-400 sm:text-[10px]">
-                *VLT = Visible Light Transmission. Legal requirements vary by state and application.
-              </p>
-            </div>
-          </Reveal>
+        <Reveal delay={60}>
+          <div className="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 lg:mt-8 lg:grid-cols-6 lg:gap-4">
+            {automotiveTintShades.map((shade) => (
+              <PerfectShadeCard key={shade.image} shade={shade} />
+            ))}
 
-          <Reveal delay={100}>
-            <aside className="relative flex h-full min-h-[280px] flex-col overflow-hidden rounded-sm border border-white/10 bg-[#1a1a1a] p-5 sm:min-h-[320px] sm:p-6">
+            <aside className="relative col-span-2 flex min-h-[300px] flex-col overflow-hidden rounded-sm border border-white/10 bg-[#1a1a1a] p-5 sm:col-span-3 sm:min-h-[320px] sm:p-6 lg:col-span-1 lg:min-h-0">
               <img
                 src={images.automotiveTinting.tasmaniaMap}
                 alt=""
                 aria-hidden
-                className="pointer-events-none absolute inset-0 h-full w-full object-contain object-right-bottom opacity-60"
+                className="pointer-events-none absolute left-1/2 top-[58%] w-[190%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain opacity-55"
+                style={{ objectPosition: '72% 78%' }}
                 loading="lazy"
               />
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-1 flex-col">
                 <h3 className="text-sm font-bold uppercase tracking-wide text-accent-500">
                   Tasmanian Tint Laws
                 </h3>
@@ -525,15 +616,19 @@ export function FindYourPerfectShadeSection({
                 </p>
                 <a
                   href={lawsHref}
-                  className="mt-5 inline-flex items-center gap-2 border border-white/70 px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-white transition-colors hover:border-accent-500 hover:text-accent-500 sm:text-xs"
+                  className="mt-6 inline-flex w-fit items-center justify-center gap-2 border border-white/70 px-5 py-2.5 text-[10px] font-bold uppercase leading-none tracking-wide text-white transition-colors hover:border-accent-500 hover:text-accent-500 sm:mt-auto sm:text-xs"
                 >
                   Learn More
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0" />
                 </a>
               </div>
             </aside>
-          </Reveal>
-        </div>
+          </div>
+
+          <p className="mt-4 max-w-3xl text-[9px] leading-relaxed text-ink-400 sm:text-[10px]">
+            *VLT = Visible Light Transmission. Legal requirements vary by state and application.
+          </p>
+        </Reveal>
       </div>
     </section>
   );
@@ -686,6 +781,130 @@ export function WindowTintingFaqSection() {
         <Reveal delay={80}>
           <div className="mx-auto mt-10 max-w-4xl">
             <TintingFaqGrid items={windowTintingFaqs} />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function AutomotiveTintingProcessSection() {
+  return (
+    <section className="section border-t border-ink-100 bg-white">
+      <div className="container">
+        <Reveal>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+              Our Tinting Process
+            </h2>
+            <div className="mx-auto mt-3 h-0.5 w-10 bg-accent-500" />
+          </div>
+        </Reveal>
+
+        <div className="mt-12 flex flex-col gap-10 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:flex lg:flex-row lg:items-start lg:justify-between lg:gap-0">
+          {automotiveProcessSteps.map((step, i) => (
+            <Fragment key={step.title}>
+              {i > 0 && (
+                <ArrowRight
+                  className="mx-auto hidden h-4 w-4 shrink-0 self-center text-accent-500 lg:block"
+                  strokeWidth={2}
+                  aria-hidden
+                />
+              )}
+              <Reveal delay={i * 50} className="flex-1">
+                <div className="flex flex-col items-center px-2 text-center">
+                  {step.iconSrc ? (
+                    <img
+                      src={step.iconSrc}
+                      alt=""
+                      className="h-11 w-11 sm:h-12 sm:w-12"
+                      aria-hidden
+                      loading="lazy"
+                    />
+                  ) : step.icon ? (
+                    <step.icon className="h-11 w-11 text-accent-500 sm:h-12 sm:w-12" strokeWidth={1.5} />
+                  ) : null}
+                  <div className="mt-4 flex items-center justify-center gap-2">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-accent-500 text-[11px] font-bold text-accent-500">
+                      {step.num}
+                    </span>
+                    <h3 className="text-xs font-bold uppercase tracking-wide text-ink-950 sm:text-sm">
+                      {step.title}
+                    </h3>
+                  </div>
+                  <p className="mt-2 max-w-[200px] text-[11px] leading-relaxed text-ink-600 sm:text-xs">
+                    {step.desc}
+                  </p>
+                </div>
+              </Reveal>
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function RecentAutomotiveProjectsSection() {
+  const [activeFilter, setActiveFilter] = useState<AutomotiveProjectFilter>('All');
+
+  const filteredProjects = recentAutomotiveProjects.filter(
+    (project) => activeFilter === 'All' || project.category === activeFilter,
+  );
+
+  return (
+    <section className="section border-t border-ink-100 bg-white">
+      <div className="container">
+        <Reveal>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+              Recent Automotive Tinting Projects
+            </h2>
+          </div>
+        </Reveal>
+
+        <div className="mt-8 flex flex-wrap justify-center gap-2">
+          {automotiveProjectFilters.map((filter) => (
+            <button
+              key={filter}
+              type="button"
+              onClick={() => setActiveFilter(filter)}
+              className={`rounded-md border px-4 py-2 text-[10px] font-bold uppercase tracking-wide transition-colors sm:px-5 sm:text-xs ${activeFilter === filter
+                ? 'border-accent-500 bg-accent-500 text-white'
+                : 'border-ink-300 bg-white text-ink-950 hover:border-accent-500 hover:text-accent-600'
+                }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:grid-cols-6">
+          {filteredProjects.map((project, i) => (
+            <Reveal key={project.id} delay={i * 40}>
+              <div className="overflow-hidden rounded-xl bg-ink-100">
+                <div className="aspect-[3/4] overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={80}>
+          <div className="mt-10 text-center">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center gap-2 border border-accent-500 px-6 py-3 text-xs font-bold uppercase tracking-wide text-accent-500 transition-colors hover:bg-accent-500 hover:text-white sm:text-sm"
+            >
+              View All Projects
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </Reveal>
       </div>
