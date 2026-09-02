@@ -545,16 +545,16 @@ export default function PaintProtectionFilmPage() {
                 Protect Where It Matters Most.
               </h2>
 
-              <div className="relative mx-auto mt-10 w-full max-w-3xl lg:max-w-none">
+              <div className="relative mx-auto mt-10 w-full max-w-5xl lg:max-w-none">
                 <div className="relative aspect-[16/10] w-full">
                   <img
                     src={images.ppfCoverage.silverCar}
                     alt="Silver sports car showing common PPF coverage zones"
-                    className="absolute left-1/2 top-[5%] h-[86%] w-[58%] -translate-x-1/2 object-contain"
+                    className="absolute left-1/2 top-[5%] h-[100%] w-[100%] -translate-x-1/2 object-contain"
                     loading="lazy"
                   />
 
-                  {coverageCallouts.map((c) => (
+                  {/* {coverageCallouts.map((c) => (
                     <span
                       key={c.label}
                       className={`absolute z-10 max-w-[18%] text-[9px] font-bold uppercase leading-tight tracking-wide sm:text-[10px] md:text-[11px] ${
@@ -566,9 +566,9 @@ export default function PaintProtectionFilmPage() {
                     >
                       {c.label}
                     </span>
-                  ))}
+                  ))} */}
 
-                  <svg
+                  {/* <svg
                     viewBox="0 0 100 100"
                     className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible"
                     aria-hidden
@@ -587,7 +587,7 @@ export default function PaintProtectionFilmPage() {
                         </g>
                       );
                     })}
-                  </svg>
+                  </svg> */}
                 </div>
               </div>
 
@@ -606,10 +606,10 @@ export default function PaintProtectionFilmPage() {
                   <img
                     src={images.ppfCoverage.protectionFilm}
                     alt="PPF multi-layer construction diagram"
-                    className="absolute left-0 top-1/2 h-[92%] w-[44%] -translate-y-1/2 object-contain object-left"
+                    className="absolute left-0 top-1/2 h-[199%] w-[100%] -translate-y-1/2 object-contain object-left"
                     loading="lazy"
                   />
-                  <div className="absolute inset-y-[4%] left-[40%] right-0">
+                  {/* <div className="absolute inset-y-[4%] left-[40%] right-0">
                     {filmLayers.map((layer) => (
                       <div
                         key={layer.name}
@@ -627,7 +627,7 @@ export default function PaintProtectionFilmPage() {
                         </div>
                       </div>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
                 <div className="hidden bg-ink-700/40 lg:block" aria-hidden />
                 <ul className="mt-8 space-y-5 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:space-y-6 lg:border-l lg:border-ink-700/40 lg:pl-8">
@@ -676,42 +676,44 @@ export default function PaintProtectionFilmPage() {
 
         <Reveal delay={60}>
           <div className="relative flex min-h-full flex-col overflow-hidden bg-black px-6 py-12 sm:px-8 lg:px-10 lg:py-14">
+            <img
+              src={images.ppfWithoutProtection.newCarGift}
+              alt=""
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[72%_center] sm:object-[68%_center] lg:object-right"
+              aria-hidden
+              loading="lazy"
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/25 lg:via-black/85 lg:to-transparent"
+              aria-hidden
+            />
             <div className="relative z-10 flex flex-1 flex-col">
-              <h2 className="text-lg font-bold uppercase leading-tight tracking-tight text-white sm:text-xl lg:text-2xl">
+              <h2 className="max-w-md text-lg font-bold uppercase leading-tight tracking-tight text-white sm:text-xl lg:max-w-lg lg:text-2xl">
                 Just Bought a New Car?
                 <span className="mt-1 block">Protect It While the Paint Is Still New.</span>
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-ink-300">
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-300 lg:max-w-sm">
                 A new vehicle is an ideal candidate for PPF because protection can be applied before
                 everyday driving begins to leave its mark.
               </p>
-              <div className="mt-6 grid flex-1 grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.46fr)] lg:items-end lg:gap-x-3">
-                <ul className="space-y-3">
-                  {newCarBenefits.map((item) => (
-                    <li key={item} className="flex items-center gap-3">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
-                        <Check className="h-3 w-3" strokeWidth={3} />
-                      </span>
-                      <span className="text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <img
-                  src={images.ppfWithoutProtection.newCarGift}
-                  alt=""
-                  className="pointer-events-none mx-auto mt-8 h-44 w-full max-w-[240px] object-contain object-bottom lg:mx-0 lg:mt-0 lg:h-auto lg:max-h-[min(52vh,300px)] lg:w-full lg:max-w-none lg:self-end"
-                  aria-hidden
-                  loading="lazy"
-                />
-              </div>
+              <ul className="mt-6 space-y-3 lg:max-w-sm">
+                {newCarBenefits.map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
+                      <Check className="h-3 w-3" strokeWidth={3} />
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <Link
                 to="/quote"
-                className="btn-primary mt-8 inline-flex w-full justify-center px-6 py-4 text-sm font-bold uppercase tracking-wide sm:mt-10 sm:py-4.5 sm:text-base"
+                className="btn-primary mt-8 inline-flex w-fit max-w-full shrink-0 whitespace-nowrap px-6 py-3.5 text-sm font-bold uppercase tracking-wide sm:mt-10 sm:px-8 sm:py-4 sm:text-base"
               >
                 Get New Car PPF Quote
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-4 w-4 shrink-0" />
               </Link>
             </div>
           </div>

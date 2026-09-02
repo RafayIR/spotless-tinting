@@ -16,7 +16,11 @@ import { images } from '@/data/images';
 import { getService } from '@/data/services';
 import {
   MoreThanDarkerGlassSection,
+  ChoosingRightFilmSection,
+  RecentWindowTintingProjectsSection,
+  SpotlessStandardSection,
   WindowFilmTechnologySection,
+  WindowTintingFaqSection,
 } from '@/components/WindowFilmSections';
 
 const trustItems = [
@@ -47,37 +51,37 @@ const tintingCards: {
   cta: string;
   image: string;
 }[] = [
-  {
-    id: 'automotive',
-    slug: 'automotive-window-tinting',
-    icon: Car,
-    title: 'Automotive Window Tinting',
-    desc: 'Premium window films for cars, utes and SUVs — heat rejection, UV protection and style.',
-    features: ['Heat Reduction', 'UV Protection', 'Glare Reduction', 'Privacy & Style'],
-    cta: 'Automotive Window Tinting',
-    image: images.blackCar,
-  },
-  {
-    id: 'residential',
-    slug: 'residential-window-tinting',
-    icon: Home,
-    title: 'Residential Window Tinting',
-    desc: 'Solar control and privacy films that keep your home cooler, safer and more comfortable.',
-    features: ['Heat Control', 'UV Protection', 'Glare Reduction', 'Enhanced Privacy'],
-    cta: 'Explore Residential Tinting',
-    image: images.modernHome,
-  },
-  {
-    id: 'commercial',
-    slug: 'commercial-window-tinting',
-    icon: Building2,
-    title: 'Commercial Window Tinting',
-    desc: 'Professional film solutions for offices, retail and commercial buildings across Hobart.',
-    features: ['Solar Control', 'Privacy Solutions', 'Glare Reduction', 'Safety & Security Films'],
-    cta: 'Explore Commercial Tinting',
-    image: images.officeGlass,
-  },
-];
+    {
+      id: 'automotive',
+      slug: 'automotive-window-tinting',
+      icon: Car,
+      title: 'Automotive Window Tinting',
+      desc: 'Premium window films for cars, utes and SUVs — heat rejection, UV protection and style.',
+      features: ['Heat Reduction', 'UV Protection', 'Glare Reduction', 'Privacy & Style'],
+      cta: 'Automotive Window Tinting',
+      image: images.professionalTintingForEveryNeedAutomotive,
+    },
+    {
+      id: 'residential',
+      slug: 'residential-window-tinting',
+      icon: Home,
+      title: 'Residential Window Tinting',
+      desc: 'Solar control and privacy films that keep your home cooler, safer and more comfortable.',
+      features: ['Heat Control', 'UV Protection', 'Glare Reduction', 'Enhanced Privacy'],
+      cta: 'Explore Residential Tinting',
+      image: images.professionalTintingForEveryNeedResidential,
+    },
+    {
+      id: 'commercial',
+      slug: 'commercial-window-tinting',
+      icon: Building2,
+      title: 'Commercial Window Tinting',
+      desc: 'Professional film solutions for offices, retail and commercial buildings across Hobart.',
+      features: ['Solar Control', 'Privacy Solutions', 'Glare Reduction', 'Safety & Security Films'],
+      cta: 'Explore Commercial Tinting',
+      image: images.professionalTintingForEveryNeedCommercial,
+    },
+  ];
 
 function TintingCard({
   card,
@@ -192,7 +196,7 @@ export default function ServicesHubPage() {
               style={{ clipPath: 'polygon(35% 0, 100% 0, 100% 100%, 0 100%)' }}
             >
               <img
-                src={images.banner02}
+                src={images.windoowTintingBanner}
                 alt=""
                 className="h-full w-full object-cover object-center"
               />
@@ -214,6 +218,7 @@ export default function ServicesHubPage() {
       {/* Tinting category cards */}
       <section id="tinting-options" className="section bg-white">
         <div className="container">
+          
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
               <span className="eyebrow inline-flex items-center gap-5 before:h-px before:w-12 before:bg-accent-400 after:h-px after:w-12 after:bg-accent-400">
@@ -235,6 +240,10 @@ export default function ServicesHubPage() {
 
       <MoreThanDarkerGlassSection />
       <WindowFilmTechnologySection />
+      <ChoosingRightFilmSection />
+      <SpotlessStandardSection />
+      <RecentWindowTintingProjectsSection />
+      <WindowTintingFaqSection />
 
       {/* Additional services strip */}
       <section className="border-t border-ink-100 bg-ink-50 py-14">

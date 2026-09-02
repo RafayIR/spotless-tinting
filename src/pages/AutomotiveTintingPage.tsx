@@ -348,7 +348,7 @@ export default function AutomotiveTintingPage() {
       />
 
       <ParallaxHero
-        imageSrc={images.sportsCar}
+        imageSrc={images.windoowTintingBanner}
         imageAlt="Vehicle with professional automotive window tinting"
         imageClassName="object-cover object-center"
       >

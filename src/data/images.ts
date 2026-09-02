@@ -6,9 +6,45 @@ export const images = {
   heroCar: '/banner-image-01.jpeg',
   banner02: '/banner-02.jpeg',
   banner03: '/banner-03.jpeg',
+  windoowTintingBanner: '/banner/window-tinting-banner.png',
   contactHero: '/contact-page.jpeg',
   ppfHero: encodeURI('/PPF (1)/header.png'),
   ppfHeader: encodeURI('/PPF (1)/header.png'),
+  professionalTintingForEveryNeedAutomotive: '/window-tinting/professional-tinting-for-everyneed/automotive.png',
+  professionalTintingForEveryNeedResidential: '/window-tinting/professional-tinting-for-everyneed/residential.png',
+  professionalTintingForEveryNeedCommercial: '/window-tinting/professional-tinting-for-everyneed/commercial.png',
+  windowTinting: {
+    moreThanDarkerGlass: {
+      heatReduction: '/window-tinting/more-than-just-darker-glass/heat-reduction.svg',
+      uvProtection: '/window-tinting/more-than-just-darker-glass/uv-protection.svg',
+      glareControl: '/window-tinting/more-than-just-darker-glass/glare-control.svg',
+      privacy: '/window-tinting/more-than-just-darker-glass/privacy.svg',
+      appearance: '/window-tinting/more-than-just-darker-glass/appearance.svg',
+    },
+    filmTechnology: {
+      diagram: '/window-tinting/spotless_window-tinting-images.png',
+      solarHeatReduced: '/window-tinting/spotless_window_film_technology_icons_svg/solar-heat-reduced.svg',
+      visibleLightControlled:
+        '/window-tinting/spotless_window_film_technology_icons_svg/visible-light-controlled.svg',
+      uvRaysFiltered: '/window-tinting/spotless_window_film_technology_icons_svg/uv-rays-filtered.svg',
+      glareReduced: '/window-tinting/spotless_window_film_technology_icons_svg/glare-reduced.svg',
+      privacyEnhanced: '/window-tinting/spotless_window_film_technology_icons_svg/privacy-enhanced.svg',
+    },
+    findYourLook: {
+      light: '/window-tinting/find-your-look/light.png',
+      medium: '/window-tinting/find-your-look/medium.png',
+      mediumDark: encodeURI('/window-tinting/find-your-look/medium dark.png'),
+      dark: '/window-tinting/find-your-look/dark.png',
+      limo: '/window-tinting/find-your-look/limo.png',
+    },
+    spotlessStandard: {
+      consult: '/window-tinting/spotless-standard/01-consult.svg',
+      select: '/window-tinting/spotless-standard/02-select.svg',
+      prepare: '/window-tinting/spotless-standard/03-prepare.svg',
+      install: '/window-tinting/spotless-standard/04-install.svg',
+      inspect: '/window-tinting/spotless-standard/05-inspect.svg',
+    },
+  },
   ppfBar: {
     stoneChip: encodeURI('/PPF (1)/Bar beneath the header/stone-chip-protection.svg'),
     selfHealing: encodeURI('/PPF (1)/Bar beneath the header/self-healing-technology.svg'),
@@ -30,13 +66,13 @@ export const images = {
     fullVehicle: encodeURI('/PPF (1)/Choose Your Level of PPF Protection/4th car.png'),
   },
   ppfCoverage: {
-    silverCar: encodeURI('/PPF (1)/Coverage areas/silver car.png'),
-    protectionFilm: encodeURI('/PPF (1)/Coverage areas/protection film.png'),
+    silverCar: encodeURI('/PPF (1)/Coverage areas/protect-where-it-matters.png'),
+    protectionFilm: encodeURI('/PPF (1)/Coverage areas/engineered-to-take-hit.png'),
   },
   ppfWithoutProtection: {
     without: encodeURI('/PPF (1)/without protection section/without.png'),
     with: encodeURI('/PPF (1)/without protection section/with.png'),
-    newCarGift: encodeURI('/PPF (1)/without protection section/f80991ac-dfcb-45f0-9df0-a4a5f8cc428c.png'),
+    newCarGift: encodeURI('/PPF (1)/without protection section/giftbox-bg.png'),
   },
   ppfFinish: {
     gloss: encodeURI('/PPF (1)/protection in your finish/gloss.png'),
@@ -73,6 +109,6 @@ export const images = {
   coupeSide: 'https://images.unsplash.com/photo-1583121274162-4e1f4b9a6e40?auto=format&fit=crop&w=1600&q=80',
   garageWork: 'https://images.unsplash.com/photo-1632823471565-1ec5e0c8e5c1?auto=format&fit=crop&w=1600&q=80',
   tintRoll: 'https://images.unsplash.com/photo-1632823469799-2d2a2c4d4e3a?auto=format&fit=crop&w=1600&q=80',
-  filmTechnology: 'https://images.unsplash.com/photo-1583121274162-4e1f4b9a6e3a?auto=format&fit=crop&w=1200&q=80',
+  filmTechnology: '/window-tinting/spotless_window-tinting-images.png',
   squeegee: 'https://images.unsplash.com/photo-1632823471565-1ec5e0c8e5c2?auto=format&fit=crop&w=1600&q=80',
 };
