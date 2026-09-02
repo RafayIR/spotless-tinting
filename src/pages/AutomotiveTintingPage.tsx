@@ -142,6 +142,21 @@ const filmFactors: { title: string; desc: string }[] = [
   },
 ];
 
+const aftercareItems = [
+  {
+    title: 'Allow the Film to Cure',
+    desc: 'Temporary haziness or small moisture pockets can be visible while freshly installed film settles. Follow the aftercare guidance provided for your installation.',
+  },
+  {
+    title: 'Wait Before Operating Windows',
+    desc: 'Avoid lowering freshly tinted windows until the recommended waiting period has passed.',
+  },
+  {
+    title: 'Clean Carefully',
+    desc: 'Use suitable cleaning products and soft materials when cleaning tinted glass. Avoid abrasive tools or harsh products that may damage the film.',
+  },
+];
+
 const automotiveFaqs = [
   {
     question: 'Is car window tinting legal in Tasmania?',
@@ -372,10 +387,79 @@ export default function AutomotiveTintingPage() {
           </div>
         </section>
 
+        {/* Film selection */}
+        <section className="section bg-ink-950 text-white">
+          <div className="container">
+            <Reveal>
+              <div className="mx-auto max-w-3xl text-center">
+                <h2 className="text-3xl font-bold uppercase tracking-tight text-white md:text-4xl">
+                  Choosing the Right Automotive Window Film
+                </h2>
+                <p className="mt-4 leading-relaxed text-ink-300">
+                  The darkest tint is not automatically the best tint. The right automotive window
+                  film depends on how you use your vehicle, the performance you want and the finish
+                  you prefer. We can help you compare suitable films so you can make an informed
+                  choice.
+                </p>
+              </div>
+            </Reveal>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filmFactors.map((f, i) => (
+                <Reveal key={f.title} delay={i * 40}>
+                  <div className="border border-white/10 bg-white/5 p-6">
+                    <h3 className="text-lg font-bold text-white">{f.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-300">{f.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <div className="mt-10 text-center">
+              <Link to="/contact" className="btn-primary">
+                Talk to Our Team
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Aftercare */}
+        <section id="aftercare" className="section bg-ink-50">
+          <div className="container">
+            <div className="grid items-start gap-10 lg:grid-cols-2">
+              <Reveal>
+                <div>
+                  <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
+                    Automotive Window Tint Aftercare
+                  </h2>
+                  <p className="mt-5 leading-relaxed text-ink-600">
+                    Newly installed window film needs time to settle. Before you leave, we&apos;ll
+                    explain the appropriate aftercare for the film installed on your vehicle so you
+                    know what to expect during the curing period.
+                  </p>
+                  <a href="#aftercare-tips" className="btn-outline mt-8 inline-flex">
+                    View Window Tint Aftercare
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </Reveal>
+              <Reveal delay={80}>
+                <div id="aftercare-tips" className="space-y-4">
+                  {aftercareItems.map((item) => (
+                    <article key={item.title} className="border-l-2 border-accent-500 bg-white p-5">
+                      <h3 className="font-bold text-ink-950">{item.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-600">{item.desc}</p>
+                    </article>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
         <FindYourPerfectShadeSection id="tint-options" lawsHref="#tint-laws" />
 
         {/* Legal */}
-        <section id="tint-laws" className="section bg-white">
+        {/* <section id="tint-laws" className="section bg-white">
           <div className="container">
             <div className="grid items-center gap-10 lg:grid-cols-2">
               <Reveal>
@@ -410,50 +494,9 @@ export default function AutomotiveTintingPage() {
               </Reveal>
             </div>
           </div>
-        </section>
-
-        {/* Film selection */}
-        <section className="section bg-ink-950 text-white">
-          <div className="container">
-            <Reveal>
-              <div className="mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold text-white uppercase tracking-tight md:text-4xl">
-                  Choosing the Right Automotive Window Film
-                </h2>
-                <p className="mt-4 leading-relaxed text-ink-300">
-                  The darkest tint is not automatically the best tint. The right automotive window
-                  film depends on how you use your vehicle, the performance you want and the finish
-                  you prefer. We can help you compare suitable films so you can make an informed
-                  choice.
-                </p>
-              </div>
-            </Reveal>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filmFactors.map((f, i) => (
-                <Reveal key={f.title} delay={i * 40}>
-                  <div className="border border-white/10 bg-white/5 p-6">
-                    <h3 className="text-lg font-bold text-white">{f.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-300">{f.desc}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Link to="/contact" className="btn-primary">
-                Talk to Our Team
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
+        </section> */}
 
         <AutomotiveTintingProcessSection />
-
-        {/* Aftercare — commented out per design update
-        <section id="aftercare" className="section bg-ink-50">
-          ...
-        </section>
-        */}
 
         <RecentAutomotiveProjectsSection />
 
