@@ -22,6 +22,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
 import ParallaxHero from '@/components/ParallaxHero';
 import FAQAccordion from '@/components/FAQAccordion';
+import { FindYourPerfectShadeSection } from '@/components/WindowFilmSections';
 import { images } from '@/data/images';
 import { business } from '@/data/business';
 
@@ -122,40 +123,6 @@ function TintHeatArrows({ className }: { className?: string }) {
     </svg>
   );
 }
-
-/** Shade cards without publishing unverified VLT/legal figures — update with real Spotless film names when confirmed. */
-const shadeOptions: { name: string; tag: string; desc: string; image: string }[] = [
-  {
-    name: 'Light Tint',
-    tag: 'Subtle finish',
-    desc: 'A lighter appearance with everyday visibility — ideal when you want solar control without a dark look. We’ll confirm suitability for your vehicle and window positions.',
-    image: images.coupeSide,
-  },
-  {
-    name: 'Medium Tint',
-    tag: 'Balanced look',
-    desc: 'A popular mid-range appearance that balances privacy, style and visibility for many daily drivers.',
-    image: images.luxurySedan,
-  },
-  {
-    name: 'Dark Tint',
-    tag: 'Maximum privacy look',
-    desc: 'A darker finish for stronger privacy and a bold appearance where appropriate for the window position.',
-    image: images.blackCar,
-  },
-  {
-    name: 'Ceramic Film',
-    tag: 'Performance option',
-    desc: 'Premium film technology selected for strong solar performance and a refined finish — we’ll match the right product to your goals.',
-    image: images.sportsCar,
-  },
-  {
-    name: 'Factory-Style Match',
-    tag: 'OEM-inspired look',
-    desc: 'A clean, factory-style finish that complements your vehicle’s original design while improving comfort and protection.',
-    image: images.suvDark,
-  },
-];
 
 const filmFactors: { title: string; desc: string }[] = [
   {
@@ -382,7 +349,7 @@ export default function AutomotiveTintingPage() {
       />
 
       <ParallaxHero
-        imageSrc={images.windoowTintingBanner}
+        imageSrc={images.autoTintingBanner}
         imageAlt="Vehicle with professional automotive window tinting"
         imageClassName="object-cover object-center"
       >
@@ -517,54 +484,7 @@ export default function AutomotiveTintingPage() {
           </div>
         </section>
 
-        {/* Tint options */}
-        <section id="tint-options" className="section bg-ink-50">
-          <div className="container">
-            <Reveal>
-              <div className="mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
-                  Find the Right Window Tint for Your Car
-                </h2>
-                <p className="mt-4 leading-relaxed text-ink-600">
-                  Different automotive tint shades provide different levels of visible light
-                  transmission, privacy and appearance. We&apos;ll help you compare suitable options
-                  for your vehicle, taking into account the look you want, everyday visibility and
-                  applicable Tasmanian requirements.
-                </p>
-              </div>
-            </Reveal>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {shadeOptions.map((shade, i) => (
-                <Reveal key={shade.name} delay={i * 40}>
-                  <article className="overflow-hidden bg-white shadow-sm ring-1 ring-ink-100">
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <img
-                        src={shade.image}
-                        alt={`${shade.name} automotive window film example`}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        width={800}
-                        height={500}
-                      />
-                    </div>
-                    <div className="p-5">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-accent-600">
-                        {shade.tag}
-                      </p>
-                      <h3 className="mt-1 text-lg font-bold text-ink-950">{shade.name}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-ink-600">{shade.desc}</p>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-            <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-ink-500">
-              Tint suitability depends on your vehicle, window position and current Tasmanian
-              requirements. Our team will help you select an appropriate option — we do not publish
-              unverified VLT limits as legal advice on this page.
-            </p>
-          </div>
-        </section>
+        <FindYourPerfectShadeSection id="tint-options" lawsHref="#tint-laws" />
 
         {/* Legal */}
         <section id="tint-laws" className="section bg-white">

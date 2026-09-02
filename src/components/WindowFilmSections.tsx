@@ -55,6 +55,44 @@ const tintShades: {
     },
   ];
 
+const automotiveTintShades: {
+  name: string;
+  vlt: string;
+  desc: string;
+  image: string;
+}[] = [
+  {
+    name: 'Light',
+    vlt: '35% VLT*',
+    desc: 'Maximum visibility with subtle tint.',
+    image: images.windowTinting.findYourLook.light,
+  },
+  {
+    name: 'Medium',
+    vlt: '20% VLT*',
+    desc: 'Balanced privacy and visibility.',
+    image: images.windowTinting.findYourLook.medium,
+  },
+  {
+    name: 'Medium Dark',
+    vlt: '15% VLT*',
+    desc: 'Enhanced privacy and style.',
+    image: images.windowTinting.findYourLook.mediumDark,
+  },
+  {
+    name: 'Dark',
+    vlt: '5% VLT*',
+    desc: 'Maximum privacy with sleek look.',
+    image: images.windowTinting.findYourLook.dark,
+  },
+  {
+    name: 'Limo / Blackout',
+    vlt: '2% VLT*',
+    desc: 'Ultimate privacy and standout style.',
+    image: images.windowTinting.findYourLook.limo,
+  },
+];
+
 const windowTintingFaqs: { question: string; answer: string }[] = [
   {
     question: 'What are the benefits of window tinting?',
@@ -377,6 +415,130 @@ function TintShadeCard({
   );
 }
 
+export function FindYourLookSection({ id }: { id?: string }) {
+  return (
+    <section id={id} className="bg-black py-16 md:py-20">
+      <div className="container">
+        <Reveal>
+          <div className="border-l-4 border-accent-500 pl-5 sm:pl-6">
+            <h2 className="text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
+              Find Your Look
+            </h2>
+            <p className="mt-1.5 text-xs text-ink-300 sm:text-sm">
+              Different shades. <span className="text-accent-500">Same</span> premium quality.
+            </p>
+
+            <div className="mt-5 flex gap-1.5 sm:mt-6 sm:gap-2">
+              {tintShades.map((shade) => (
+                <TintShadeCard key={shade.image} shade={shade} />
+              ))}
+            </div>
+
+            <p className="mt-4 text-[9px] leading-relaxed text-ink-400 sm:text-[10px]">
+              *VLT — Visible Light Transmission. Legal requirements vary by state and application.
+            </p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+function PerfectShadeCard({
+  shade,
+}: {
+  shade: (typeof automotiveTintShades)[number];
+}) {
+  return (
+    <div className="flex h-full flex-col overflow-hidden rounded-sm border border-white/10 bg-[#141414]">
+      <div className="aspect-[4/5] overflow-hidden bg-[#1a1a1a]">
+        <img
+          src={shade.image}
+          alt={`${shade.name} window tint — ${shade.vlt}`}
+          loading="lazy"
+          className="h-full w-full scale-[1.45] object-cover object-[58%_54%]"
+        />
+      </div>
+      <div className="flex flex-1 flex-col p-2.5 text-left sm:p-3">
+        <p className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
+          {shade.name}
+        </p>
+        <p className="mt-1 text-[9px] font-bold text-white sm:text-[10px]">{shade.vlt}</p>
+        <p className="mt-2 text-[8px] leading-relaxed text-ink-300 sm:text-[9px]">{shade.desc}</p>
+      </div>
+    </div>
+  );
+}
+
+export function FindYourPerfectShadeSection({
+  id,
+  lawsHref = '#tint-laws',
+}: {
+  id?: string;
+  lawsHref?: string;
+}) {
+  return (
+    <section id={id} className="bg-black py-16 md:py-20">
+      <div className="container">
+        <Reveal>
+          <h2 className="text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
+            Find Your Perfect Shade
+          </h2>
+          <p className="mt-2 text-xs text-ink-300 sm:text-sm">
+            Different shades.{' '}
+            <span className="text-accent-500">Same premium quality.</span>
+          </p>
+        </Reveal>
+
+        <div className="mt-6 grid items-stretch gap-6 lg:mt-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-8 xl:grid-cols-[minmax(0,1fr)_260px]">
+          <Reveal delay={60}>
+            <div>
+              <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 sm:gap-2 lg:grid-cols-5">
+                {automotiveTintShades.map((shade) => (
+                  <PerfectShadeCard key={shade.image} shade={shade} />
+                ))}
+              </div>
+              <p className="mt-4 max-w-3xl text-[9px] leading-relaxed text-ink-400 sm:text-[10px]">
+                *VLT = Visible Light Transmission. Legal requirements vary by state and application.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <aside className="relative flex h-full min-h-[280px] flex-col overflow-hidden rounded-sm border border-white/10 bg-[#1a1a1a] p-5 sm:min-h-[320px] sm:p-6">
+              <img
+                src={images.automotiveTinting.tasmaniaMap}
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute inset-0 h-full w-full object-contain object-right-bottom opacity-60"
+                loading="lazy"
+              />
+              <div className="relative z-10">
+                <h3 className="text-sm font-bold uppercase tracking-wide text-accent-500">
+                  Tasmanian Tint Laws
+                </h3>
+                <p className="mt-3 text-xs leading-relaxed text-ink-200 sm:text-sm">
+                  We ensure all installations comply with Tasmania&apos;s window tint regulations.
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-200 sm:text-sm">
+                  Our team will guide you to the right shade for your needs.
+                </p>
+                <a
+                  href={lawsHref}
+                  className="mt-5 inline-flex items-center gap-2 border border-white/70 px-4 py-2.5 text-[10px] font-bold uppercase tracking-wide text-white transition-colors hover:border-accent-500 hover:text-accent-500 sm:text-xs"
+                >
+                  Learn More
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </aside>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function ChoosingRightFilmSection() {
   return (
     <section className="bg-black py-16 md:py-20">
@@ -422,7 +584,7 @@ export function ChoosingRightFilmSection() {
                 Find Your Look
               </h3>
               <p className="mt-1.5 text-xs text-ink-300 sm:text-sm">
-                Different shades. Same premium quality.
+                Different shades. <span className="text-accent-500">Same</span> premium quality.
               </p>
 
               <div className="mt-5 flex gap-1.5 sm:mt-6 sm:gap-2">
