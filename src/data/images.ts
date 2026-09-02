@@ -6,7 +6,7 @@ export const images = {
   heroCar: '/banner-image-01.jpeg',
   banner02: '/banner-02.jpeg',
   banner03: '/banner-03.jpeg',
-  windoowTintingBanner: '/banner/window-tinting-banner.png',
+  windoowTintingBanner: '/banner/automotive-banner.png',
   contactHero: '/contact-page.jpeg',
   ppfHero: encodeURI('/PPF (1)/header.png'),
   ppfHeader: encodeURI('/PPF (1)/header.png'),
@@ -49,6 +49,16 @@ export const images = {
       expertInstallation: '/window-tinting/spotless_hero_trust_icons_svg/expert-installation.svg',
       localAndTrusted: '/window-tinting/spotless_hero_trust_icons_svg/local-and-trusted.svg',
     },
+  },
+  automotiveTinting: {
+    process: {
+      consult: '/automotive-tinting/01-consult.svg',
+      select: '/automotive-tinting/02-select.svg',
+      prepare: '/automotive-tinting/03-prepare.svg',
+      install: '/automotive-tinting/04-install.svg',
+      inspect: '/automotive-tinting/05-inspect.svg',
+    },
+    whyTintYourVehicle: '/automotive-tinting/why-tint-your-vehicle.png',
   },
   ppfBar: {
     stoneChip: encodeURI('/PPF (1)/Bar beneath the header/stone-chip-protection.svg'),

@@ -7,17 +7,11 @@ import {
   Eye,
   Lock,
   Sparkles,
-  Sofa,
   Star,
   Wrench,
   MapPin,
   CircleCheck,
-  MessageSquare,
-  SprayCan,
-  Scissors,
-  Paintbrush,
   KeyRound,
-  Thermometer,
   Phone,
   Mail,
   ExternalLink,
@@ -62,38 +56,72 @@ const trustItems: { icon: LucideIcon; title: string; desc: string }[] = [
   },
 ];
 
-const benefits: { icon: LucideIcon; title: string; desc: string }[] = [
-  {
-    icon: Thermometer,
-    title: 'Heat Reduction',
-    desc: 'Helps reduce solar heat entering your vehicle, creating a more comfortable cabin on warm and sunny days.',
-  },
-  {
-    icon: Shield,
-    title: 'UV Protection',
-    desc: 'Quality automotive films can provide high levels of UV rejection, depending on the product selected.',
-  },
-  {
-    icon: Eye,
-    title: 'Glare Reduction',
-    desc: 'Helps reduce harsh sunlight and distracting glare for greater driving comfort and visibility.',
-  },
-  {
-    icon: Lock,
-    title: 'Enhanced Privacy',
-    desc: 'Choose from suitable tint options to achieve the balance of privacy, visibility and appearance you prefer.',
-  },
-  {
-    icon: Sofa,
-    title: 'Interior Protection',
-    desc: 'UV-rejecting window film can help reduce sun exposure to upholstery, trim and other interior surfaces.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Premium Appearance',
-    desc: 'Give your vehicle a clean, refined look with professionally installed window tint.',
-  },
-];
+const whyTintBenefits = [
+  'Reduces heat for a cooler interior',
+  'Blocks up to 99% of UV rays',
+  'Reduces glare for safer driving',
+  'Increases privacy and security',
+  'Protects your interior from fading',
+  'Enhances the look and value of your car',
+] as const;
+
+const whyTintCallouts = [
+  'Stay cooler in summer.',
+  'Protect your skin.',
+  'Protect your investment.',
+] as const;
+
+function TintHeatArrows({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 120 90"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <path
+        d="M12 72C24 54 34 38 46 22"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M46 22L40 30M46 22L52 28"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M38 76C50 58 60 42 72 26"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M72 26L66 34M72 26L78 32"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M64 80C76 62 86 46 98 30"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M98 30L92 38M98 30L104 36"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 /** Shade cards without publishing unverified VLT/legal figures — update with real Spotless film names when confirmed. */
 const shadeOptions: { name: string; tag: string; desc: string; image: string }[] = [
@@ -152,36 +180,42 @@ const filmFactors: { title: string; desc: string }[] = [
   },
 ];
 
-const processSteps: { num: string; title: string; desc: string; icon: LucideIcon }[] = [
+const processSteps: {
+  num: string;
+  title: string;
+  desc: string;
+  iconSrc?: string;
+  icon?: LucideIcon;
+}[] = [
   {
     num: '01',
     title: 'Consult',
     desc: 'We discuss your vehicle, preferences and what you want from your window tint, then recommend suitable film options.',
-    icon: MessageSquare,
+    iconSrc: images.automotiveTinting.process.consult,
   },
   {
     num: '02',
     title: 'Prepare',
     desc: 'The glass is thoroughly cleaned and prepared to create the best possible surface for installation.',
-    icon: SprayCan,
+    iconSrc: images.automotiveTinting.process.prepare,
   },
   {
     num: '03',
     title: 'Cut',
     desc: 'The automotive window film is precisely prepared to fit the required glass.',
-    icon: Scissors,
+    iconSrc: images.automotiveTinting.process.select,
   },
   {
     num: '04',
     title: 'Install',
     desc: 'Your selected film is professionally installed with care, precision and attention to detail.',
-    icon: Paintbrush,
+    iconSrc: images.automotiveTinting.process.install,
   },
   {
     num: '05',
     title: 'Inspect',
     desc: 'The completed tint is checked for quality and consistency before handover.',
-    icon: CircleCheck,
+    iconSrc: images.automotiveTinting.process.inspect,
   },
   {
     num: '06',
@@ -425,34 +459,61 @@ export default function AutomotiveTintingPage() {
           </div>
         </section>
 
-        {/* Why Tint Your Car? */}
-        <section className="section bg-white">
-          <div className="container">
+        {/* Why Tint Your Vehicle? */}
+        <section className="overflow-hidden bg-white">
+          <div className="grid lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.02fr)] lg:items-stretch">
             <Reveal>
-              <div className="mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
-                  Why Tint Your Car?
+              <div className="flex flex-col justify-center px-6 py-16 sm:px-10 lg:px-12 lg:py-20 xl:px-16">
+                <h2 className="text-2xl font-bold uppercase leading-tight tracking-tight text-ink-950 md:text-3xl lg:text-[2rem]">
+                  <span className="relative inline-block pb-2">
+                    Why
+                    <span className="absolute bottom-0 left-0 h-1 w-10 bg-accent-500" aria-hidden />
+                  </span>{' '}
+                  Tint Your Vehicle?
                 </h2>
-                <p className="mt-4 leading-relaxed text-ink-600">
-                  Professional car window tinting is about more than appearance. The right automotive
-                  window film can make everyday driving more comfortable, help manage glare and heat,
-                  improve privacy and reduce UV exposure through your vehicle glass.
+                <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-600 sm:text-base">
+                  Window tinting is more than just a great look. It&apos;s about protection, comfort
+                  and safety for you and your vehicle.
                 </p>
+                <ul className="mt-8 space-y-3.5">
+                  {whyTintBenefits.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-ink-800 sm:text-base">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
+                        <CircleCheck className="h-3 w-3" strokeWidth={3} />
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {benefits.map((b, i) => (
-                <Reveal key={b.title} delay={i * 40}>
-                  <article className="h-full border-t-2 border-accent-500 bg-ink-50 p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-500/10 text-accent-600">
-                      <b.icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-4 text-lg font-bold text-ink-950">{b.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-600">{b.desc}</p>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
+
+            <Reveal delay={80}>
+              <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[520px]">
+                <img
+                  src={images.automotiveTinting.whyTintYourVehicle}
+                  alt="Driver's view through tinted car windshield"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = images.carInterior;
+                  }}
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-white from-0% via-white/85 via-[18%] to-transparent to-[42%]"
+                  aria-hidden
+                />
+                <TintHeatArrows className="pointer-events-none absolute left-[14%] top-[24%] z-10 h-20 w-28 text-accent-500 sm:left-[18%] sm:top-[28%] sm:h-24 sm:w-32" />
+                <div className="absolute bottom-8 left-6 z-10 max-w-[220px] border-l-4 border-accent-500 bg-ink-950/85 px-5 py-4 text-white backdrop-blur-sm sm:bottom-10 sm:left-10 sm:max-w-xs">
+                  {whyTintCallouts.map((line) => (
+                    <p key={line} className="text-sm leading-relaxed sm:text-base">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -602,7 +663,17 @@ export default function AutomotiveTintingPage() {
                   <li className="relative border border-ink-100 bg-ink-50 p-6">
                     <div className="flex items-center justify-between">
                       <span className="text-2xl font-bold text-accent-500">{step.num}</span>
-                      <step.icon className="h-5 w-5 text-ink-400" />
+                      {step.iconSrc ? (
+                        <img
+                          src={step.iconSrc}
+                          alt=""
+                          className="h-8 w-8"
+                          aria-hidden
+                          loading="lazy"
+                        />
+                      ) : step.icon ? (
+                        <step.icon className="h-5 w-5 text-ink-400" />
+                      ) : null}
                     </div>
                     <h3 className="mt-4 text-lg font-bold text-ink-950">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink-600">{step.desc}</p>
