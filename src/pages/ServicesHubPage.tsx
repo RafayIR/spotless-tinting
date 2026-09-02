@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
-  Award,
   Building2,
   Car,
   Check,
   Home,
-  Shield,
-  Star,
   type LucideIcon,
 } from 'lucide-react';
 import SEO from '@/components/SEO';
@@ -25,19 +22,19 @@ import {
 
 const trustItems = [
   {
-    icon: Shield,
-    title: 'Quality Products',
-    desc: 'Premium films that perform.',
+    iconSrc: images.windowTinting.heroTrustIcons.qualityProducts,
+    title: 'QUALITY FILMS',
+    desc: 'Professional window films selected for performance and longevity.',
   },
   {
-    icon: Star,
-    title: 'Expert Installation',
-    desc: 'Precision workmanship & attention to detail.',
+    iconSrc: images.windowTinting.heroTrustIcons.expertInstallation,
+    title: 'PRECISION INSTALLATION',
+    desc: 'Careful preparation and attention to detail from start to finish.',
   },
   {
-    icon: Award,
-    title: 'Local & Trusted',
-    desc: 'Proudly serving Hobart & surrounds.',
+    iconSrc: images.windowTinting.heroTrustIcons.localAndTrusted,
+    title: 'LOCAL & TRUSTED',
+    desc: 'Based in Moonah and servicing Hobart and surrounding areas.',
   },
 ];
 
@@ -45,7 +42,8 @@ const tintingCards: {
   id: string;
   slug: string;
   icon: LucideIcon;
-  title: string;
+  titleLine1: string;
+  titleLine2: string;
   desc: string;
   features: string[];
   cta: string;
@@ -55,18 +53,20 @@ const tintingCards: {
       id: 'automotive',
       slug: 'automotive-window-tinting',
       icon: Car,
-      title: 'Automotive Window Tinting',
-      desc: 'Premium window films for cars, utes and SUVs — heat rejection, UV protection and style.',
+      titleLine1: 'Automotive',
+      titleLine2: 'Window Tinting',
+      desc: 'Professional car window tinting in Hobart designed to improve everyday comfort while giving your vehicle a clean, refined finish.',
       features: ['Heat Reduction', 'UV Protection', 'Glare Reduction', 'Privacy & Style'],
-      cta: 'Automotive Window Tinting',
+      cta: 'EXPLORE AUTOMOTIVE TINTING',
       image: images.professionalTintingForEveryNeedAutomotive,
     },
     {
       id: 'residential',
       slug: 'residential-window-tinting',
       icon: Home,
-      title: 'Residential Window Tinting',
-      desc: 'Solar control and privacy films that keep your home cooler, safer and more comfortable.',
+      titleLine1: 'Residential',
+      titleLine2: 'Window Tinting',
+      desc: 'Make your home more comfortable without compromising its appearance. Our residential window tinting solutions can help manage heat and glare, improve privacy and reduce UV exposure through your glass',
       features: ['Heat Control', 'UV Protection', 'Glare Reduction', 'Enhanced Privacy'],
       cta: 'Explore Residential Tinting',
       image: images.professionalTintingForEveryNeedResidential,
@@ -75,9 +75,10 @@ const tintingCards: {
       id: 'commercial',
       slug: 'commercial-window-tinting',
       icon: Building2,
-      title: 'Commercial Window Tinting',
-      desc: 'Professional film solutions for offices, retail and commercial buildings across Hobart.',
-      features: ['Solar Control', 'Privacy Solutions', 'Glare Reduction', 'Safety & Security Films'],
+      titleLine1: 'Commercial',
+      titleLine2: 'Window Tinting',
+      desc: 'Create a more comfortable, private and professional environment with commercial window film for offices, shopfronts and other business spaces across Hobart.',
+      features: ['Solar Control', 'Privacy Solutions', 'Glare Reduction', 'Safety & Security Film Options'],
       cta: 'Explore Commercial Tinting',
       image: images.professionalTintingForEveryNeedCommercial,
     },
@@ -100,11 +101,11 @@ function TintingCard({
       >
         <img
           src={card.image}
-          alt={card.title}
+          alt={`${card.titleLine1} ${card.titleLine2}`}
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/70 to-ink-950/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/70 to-ink-950/30 transition-opacity duration-500 group-hover:opacity-50" />
 
         <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-8">
           <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-accent-500 text-white">
@@ -112,8 +113,9 @@ function TintingCard({
           </div>
 
           <div className="mt-auto">
-            <h2 className="text-lg font-bold uppercase tracking-wide text-white sm:text-xl">
-              {card.title}
+            <h2 className="text-lg font-bold uppercase leading-tight tracking-wide text-white sm:text-xl">
+              <span className="block">{card.titleLine1}</span>
+              <span className="block">{card.titleLine2}</span>
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-200">{card.desc}</p>
 
@@ -152,16 +154,18 @@ export default function ServicesHubPage() {
       <section className="relative overflow-hidden bg-white">
         <div className="relative flex min-h-[640px] flex-col lg:min-h-[670px] lg:flex-row">
           {/* Content panel */}
-          <div className="relative z-20 flex w-full flex-col justify-center px-6 py-16 sm:px-10 lg:w-[52%] lg:px-12 lg:py-20 xl:px-16">
+          <div className="relative z-20 flex w-full flex-col justify-center px-6 py-16 sm:px-10 lg:w-[42%] lg:px-12 lg:py-20 xl:px-16">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-500">
               Automotive · Residential · Commercial
             </p>
             <h1 className="mt-4 max-w-xl text-4xl font-bold uppercase leading-[1.05] text-ink-950 sm:text-5xl lg:text-[3.25rem]">
-              Professional Window Tinting
+              Professional Window Tinting in Hobart
             </h1>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-ink-600 sm:text-lg">
-              Premium window film solutions for vehicles, homes and commercial spaces — expertly
-              installed for comfort, protection and lasting performance across Hobart.
+              Premium window film solutions designed to improve comfort, privacy and protection for vehicles, homes and commercial properties across Hobart.
+            </p>
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-ink-600 sm:text-lg">
+              From reducing heat and glare to enhancing privacy and UV protection, we'll help you choose the right film for your space and the finish you want.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -178,7 +182,13 @@ export default function ServicesHubPage() {
             <div className="mt-10 grid gap-6 border-t border-ink-100 pt-8 sm:grid-cols-3">
               {trustItems.map((item) => (
                 <div key={item.title}>
-                  <item.icon className="h-5 w-5 text-accent-500" strokeWidth={1.75} />
+                  <img
+                    src={item.iconSrc}
+                    alt=""
+                    className="h-8 w-8"
+                    aria-hidden
+                    loading="lazy"
+                  />
                   <h3 className="mt-2 text-sm font-bold text-ink-950">{item.title}</h3>
                   <p className="mt-1 text-xs leading-relaxed text-ink-500">{item.desc}</p>
                 </div>
@@ -218,14 +228,14 @@ export default function ServicesHubPage() {
       {/* Tinting category cards */}
       <section id="tinting-options" className="section bg-white">
         <div className="container">
-          
+
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
               <span className="eyebrow inline-flex items-center gap-5 before:h-px before:w-12 before:bg-accent-400 after:h-px after:w-12 after:bg-accent-400">
                 One Solution. Three Applications.
               </span>
               <h2 className="mt-5 text-3xl font-bold md:text-4xl lg:text-5xl">
-                Professional Tinting for Every Need
+                Window Tinting for Cars, Homes & Businesses
               </h2>
             </div>
           </Reveal>

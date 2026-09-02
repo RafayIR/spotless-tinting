@@ -28,32 +28,32 @@ const tintShades: {
   vlt: string;
   image: string;
 }[] = [
-  {
-    name: 'Light',
-    vlt: '35% VLT*',
-    image: images.windowTinting.findYourLook.light,
-  },
-  {
-    name: 'Medium',
-    vlt: '20% VLT*',
-    image: images.windowTinting.findYourLook.medium,
-  },
-  {
-    name: 'Medium Dark',
-    vlt: '15% VLT*',
-    image: images.windowTinting.findYourLook.mediumDark,
-  },
-  {
-    name: 'Dark',
-    vlt: '5% VLT*',
-    image: images.windowTinting.findYourLook.dark,
-  },
-  {
-    name: 'Limo',
-    vlt: '2% VLT*',
-    image: images.windowTinting.findYourLook.limo,
-  },
-];
+    {
+      name: 'Light',
+      vlt: '35% VLT*',
+      image: images.windowTinting.findYourLook.light,
+    },
+    {
+      name: 'Medium',
+      vlt: '20% VLT*',
+      image: images.windowTinting.findYourLook.medium,
+    },
+    {
+      name: 'Medium Dark',
+      vlt: '15% VLT*',
+      image: images.windowTinting.findYourLook.mediumDark,
+    },
+    {
+      name: 'Dark',
+      vlt: '5% VLT*',
+      image: images.windowTinting.findYourLook.dark,
+    },
+    {
+      name: 'Limo',
+      vlt: '2% VLT*',
+      image: images.windowTinting.findYourLook.limo,
+    },
+  ];
 
 const windowTintingFaqs: { question: string; answer: string }[] = [
   {
@@ -152,43 +152,43 @@ const recentTintingProjects: {
   image: string;
   alt: string;
 }[] = [
-  {
-    id: 'auto-1',
-    category: 'Automotive',
-    image: images.blackCar,
-    alt: 'Black sports car with ceramic window tint',
-  },
-  {
-    id: 'res-1',
-    category: 'Residential',
-    image: images.modernHome,
-    alt: 'Modern home with residential window tinting',
-  },
-  {
-    id: 'com-1',
-    category: 'Commercial',
-    image: images.commercialBuilding,
-    alt: 'Commercial building with solar control window film',
-  },
-  {
-    id: 'auto-2',
-    category: 'Automotive',
-    image: images.suvDark,
-    alt: 'SUV with premium automotive window tint',
-  },
-  {
-    id: 'res-2',
-    category: 'Residential',
-    image: images.residentialWindow,
-    alt: 'Residential interior with tinted floor-to-ceiling windows',
-  },
-  {
-    id: 'com-2',
-    category: 'Commercial',
-    image: images.officeGlass,
-    alt: 'Commercial office with window tinting',
-  },
-];
+    {
+      id: 'auto-1',
+      category: 'Automotive',
+      image: images.blackCar,
+      alt: 'Black sports car with ceramic window tint',
+    },
+    {
+      id: 'res-1',
+      category: 'Residential',
+      image: images.modernHome,
+      alt: 'Modern home with residential window tinting',
+    },
+    {
+      id: 'com-1',
+      category: 'Commercial',
+      image: images.commercialBuilding,
+      alt: 'Commercial building with solar control window film',
+    },
+    {
+      id: 'auto-2',
+      category: 'Automotive',
+      image: images.sportsCar,
+      alt: 'SUV with premium automotive window tint',
+    },
+    {
+      id: 'res-2',
+      category: 'Residential',
+      image: images.residentialWindow,
+      alt: 'Residential interior with tinted floor-to-ceiling windows',
+    },
+    {
+      id: 'com-2',
+      category: 'Commercial',
+      image: images.officeGlass,
+      alt: 'Commercial office with window tinting',
+    },
+  ];
 
 const spotlessStandardSteps: {
   num: string;
@@ -196,69 +196,69 @@ const spotlessStandardSteps: {
   desc: string;
   iconSrc: string;
 }[] = [
-  {
-    num: '01',
-    title: 'Consult',
-    desc: 'We discuss your needs and recommend the best solution.',
-    iconSrc: images.windowTinting.spotlessStandard.consult,
-  },
-  {
-    num: '02',
-    title: 'Select',
-    desc: 'Choose the right film for your application and preferences.',
-    iconSrc: images.windowTinting.spotlessStandard.select,
-  },
-  {
-    num: '03',
-    title: 'Prepare',
-    desc: 'Thorough cleaning of glass for a flawless installation.',
-    iconSrc: images.windowTinting.spotlessStandard.prepare,
-  },
-  {
-    num: '04',
-    title: 'Install',
-    desc: 'Precision installation by our experienced technicians.',
-    iconSrc: images.windowTinting.spotlessStandard.install,
-  },
-  {
-    num: '05',
-    title: 'Inspect',
-    desc: 'Final quality check ensures the highest possible finish.',
-    iconSrc: images.windowTinting.spotlessStandard.inspect,
-  },
-];
+    {
+      num: '01',
+      title: 'Consult',
+      desc: 'We discuss your needs and recommend the best solution.',
+      iconSrc: images.windowTinting.spotlessStandard.consult,
+    },
+    {
+      num: '02',
+      title: 'Select',
+      desc: 'Choose the right film for your application and preferences.',
+      iconSrc: images.windowTinting.spotlessStandard.select,
+    },
+    {
+      num: '03',
+      title: 'Prepare',
+      desc: 'Thorough cleaning of glass for a flawless installation.',
+      iconSrc: images.windowTinting.spotlessStandard.prepare,
+    },
+    {
+      num: '04',
+      title: 'Install',
+      desc: 'Precision installation by our experienced technicians.',
+      iconSrc: images.windowTinting.spotlessStandard.install,
+    },
+    {
+      num: '05',
+      title: 'Inspect',
+      desc: 'Final quality check ensures the highest possible finish.',
+      iconSrc: images.windowTinting.spotlessStandard.inspect,
+    },
+  ];
 
 const benefitColumns: {
   iconSrc: string;
   title: string;
   desc: string;
 }[] = [
-  {
-    iconSrc: images.windowTinting.moreThanDarkerGlass.heatReduction,
-    title: 'Heat Reduction',
-    desc: 'Helps reduce solar heat entering through the glass.',
-  },
-  {
-    iconSrc: images.windowTinting.moreThanDarkerGlass.uvProtection,
-    title: 'UV Protection',
-    desc: 'Blocks up to 99% of harmful ultraviolet rays.',
-  },
-  {
-    iconSrc: images.windowTinting.moreThanDarkerGlass.glareControl,
-    title: 'Glare Control',
-    desc: 'Reduces uncomfortable glare for a more comfortable space.',
-  },
-  {
-    iconSrc: images.windowTinting.moreThanDarkerGlass.privacy,
-    title: 'Privacy',
-    desc: 'Enhances privacy for vehicles, homes and businesses.',
-  },
-  {
-    iconSrc: images.windowTinting.moreThanDarkerGlass.appearance,
-    title: 'Appearance',
-    desc: 'Improves the look of your glass and property.',
-  },
-];
+    {
+      iconSrc: images.windowTinting.moreThanDarkerGlass.heatReduction,
+      title: 'Heat Reduction',
+      desc: 'Reduce the amount of solar heat passing through your glass and create a more comfortable vehicle, home or workspace.',
+    },
+    {
+      iconSrc: images.windowTinting.moreThanDarkerGlass.uvProtection,
+      title: 'UV Protection',
+      desc: 'Quality window films can provide high levels of UV rejection, helping reduce UV exposure through glass and protect interior surfaces from premature fading.',
+    },
+    {
+      iconSrc: images.windowTinting.moreThanDarkerGlass.glareControl,
+      title: 'Glare Control',
+      desc: 'Reduce harsh sunlight and distracting glare for greater visual comfort when driving, relaxing at home or working.',
+    },
+    {
+      iconSrc: images.windowTinting.moreThanDarkerGlass.privacy,
+      title: 'Enhanced Privacy',
+      desc: 'Choose from a range of privacy window film options to achieve the level of privacy that suits your vehicle or property.',
+    },
+    {
+      iconSrc: images.windowTinting.moreThanDarkerGlass.appearance,
+      title: 'Premium Appearance',
+      desc: 'A professionally installed window film can give vehicles and architectural glass a cleaner, more refined appearance.',
+    },
+  ];
 
 /*
 const techCallouts: {
@@ -338,9 +338,8 @@ function BenefitColumn({
 }) {
   return (
     <div
-      className={`flex flex-col items-center px-4 text-center sm:px-6 ${
-        showDivider ? 'lg:border-r lg:border-ink-200' : ''
-      }`}
+      className={`flex flex-col items-center px-4 text-center sm:px-6 ${showDivider ? 'lg:border-r lg:border-ink-200' : ''
+        }`}
     >
       <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-accent-500">
         <img src={item.iconSrc} alt="" className="h-6 w-6" aria-hidden loading="lazy" />
@@ -467,11 +466,10 @@ export function RecentWindowTintingProjectsSection() {
               key={filter}
               type="button"
               onClick={() => setActiveFilter(filter)}
-              className={`rounded-md border px-4 py-2 text-[10px] font-bold uppercase tracking-wide transition-colors sm:px-5 sm:text-xs ${
-                activeFilter === filter
-                  ? 'border-accent-500 bg-accent-500 text-white'
-                  : 'border-ink-300 bg-white text-ink-950 hover:border-accent-500 hover:text-accent-600'
-              }`}
+              className={`rounded-md border px-4 py-2 text-[10px] font-bold uppercase tracking-wide transition-colors sm:px-5 sm:text-xs ${activeFilter === filter
+                ? 'border-accent-500 bg-accent-500 text-white'
+                : 'border-ink-300 bg-white text-ink-950 hover:border-accent-500 hover:text-accent-600'
+                }`}
             >
               {filter}
             </button>
@@ -588,16 +586,19 @@ export function SpotlessStandardSection() {
 
 export function MoreThanDarkerGlassSection() {
   return (
-    <section className="border-y border-ink-100 bg-white py-16 md:py-20">
+    <section className="border-y border-ink-100 bg-white py-16 md:py-10">
       <div className="container">
         <Reveal>
-          <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-ink-950 sm:text-base">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="eyebrow inline-flex items-center gap-5 before:h-px before:w-12 before:bg-accent-400 after:h-px after:w-12 after:bg-accent-400">
               More Than Just Darker Glass
+            </span>
+            <h2 className="mt-5 text-3xl font-bold md:text-4xl lg:text-5xl">
+              Benefits of Professional Window Tinting
             </h2>
-            <div className="mx-auto mt-3 h-0.5 w-10 bg-accent-500" />
           </div>
         </Reveal>
+
 
         <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-0">
           {benefitColumns.map((item, i) => (
@@ -623,8 +624,10 @@ export function WindowFilmTechnologySection() {
               </h2>
               <div className="mt-3 h-0.5 w-10 bg-accent-500" />
               <p className="mt-5 max-w-md leading-relaxed text-ink-600">
-                Advanced window films are engineered to deliver maximum performance, protection
-                and comfort.
+                Modern window film is engineered to manage the way solar energy and light interact with glass.
+              </p>
+              <p className="mt-5 max-w-md leading-relaxed text-ink-600">
+                Different films provide different levels of solar heat control, UV rejection, visible light transmission, glare reduction and privacy, allowing us to recommend a solution based on what you actually want to achieve.
               </p>
               <Link to="/quote" className="btn-outline mt-8 uppercase tracking-wide">
                 Learn More About Our Films

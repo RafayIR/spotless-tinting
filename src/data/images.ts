@@ -44,6 +44,11 @@ export const images = {
       install: '/window-tinting/spotless-standard/04-install.svg',
       inspect: '/window-tinting/spotless-standard/05-inspect.svg',
     },
+    heroTrustIcons: {
+      qualityProducts: '/window-tinting/spotless_hero_trust_icons_svg/quality-products.svg',
+      expertInstallation: '/window-tinting/spotless_hero_trust_icons_svg/expert-installation.svg',
+      localAndTrusted: '/window-tinting/spotless_hero_trust_icons_svg/local-and-trusted.svg',
+    },
   },
   ppfBar: {
     stoneChip: encodeURI('/PPF (1)/Bar beneath the header/stone-chip-protection.svg'),
