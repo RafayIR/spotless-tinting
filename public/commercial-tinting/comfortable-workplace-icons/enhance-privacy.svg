@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#F47A38" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>Enhance Privacy</title>
+  <circle cx="25" cy="19" r="8"/>
+  <path d="M9 46v-5c0-9 7-15 16-15 6 0 11 3 14 8"/>
+  <rect x="35" y="37" width="20" height="17" rx="2"/>
+  <path d="M40 37v-4a5 5 0 0110 0v4M45 44v4"/>
+</svg>

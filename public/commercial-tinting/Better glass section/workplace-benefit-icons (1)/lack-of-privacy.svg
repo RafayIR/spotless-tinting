@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#F47A38" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <title>Lack of Privacy</title>
+  <path d="M8 32s9-13 24-13 24 13 24 13-9 13-24 13S8 32 8 32z"/>
+  <circle cx="32" cy="32" r="7"/>
+  <path d="M13 51L51 13"/>
+</svg>

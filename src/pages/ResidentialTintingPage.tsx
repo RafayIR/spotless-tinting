@@ -7,193 +7,496 @@ import {
   Eye,
   Lock,
   Sofa,
-  Thermometer,
-  Image as ImageIcon,
-  // Curtains,
-  Palette,
-  Home,
-  Bath,
-  DoorOpen,
-  Sofa as LivingIcon,
-  CloudSun,
-  Laptop,
+  Blinds,
+  Frame,
+  Flower2,
+  LayoutGrid,
   MessageSquare,
   Search,
   Layers,
   SprayCan,
   Paintbrush,
   CircleCheck,
+  Plus,
+  Phone,
+  MapPin,
   type LucideIcon,
 } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Reveal from '@/components/Reveal';
-import ParallaxHero from '@/components/ParallaxHero';
-import FAQAccordion from '@/components/FAQAccordion';
 import { images } from '@/data/images';
-import { faqs } from '@/data/faqs';
+import { business } from '@/data/business';
 
 const benefitBar: { icon: LucideIcon; title: string; desc: string }[] = [
-  { icon: Sun, title: 'Heat Reduction', desc: 'Keep rooms cooler through summer.' },
-  { icon: Shield, title: 'UV Protection', desc: 'Block up to 99% of harmful UV rays.' },
-  { icon: Eye, title: 'Glare Control', desc: 'Reduce harsh glare on screens and surfaces.' },
-  { icon: Lock, title: 'Privacy', desc: 'Daytime privacy without heavy curtains.' },
-  { icon: Sofa, title: 'Interior Protection', desc: 'Help prevent fading of floors and furnishings.' },
+  {
+    icon: Sun,
+    title: 'Heat Reduction',
+    desc: 'Helps reduce solar heat entering through your windows.',
+  },
+  {
+    icon: Shield,
+    title: 'UV Protection',
+    desc: 'Quality films can provide high levels of UV rejection, depending on the film selected.',
+  },
+  {
+    icon: Eye,
+    title: 'Glare Control',
+    desc: 'Helps reduce harsh sunlight and uncomfortable glare.',
+  },
+  {
+    icon: Lock,
+    title: 'Privacy',
+    desc: 'Choose from film options designed for different levels of privacy.',
+  },
+  {
+    icon: Sofa,
+    title: 'Interior Protection',
+    desc: 'Helps reduce UV exposure to flooring, furniture and other interior surfaces.',
+  },
 ];
 
-const comfortChecks = [
-  'Too much heat through your windows?',
-  'Uncomfortable glare on TVs and screens?',
-  'Want more privacy without closing curtains?',
-  'Concerned about UV fading your interiors?',
-  'Looking for a cleaner, more refined finish?',
+const comfortBenefits = [
+  {
+    question: 'Too much heat?',
+    answer:
+      'Help reduce solar heat entering through your windows for a more comfortable indoor environment.',
+  },
+  {
+    question: 'Uncomfortable glare?',
+    answer:
+      'Reduce harsh sunlight on televisions, screens and living areas while maintaining useful natural light.',
+  },
+  {
+    question: 'UV exposure?',
+    answer:
+      'Help reduce UV exposure through glass and protect interior surfaces from premature fading.',
+  },
+  {
+    question: 'Need more privacy?',
+    answer:
+      'Choose from residential privacy film options designed for different rooms and privacy requirements.',
+  },
+];
+
+const comfortOverlayItems: { iconSrc: string; label: string }[] = [
+  {
+    iconSrc: images.residentialTinting.makeYourHomeComfortable.barIcons.heatReduction,
+    label: 'Reduces Heat',
+  },
+  {
+    iconSrc: images.residentialTinting.makeYourHomeComfortable.barIcons.glareControl,
+    label: 'Reduces Glare',
+  },
+  {
+    iconSrc: images.residentialTinting.makeYourHomeComfortable.barIcons.uvProtection,
+    label: 'Blocks UV Rays',
+  },
+  {
+    iconSrc: images.residentialTinting.makeYourHomeComfortable.barIcons.privacy,
+    label: 'Enhances Privacy',
+  },
 ];
 
 const filmSolutions: {
   title: string;
   desc: string;
   image: string;
-  icon: LucideIcon;
+  iconSrc: string;
 }[] = [
   {
-    title: 'Solar Control Film',
-    desc: 'Reduce heat and glare while keeping natural light in your living spaces.',
-    image: images.modernHome,
-    icon: Sun,
+    title: 'Solar Control Window Film',
+    desc: 'Help manage solar heat and glare while maintaining natural light and views. A suitable solar-control film can make sun-exposed rooms more comfortable without replacing the existing glass.',
+    image: images.residentialTinting.filmSolutions.solarControl.image,
+    iconSrc: images.residentialTinting.filmSolutions.solarControl.icon,
   },
   {
-    title: 'Privacy Film',
-    desc: 'Enhance daytime privacy for street-facing rooms and open glass areas.',
-    image: images.residentialWindow,
-    icon: Lock,
+    title: 'Privacy Window Film',
+    desc: 'Improve privacy in suitable applications while retaining useful natural light. Privacy performance depends on the film selected and the lighting conditions inside and outside the home.',
+    image: images.residentialTinting.filmSolutions.privacy.image,
+    iconSrc: images.residentialTinting.filmSolutions.privacy.icon,
   },
   {
-    title: 'Decorative & Frosted Film',
-    desc: 'Soft privacy and style for bathrooms, entryways and glass partitions.',
-    image: images.shopfront,
-    icon: Layers,
+    title: 'Decorative & Frosted Window Film',
+    desc: 'Add privacy and style to bathrooms, entryways, internal glass and feature windows with decorative or frosted film options.',
+    image: images.residentialTinting.filmSolutions.decorativeFrosted.image,
+    iconSrc: images.residentialTinting.filmSolutions.decorativeFrosted.icon,
   },
   {
-    title: 'Safety & Security Film',
-    desc: 'Help hold glass together under impact for added peace of mind at home.',
-    image: images.installerWork,
-    icon: Shield,
+    title: 'Safety & Security Window Film',
+    desc: 'Specialist film options can help hold broken glass together following impact or breakage. The appropriate product depends on the glass and the level of protection required.',
+    image: images.residentialTinting.filmSolutions.safetySecurity.image,
+    iconSrc: images.residentialTinting.filmSolutions.safetySecurity.icon,
   },
 ];
 
-const homeZones = [
-  { label: 'Bedrooms', top: '28%', left: '22%' },
-  { label: 'Bathrooms', top: '42%', left: '68%' },
-  { label: 'Entryways', top: '72%', left: '30%' },
-  { label: 'Living Areas', top: '55%', left: '48%' },
-  { label: 'Skylights', top: '14%', left: '52%' },
-  { label: 'Home Offices', top: '38%', left: '78%' },
-];
-
-const techCallouts = [
-  { title: 'Solar Energy Rejected', desc: 'Helps reduce heat entering through glass.' },
-  { title: 'UV Radiation Blocked', desc: 'Protects interiors from fading and UV exposure.' },
-  { title: 'Glare Minimised', desc: 'Improves comfort without making rooms gloomy.' },
-  { title: 'Visible Light Balanced', desc: 'Keeps natural light while controlling intensity.' },
+const roomApplications = [
+  {
+    title: 'Bedrooms',
+    desc: 'Privacy, glare control and improved comfort for bedrooms exposed to strong sunlight.',
+  },
+  {
+    title: 'Bathrooms',
+    desc: 'Frosted and privacy film options for suitable bathroom glass where visual privacy is a priority.',
+  },
+  {
+    title: 'Living Areas',
+    desc: 'Help manage heat and glare while preserving natural light and the openness of large windows.',
+  },
+  {
+    title: 'Skylights',
+    desc: 'Solar-control film solutions for suitable overhead glazing where heat and glare can be especially noticeable.',
+  },
+  {
+    title: 'Entryways',
+    desc: 'Decorative, frosted and privacy film solutions for entrance glass and sidelights.',
+  },
+  {
+    title: 'Home Offices',
+    desc: 'Reduce screen glare and create a more comfortable workspace without unnecessarily blocking daylight.',
+  },
 ];
 
 const protectItems: { icon: LucideIcon; label: string }[] = [
-  { icon: Home, label: 'Flooring' },
+  { icon: LayoutGrid, label: 'Flooring' },
   { icon: Sofa, label: 'Furniture' },
-  // { icon: Curtains, label: 'Curtains' },
-  { icon: ImageIcon, label: 'Artwork' },
-  { icon: Palette, label: 'Interiors' },
+  { icon: Blinds, label: 'Curtains' },
+  { icon: Frame, label: 'Artwork' },
+  { icon: Flower2, label: 'Interiors' },
 ];
 
 const privacyOptions = [
-  { title: 'Clear Glass', image: images.residentialWindow },
-  { title: 'Privacy Film', image: images.modernHome },
-  { title: 'Frosted Film', image: images.shopfront },
+  {
+    title: 'Clear Glass',
+    subtitle: 'Minimal additional privacy',
+    image: images.residentialTinting.protectWhatsInside.clearGlass,
+  },
+  {
+    title: 'Privacy Film',
+    subtitle: 'Enhanced privacy in suitable lighting conditions and applications',
+    image: images.residentialTinting.protectWhatsInside.privacyFilm,
+  },
+  {
+    title: 'Frosted Film',
+    subtitle: 'High visual privacy for spaces where obscuring the view through the glass is preferred',
+    image: images.residentialTinting.protectWhatsInside.frostedFilm,
+  },
 ];
 
-const processSteps: { num: string; title: string; desc: string; icon: LucideIcon }[] = [
-  { num: '01', title: 'Consult', desc: 'Discuss your home, goals and comfort needs.', icon: MessageSquare },
-  { num: '02', title: 'Assess', desc: 'We review glass, orientation and room usage.', icon: Search },
-  { num: '03', title: 'Select', desc: 'Choose the ideal film for each window.', icon: Layers },
-  { num: '04', title: 'Prepare', desc: 'Windows are cleaned and ready for install.', icon: SprayCan },
-  { num: '05', title: 'Install', desc: 'Precision application with a clean finish.', icon: Paintbrush },
-  { num: '06', title: 'Inspect', desc: 'Final check for a flawless residential result.', icon: CircleCheck },
+const projectFilters = ['All', 'Solar Control', 'Privacy', 'Frosted', 'Smart Film'];
+
+const recentResidentialProjects = [
+  {
+    id: '1',
+    filter: 'Smart Film',
+    alt: 'Modern home interior with residential window tinting at dusk',
+    image: images.residentialTinting.smartTint.showcase,
+  },
+  {
+    id: '2',
+    filter: 'Privacy',
+    alt: 'Clear glass dining area with window film installed',
+    image: images.residentialTinting.smartTint.clear,
+  },
+  {
+    id: '3',
+    filter: 'Solar Control',
+    alt: 'Modern residential home with window tinting',
+    image: images.modernHome,
+  },
+  {
+    id: '4',
+    filter: 'Solar Control',
+    alt: 'Living room with solar control window film',
+    image: images.residentialTinting.makeYourHomeComfortable.before,
+  },
+  {
+    id: '5',
+    filter: 'Frosted',
+    alt: 'Frosted smart tint privacy glass in a modern home',
+    image: images.residentialTinting.smartTint.frosted,
+  },
+  {
+    id: '6',
+    filter: 'Privacy',
+    alt: 'Residential privacy window film application',
+    image: images.residentialTinting.makeYourHomeComfortable.after,
+  },
 ];
 
 const residentialFaqs = [
-  ...faqs.filter((f) => f.category === 'Residential Tinting'),
   {
-    id: 'r4',
-    category: 'Residential Tinting',
-    question: 'Will residential tinting make my home darker?',
+    question: 'Does window film make my house dark?',
     answer:
-      'Not necessarily. Many modern films reduce heat and glare while allowing plenty of natural light. We help you choose a level that balances comfort and brightness.',
+      'Not necessarily. Residential window films are available in different shades and performance levels. Some are designed to provide solar control while retaining high levels of natural light. We\'ll help you compare options based on your windows and the result you want.',
   },
   {
-    id: 'r5',
-    category: 'Residential Tinting',
-    question: 'Can film protect furniture and flooring from fading?',
+    question: 'Can window film help reduce heat?',
     answer:
-      'Yes. Quality window films block a high percentage of UV rays, which is a major cause of fading in floors, furniture, curtains and artwork.',
+      'Yes. Solar-control window films are designed to reduce a portion of the solar energy passing through glass, which can help improve indoor comfort. The level of performance varies by film, glass type and conditions.',
   },
   {
-    id: 'r6',
-    category: 'Residential Tinting',
-    question: 'Do you offer frosted film for bathrooms?',
+    question: 'Does residential window film provide UV protection?',
     answer:
-      'Absolutely. Frosted and decorative films are popular for bathrooms, entryways and glass partitions where privacy matters without blocking light.',
+      'Many quality residential window films provide high levels of UV rejection. The exact performance depends on the product selected, so any specific percentage should be based on the manufacturer\'s specification.',
+  },
+  {
+    question: 'Can window film reduce glare on TVs and screens?',
+    answer:
+      'Window film can help reduce harsh sunlight and glare, making living areas and home offices more comfortable. The appropriate film depends on the window orientation, glass and amount of glare.',
+  },
+  {
+    question: 'Does privacy film work at night?',
+    answer:
+      'It depends on the film and lighting conditions. Reflective films that provide daytime privacy may offer less privacy at night when the inside of the home is brighter than outside. Frosted or other specialist privacy films may be more appropriate where consistent visual privacy is required.',
+  },
+  {
+    question: 'Can window film be installed on double-glazed windows?',
+    answer:
+      'Some window films are suitable for certain types of double glazing, but compatibility depends on the glass construction and the film. The glazing should be assessed before an appropriate product is selected.',
+  },
+  {
+    question: 'Can window film be installed on existing windows?',
+    answer:
+      'Yes, many architectural window films are designed to be applied to existing glass, subject to glass type, condition and compatibility.',
+  },
+  {
+    question: 'How long does residential window film last?',
+    answer:
+      'Film lifespan depends on the product, glass, orientation, exposure, installation and environmental conditions. We can explain the expected performance and applicable warranty, where offered, for the film recommended for your project.',
+  },
+  {
+    question: 'Can old residential window film be removed?',
+    answer:
+      'Existing window film can often be removed. The condition of the film, adhesive and glass should be assessed first so the removal and replacement work can be quoted appropriately.',
+  },
+  {
+    question: 'Which residential window film is right for my home?',
+    answer:
+      'The right film depends on what you want to improve — such as heat, glare, privacy, UV protection or appearance — as well as the type of glass and room. We can assess the application and recommend suitable options.',
   },
 ];
 
-const galleryItems = [
-  { id: '1', title: 'Modern Villa Solar Film', image: images.modernHome },
-  { id: '2', title: 'Living Room Glare Control', image: images.residentialWindow },
-  { id: '3', title: 'Bathroom Frosted Film', image: images.shopfront },
-  { id: '4', title: 'Street-Facing Privacy', image: images.commercialBuilding },
-  { id: '5', title: 'Skylight Heat Reduction', image: images.officeGlass },
-  { id: '6', title: 'Home Office Comfort', image: images.installerWork },
+const advancedFilmFeatures: { title: string; desc: string; iconSrc: string }[] = [
+  {
+    title: 'Solar Energy Reduced',
+    desc: 'Selected solar-control films help reduce solar heat entering through the glass.',
+    iconSrc: images.residentialTinting.designedAroundYourHome.technologyIcons.solarEnergy,
+  },
+  {
+    title: 'UV Radiation Reduced',
+    desc: 'Quality films can provide high levels of UV rejection, depending on the specific product selected.',
+    iconSrc: images.residentialTinting.designedAroundYourHome.technologyIcons.uvRadiation,
+  },
+  {
+    title: 'Glare Reduced',
+    desc: 'Helps control harsh sunlight and reflections for improved visual comfort.',
+    iconSrc: images.residentialTinting.designedAroundYourHome.technologyIcons.glare,
+  },
+  {
+    title: 'Visible Light Managed',
+    desc: 'Choose films designed to balance performance with the amount of natural light you want to retain.',
+    iconSrc: images.residentialTinting.designedAroundYourHome.technologyIcons.visibleLight,
+  },
+  {
+    title: 'Privacy Options',
+    desc: 'Different film technologies provide different levels and types of privacy.',
+    iconSrc: images.residentialTinting.designedAroundYourHome.technologyIcons.privacy,
+  },
 ];
+
+const processSteps: { num: string; title: string; desc: string; icon: LucideIcon }[] = [
+  {
+    num: '01',
+    title: 'Consult',
+    desc: 'We discuss your needs, the rooms involved and the result you want to achieve.',
+    icon: MessageSquare,
+  },
+  {
+    num: '02',
+    title: 'Assess',
+    desc: 'We assess the glass and application requirements before recommending suitable film options.',
+    icon: Search,
+  },
+  {
+    num: '03',
+    title: 'Select',
+    desc: 'Choose a residential window film based on performance, privacy, compatibility and appearance.',
+    icon: Layers,
+  },
+  {
+    num: '04',
+    title: 'Prepare',
+    desc: 'The glass is thoroughly cleaned and prepared to create the best possible installation surface.',
+    icon: SprayCan,
+  },
+  {
+    num: '05',
+    title: 'Install',
+    desc: 'Your selected film is professionally installed with care, precision and attention to detail.',
+    icon: Paintbrush,
+  },
+  {
+    num: '06',
+    title: 'Inspect',
+    desc: 'The completed installation is checked to ensure a clean, professional finish, and relevant aftercare guidance is provided.',
+    icon: CircleCheck,
+  },
+];
+
+function ResidentialFAQGrid({ items }: { items: { question: string; answer: string }[] }) {
+  const [open, setOpen] = useState<number | null>(null);
+  const midpoint = Math.ceil(items.length / 2);
+  const columns = [items.slice(0, midpoint), items.slice(midpoint)];
+
+  const renderColumn = (columnItems: { question: string; answer: string }[], offset: number) => (
+    <div className="divide-y divide-ink-200">
+      {columnItems.map((item, i) => {
+        const index = offset + i;
+        const isOpen = open === index;
+
+        return (
+          <div key={item.question}>
+            <button
+              type="button"
+              className="flex w-full items-center justify-between gap-4 py-4 text-left"
+              onClick={() => setOpen(isOpen ? null : index)}
+              aria-expanded={isOpen}
+            >
+              <span className="text-sm text-ink-800 sm:text-base">{item.question}</span>
+              <Plus
+                className={`h-4 w-4 shrink-0 text-ink-950 transition-transform ${isOpen ? 'rotate-45' : ''}`}
+                strokeWidth={2}
+              />
+            </button>
+            <div
+              className={`grid transition-all duration-300 ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+            >
+              <div className="overflow-hidden">
+                <p className="pb-4 text-sm leading-relaxed text-ink-600">{item.answer}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div className="grid gap-0 md:grid-cols-2 md:divide-x md:divide-ink-200">
+      <div className="md:pr-8">{renderColumn(columns[0], 0)}</div>
+      <div className="md:pl-8">{renderColumn(columns[1], midpoint)}</div>
+    </div>
+  );
+}
 
 function BeforeAfterSlider({
   beforeSrc,
   afterSrc,
   beforeLabel = 'Before Window Film',
   afterLabel = 'After Window Film',
+  overlayItems,
+  variant = 'default',
 }: {
   beforeSrc: string;
   afterSrc: string;
   beforeLabel?: string;
   afterLabel?: string;
+  overlayItems?: { iconSrc: string; label: string }[];
+  variant?: 'default' | 'comfort' | 'smart-tint';
 }) {
   const [pos, setPos] = useState(50);
+  const isComfort = variant === 'comfort';
+  const isSmartTint = variant === 'smart-tint';
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-ink-900 select-none">
+    <div
+      className={`relative overflow-hidden bg-ink-900 select-none ${
+        isSmartTint || isComfort ? 'aspect-[16/10]' : 'aspect-[4/3]'
+      } ${isSmartTint ? 'rounded-md' : isComfort ? 'rounded-md' : 'rounded-2xl'}`}
+    >
       <img
         src={afterSrc}
         alt={afterLabel}
-        className="absolute inset-0 h-full w-full object-cover brightness-90 contrast-110"
+        className={`absolute inset-0 h-full w-full object-cover ${
+          isComfort || isSmartTint ? '' : 'brightness-90 contrast-110'
+        }`}
       />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
         <img
           src={beforeSrc}
           alt={beforeLabel}
-          className="absolute inset-0 h-full w-full object-cover brightness-125"
+          className={`absolute inset-0 h-full w-full object-cover ${
+            isComfort || isSmartTint ? '' : 'brightness-125'
+          }`}
         />
-        <div className="absolute inset-0 bg-white/20" />
+        {!isComfort && !isSmartTint && <div className="absolute inset-0 bg-white/20" />}
       </div>
 
-      <div className="absolute inset-y-0 z-20 w-0.5 bg-white shadow-lg" style={{ left: `${pos}%` }}>
-        <div className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-accent-500 text-white shadow-lg">
-          <span className="text-xs font-bold">⇄</span>
+      <div className="absolute inset-y-0 z-20 w-px bg-white/90" style={{ left: `${pos}%` }}>
+        <div
+          className={`absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-lg ${
+            isComfort
+              ? 'h-9 w-9 bg-white text-[10px] font-bold text-ink-950'
+              : 'h-10 w-10 bg-accent-500 text-white'
+          }`}
+        >
+          {isComfort || isSmartTint ? (
+            <span aria-hidden className="text-[10px] font-bold tracking-tight">
+              &lt;&gt;
+            </span>
+          ) : (
+            <span className="text-xs font-bold">⇄</span>
+          )}
         </div>
       </div>
 
-      <span className="absolute left-4 top-4 z-20 rounded bg-ink-950/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
-        {beforeLabel}
-      </span>
-      <span className="absolute right-4 top-4 z-20 rounded bg-accent-500/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
-        {afterLabel}
-      </span>
+      {isSmartTint ? (
+        <div className="absolute inset-x-0 bottom-0 z-20 grid grid-cols-2">
+          <div className="flex items-center justify-center bg-black/70 py-2 sm:py-2.5">
+            <span className="text-[10px] font-bold uppercase tracking-wide text-white sm:text-[11px]">
+              {beforeLabel}
+            </span>
+          </div>
+          <div className="flex items-center justify-center bg-black/70 py-2 sm:py-2.5">
+            <span className="text-[10px] font-bold uppercase tracking-wide text-white sm:text-[11px]">
+              {afterLabel}
+            </span>
+          </div>
+        </div>
+      ) : (
+        <>
+          <span
+            className={`absolute top-4 z-20 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white ${
+              isComfort ? 'left-4 bg-ink-950/90' : 'left-4 bg-ink-950/70'
+            }`}
+          >
+            {beforeLabel}
+          </span>
+          <span
+            className={`absolute top-4 z-20 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white ${
+              isComfort ? 'right-4 bg-ink-950/90' : 'right-4 bg-accent-500/90'
+            }`}
+          >
+            {afterLabel}
+          </span>
+        </>
+      )}
+
+      {overlayItems && overlayItems.length > 0 && (
+        <div className="absolute inset-x-0 bottom-0 z-20 grid grid-cols-2 divide-x divide-white/15 bg-ink-950/80 backdrop-blur-sm sm:grid-cols-4">
+          {overlayItems.map((item) => (
+            <div
+              key={item.label}
+              className="flex items-center justify-center gap-2 px-2 py-3 text-center sm:gap-2.5 sm:px-3 sm:py-3.5"
+            >
+              <img src={item.iconSrc} alt="" className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" aria-hidden loading="lazy" />
+              <span className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
+                {item.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
       <input
         type="range"
@@ -208,53 +511,98 @@ function BeforeAfterSlider({
   );
 }
 
+const residentialPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Residential Window Tinting',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: business.name,
+    telephone: business.phone,
+    email: business.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Moonah',
+      addressRegion: 'TAS',
+      addressCountry: 'AU',
+    },
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Hobart',
+  },
+  description:
+    'Professional residential window tinting in Hobart and Moonah. Solar control, privacy, frosted, safety and smart tint films for heat reduction, glare control and UV protection.',
+};
+
 export default function ResidentialTintingPage() {
+  const [activeProjectFilter, setActiveProjectFilter] = useState('All');
+  const filteredProjects =
+    activeProjectFilter === 'All'
+      ? recentResidentialProjects.slice(0, 5)
+      : recentResidentialProjects.filter((p) => p.filter === activeProjectFilter).slice(0, 5);
+
   return (
     <>
       <SEO
-        title="Residential Window Tinting Hobart | Spotless Tinting"
-        description="Home window tinting in Hobart. Reduce heat, glare and UV while improving privacy. Solar control, privacy, frosted and safety films."
+        title="Residential Window Tinting Hobart | Home Window Film | Spotless Tinting"
+        description="Professional residential window tinting in Hobart and Moonah. Reduce heat, glare and UV, improve privacy and protect interiors with solar control, privacy, frosted, safety and smart tint films. Free quotes from Spotless Tinting."
         path="/services/residential-window-tinting"
         image={images.modernHome}
+        schema={residentialPageSchema}
       />
 
       {/* HERO */}
-      <ParallaxHero
-        imageSrc={images.modernHome}
-        imageAlt="Modern home with residential window tinting"
-        imageClassName="object-cover object-center"
-      >
-        <div className="max-w-3xl">
-          <h1 className="text-4xl font-bold uppercase leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-            Residential Window{' '}
-            <span className="text-accent-400">Tinting</span>
-          </h1>
-          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent-400 sm:text-sm">
-            Comfort · Privacy · Protection
-          </p>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-200 sm:text-lg">
-            Professional window film solutions for homes across Hobart — reducing heat and glare,
-            blocking UV and enhancing privacy without sacrificing natural light.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link to="/quote" className="btn-primary">
-              Get a Free Quote
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href="#solutions"
-              className="btn border border-white/30 bg-transparent text-white hover:bg-white/10"
-            >
-              Explore Film Options
-              <ArrowRight className="h-4 w-4" />
-            </a>
+      <section className="overflow-hidden bg-white">
+        <div className="grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-center">
+          <div className="flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-12 lg:py-16 xl:px-16">
+            <h1 className="text-3xl font-bold uppercase leading-[1.05] text-ink-950 sm:text-4xl lg:text-[2.75rem] xl:text-5xl">
+              Residential Window Tinting in Hobart
+            </h1>
+            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-accent-500 sm:text-sm">
+              <span className="relative inline-block pb-2">
+                Comfort
+                <span className="absolute bottom-0 left-0 h-1 w-8 bg-accent-500" aria-hidden />
+              </span>
+              <span className="text-accent-500/90"> · Privacy · Protection</span>
+            </p>
+            <p className="mt-5 max-w-lg text-sm leading-relaxed text-ink-600 sm:text-base">
+              Professional residential window film designed to help reduce heat and glare, improve
+              privacy and provide UV protection for homes across Hobart. From living areas and bedrooms
+              to bathrooms, home offices and skylights, we&apos;ll help you choose a film suited to your
+              glass, your space and the result you want — without unnecessarily compromising natural
+              light or appearance.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link to="/quote" className="btn-primary">
+                Get a Free Quote
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a href="#solutions" className="btn-outline">
+                Explore Film Options
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[5/3]">
+            <img
+              src={images.modernHome}
+              alt="Modern home with residential window tinting"
+              loading="eager"
+              className="absolute inset-0 h-full w-full object-cover object-[center_45%]"
+            />
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-16 bg-gradient-to-r from-white via-white/80 to-transparent lg:block lg:w-28 xl:w-32"
+              aria-hidden
+            />
           </div>
         </div>
-      </ParallaxHero>
+      </section>
 
       <div className="relative z-10">
         {/* BENEFITS BAR */}
-        <section className="border-b border-ink-100 bg-ink-50 py-10 md:py-12">
+        <section className="border-b border-ink-100 bg-ink-50 py-8 md:py-10">
           <div className="container">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
               {benefitBar.map((item, i) => (
@@ -275,76 +623,72 @@ export default function ResidentialTintingPage() {
         </section>
 
         {/* COMFORT + BEFORE/AFTER */}
-        <section className="section bg-white">
+        <section className="bg-white py-12 md:py-16">
           <div className="container">
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.36fr)_minmax(0,0.64fr)] lg:gap-10 xl:gap-12">
               <Reveal>
-                <div>
-                  <h2 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
+                <div className="lg:pr-2 xl:pr-4">
+                  <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl lg:text-[2rem]">
                     Make Your Home More Comfortable
                   </h2>
-                  <p className="mt-4 text-ink-600">
-                    Window film is a simple upgrade that transforms how your home feels every day.
+                  <div className="mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                  <p className="mt-5 text-sm leading-relaxed text-ink-600 sm:text-base">
+                    Large windows bring beautiful natural light into a home, but they can also bring
+                    unwanted heat, glare, UV exposure and privacy concerns. Residential window tinting
+                    provides a practical way to improve comfort while retaining the glass and views you
+                    already enjoy.
                   </p>
-                  <ul className="mt-8 space-y-3">
-                    {comfortChecks.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm text-ink-700 sm:text-base">
+                  <ul className="mt-6 space-y-5">
+                    {comfortBenefits.map((item) => (
+                      <li key={item.question} className="flex items-start gap-3">
                         <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
                           <CircleCheck className="h-3 w-3" strokeWidth={3} />
                         </span>
-                        {item}
+                        <div>
+                          <p className="text-sm font-bold text-ink-950 sm:text-base">{item.question}</p>
+                          <p className="mt-1 text-sm leading-relaxed text-ink-600 sm:text-base">{item.answer}</p>
+                        </div>
                       </li>
                     ))}
                   </ul>
                 </div>
               </Reveal>
               <Reveal delay={80}>
-                <div>
-                  <BeforeAfterSlider
-                    beforeSrc={images.residentialWindow}
-                    afterSrc={images.modernHome}
-                  />
-                  <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                    {[
-                      { icon: Thermometer, label: 'Reduces Heat' },
-                      { icon: Eye, label: 'Reduces Glare' },
-                      { icon: Shield, label: 'Blocks UV Rays' },
-                      { icon: Lock, label: 'Enhances Privacy' },
-                    ].map((item) => (
-                      <div
-                        key={item.label}
-                        className="flex flex-col items-center rounded-lg border border-ink-100 bg-ink-50 px-2 py-3 text-center"
-                      >
-                        <item.icon className="h-4 w-4 text-accent-500" />
-                        <span className="mt-1.5 text-[10px] font-semibold uppercase tracking-wide text-ink-700">
-                          {item.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <BeforeAfterSlider
+                  variant="comfort"
+                  beforeSrc={images.residentialTinting.makeYourHomeComfortable.before}
+                  afterSrc={images.residentialTinting.makeYourHomeComfortable.after}
+                  beforeLabel="Before Window Film"
+                  afterLabel="After Window Film"
+                  overlayItems={comfortOverlayItems}
+                />
               </Reveal>
             </div>
           </div>
         </section>
 
         {/* FILM SOLUTIONS */}
-        <section id="solutions" className="section bg-ink-50">
+        <section id="solutions" className="bg-white py-6 md:py-8">
           <div className="container">
             <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <span className="eyebrow">Solutions</span>
-                <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl">
+              <div className="mx-auto max-w-3xl text-center">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
                   Window Film Solutions for Every Home
                 </h2>
+                <div className="mx-auto mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                <p className="mt-5 text-sm leading-relaxed text-ink-600 sm:text-base">
+                  Different rooms and windows have different requirements. We offer residential window
+                  film solutions for solar control, privacy, decorative applications and additional glass
+                  protection, with recommendations based on the glass, room and outcome you want.
+                </p>
               </div>
             </Reveal>
 
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
               {filmSolutions.map((sol, i) => (
                 <Reveal key={sol.title} delay={i * 50}>
-                  <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-sm">
-                    <div className="aspect-[4/3] overflow-hidden">
+                  <article className="flex h-full flex-col rounded-lg border border-ink-100 bg-white">
+                    <div className="aspect-[4/3] overflow-hidden rounded-t-lg">
                       <img
                         src={sol.image}
                         alt={sol.title}
@@ -352,23 +696,29 @@ export default function ResidentialTintingPage() {
                         className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="flex flex-1 flex-col p-5">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent-50 text-accent-600">
-                        <sol.icon className="h-4 w-4" />
+                    <div className="relative px-5 pb-5 pt-7">
+                      <div className="absolute left-5 top-0 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border-2 border-accent-500 bg-white shadow-sm">
+                        <img
+                          src={sol.iconSrc}
+                          alt=""
+                          className="h-[22px] w-[22px] object-contain object-center"
+                          aria-hidden
+                          loading="lazy"
+                        />
                       </div>
-                      <h3 className="mt-3 text-sm font-bold uppercase tracking-wide text-ink-950">
+                      <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950 sm:text-base">
                         {sol.title}
                       </h3>
                       <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{sol.desc}</p>
                       <Link
                         to="/quote"
-                        className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-accent-600"
+                        className="mt-5 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-accent-500 transition-colors hover:text-accent-600"
                       >
                         Learn More
                         <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
                     </div>
-                  </div>
+                  </article>
                 </Reveal>
               ))}
             </div>
@@ -376,87 +726,48 @@ export default function ResidentialTintingPage() {
         </section>
 
         {/* DESIGNED AROUND HOME + TECH */}
-        <section className="section bg-white">
+        <section className="bg-white py-6 md:py-8">
           <div className="container">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-8">
               <Reveal>
                 <div>
-                  <span className="eyebrow">Applications</span>
-                  <h2 className="mt-3 text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                    Designed Around Your Home
+                  <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                    Residential Window Film for Every Space
                   </h2>
-                  <p className="mt-3 text-sm text-ink-600">
-                    We recommend the right film for every room and glass type.
+                  <div className="mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                  <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink-600 sm:text-base">
+                    Residential window film can be tailored to the way each room is used. We assess the
+                    glass, sunlight, privacy needs and desired appearance before recommending a suitable
+                    film solution.
                   </p>
-                  <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-2xl border border-ink-100 bg-ink-50">
-                    <img
-                      src={images.modernHome}
-                      alt="Home window film applications"
-                      className="h-full w-full object-cover opacity-40"
-                      loading="lazy"
-                    />
-                    {homeZones.map((z) => (
-                      <div
-                        key={z.label}
-                        className="absolute -translate-x-1/2 -translate-y-1/2"
-                        style={{ top: z.top, left: z.left }}
-                      >
-                        <div className="flex items-center gap-2">
-                          <span className="h-2.5 w-2.5 rounded-full bg-accent-500 ring-4 ring-accent-500/20" />
-                          <span className="whitespace-nowrap rounded-full bg-white px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-ink-900 shadow-sm">
-                            {z.label}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {[
-                      { icon: Home, label: 'Bedrooms' },
-                      { icon: Bath, label: 'Bathrooms' },
-                      { icon: DoorOpen, label: 'Entryways' },
-                      { icon: LivingIcon, label: 'Living Areas' },
-                      { icon: CloudSun, label: 'Skylights' },
-                      { icon: Laptop, label: 'Home Offices' },
-                    ].map((item) => (
-                      <span
-                        key={item.label}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-ink-200 bg-ink-50 px-3 py-1.5 text-[11px] font-semibold text-ink-700"
-                      >
-                        <item.icon className="h-3.5 w-3.5 text-accent-500" />
-                        {item.label}
-                      </span>
-                    ))}
-                  </div>
+                  <img
+                    src={images.residentialTinting.designedAroundYourHome.houseDiagram}
+                    alt="House diagram showing window film applications for bedrooms, bathrooms, entryways, living areas, skylights and home offices"
+                    loading="lazy"
+                    className="mx-auto mt-5 w-[90%] object-contain"
+                  />
                 </div>
               </Reveal>
 
               <Reveal delay={80}>
                 <div>
-                  <span className="eyebrow">Technology</span>
-                  <h2 className="mt-3 text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                    Advanced Film Technology
+                  <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                    How Residential Window Film Works
                   </h2>
-                  <p className="mt-3 text-sm text-ink-600">
-                    Multi-layer films engineered to manage heat, UV, glare and daylight.
+                  <div className="mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                  <p className="mt-5 text-sm leading-relaxed text-ink-600 sm:text-base">
+                    Modern residential window film is designed to manage solar energy, UV exposure,
+                    glare, visible light and privacy through existing glass. Different films provide
+                    different levels of performance, allowing us to recommend an option based on your
+                    windows, room and desired result.
                   </p>
-                  <div className="relative mt-8 overflow-hidden rounded-2xl border border-ink-100 bg-ink-50 p-4">
+                  <div className="mt-5 grid items-start gap-6 sm:gap-4">
                     <img
-                      src={images.filmTechnology}
-                      alt="Window film technology layers"
+                      src={images.residentialTinting.designedAroundYourHome.glassDiagram}
+                      alt="Window film layer diagram showing glass panes and tint film"
                       loading="lazy"
-                      className="aspect-[16/10] w-full rounded-xl object-cover"
+                      className="w-full object-contain"
                     />
-                  </div>
-                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                    {techCallouts.map((t) => (
-                      <div key={t.title} className="rounded-xl border border-ink-100 bg-ink-50 p-4">
-                        <h4 className="text-xs font-bold uppercase tracking-wide text-accent-600">
-                          {t.title}
-                        </h4>
-                        <p className="mt-1.5 text-xs leading-relaxed text-ink-500">{t.desc}</p>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </Reveal>
@@ -465,27 +776,25 @@ export default function ResidentialTintingPage() {
         </section>
 
         {/* PROTECT + PRIVACY */}
-        <section className="section bg-ink-50">
+        <section className="bg-white py-6 md:py-8">
           <div className="container">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-8">
               <Reveal>
                 <div>
-                  <span className="eyebrow">Interior Care</span>
-                  <h2 className="mt-3 text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                    Protect What&apos;s Inside.
+                  <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                    Protect Your Home&apos;s Interiors
                   </h2>
-                  <p className="mt-4 leading-relaxed text-ink-600">
-                    UV rays fade floors, furniture and fabrics over time. Residential window film
-                    helps preserve the look and value of your interiors.
+                  <div className="mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                  <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-600 sm:text-base">
+                    Sunlight and UV exposure can contribute to fading and deterioration of interior
+                    materials over time. Quality residential window film can help reduce UV exposure
+                    through glass, providing another layer of protection for the things inside your home.
                   </p>
-                  <div className="mt-8 grid grid-cols-3 gap-3 sm:grid-cols-5">
+                  <div className="mt-6 flex flex-wrap justify-start gap-x-5 gap-y-6 sm:gap-x-6 md:gap-x-8">
                     {protectItems.map((item) => (
-                      <div
-                        key={item.label}
-                        className="flex flex-col items-center rounded-xl border border-ink-100 bg-white p-4 text-center"
-                      >
-                        <item.icon className="h-5 w-5 text-accent-500" />
-                        <span className="mt-2 text-[10px] font-bold uppercase tracking-wide text-ink-800">
+                      <div key={item.label} className="flex flex-col items-center">
+                        <item.icon className="h-7 w-7 text-accent-500" strokeWidth={1.5} />
+                        <span className="mt-2.5 text-[10px] font-bold uppercase tracking-wide text-ink-950 sm:text-[11px]">
                           {item.label}
                         </span>
                       </div>
@@ -496,30 +805,43 @@ export default function ResidentialTintingPage() {
 
               <Reveal delay={80}>
                 <div>
-                  <span className="eyebrow">Privacy</span>
-                  <h2 className="mt-3 text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                    Privacy Options to Suit Your Needs
+                  <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                    Privacy Window Film for Your Home
                   </h2>
-                  <p className="mt-4 text-sm text-ink-600">
-                    Choose the look that fits each room — from clear solar films to soft frosted privacy.
+                  <div className="mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                  <p className="mt-5 text-sm leading-relaxed text-ink-600 sm:text-base">
+                    Privacy needs vary from room to room. We can help you compare residential window
+                    film options based on how much privacy, natural light and visibility you want, as
+                    well as the lighting conditions around the glass.
                   </p>
-                  <div className="mt-8 grid grid-cols-3 gap-3">
+                  <div className="mt-6 grid grid-cols-3 gap-2 sm:gap-2.5">
                     {privacyOptions.map((opt) => (
-                      <div key={opt.title} className="overflow-hidden rounded-xl bg-white shadow-sm">
-                        <div className="aspect-[3/4] overflow-hidden">
-                          <img
-                            src={opt.image}
-                            alt={opt.title}
-                            loading="lazy"
-                            className="h-full w-full object-cover"
-                          />
+                      <div
+                        key={opt.title}
+                        className="relative aspect-[4/3] overflow-hidden rounded-md"
+                      >
+                        <img
+                          src={opt.image}
+                          alt={opt.title}
+                          loading="lazy"
+                          className="h-full w-full object-cover"
+                        />
+                        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center bg-black/75 px-2 py-2.5 text-center sm:px-3 sm:py-3">
+                          <p className="text-[10px] font-bold uppercase tracking-wide text-white sm:text-[11px]">
+                            {opt.title}
+                          </p>
+                          <p className="mt-0.5 text-[9px] leading-snug text-white/90 sm:text-[10px]">
+                            {opt.subtitle}
+                          </p>
                         </div>
-                        <p className="px-2 py-2.5 text-center text-[11px] font-bold uppercase tracking-wide text-ink-800">
-                          {opt.title}
-                        </p>
                       </div>
                     ))}
                   </div>
+                  <p className="mt-3 text-right text-[10px] leading-relaxed text-ink-400 sm:text-xs">
+                    Privacy performance depends on film type and lighting conditions. Reflective films
+                    that provide daytime privacy may provide less privacy at night when the interior is
+                    brighter than outside.
+                  </p>
                 </div>
               </Reveal>
             </div>
@@ -527,29 +849,46 @@ export default function ResidentialTintingPage() {
         </section>
 
         {/* SMART TINT */}
-        <section id="smart-tint" className="section bg-ink-950">
+        <section id="smart-tint" className="bg-black py-4 md:py-6">
           <div className="container">
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(0,24rem)_minmax(0,1fr)] xl:gap-9">
               <Reveal>
-                <div>
-                  <span className="eyebrow text-accent-400">Upgrade</span>
-                  <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-white md:text-4xl">
-                    Smart Tint
-                  </h2>
-                  <p className="mt-4 leading-relaxed text-ink-300">
-                    Switch glass from clear to frosted at the touch of a button — ideal for bathrooms,
-                    meeting corners at home, and spaces where privacy needs change throughout the day.
+                <img
+                  src={images.residentialTinting.smartTint.showcase}
+                  alt="Modern dining room with floor-to-ceiling glass windows"
+                  loading="lazy"
+                  className="aspect-[16/10] w-full rounded-md object-cover"
+                />
+              </Reveal>
+
+              <Reveal delay={60}>
+                <div className="max-w-sm text-left lg:max-w-none lg:px-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.15em] text-white sm:text-sm">
+                    Looking for Privacy on Demand?
                   </p>
-                  <Link to="/quote" className="btn-primary mt-8">
+                  <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-accent-500 md:text-4xl">
+                    Smart Tint for On-Demand Privacy
+                  </h2>
+                  <p className="mt-4 text-sm leading-relaxed text-white/80 sm:text-base">
+                    For selected residential spaces, Smart Tint can provide flexible privacy by switching
+                    suitable glass between clear and frosted states. It can be a useful option where
+                    privacy is needed on demand rather than permanently.
+                  </p>
+                  <Link
+                    to="/services/residential-window-tinting#smart-tint"
+                    className="btn mt-6 border border-white/70 bg-transparent text-white hover:border-white hover:bg-white/10"
+                  >
                     Discover Smart Tint
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </Reveal>
-              <Reveal delay={80}>
+
+              <Reveal delay={120}>
                 <BeforeAfterSlider
-                  beforeSrc={images.residentialWindow}
-                  afterSrc={images.shopfront}
+                  variant="smart-tint"
+                  beforeSrc={images.residentialTinting.smartTint.clear}
+                  afterSrc={images.residentialTinting.smartTint.frosted}
                   beforeLabel="Clear"
                   afterLabel="Frosted"
                 />
@@ -559,18 +898,23 @@ export default function ResidentialTintingPage() {
         </section>
 
         {/* PROCESS */}
-        <section className="section bg-white">
+        <section className="bg-white py-12 md:py-16">
           <div className="container">
             <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <span className="eyebrow">How It Works</span>
-                <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight md:text-4xl">
-                  The Spotless Residential Process
+              <div className="text-center">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                  Our Residential Window Tinting Process
                 </h2>
+                <div className="mx-auto mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-ink-600 sm:text-base">
+                  A quality residential window film installation starts with the right assessment and
+                  careful preparation. Our process is designed to make the experience straightforward
+                  from the first conversation through to final inspection.
+                </p>
               </div>
             </Reveal>
 
-            <div className="mt-12 hidden lg:block">
+            <div className="mt-8 hidden lg:block">
               <div className="grid grid-cols-6 gap-2">
                 {processSteps.map((step, i) => {
                   const Icon = step.icon;
@@ -621,58 +965,163 @@ export default function ResidentialTintingPage() {
           </div>
         </section>
 
-        {/* GALLERY + FAQ */}
-        <section className="section bg-ink-50">
+        {/* RECENT PROJECTS + FAQ */}
+        <section className="bg-white py-12 md:py-16">
           <div className="container">
-            <div className="grid gap-14 lg:grid-cols-2">
-              <div>
-                <Reveal>
-                  <span className="eyebrow">Portfolio</span>
-                  <h2 className="mt-3 text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                    Recent Residential Tinting Projects
-                  </h2>
+            <Reveal>
+              <div className="mx-auto max-w-3xl text-center">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                  Recent Residential Window Tinting Projects
+                </h2>
+                <div className="mx-auto mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                <p className="mt-5 text-sm leading-relaxed text-ink-600 sm:text-base">
+                  Explore recent residential window film installations completed by Spotless Tinting
+                  across Hobart and surrounding areas, including solar-control, privacy and frosted
+                  film applications.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="mt-8 flex flex-wrap justify-center gap-2">
+              {projectFilters.map((filter) => (
+                <button
+                  key={filter}
+                  type="button"
+                  onClick={() => setActiveProjectFilter(filter)}
+                  className={`rounded-full border px-4 py-2 text-[10px] font-bold uppercase tracking-wide transition-colors sm:text-xs ${
+                    activeProjectFilter === filter
+                      ? 'border-accent-500 bg-accent-500 text-white'
+                      : 'border-ink-200 bg-white text-ink-950 hover:border-accent-500'
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-2.5 lg:grid-cols-5">
+              {filteredProjects.map((project, i) => (
+                <Reveal key={project.id} delay={i * 50} className="min-w-0">
+                  <div className="aspect-[16/10] overflow-hidden rounded-md">
+                    <img
+                      src={project.image}
+                      alt={project.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                 </Reveal>
-                <div className="mt-8 grid grid-cols-2 gap-3">
-                  {galleryItems.map((item, i) => (
-                    <Reveal key={item.id} delay={i * 40}>
-                      <div className="group relative aspect-[4/3] overflow-hidden rounded-xl">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
-                        <p className="absolute bottom-0 left-0 p-3 text-xs font-semibold text-white">
-                          {item.title}
-                        </p>
-                      </div>
-                    </Reveal>
-                  ))}
-                </div>
-                <Link to="/gallery" className="btn-outline mt-8">
+              ))}
+            </div>
+
+            <Reveal delay={80}>
+              <div className="mt-8 text-center">
+                <Link
+                  to="/gallery"
+                  className="inline-flex items-center gap-2 border border-accent-500 px-6 py-3 text-xs font-bold uppercase tracking-wide text-accent-500 transition-colors hover:bg-accent-500 hover:text-white sm:text-sm"
+                >
                   View All Projects
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
+            </Reveal>
 
-              <div>
-                <Reveal>
-                  <span className="eyebrow">Questions</span>
-                  <h2 className="mt-3 text-2xl font-bold uppercase tracking-tight md:text-3xl">
-                    Residential Window Tinting FAQs
-                  </h2>
-                </Reveal>
-                <div className="mt-8">
-                  <FAQAccordion
-                    items={residentialFaqs.map((f) => ({
-                      question: f.question,
-                      answer: f.answer,
-                    }))}
-                  />
+            <Reveal delay={100}>
+              <div className="mt-12 text-center md:mt-14">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                  Residential Window Tinting FAQs
+                </h2>
+                <div className="mx-auto mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div className="mt-8">
+                <ResidentialFAQGrid items={residentialFaqs} />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* LOCAL SEO */}
+        {/* <section className="bg-ink-50 py-12 md:py-16">
+          <div className="container">
+            <Reveal>
+              <div className="mx-auto max-w-3xl text-center">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                  Residential Window Tinting in Moonah, Hobart
+                </h2>
+                <div className="mx-auto mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                <p className="mt-5 text-sm leading-relaxed text-ink-600 sm:text-base">
+                  Spotless Tinting provides professional residential window tinting in Hobart, with
+                  window film solutions for homes throughout Moonah and surrounding areas. Whether
+                  you&apos;re dealing with excessive afternoon heat, glare through large windows, fading
+                  interiors or a lack of privacy, we&apos;ll help you find a film suited to your glass and
+                  the way you use your home.
+                </p>
+                <div className="mt-6 flex flex-col items-center justify-center gap-3 text-sm text-ink-700 sm:flex-row sm:gap-6">
+                  <a
+                    href={business.phoneHref}
+                    className="inline-flex items-center gap-2 font-semibold hover:text-accent-600"
+                  >
+                    <Phone className="h-4 w-4" />
+                    {business.phone}
+                  </a>
+                  <span className="inline-flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-accent-500" />
+                    {business.location}
+                  </span>
+                </div>
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border border-accent-500 px-6 py-3 text-xs font-bold uppercase tracking-wide text-accent-500 transition-colors hover:bg-accent-500 hover:text-white sm:text-sm"
+                  >
+                    Get Directions
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <Link to="/quote" className="btn-primary">
+                    Get a Free Quote
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
-            </div>
+            </Reveal>
+          </div>
+        </section> */}
+
+        {/* FINAL CTA */}
+        <section className="bg-ink-950 py-12 md:py-16">
+          <div className="container">
+            <Reveal>
+              <div className="mx-auto max-w-2xl text-center">
+                <h2 className="text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
+                  Make Your Home More Comfortable
+                </h2>
+                <div className="mx-auto mt-3 h-1 w-10 bg-accent-500" aria-hidden />
+                <p className="mt-5 text-sm leading-relaxed text-ink-300 sm:text-base">
+                  Talk to Spotless Tinting about residential window film for heat reduction, glare
+                  control, UV protection and privacy. Tell us what you&apos;d like to improve and we&apos;ll
+                  help you compare suitable options for your home.
+                </p>
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <Link to="/quote" className="btn bg-white text-accent-600 hover:bg-ink-50">
+                    Get a Free Quote
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    href={business.phoneHref}
+                    className="btn border border-white/40 bg-transparent text-white hover:bg-white/10"
+                  >
+                    <Phone className="h-4 w-4" />
+                    {business.phone}
+                  </a>
+                </div>
+                <p className="mt-6 text-sm text-white/80">{business.location}</p>
+              </div>
+            </Reveal>
           </div>
         </section>
       </div>

@@ -9,6 +9,7 @@ export const images = {
   windoowTintingBanner: '/banner/window-tinting-banner.png',
   autoTintingBanner: '/banner/automotive-banner.png',
   modernHome: '/banner/residential-tinting-banner.png',
+  commercialTintingBanner: '/banner/commercial-tinting-banner.png',
   contactHero: '/contact-page.jpeg',
   ppfHero: encodeURI('/PPF (1)/header.png'),
   ppfHeader: encodeURI('/PPF (1)/header.png'),
@@ -52,6 +53,101 @@ export const images = {
       localAndTrusted: '/window-tinting/spotless_hero_trust_icons_svg/local-and-trusted.svg',
     },
   },
+  commercialTinting: {
+    betterGlass: {
+      before: encodeURI('/commercial-tinting/Better glass section/1.png'),
+      after: encodeURI('/commercial-tinting/Better glass section/2.png'),
+      comparisonBarIcons: {
+        heatReduction: encodeURI(
+          '/commercial-tinting/Better glass section/comparison-benefit-icons/reduces-heat.svg',
+        ),
+        glareControl: encodeURI(
+          '/commercial-tinting/Better glass section/comparison-benefit-icons/reduces-glare.svg',
+        ),
+        uvProtection: encodeURI(
+          '/commercial-tinting/Better glass section/comparison-benefit-icons/blocks-uv-rays.svg',
+        ),
+        privacy: encodeURI(
+          '/commercial-tinting/Better glass section/comparison-benefit-icons/enhances-privacy.svg',
+        ),
+      },
+      workplaceIcons: {
+        excessiveHeat: encodeURI(
+          '/commercial-tinting/Better glass section/workplace-benefit-icons (1)/excessive-heat.svg',
+        ),
+        screenGlare: encodeURI(
+          '/commercial-tinting/Better glass section/workplace-benefit-icons (1)/screen-glare.svg',
+        ),
+        lackOfPrivacy: encodeURI(
+          '/commercial-tinting/Better glass section/workplace-benefit-icons (1)/lack-of-privacy.svg',
+        ),
+        uvExposure: encodeURI(
+          '/commercial-tinting/Better glass section/workplace-benefit-icons (1)/uv-exposure.svg',
+        ),
+        glassSafety: encodeURI(
+          '/commercial-tinting/Better glass section/workplace-benefit-icons (1)/glass-safety.svg',
+        ),
+      },
+    },
+    comfortableWorkplace: {
+      reduceHeat: encodeURI('/commercial-tinting/comfortable-workplace-icons/reduce-heat.svg'),
+      controlGlare: encodeURI('/commercial-tinting/comfortable-workplace-icons/control-glare.svg'),
+      manageUv: encodeURI('/commercial-tinting/comfortable-workplace-icons/manage-uv.svg'),
+      enhancePrivacy: encodeURI('/commercial-tinting/comfortable-workplace-icons/enhance-privacy.svg'),
+    },
+    solutionsAcrossEverySpace: {
+      diagram: encodeURI('/commercial-tinting/solutions across every space/outline-image.png'),
+    },
+    privacyBranding: {
+      clearGlass: encodeURI('/commercial-tinting/Privacy and branding solutions/1.png'),
+      frostedFilm: encodeURI('/commercial-tinting/Privacy and branding solutions/2.png'),
+      decorativeFilm: encodeURI('/commercial-tinting/Privacy and branding solutions/3.png'),
+      brandedFilm: encodeURI('/commercial-tinting/Privacy and branding solutions/4.png'),
+    },
+    windowFilmSolutions: {
+      solarControl: encodeURI('/commercial-tinting/Window film solutions/1.png'),
+      privacy: encodeURI('/commercial-tinting/Window film solutions/2.png'),
+    },
+    advancedFilmTechnology: {
+      diagram: encodeURI(
+        '/residential-tinting/make your home feel more comfortable/designed around your home/label-image.png',
+      ),
+      icons: {
+        solarEnergy: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/solar-energy.svg',
+        ),
+        uvRadiation: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/uv-radiation.svg',
+        ),
+        glare: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/glare.svg',
+        ),
+        visibleLight: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/visible-light.svg',
+        ),
+        privacy: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/privacy.svg',
+        ),
+      },
+    },
+    safetyAndSecurity: {
+      icons: {
+        glassRetention: encodeURI('/commercial-tinting/safety-and-security/glass-retention.svg'),
+        safetyApplications: encodeURI('/commercial-tinting/safety-and-security/safety-applications.svg'),
+        professionalInstallation: encodeURI(
+          '/commercial-tinting/safety-and-security/professional-installation.svg',
+        ),
+      },
+    },
+    industries: {
+      offices: encodeURI('/commercial-tinting/industries/offices.svg'),
+      retailShopfronts: encodeURI('/commercial-tinting/industries/retail-shopfronts.svg'),
+      hospitality: encodeURI('/commercial-tinting/industries/hospitality.svg'),
+      healthcare: encodeURI('/commercial-tinting/industries/healthcare.svg'),
+      education: encodeURI('/commercial-tinting/industries/education.svg'),
+      industrialCommercial: encodeURI('/commercial-tinting/industries/industrial-commercial.svg'),
+    },
+  },
   automotiveTinting: {
     process: {
       consult: '/automotive-tinting/01-consult.svg',
@@ -69,6 +165,96 @@ export const images = {
     },
     whyTintYourVehicle: '/automotive-tinting/why-tint-your-vehicle.png',
     tasmaniaMap: '/automotive-tinting/tasmania-map.jpeg',
+  },
+  residentialTinting: {
+    makeYourHomeComfortable: {
+      before: encodeURI('/residential-tinting/make your home feel more comfortable/image1.png'),
+      after: encodeURI('/residential-tinting/make your home feel more comfortable/image2.png'),
+      barIcons: {
+        heatReduction: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_comfort_bar_icons_svg/heat-reduction.svg',
+        ),
+        glareControl: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_comfort_bar_icons_svg/glare-control.svg',
+        ),
+        uvProtection: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_comfort_bar_icons_svg/uv-protection.svg',
+        ),
+        privacy: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_comfort_bar_icons_svg/privacy.svg',
+        ),
+      },
+    },
+    filmSolutions: {
+      solarControl: {
+        image: encodeURI('/residential-tinting/make your home feel more comfortable/window-fil-sol/1.png'),
+        icon: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_window_film_solutions_icons_svg/solar-control-film.svg',
+        ),
+      },
+      privacy: {
+        image: encodeURI('/residential-tinting/make your home feel more comfortable/window-fil-sol/2.png'),
+        icon: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_window_film_solutions_icons_svg/privacy-film.svg',
+        ),
+      },
+      decorativeFrosted: {
+        image: encodeURI('/residential-tinting/make your home feel more comfortable/window-fil-sol/3.png'),
+        icon: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_window_film_solutions_icons_svg/decorative-frosted-film.svg',
+        ),
+      },
+      safetySecurity: {
+        image: encodeURI('/residential-tinting/make your home feel more comfortable/window-fil-sol/4.png'),
+        icon: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/residential_window_film_solutions_icons_svg/safety-security-film.svg',
+        ),
+      },
+    },
+    designedAroundYourHome: {
+      houseDiagram: encodeURI(
+        '/residential-tinting/make your home feel more comfortable/designed around your home/1.png',
+      ),
+      glassDiagram: encodeURI(
+        '/residential-tinting/make your home feel more comfortable/designed around your home/label-image.png',
+      ),
+      filmLayers: encodeURI(
+        '/residential-tinting/make your home feel more comfortable/designed around your home/label-image.png',
+      ),
+      technologyIcons: {
+        solarEnergy: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/solar-energy.svg',
+        ),
+        uvRadiation: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/uv-radiation.svg',
+        ),
+        glare: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/glare.svg',
+        ),
+        visibleLight: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/visible-light.svg',
+        ),
+        privacy: encodeURI(
+          '/residential-tinting/make your home feel more comfortable/designed around your home/advanced_film_technology_icons_svg (1)/privacy.svg',
+        ),
+      },
+    },
+    protectWhatsInside: {
+      clearGlass: encodeURI(
+        '/residential-tinting/make your home feel more comfortable/protect-whats-inside/1.png',
+      ),
+      privacyFilm: encodeURI(
+        '/residential-tinting/make your home feel more comfortable/protect-whats-inside/2.png',
+      ),
+      frostedFilm: encodeURI(
+        '/residential-tinting/make your home feel more comfortable/protect-whats-inside/3.png',
+      ),
+    },
+    smartTint: {
+      showcase: encodeURI('/residential-tinting/make your home feel more comfortable/Smart tint/1.png'),
+      clear: encodeURI('/residential-tinting/make your home feel more comfortable/Smart tint/2.png'),
+      frosted: encodeURI('/residential-tinting/make your home feel more comfortable/Smart tint/3.png'),
+    },
   },
   ppfBar: {
     stoneChip: encodeURI('/PPF (1)/Bar beneath the header/stone-chip-protection.svg'),
