@@ -1,6 +1,21 @@
 import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, KeyRound, Plus, type LucideIcon } from 'lucide-react';
+import {
+  ArrowRight,
+  Building2,
+  Car,
+  Check,
+  Eye,
+  Home,
+  KeyRound,
+  Lock,
+  Plus,
+  Shield,
+  Sparkles,
+  Store,
+  Thermometer,
+  type LucideIcon,
+} from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import { images } from '@/data/images';
 
@@ -366,36 +381,67 @@ const spotlessStandardSteps: {
   ];
 
 const benefitColumns: {
+  num: string;
   iconSrc: string;
   title: string;
   desc: string;
+  image: string;
+  overlayIcon: LucideIcon;
+  overlayLabel: string;
 }[] = [
-    {
-      iconSrc: images.windowTinting.moreThanDarkerGlass.heatReduction,
-      title: 'Heat Reduction',
-      desc: 'Reduce the amount of solar heat passing through your glass and create a more comfortable vehicle, home or workspace.',
-    },
-    {
-      iconSrc: images.windowTinting.moreThanDarkerGlass.uvProtection,
-      title: 'UV Protection',
-      desc: 'Quality window films can provide high levels of UV rejection, helping reduce UV exposure through glass and protect interior surfaces from premature fading.',
-    },
-    {
-      iconSrc: images.windowTinting.moreThanDarkerGlass.glareControl,
-      title: 'Glare Control',
-      desc: 'Reduce harsh sunlight and distracting glare for greater visual comfort when driving, relaxing at home or working.',
-    },
-    {
-      iconSrc: images.windowTinting.moreThanDarkerGlass.privacy,
-      title: 'Enhanced Privacy',
-      desc: 'Choose from a range of privacy window film options to achieve the level of privacy that suits your vehicle or property.',
-    },
-    {
-      iconSrc: images.windowTinting.moreThanDarkerGlass.appearance,
-      title: 'Premium Appearance',
-      desc: 'A professionally installed window film can give vehicles and architectural glass a cleaner, more refined appearance.',
-    },
-  ];
+  {
+    num: '01',
+    iconSrc: images.windowTinting.moreThanDarkerGlass.heatReduction,
+    title: 'Heat Reduction',
+    desc: 'Blocks solar heat, keeping your space cooler and more comfortable.',
+    image: images.homeBenefitsOfTinting.heatReduction,
+    overlayIcon: Thermometer,
+    overlayLabel: 'Cooler Spaces',
+  },
+  {
+    num: '02',
+    iconSrc: images.windowTinting.moreThanDarkerGlass.uvProtection,
+    title: 'UV Protection',
+    desc: 'Helps block harmful UV rays and protects people, interiors and furnishings from premature fading.',
+    image: images.homeBenefitsOfTinting.uvProtection,
+    overlayIcon: Shield,
+    overlayLabel: 'Longer Lasting Interiors',
+  },
+  {
+    num: '03',
+    iconSrc: images.windowTinting.moreThanDarkerGlass.glareControl,
+    title: 'Glare Control',
+    desc: 'Reduces harsh sunlight and glare for improved visibility and everyday comfort.',
+    image: images.homeBenefitsOfTinting.glareControl,
+    overlayIcon: Eye,
+    overlayLabel: 'Clearer Views',
+  },
+  {
+    num: '04',
+    iconSrc: images.windowTinting.moreThanDarkerGlass.privacy,
+    title: 'Enhanced Privacy',
+    desc: 'Choose the level of privacy that suits your vehicle, home or commercial space.',
+    image: images.homeBenefitsOfTinting.privacy,
+    overlayIcon: Lock,
+    overlayLabel: 'Privacy When You Need It',
+  },
+  {
+    num: '05',
+    iconSrc: images.windowTinting.moreThanDarkerGlass.appearance,
+    title: 'Premium Appearance',
+    desc: 'Gives glass a cleaner, more refined finish with professionally installed film.',
+    image: images.homeBenefitsOfTinting.appearance,
+    overlayIcon: Sparkles,
+    overlayLabel: 'A Cleaner, More Modern Look',
+  },
+];
+
+const builtForItems: { icon: LucideIcon; label: string }[] = [
+  { icon: Car, label: 'Cars' },
+  { icon: Home, label: 'Homes' },
+  { icon: Building2, label: 'Offices' },
+  { icon: Store, label: 'Shopfronts' },
+];
 
 /*
 const techCallouts: {
@@ -466,26 +512,49 @@ function FilmTechnologyDiagram() {
   );
 }
 
-function BenefitColumn({
-  item,
-  showDivider,
-}: {
-  item: (typeof benefitColumns)[number];
-  showDivider: boolean;
-}) {
+function BenefitColumn({ item }: { item: (typeof benefitColumns)[number] }) {
+  const OverlayIcon = item.overlayIcon;
+
   return (
-    <div
-      className={`flex flex-col items-center px-4 text-center sm:px-6 ${showDivider ? 'lg:border-r lg:border-ink-200' : ''
-        }`}
-    >
-      <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-accent-500">
-        <img src={item.iconSrc} alt="" className="h-6 w-6" aria-hidden loading="lazy" />
+    <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
+      <div className="relative flex flex-1 flex-col px-4 pb-3 pt-5 sm:px-5 sm:pt-6">
+        <div className="flex items-start justify-between gap-2">
+          <span className="text-[2.5rem] font-bold leading-none text-accent-200 sm:text-5xl">
+            {item.num}
+          </span>
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-[1.5px] border-accent-500 sm:h-10 sm:w-10">
+            <img
+              src={item.iconSrc}
+              alt=""
+              className="h-[18px] w-[18px] object-contain sm:h-5 sm:w-5"
+              aria-hidden
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <h3 className="mt-4 text-[11px] font-bold uppercase tracking-wide text-ink-950 sm:mt-5 sm:text-xs">
+          {item.title}
+        </h3>
+        <p className="mt-2 text-[11px] leading-relaxed text-ink-500 sm:text-xs">{item.desc}</p>
       </div>
-      <h3 className="mt-4 text-xs font-bold uppercase tracking-wide text-ink-950 sm:text-sm">
-        {item.title}
-      </h3>
-      <p className="mt-2 text-xs leading-relaxed text-ink-500 sm:text-sm">{item.desc}</p>
-    </div>
+
+      <div className="relative mt-auto aspect-[4/3] overflow-hidden">
+        <img
+          src={item.image}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/15 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 flex items-center gap-2 px-3.5 py-3 sm:gap-2.5 sm:px-4 sm:py-3.5">
+          <OverlayIcon className="h-3.5 w-3.5 shrink-0 text-white sm:h-4 sm:w-4" strokeWidth={1.75} />
+          <span className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
+            {item.overlayLabel}
+          </span>
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -967,27 +1036,70 @@ export function SpotlessStandardSection() {
 
 export function MoreThanDarkerGlassSection() {
   return (
-    <section className="border-y border-ink-100 bg-white py-16 md:py-10">
+    <section className="border-y border-ink-100 bg-white py-14 md:py-16">
       <div className="container">
         <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="eyebrow inline-flex items-center gap-5 before:h-px before:w-12 before:bg-accent-400 after:h-px after:w-12 after:bg-accent-400">
-              More Than Just Darker Glass
-            </span>
-            <h2 className="mt-5 text-3xl font-bold md:text-4xl lg:text-5xl">
-              Benefits of Professional Window Tinting
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-ink-950 md:text-4xl lg:text-[2.75rem]">
+              Five Benefits.{' '}
+              <span className="text-accent-500">One Smarter Solution.</span>
             </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-ink-600 sm:text-base">
+              Professional window tinting does more than change the look of your glass. It creates a
+              more comfortable, protected and enjoyable environment for your vehicle, home or
+              workplace.
+            </p>
           </div>
         </Reveal>
 
-
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-0">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-3 xl:gap-4">
           {benefitColumns.map((item, i) => (
-            <Reveal key={item.title} delay={i * 60}>
-              <BenefitColumn item={item} showDivider={i < benefitColumns.length - 1} />
+            <Reveal key={item.title} delay={i * 50}>
+              <BenefitColumn item={item} />
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={120}>
+          <div className="relative mt-12 pb-16 md:mt-6 md:pb-8">
+            <div className="flex items-center gap-4">
+              <div className="h-px flex-1 bg-ink-200" aria-hidden />
+              <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.22em] text-ink-400 sm:text-xs">
+                Built For
+              </p>
+              <div className="h-px flex-1 bg-ink-200" aria-hidden />
+            </div>
+
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-y-4">
+              {builtForItems.map((item, i) => (
+                <div key={item.label} className="flex items-center">
+                  {i > 0 && (
+                    <div className="mx-4 hidden h-8 w-px bg-ink-200 sm:mx-6 sm:block md:mx-6" aria-hidden />
+                  )}
+                  <div className="flex items-center gap-2 px-3 sm:px-0">
+                    <item.icon className="h-5 w-5 text-accent-500 sm:h-6 sm:w-6" strokeWidth={1.6} />
+                    <span className="text-[11px] font-bold uppercase tracking-wide text-ink-500 sm:text-xs">
+                      {item.label}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* <p className="pointer-events-none mt-10 select-none text-center sm:mt-0 sm:absolute sm:bottom-2 sm:right-0 sm:text-left">
+              <span className="inline-block origin-bottom-left -rotate-[14deg] font-script text-[2.35rem] leading-[1.05] tracking-wide text-accent-500 sm:text-[2.75rem] md:text-[3.15rem]">
+                <span className="block">Same Light.</span>
+                <span className="relative mt-1 inline-block pb-1.5">
+                  A Brighter Tomorrow
+                  <span
+                    className="absolute bottom-0 left-[0.15em] right-[0.05em] h-[0.12em] rounded-full bg-accent-500"
+                    aria-hidden
+                  />
+                </span>
+              </span>
+            </p> */}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

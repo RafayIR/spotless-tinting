@@ -16,6 +16,26 @@ export const images = {
   professionalTintingForEveryNeedAutomotive: '/window-tinting/professional-tinting-for-everyneed/automotive.png',
   professionalTintingForEveryNeedResidential: '/window-tinting/professional-tinting-for-everyneed/residential.png',
   professionalTintingForEveryNeedCommercial: '/window-tinting/professional-tinting-for-everyneed/commercial.png',
+  homeVehicleServices: {
+    automotive: '/home/vehicle_service/automotive/automotive_1.jpeg',
+    ppf: '/home/vehicle_service/ppf/ppf_1.jpeg',
+    residential: '/home/vehicle_service/residential/residential_1.jpeg',
+    commercial: '/home/vehicle_service/commercial/commercial_1.jpeg',
+    wrapping: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
+  },
+  homeBanner: {
+    slide1: '/home/home-banner/header_1.jpg',
+    slide2: '/home/home-banner/header_2.jpg',
+    slide3: '/home/home-banner/header_3.jpg',
+    slide4: '/home/home-banner/header_4.jpg',
+  },
+  homeBenefitsOfTinting: {
+    heatReduction: '/home/beneifts_of_tinting/1.png',
+    uvProtection: '/home/beneifts_of_tinting/2.png',
+    glareControl: '/home/beneifts_of_tinting/3.png',
+    privacy: '/home/beneifts_of_tinting/4.png',
+    appearance: '/banner/commercial-tinting-banner.png',
+  },
   windowTinting: {
     moreThanDarkerGlass: {
       heatReduction: '/window-tinting/more-than-just-darker-glass/heat-reduction.svg',

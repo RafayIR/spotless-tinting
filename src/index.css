@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=Yellowtail&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -63,7 +63,7 @@
     @apply btn border border-accent-300 bg-accent-500 text-white hover:bg-accent-600 active:scale-[0.98];
   }
   .section {
-    @apply py-20 md:py-28;
+    @apply py-20 md:py-16;
   }
   .eyebrow {
     @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent-600 dark:text-accent-400;
@@ -211,5 +211,15 @@ html.dark main button.bg-white {
   }
   .reveal {
     opacity: 1 !important;
+  }
+}
+
+/* Home hero Swiper */
+.home-hero-slider .swiper {
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-slider .swiper {
+    --swiper-wrapper-transition-timing-function: linear;
   }
 }

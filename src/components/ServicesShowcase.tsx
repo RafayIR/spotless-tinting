@@ -1,16 +1,19 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Service } from '@/data/services';
+import { images } from '@/data/images';
 
 function ShowcaseCard({
   service,
   category,
   cta,
+  image,
   featured = false,
 }: {
   service: Service;
   category: string;
   cta: string;
+  image: string;
   featured?: boolean;
 }) {
   return (
@@ -53,7 +56,7 @@ function ShowcaseCard({
       </div>
       <div className="absolute inset-y-0 right-0 w-[58%] overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_28%)]">
         <img
-          src={service.heroImage}
+          src={image}
           alt={service.name}
           loading="lazy"
           className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 dark:brightness-90"
@@ -78,12 +81,34 @@ export default function ServicesShowcase({ services }: { services: Service[] }) 
         service={automotive}
         category="Automotive"
         cta="Explore Car Tinting"
+        image={images.homeVehicleServices.automotive}
         featured
       />
-      <ShowcaseCard service={ppf} category="Protect" cta="Explore PPF" featured />
-      <ShowcaseCard service={residential} category="Residential" cta="Explore Residential" />
-      <ShowcaseCard service={commercial} category="Commercial" cta="Explore Commercial" />
-      <ShowcaseCard service={wrapping} category="Vehicle Wraps" cta="Explore Wraps" />
+      <ShowcaseCard
+        service={ppf}
+        category="Protect"
+        cta="Explore PPF"
+        image={images.homeVehicleServices.ppf}
+        featured
+      />
+      <ShowcaseCard
+        service={residential}
+        category="Residential"
+        cta="Explore Residential"
+        image={images.homeVehicleServices.residential}
+      />
+      <ShowcaseCard
+        service={commercial}
+        category="Commercial"
+        cta="Explore Commercial"
+        image={images.homeVehicleServices.commercial}
+      />
+      <ShowcaseCard
+        service={wrapping}
+        category="Vehicle Wraps"
+        cta="Explore Wraps"
+        image={images.homeVehicleServices.wrapping}
+      />
     </div>
   );
 }

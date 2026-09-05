@@ -22,7 +22,7 @@ import {
 import SEO from '@/components/SEO';
 import FAQAccordion from '@/components/FAQAccordion';
 import Reveal from '@/components/Reveal';
-import ParallaxHero from '@/components/ParallaxHero';
+import HomeHeroSlider from '@/components/HomeHeroSlider';
 import WhyChooseFeatures from '@/components/WhyChooseFeatures';
 import ServicesShowcase from '@/components/ServicesShowcase';
 import ProcessTimeline from '@/components/ProcessTimeline';
@@ -33,7 +33,7 @@ import {
   WindowFilmTechnologySection,
 } from '@/components/WindowFilmSections';
 import { services } from '@/data/services';
-import { reviews, overallRating } from '@/data/reviews';
+import { reviews, overallRating, trustedBrands } from '@/data/reviews';
 import { projects } from '@/data/projects';
 import { business } from '@/data/business';
 import { images } from '@/data/images';
@@ -115,6 +115,29 @@ const benefits: { icon: LucideIcon; title: string; desc: string }[] = [
   },
 ];
 
+function GoogleMark({ className = '' }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden>
+      <path
+        fill="#4285F4"
+        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+      />
+    </svg>
+  );
+}
+
 const homepageFaqs = [
   {
     question: 'What are the benefits of window tinting?',
@@ -195,48 +218,16 @@ export default function HomePage() {
         title="Window Tinting Hobart | Spotless Tinting"
         description="Professional window tinting in Hobart for cars, homes and businesses. Explore automotive, residential and commercial tinting, PPF, vehicle wraps and Smart Tint."
         path="/"
-        image={images.heroCar}
+        image={images.homeBanner.slide1}
         schema={localBusinessSchema}
       />
 
       {/* HERO */}
-      <ParallaxHero
-        imageSrc={images.heroCar}
-        imageAlt="Professional window tinting and vehicle protection by Spotless Tinting in Hobart"
-      >
-        <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-400">
-            360° Film &amp; Protection Solutions — Automotive · Residential · Commercial
-          </p>
-          <h1 className="mt-4 text-balance text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.25rem]">
-            Car, Home &amp; Commercial Window Tinting in Moonah, Hobart
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-200 sm:text-lg">
-            Spotless Tinting provides professional window tinting, paint protection film, vehicle wraps
-            and smart film solutions for customers across Hobart and surrounding areas.
-          </p>
-          <p className="mt-3 max-w-2xl text-base leading-relaxed text-ink-300">
-            From daily drivers and family homes to offices and shopfronts, we focus on quality products,
-            careful preparation and precision installation to deliver a clean, professional finish.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link to="/quote" className="btn-primary">
-              Get a Free Quote
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/services"
-              className="btn border border-white/30 bg-transparent text-white hover:bg-white/10"
-            >
-              Explore Window Tinting
-            </Link>
-          </div>
-        </div>
-      </ParallaxHero>
+      <HomeHeroSlider />
 
       <div className="relative z-10">
         {/* USP STRIP */}
-        <section className="border-b border-ink-100 bg-white py-10 md:py-12" aria-label="Why choose Spotless Tinting">
+        <section className="border-b border-ink-100 bg-white py-10 md:py-8" aria-label="Why choose Spotless Tinting">
           <div className="container">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {uspItems.map((item, i) => (
@@ -255,9 +246,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* WHY CHOOSE — car hotspot section (visual; copy is real HTML for SEO) */}
-        <WhyChooseFeatures />
 
         {/* SERVICES */}
         <section className="section bg-white">
@@ -278,82 +266,6 @@ export default function HomePage() {
             <Reveal delay={80}>
               <ServicesShowcase services={services} />
             </Reveal>
-          </div>
-        </section>
-
-        {/* WINDOW FILM TECHNOLOGY */}
-        <MoreThanDarkerGlassSection />
-        <WindowFilmTechnologySection />
-
-        {/* WINDOW TINTING FOCUS */}
-        <section className="section bg-ink-50">
-          <div className="container">
-            <Reveal>
-              <div className="mx-auto max-w-3xl text-center">
-                <h2 className="text-3xl font-bold md:text-4xl">
-                  Professional Window Tinting in Hobart
-                </h2>
-                <p className="mt-5 text-ink-600">
-                  Window tinting is about more than appearance. The right film can improve comfort,
-                  reduce glare, increase privacy and help protect interiors from UV exposure.
-                </p>
-                <p className="mt-4 text-ink-600">
-                  At Spotless Tinting, we provide tailored window film solutions for vehicles, homes and
-                  commercial properties, helping customers choose the right film for their application,
-                  performance needs and preferred finish.
-                </p>
-              </div>
-            </Reveal>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {tintFocus.map((item, i) => (
-                <Reveal key={item.title} delay={i * 60}>
-                  <Link
-                    to={item.path}
-                    className="group flex h-full flex-col rounded-2xl border border-ink-100 bg-white p-6 transition-shadow hover:shadow-lg"
-                  >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                      <item.icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mt-4 text-lg font-bold text-ink-950">{item.title}</h3>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{item.desc}</p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-600">
-                      Learn more
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-            <div className="mt-10 text-center">
-              <Link to="/services" className="btn-primary">
-                Explore Window Tinting
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* BENEFITS */}
-        <section className="section bg-white">
-          <div className="container">
-            <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-3xl font-bold md:text-4xl">More Than Just Window Tint</h2>
-              </div>
-            </Reveal>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {benefits.map((item, i) => (
-                <Reveal key={item.title} delay={i * 40}>
-                  <div className="rounded-2xl border border-ink-100 bg-ink-50 p-6">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-accent-500 text-accent-500">
-                      <item.icon className="h-5 w-5" strokeWidth={1.75} />
-                    </div>
-                    <h3 className="mt-4 text-base font-bold text-ink-950">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-600">{item.desc}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -399,6 +311,42 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* WHY CHOOSE — car hotspot section (visual; copy is real HTML for SEO) */}
+        <WhyChooseFeatures />
+
+
+
+        {/* WINDOW FILM TECHNOLOGY */}
+        <MoreThanDarkerGlassSection />
+        <WindowFilmTechnologySection />
+
+
+        {/* BENEFITS */}
+        {/* <section className="section bg-white">
+          <div className="container">
+            <Reveal>
+              <div className="mx-auto max-w-2xl text-center">
+                <h2 className="text-3xl font-bold md:text-4xl">More Than Just Window Tint</h2>
+              </div>
+            </Reveal>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {benefits.map((item, i) => (
+                <Reveal key={item.title} delay={i * 40}>
+                  <div className="rounded-2xl border border-ink-100 bg-ink-50 p-6">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-accent-500 text-accent-500">
+                      <item.icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <h3 className="mt-4 text-base font-bold text-ink-950">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-600">{item.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section> */}
+
+
+
         {/* PROCESS */}
         <section className="section bg-white">
           <div className="container">
@@ -435,11 +383,10 @@ export default function HomePage() {
                   key={filter}
                   type="button"
                   onClick={() => setWorkFilter(filter)}
-                  className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
-                    workFilter === filter
-                      ? 'bg-accent-500 text-white'
-                      : 'border border-ink-200 bg-white text-ink-600 hover:border-accent-400 hover:text-accent-600'
-                  }`}
+                  className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${workFilter === filter
+                    ? 'bg-accent-500 text-white'
+                    : 'border border-ink-200 bg-white text-ink-600 hover:border-accent-400 hover:text-accent-600'
+                    }`}
                 >
                   {filter}
                 </button>
@@ -453,45 +400,87 @@ export default function HomePage() {
         </section>
 
         {/* REVIEWS */}
-        <section id="reviews" className="section bg-white">
-          <div className="container">
-            <Reveal>
-              <div className="mx-auto max-w-2xl text-center">
-                <h2 className="text-3xl font-bold md:text-4xl">What Our Customers Say</h2>
-                <p className="mt-4 text-ink-600">
-                  Professional workmanship matters, but so does the customer experience. Read feedback
-                  from customers who have trusted Spotless Tinting with their vehicles and properties.
-                </p>
-                <div className="mt-4 flex items-center justify-center gap-2">
-                  <div className="flex" aria-label={`${overallRating.score} out of 5 stars`}>
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-accent-500 text-accent-500" />
-                    ))}
-                  </div>
-                  <span className="text-sm font-medium text-ink-700">
-                    {overallRating.score.toFixed(1)} from {overallRating.count} reviews on{' '}
-                    {overallRating.source}
-                  </span>
+        <section id="reviews" className="bg-[#f4f4f5]">
+          <div className="container py-14 md:py-16">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(3,minmax(0,1fr))_0.58fr] lg:items-stretch lg:gap-4 xl:gap-5">
+              <Reveal className="h-full sm:col-span-2 lg:col-span-1">
+                <div className="flex h-full flex-col justify-center lg:max-w-[17rem] xl:max-w-none">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
+                    What Our Customers Say
+                  </p>
+                  <h2 className="mt-3 text-3xl font-bold tracking-tight text-ink-950 md:text-4xl">
+                    Trusted by Locals
+                  </h2>
+                  <p className="mt-4 text-sm leading-relaxed text-ink-600 sm:text-base lg:text-sm xl:text-base">
+                    We&apos;re proud to be the trusted choice for window tinting and vehicle
+                    protection in Hobart.
+                  </p>
+                  <Link
+                    to="/reviews"
+                    className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-ink-900 bg-white px-5 py-2.5 text-sm font-semibold text-ink-950 transition-colors hover:border-accent-500 hover:text-accent-600"
+                  >
+                    View All Reviews
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
-              </div>
-            </Reveal>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              </Reveal>
+
               {reviews.slice(0, 3).map((r, i) => (
-                <Reveal key={r.id} delay={i * 60}>
+                <Reveal key={r.id} delay={i * 50} className="h-full min-w-0">
                   <TestimonialCard review={r} />
                 </Reveal>
               ))}
+
+              <Reveal delay={120} className="h-full sm:col-span-2 lg:col-span-1">
+                <a
+                  href={business.social.google}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mx-auto flex h-full w-full max-w-[11rem] flex-col items-center justify-center rounded-2xl border border-ink-100/80 bg-white px-3 py-7 text-center shadow-[0_8px_24px_rgba(15,23,42,0.04)] transition-shadow hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] lg:max-w-none lg:px-3.5 xl:px-4"
+                >
+                  <GoogleMark className="h-9 w-9" />
+                  <p className="mt-4 text-3xl font-bold tracking-tight text-ink-950 xl:text-4xl">
+                    {overallRating.score.toFixed(1)}
+                  </p>
+                  <div
+                    className="mt-2.5 flex items-center gap-0.5"
+                    aria-label={`${overallRating.score} out of 5 stars`}
+                  >
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-accent-500 text-accent-500" />
+                    ))}
+                  </div>
+                  <p className="mt-3 text-[10px] leading-snug text-ink-500 xl:text-[11px]">
+                    Based on {overallRating.countLabel} Google reviews
+                  </p>
+                </a>
+              </Reveal>
             </div>
-            <div className="mt-10 text-center">
-              <a
-                href={business.social.google}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline"
-              >
-                Read More Google Reviews
-                <ArrowRight className="h-4 w-4" />
-              </a>
+          </div>
+
+          <div className="border-t border-ink-100 bg-white">
+            <div className="container flex flex-col gap-6 py-4 sm:flex-row sm:items-center sm:gap-8 md:py-5">
+              <p className="shrink-0 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
+                Trusted Brands
+              </p>
+              <div className="flex min-w-0 flex-1 flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-between md:gap-x-2">
+                {trustedBrands.map((brand) => (
+                  <div className='w-15 h-20' key={brand.name}>
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      loading="lazy"
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="hidden h-10 w-px shrink-0 bg-ink-200 lg:block" aria-hidden />
+              <p className="shrink-0 text-center text-[10px] font-bold uppercase leading-snug tracking-[0.16em] text-ink-400 sm:text-left lg:max-w-[7.5rem]">
+                Quality Products
+                <br />
+                Real Results
+              </p>
             </div>
           </div>
         </section>
