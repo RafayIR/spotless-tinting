@@ -388,8 +388,19 @@ export default function AutomotiveTintingPage() {
         </section>
 
         {/* Film selection */}
-        <section className="section bg-ink-950 text-white">
-          <div className="container">
+        <section className="relative overflow-hidden py-16 text-white md:py-20">
+          <div className="absolute inset-0" aria-hidden>
+            <img
+              src={images.siteBg2}
+              alt=""
+              className="h-full w-full object-cover object-center"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-ink-950/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/75 to-ink-950/85" />
+          </div>
+
+          <div className="container relative z-10">
             <Reveal>
               <div className="mx-auto max-w-3xl text-center">
                 <h2 className="text-3xl font-bold uppercase tracking-tight text-white md:text-4xl">
@@ -406,7 +417,7 @@ export default function AutomotiveTintingPage() {
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filmFactors.map((f, i) => (
                 <Reveal key={f.title} delay={i * 40}>
-                  <div className="border border-white/10 bg-white/5 p-6">
+                  <div className="border border-white/10 bg-white/5 p-6 backdrop-blur-[2px]">
                     <h3 className="text-lg font-bold text-white">{f.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink-300">{f.desc}</p>
                   </div>

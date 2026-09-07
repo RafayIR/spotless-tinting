@@ -314,8 +314,6 @@ export default function HomePage() {
         {/* WHY CHOOSE — car hotspot section (visual; copy is real HTML for SEO) */}
         <WhyChooseFeatures />
 
-
-
         {/* WINDOW FILM TECHNOLOGY */}
         <MoreThanDarkerGlassSection />
         <WindowFilmTechnologySection />
@@ -344,8 +342,6 @@ export default function HomePage() {
             </div>
           </div>
         </section> */}
-
-
 
         {/* PROCESS */}
         <section className="section bg-white">

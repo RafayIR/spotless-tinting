@@ -72,10 +72,10 @@ export const navItems: NavItem[] = [
       { label: 'Ceramic Coating', path: '/services/ceramic-coating' },
     ],
   },
-  {
-    label: 'Smart Tint',
-    path: '/services/residential-window-tinting#smart-tint',
-  },
+  // {
+  //   label: 'Smart Tint',
+  //   path: '/services/residential-window-tinting#smart-tint',
+  // },
   { label: 'Our Work', path: '/gallery' },
   { label: 'Contact', path: '/contact' },
 ];

@@ -314,7 +314,7 @@ function BeforeAfterSlider() {
   const [pos, setPos] = useState(50);
 
   return (
-    <div className="relative aspect-[4/3] overflow-hidden bg-ink-100 select-none">
+    <div className="relative aspect-[5/3] h-full overflow-hidden bg-ink-100 select-none">
       <img
         src={images.ppfWithoutProtection.with}
         alt="Car hood with PPF protection"
@@ -478,23 +478,23 @@ export default function PaintProtectionFilmPage() {
         </section>
 
         {/* PACKAGES */}
-        <section id="packages" className="ppf-packages-section section bg-[#f7f7f8]">
+        <section id="packages" className="ppf-packages-section section py-6 bg-white">
           <div className="container">
             <Reveal>
               <h2 className="text-center text-3xl font-bold uppercase tracking-tight md:text-4xl">
                 Choose Your Level of Protection
               </h2>
             </Reveal>
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {packages.map((pkg, i) => (
                 <Reveal key={pkg.title} delay={i * 50}>
                   <div className="ppf-package-card flex h-full flex-col overflow-hidden rounded-sm border border-ink-200 bg-white shadow-sm">
-                    <div className="flex min-h-[3.25rem] items-end px-4 pb-3 pt-4">
+                    <div className="flex items-end px-4 pb-3 pt-4">
                       <h3 className="font-sans text-[11px] font-bold uppercase leading-snug tracking-normal text-ink-950 sm:text-xs">
                         {pkg.title}
                       </h3>
                     </div>
-                    <div className="relative bg-black">
+                    <div className="relative px-4">
                       <img
                         src={pkg.image}
                         alt={`${pkg.title} coverage illustration`}
@@ -502,13 +502,13 @@ export default function PaintProtectionFilmPage() {
                         loading="lazy"
                       />
                     </div>
-                    <div className="flex flex-1 flex-col px-5 py-5">
+                    <div className="flex flex-1 flex-col px-4 py-3">
                       {'features' in pkg && pkg.features ? (
                         <ul
-                          className={`space-y-2.5 ${pkg.twoColumnFeatures ? 'grid grid-cols-1 gap-x-4 gap-y-2.5 sm:grid-cols-2' : ''}`}
+                          className={`${pkg.twoColumnFeatures ? 'grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2' : ''}`}
                         >
                           {pkg.features.map((f) => (
-                            <li key={f} className="flex items-start gap-2.5 text-sm text-ink-700">
+                            <li key={f} className="flex items-start gap-x-2.5 text-sm text-ink-700">
                               <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
                                 <Check className="h-2.5 w-2.5" strokeWidth={3} />
                               </span>
@@ -538,66 +538,20 @@ export default function PaintProtectionFilmPage() {
         </section>
 
         {/* COVERAGE + ENGINEERING */}
-        <section className="grid lg:grid-cols-2">
-          <Reveal>
-            <div className="ppf-split-light flex flex-col px-6 py-12 sm:px-10 lg:px-14 lg:py-16">
-              <h2 className="text-xl font-bold uppercase leading-tight tracking-tight sm:text-2xl lg:text-[1.85rem]">
-                Protect Where It Matters Most.
-              </h2>
-
-              <div className="relative mx-auto mt-10 w-full max-w-5xl lg:max-w-none">
-                <div className="relative aspect-[16/10] w-full">
-                  <img
-                    src={images.ppfCoverage.silverCar}
-                    alt="Silver sports car showing common PPF coverage zones"
-                    className="absolute left-1/2 top-[5%] h-[100%] w-[100%] -translate-x-1/2 object-contain"
-                    loading="lazy"
-                  />
-
-                  {/* {coverageCallouts.map((c) => (
-                    <span
-                      key={c.label}
-                      className={`absolute z-10 max-w-[18%] text-[9px] font-bold uppercase leading-tight tracking-wide sm:text-[10px] md:text-[11px] ${
-                        c.side === 'left'
-                          ? 'left-0 text-right'
-                          : 'right-0 text-left'
-                      }`}
-                      style={{ top: `${c.labelTop}%`, transform: 'translateY(-50%)' }}
-                    >
-                      {c.label}
-                    </span>
-                  ))} */}
-
-                  {/* <svg
-                    viewBox="0 0 100 100"
-                    className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible"
-                    aria-hidden
-                  >
-                    {coverageCallouts.map((c) => {
-                      const startX = c.side === 'left' ? 17 : 83;
-                      return (
-                        <g key={c.label}>
-                          <polyline
-                            points={`${startX},${c.labelTop} ${c.elbowX},${c.labelTop} ${c.anchorX},${c.anchorY}`}
-                            fill="none"
-                            stroke="#f97316"
-                            strokeWidth="0.42"
-                          />
-                          <circle cx={c.anchorX} cy={c.anchorY} r="0.75" fill="#f97316" />
-                        </g>
-                      );
-                    })}
-                  </svg> */}
-                </div>
-              </div>
-
-              <p className="ppf-split-muted mx-auto mt-8 max-w-lg text-center text-xs leading-relaxed sm:text-sm">
-                Choose targeted high-impact protection or comprehensive full-vehicle coverage.
-              </p>
+        <section className="grid bg-white lg:grid-cols-2 lg:items-stretch">
+          <Reveal className="h-full min-h-[320px] lg:min-h-0">
+            <div className="ppf-split-light relative h-full min-h-[360px] overflow-hidden bg-white sm:min-h-[420px] lg:min-h-full">
+              <img
+                src={images.ppfCoverage.silverCar}
+                alt="Silver sports car showing common PPF coverage zones"
+                className="absolute inset-0 h-full w-full object-contain object-center"
+                loading="lazy"
+              />
             </div>
           </Reveal>
-          <Reveal delay={80}>
-            <div className="ppf-split-dark flex flex-col px-5 py-12 sm:px-8 lg:px-12 lg:py-16 xl:px-14">
+
+          <Reveal delay={80} className="h-full">
+            <div className="ppf-split-dark flex h-full flex-col px-5 py-8 sm:px-8 lg:px-12 lg:py-10 xl:px-14">
               <h2 className="text-xl font-bold uppercase leading-tight tracking-tight sm:text-2xl lg:text-[1.75rem]">
                 Engineered to Take the Hit.
               </h2>
@@ -609,25 +563,6 @@ export default function PaintProtectionFilmPage() {
                     className="absolute left-0 top-1/2 h-[199%] w-[100%] -translate-y-1/2 object-contain object-left"
                     loading="lazy"
                   />
-                  {/* <div className="absolute inset-y-[4%] left-[40%] right-0">
-                    {filmLayers.map((layer) => (
-                      <div
-                        key={layer.name}
-                        className="absolute left-0 right-0 flex items-center"
-                        style={{ top: `${layer.top}%`, transform: 'translateY(-50%)' }}
-                      >
-                        <span className="h-px w-4 shrink-0 bg-accent-500 sm:w-7" aria-hidden />
-                        <div className="min-w-0 pl-2 sm:pl-3">
-                          <p className="text-[9px] font-bold uppercase leading-tight tracking-wide sm:text-[10px]">
-                            {layer.name}
-                          </p>
-                          <p className="ppf-split-muted mt-0.5 text-[9px] leading-snug sm:text-[10px]">
-                            {layer.desc}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div> */}
                 </div>
                 <div className="hidden bg-ink-700/40 lg:block" aria-hidden />
                 <ul className="mt-8 space-y-5 lg:mt-0 lg:flex lg:flex-col lg:justify-center lg:space-y-6 lg:border-l lg:border-ink-700/40 lg:pl-8">
@@ -659,14 +594,14 @@ export default function PaintProtectionFilmPage() {
       {/* WITHOUT PROTECTION · NEW CAR · PPF VS CERAMIC */}
       <section className="grid lg:grid-cols-3">
         <Reveal>
-          <div className="ppf-split-light flex flex-col px-6 py-12 sm:px-8 lg:px-10 lg:py-14">
+          <div className="ppf-split-light flex flex-col px-6 py-12 sm:px-8 lg:px-8 lg:py-8">
             <h2 className="text-lg font-bold uppercase leading-tight tracking-tight sm:text-xl lg:text-2xl">
               What Happens Without Protection?
             </h2>
             <div className="mt-6">
               <BeforeAfterSlider />
             </div>
-            <p className="ppf-split-muted mx-auto mt-6 max-w-sm text-center text-xs leading-relaxed sm:text-sm">
+            <p className="ppf-split-muted mt-6 max-w-sm text-left text-xs leading-relaxed sm:text-sm">
               Your vehicle encounters road debris every time you drive.
               <br />
               PPF provides a sacrificial protective layer between those hazards and your original paint.
@@ -675,7 +610,7 @@ export default function PaintProtectionFilmPage() {
         </Reveal>
 
         <Reveal delay={60}>
-          <div className="relative flex min-h-full flex-col overflow-hidden bg-black px-6 py-12 sm:px-8 lg:px-10 lg:py-14">
+          <div className="relative flex min-h-full flex-col overflow-hidden bg-black px-6 py-12 sm:px-8 lg:px-8 lg:py-8">
             <img
               src={images.ppfWithoutProtection.newCarGift}
               alt=""
@@ -696,13 +631,13 @@ export default function PaintProtectionFilmPage() {
                 A new vehicle is an ideal candidate for PPF because protection can be applied before
                 everyday driving begins to leave its mark.
               </p>
-              <ul className="mt-6 space-y-3 lg:max-w-sm">
+              <ul className="mt-4 space-y-3 lg:max-w-sm">
                 {newCarBenefits.map((item) => (
                   <li key={item} className="flex items-center gap-3">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
+                    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
                       <Check className="h-3 w-3" strokeWidth={3} />
                     </span>
-                    <span className="text-xs font-bold uppercase tracking-wide text-white sm:text-sm">
+                    <span className="font-bold uppercase tracking-wide text-white text-xs">
                       {item}
                     </span>
                   </li>
@@ -710,7 +645,7 @@ export default function PaintProtectionFilmPage() {
               </ul>
               <Link
                 to="/quote"
-                className="btn-primary mt-8 inline-flex w-fit max-w-full shrink-0 whitespace-nowrap px-6 py-3.5 text-sm font-bold uppercase tracking-wide sm:mt-10 sm:px-8 sm:py-4 sm:text-base"
+                className="btn-primary rounded-none mt-8 inline-flex w-fit max-w-full shrink-0 whitespace-nowrap px-6 py-2 text-sm font-bold uppercase tracking-wide sm:mt-10 sm:px-8 sm:py-3 sm:text-base"
               >
                 Get New Car PPF Quote
                 <ArrowRight className="h-4 w-4 shrink-0" />
@@ -720,13 +655,13 @@ export default function PaintProtectionFilmPage() {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="ppf-split-light flex flex-col px-6 py-12 sm:px-8 lg:px-10 lg:py-14">
-            <h2 className="text-lg font-bold uppercase leading-tight tracking-tight sm:text-xl lg:text-2xl">
+          <div className="ppf-split-light h-full flex flex-col px-6 py-12 sm:px-8 lg:px-8 lg:py-8">
+            <h2 className="text-lg font-bold uppercase tracking-tight sm:text-xl lg:text-2xl">
               PPF or Ceramic Coating?
             </h2>
-            <div className="mt-6 overflow-hidden border border-ink-200">
+            <div className="mt-4 overflow-hidden border border-ink-200">
               <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,0.7fr)_minmax(0,1fr)] border-b border-ink-200 bg-ink-50 text-[9px] font-bold uppercase tracking-wide text-ink-700 sm:text-[10px]">
-                <span className="px-3 py-2.5">Feature</span>
+                <span className="px-3 py-2">Feature</span>
                 <span className="flex items-center justify-center gap-1 border-l border-ink-200 px-2 py-2.5">
                   <Gem className="h-3 w-3 text-accent-500" strokeWidth={2} />
                   PPF
@@ -740,11 +675,11 @@ export default function PaintProtectionFilmPage() {
                   key={row.feature}
                   className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,0.7fr)_minmax(0,1fr)] border-b border-ink-200 last:border-b-0 text-[10px] sm:text-[11px]"
                 >
-                  <span className="flex items-center px-3 py-2.5 text-ink-700">{row.feature}</span>
-                  <span className="flex items-center justify-center border-l border-ink-200 px-2 py-2.5 text-center">
+                  <span className="flex items-center px-3 py-1.5 text-ink-700">{row.feature}</span>
+                  <span className="flex items-center justify-center border-l border-ink-200 px-2 py-2 text-center">
                     <CompareCellValue value={row.ppf} />
                   </span>
-                  <span className="flex items-center justify-center border-l border-ink-200 px-2 py-2.5 text-center">
+                  <span className="flex items-center justify-center border-l border-ink-200 px-2 py-2 text-center">
                     <CompareCellValue value={row.ceramic} />
                   </span>
                 </div>
@@ -769,61 +704,79 @@ export default function PaintProtectionFilmPage() {
       </section>
 
       {/* PROTECTION IN YOUR FINISH */}
-      <section className="ppf-split-dark section">
+      <section className="ppf-split-dark overflow-hidden bg-black py-14 md:py-8 lg:py-8">
         <div className="container">
           <Reveal>
-            <h2 className="text-xl font-bold uppercase leading-tight tracking-tight sm:text-2xl lg:text-3xl">
-              <span className="relative inline-block pb-3 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-12 after:bg-accent-500">
-                Protection in Your Finish.
-              </span>
+            <h2 className="text-xl font-bold uppercase leading-tight tracking-tight text-white sm:text-2xl lg:text-3xl">
+              <span className="relative inline-block pb-3">
+                Protection
+                <span
+                  className="absolute bottom-0 left-0 h-1 w-14 bg-accent-500 sm:w-16"
+                  aria-hidden
+                />
+              </span>{' '}
+              in Your Finish.
             </h2>
           </Reveal>
-          <div className="relative mt-10 grid md:grid-cols-2 md:gap-0">
+
+          <div className="relative mt-10 md:mt-12">
             <div
-              className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-white/25 md:block"
+              className="pointer-events-none absolute inset-y-0 left-1/2 z-[5] hidden w-px -translate-x-1/2 bg-white/30 lg:block"
               aria-hidden
             />
-            <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[11px] font-bold uppercase text-black md:flex">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[11px] font-bold uppercase tracking-wide text-black lg:flex">
               Or
             </div>
-            <Reveal>
-              <div className="px-0 py-4 md:pr-12">
-                <h3 className="text-sm font-bold uppercase tracking-wide text-accent-500 sm:text-base">
-                  Gloss PPF
-                </h3>
-                <p className="mt-2 text-sm text-white/90">
-                  Maintains the original gloss appearance and depth.
-                </p>
-                <img
-                  src={images.ppfFinish.gloss}
-                  alt="Black sports car with gloss PPF finish"
-                  className="mt-6 w-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <div className="px-0 py-4 md:pl-12">
-                <h3 className="text-sm font-bold uppercase tracking-wide text-accent-500 sm:text-base">
-                  Matte / Satin PPF
-                </h3>
-                <p className="mt-2 text-sm text-white/90">
-                  Creates a satin-like finish while adding protection.
-                </p>
-                <img
-                  src={images.ppfFinish.matte}
-                  alt="Sports car with matte satin PPF finish"
-                  className="mt-6 w-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-            </Reveal>
+
+            <div className="grid gap-12 lg:grid-cols-2 lg:gap-0">
+              <Reveal>
+                <div className="grid items-center gap-6 sm:grid-cols-[minmax(11rem,0.85fr)_minmax(0,1.35fr)] sm:gap-4 lg:pr-10 xl:pr-14">
+                  <div className="relative z-10 min-w-0">
+                    <h3 className="ppf-finish-title text-sm font-bold uppercase tracking-wide sm:text-base">
+                      Gloss PPF
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/85">
+                      Maintains the original gloss appearance and depth.
+                    </p>
+                  </div>
+                  <div className="ppf-finish-blend relative min-w-0 sm:-mr-4 lg:-mr-6">
+                    <img
+                      src={images.ppfFinish.gloss}
+                      alt="Black sports car with gloss PPF finish"
+                      className="relative z-0 w-full object-contain object-center"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal delay={80}>
+                <div className="grid items-center gap-6 border-t border-white/15 pt-12 sm:grid-cols-[minmax(11rem,0.85fr)_minmax(0,1.35fr)] sm:gap-4 lg:border-t-0 lg:pl-10 lg:pt-0 xl:pl-14">
+                  <div className="relative z-10 min-w-0">
+                    <h3 className="ppf-finish-title text-sm font-bold uppercase tracking-wide sm:text-base">
+                      Matte / Satin PPF
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/85">
+                      Creates a satin-like finish while adding protection.
+                    </p>
+                  </div>
+                  <div className="ppf-finish-blend relative min-w-0 sm:-mr-4 lg:-mr-6">
+                    <img
+                      src={images.ppfFinish.matte}
+                      alt="Sports car with matte satin PPF finish"
+                      className="relative z-0 w-full object-contain object-center"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
 
       {/* INSTALLATION PROCESS */}
-      <section className="ppf-split-light section">
+      <section className="ppf-split-light section py-8">
         <div className="container">
           <Reveal>
             <h2 className="mx-auto max-w-3xl text-center text-xl font-bold uppercase leading-tight tracking-tight sm:text-2xl lg:text-3xl">
@@ -832,7 +785,7 @@ export default function PaintProtectionFilmPage() {
               </span>
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-5">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-4">
             {installSteps.map((step, i) => (
               <Reveal key={`${step.title}-${i}`} delay={i * 40}>
                 <div className="text-center">
@@ -867,50 +820,50 @@ export default function PaintProtectionFilmPage() {
                   Recent PPF Projects
                 </h2>
               </Reveal>
-              <div className="mt-5 flex flex-wrap justify-center gap-2 lg:justify-start">
+              <div className="mt-5 flex flex-wrap justify-center gap-2 lg:justify-center">
                 {galleryFilters.map((filter) => (
                   <button
                     key={filter}
                     type="button"
                     onClick={() => setActiveFilter(filter)}
-                    className={`rounded-full border px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wide transition-colors sm:text-[11px] ${
-                      activeFilter === filter
+                    className={`rounded-md border px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-wide transition-colors sm:text-[11px] ${activeFilter === filter
                         ? 'border-accent-500 bg-accent-500 text-white'
                         : 'border-ink-900 bg-white text-ink-900 hover:border-accent-500 hover:text-accent-600'
-                    }`}
+                      }`}
                   >
                     {filter}
                   </button>
                 ))}
               </div>
-              <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-2.5">
+              <div className="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
                 {filtered.map((item, i) => (
                   <Reveal key={item.id} delay={i * 40}>
-                    <div className="overflow-hidden rounded-xl bg-black shadow-sm">
-                      <div className="aspect-[3/4] overflow-hidden bg-ink-100">
+                    <article className="flex aspect-[2/3] flex-col overflow-hidden rounded-lg bg-black shadow-sm">
+                      <div className="relative min-h-0 flex-[2] overflow-hidden bg-ink-100">
                         <img
                           src={item.image}
                           alt={`${item.vehicle} — ${item.service}`}
-                          className="h-full w-full object-cover"
+                          className="absolute inset-0 h-full w-full object-cover"
                           loading="lazy"
                         />
                       </div>
-                      <div className="px-2.5 py-2.5 sm:px-3 sm:py-3">
-                        <p className="text-[9px] font-bold uppercase leading-tight text-white sm:text-[10px]">
+                      <div className="flex flex-[1] flex-col items-center justify-center px-2 py-2 text-center sm:px-3 sm:py-3">
+                        <p className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
                           {item.vehicle}
                         </p>
-                        <p className="mt-0.5 text-[8px] text-ink-400 sm:text-[9px]">{item.service}</p>
+                        <p className="mt-1 text-[8px] leading-tight text-ink-300 sm:text-[9px]">
+                          {item.service}
+                        </p>
                       </div>
-                    </div>
+                    </article>
                   </Reveal>
                 ))}
               </div>
               <Reveal delay={80}>
-                <div className="mt-8 text-center lg:text-left">
+                <div className="mt-8 text-center">
                   <Link
                     to="/gallery"
-                    className="btn-outline inline-flex px-6 py-3 text-[11px] font-bold uppercase tracking-wide text-accent-600 sm:text-xs"
-                  >
+                    className="btn-outline rounded-sm inline-flex px-6 py-3 text-[11px] font-bold uppercase tracking-wide text-accent-600 sm:text-xs">
                     View All PPF Projects
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -941,51 +894,57 @@ export default function PaintProtectionFilmPage() {
         </div>
       </section>
 
-      <div className="relative z-10 bg-ink-950">
-
-        {/* FINAL CTA */}
-        <section className="relative min-h-[min(52vh,520px)] overflow-hidden border-t border-ink-800">
-          <div className="absolute inset-0">
-            <img
-              src={images.ppfHeader}
-              alt=""
-              className="h-full w-full object-cover object-[72%_center]"
-              aria-hidden
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/92 via-black/75 to-black/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/25" />
-            <div
-              className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_72%_45%,rgba(249,115,22,0.14),transparent_65%)]"
-              aria-hidden
-            />
-          </div>
-          <div className="container relative z-10 flex min-h-[min(52vh,520px)] flex-col items-center justify-center py-20 text-center">
-            <h2 className="mx-auto max-w-3xl text-3xl font-bold uppercase leading-tight text-white md:text-4xl">
-              Protect It Before the Road Does.
-              <span className="mt-2 block text-accent-400">
-                Preserve Your Paint. Protect Your Investment.
-              </span>
-            </h2>
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
-              <Link to="/quote" className="btn-primary">
-                Get a Free Quote
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href={business.phoneHref}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-accent-400"
-              >
-                <Phone className="h-4 w-4 text-accent-500" />
-                {business.phone}
-              </a>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-ink-300">
-                <MapPin className="h-4 w-4 text-accent-500" />
-                Hobart, Tasmania
-              </span>
+      {/* FINAL CTA */}
+      <section className="relative overflow-hidden bg-black">
+        <div className="container relative z-10 grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:gap-6 lg:py-8 xl:gap-8">
+          <Reveal>
+            <div className="relative z-10 max-w-xl text-left">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-500 sm:text-sm">
+                Protect It Before the Road Does.
+              </p>
+              <h2 className="mt-3 text-2xl font-bold uppercase leading-tight tracking-tight text-white sm:text-3xl lg:text-[2.15rem] xl:text-4xl">
+                Preserve Your Paint.
+                <br />
+                Protect Your Investment.
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">
+                Professional Paint Protection Film installation in Hobart.
+              </p>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3">
+                <Link
+                  to="/quote"
+                  className="btn-primary inline-flex w-fit uppercase tracking-wide"
+                >
+                  Get a PPF Quote
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href={business.phoneHref}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-accent-400"
+                >
+                  <Phone className="h-4 w-4 shrink-0 text-accent-500" />
+                  {business.phone}
+                </a>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-white">
+                  <MapPin className="h-4 w-4 shrink-0 text-accent-500" />
+                  Hobart, Tasmania
+                </span>
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
+          </Reveal>
+
+          <Reveal delay={80} className="relative h-full min-h-[240px] sm:min-h-[280px] lg:min-h-[300px]">
+            <div className="ppf-finish-blend absolute inset-0 lg:-right-8 xl:-right-12">
+              <img
+                src={images.ppfFinish.gloss}
+                alt="Gloss PPF finish on a sports car"
+                className="h-full w-full object-contain object-right object-bottom lg:object-center"
+                loading="lazy"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </>
   );
 }

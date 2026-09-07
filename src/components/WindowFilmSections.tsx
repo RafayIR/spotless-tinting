@@ -646,8 +646,19 @@ export function FindYourPerfectShadeSection({
   lawsHref?: string;
 }) {
   return (
-    <section id={id} className="bg-black py-16 md:py-20">
-      <div className="container">
+    <section id={id} className="relative overflow-hidden py-16 md:py-20">
+      <div className="absolute inset-0" aria-hidden>
+        <img
+          src={images.siteBg1}
+          alt=""
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-ink-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/75 to-ink-950/55" />
+      </div>
+
+      <div className="container relative z-10">
         <Reveal>
           <h2 className="text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
             Find Your Perfect Shade
@@ -664,7 +675,7 @@ export function FindYourPerfectShadeSection({
               <PerfectShadeCard key={shade.image} shade={shade} />
             ))}
 
-            <aside className="relative col-span-2 flex min-h-[300px] flex-col overflow-hidden rounded-sm border border-white/10 bg-[#1a1a1a] p-5 sm:col-span-3 sm:min-h-[320px] sm:p-6 lg:col-span-1 lg:min-h-0">
+            <aside className="relative col-span-2 flex min-h-[300px] flex-col overflow-hidden rounded-sm border border-white/10 bg-[#1a1a1a]/80 p-5 sm:col-span-3 sm:min-h-[320px] sm:p-6 lg:col-span-1 lg:min-h-0">
               <img
                 src={images.automotiveTinting.tasmaniaMap}
                 alt=""
@@ -705,8 +716,19 @@ export function FindYourPerfectShadeSection({
 
 export function ChoosingRightFilmSection() {
   return (
-    <section className="bg-black py-16 md:py-20">
-      <div className="container">
+    <section className="relative overflow-hidden py-16 md:py-20">
+      <div className="absolute inset-0" aria-hidden>
+        <img
+          src={images.siteBg1}
+          alt=""
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-ink-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/75 to-ink-950/55" />
+      </div>
+
+      <div className="container relative z-10">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-0">
           <Reveal>
             <div className="lg:pr-10 xl:pr-14">
