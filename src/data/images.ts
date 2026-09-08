@@ -2,7 +2,8 @@
 // Swap these for real business photography when available.
 
 export const images = {
-  logo: '/logo.avif',
+  logo: '/logo/spotless.png',
+  logoWhite: '/logo/spotless-white.png',
   heroCar: '/banner-image-01.jpeg',
   banner02: '/banner-02.jpeg',
   banner03: '/banner-03.jpeg',
@@ -347,6 +348,62 @@ export const images = {
     step5: encodeURI('/PPF (1)/Difference in installation/5.png'),
     step6: encodeURI('/PPF (1)/Difference in installation/6.png'),
     step7: encodeURI('/PPF (1)/Difference in installation/7.png'),
+  },
+  // Vehicle Wraps page.
+  // NOTE: no wrap-specific photography has been supplied yet — the entries below reuse the
+  // closest existing assets as placeholders. Swap them for genuine Spotless Tinting wrap
+  // photography before launch (see the Vehicle Wraps SEO copy brief).
+  vehicleWraps: {
+    hero: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
+    transformationBefore: encodeURI('/PPF (1)/protection in your finish/gloss.png'),
+    transformationAfter: encodeURI('/PPF (1)/protection in your finish/matte.png'),
+    options: {
+      full: encodeURI('/PPF (1)/protection in your finish/matte.png'),
+      partial: '/banner-03.jpeg',
+      custom: encodeURI('/PPF (1)/protection in your finish/gloss.png'),
+      commercial: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_2.jpeg',
+    },
+    diagramCar: '/car-illustrator.png',
+    chromeDeleteBefore: '/banner-02.jpeg',
+    chromeDeleteAfter: '/banner-03.jpeg',
+    commercialBefore: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_2.jpeg',
+    commercialAfter: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
+    finalCta: encodeURI('/PPF (1)/protection in your finish/matte.png'),
+  },
+  // Our Work / gallery page — real Spotless Tinting portfolio photography from /public/portfolio.
+  gallery: {
+    heroCarDark: '/portfolio/IMG_7053.JPG',
+    heroCarSilver: '/portfolio/IMG_8644.png',
+    heroCarWhite: '/portfolio/IMG_7737.png',
+    featuredCeramic: '/portfolio/IMG_7053.JPG',
+    featuredTintDetail: '/portfolio/IMG_8633.png',
+    featuredResidential: '/portfolio/IMG_7128.JPEG',
+    serviceAutomotive: '/portfolio/IMG_8629.png',
+    serviceResidential: '/portfolio/IMG_7128.JPEG',
+    serviceCommercial: '/portfolio/AHSK9842.JPG',
+    // No PPF, vehicle wrap or Smart Tint photography supplied yet — placeholders.
+    servicePpf: '/home/vehicle_service/ppf/ppf_1.jpeg',
+    serviceWraps: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
+    serviceSmartTint: encodeURI('/residential-tinting/make your home feel more comfortable/Smart tint/1.png'),
+    ctaCar: '/portfolio/IMG_7053.JPG',
+    projects: {
+      lexusEs: '/portfolio/IMG_8644.png',
+      lexusEsRear: '/portfolio/IMG_8631.png',
+      lexusEsDetail: '/portfolio/IMG_8633.png',
+      bmwX5: '/portfolio/IMG_7737.png',
+      bmwX5Front: '/portfolio/IMG_7731.png',
+      camryHybrid: '/portfolio/IMG_7652.png',
+      camryAtaraS: '/portfolio/IMG_8029.png',
+      camryCeramic: '/portfolio/IMG_7053.JPG',
+      camryCeramicRear: '/portfolio/IMG_7052.JPG',
+      subaruImpreza: '/portfolio/IMG_7719.png',
+      outlander: '/portfolio/IMG_7775.png',
+      lancer: '/portfolio/IMG_7943.png',
+      hyundaiI30: '/portfolio/IMG_9423.png',
+      holdenSsv: '/portfolio/IMG_9427.png',
+      residentialFilm: '/portfolio/IMG_7128.JPEG',
+      shopfrontSignage: '/portfolio/AHSK9842.JPG',
+    },
   },
   carIllustration: '/car-illustrator.png',
   heroCarAlt: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=80',

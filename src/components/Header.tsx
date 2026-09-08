@@ -90,7 +90,6 @@ export default function Header() {
       ? 'border-ink-100 bg-white/95 py-2 shadow-sm backdrop-blur-md'
       : 'border-transparent bg-white py-3';
 
-  const brandMain = isDark ? 'text-white' : 'text-ink-950';
   const themeBtn = isDark
     ? 'rounded-full border border-white/20 p-2 text-ink-200 hover:bg-white/10 hover:text-white'
     : 'rounded-full border border-ink-200 p-2 text-ink-700 hover:bg-ink-50 hover:text-ink-950';
@@ -218,10 +217,8 @@ export default function Header() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${headerBg}`}>
       <div className="container flex items-center justify-between gap-3">
-        <Link to="/" className="flex shrink-0 items-center gap-1.5" aria-label="Spotless Tinting home">
-          <Logo className="h-9 w-auto sm:h-10" asLink={false} />
-          <span className={`font-display text-xl font-bold tracking-tight ${brandMain}`}>Spotless</span>
-          <span className="font-display text-xl font-light tracking-tight text-accent-500">Tinting</span>
+        <Link to="/" className="flex shrink-0 items-center" aria-label="Spotless Tinting home">
+          <Logo className="h-11 w-auto sm:h-12" asLink={false} />
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">

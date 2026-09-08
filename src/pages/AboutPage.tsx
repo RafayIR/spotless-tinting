@@ -429,7 +429,7 @@ export default function AboutPage() {
           <img
             src={images.aboutFooter}
             alt=""
-            className="h-full w-full object-cover object-[72%_center] sm:object-right"
+            className="h-full w-full sm:object-right"
           />
           {/* Soft left fade so copy stays readable */}
           {/* <div

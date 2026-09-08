@@ -7,15 +7,27 @@ type LogoProps = {
   asLink?: boolean;
 };
 
-export default function Logo({ className = 'h-9 w-auto', asLink = true }: LogoProps) {
+export default function Logo({ className = 'h-16 w-auto', asLink = true }: LogoProps) {
+
   const img = (
-    <img
-      src={images.logo}
-      alt={business.name}
-      className={className}
-      width={160}
-      height={36}
-    />
+    <>
+      <img
+        src={images.logo}
+        alt={business.name}
+        className={`object-contain dark:hidden ${className}`}
+        width={150}
+        height={150}
+        decoding="async"
+      />
+      <img
+        src={images.logoWhite}
+        alt={business.name}
+        className={`hidden object-contain dark:block ${className}`}
+        width={150}
+        height={150}
+        decoding="async"
+      />
+    </>
   );
 
   if (!asLink) return img;

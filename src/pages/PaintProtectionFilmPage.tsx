@@ -847,7 +847,7 @@ export default function PaintProtectionFilmPage() {
                           loading="lazy"
                         />
                       </div>
-                      <div className="flex flex-[1] flex-col items-center justify-center px-2 py-2 text-center sm:px-3 sm:py-3">
+                      <div className="flex flex-col items-center justify-center px-2 py-2 text-center sm:px-3 sm:py-3">
                         <p className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
                           {item.vehicle}
                         </p>

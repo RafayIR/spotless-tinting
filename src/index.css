@@ -245,3 +245,43 @@ html.dark main button.bg-white {
     --swiper-wrapper-transition-timing-function: linear;
   }
 }
+
+/* Vehicle Wraps page panels — keep mockup colors in both themes */
+.panel-light {
+  background-color: #f5f5f5 !important;
+  color: #171717 !important;
+}
+.panel-light h1:not(.text-white),
+.panel-light h2:not(.text-white),
+.panel-light h3:not(.text-white),
+.panel-light h4:not(.text-white) {
+  color: #171717 !important;
+}
+.panel-light .panel-muted {
+  color: #525252 !important;
+}
+.panel-dark {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+.panel-dark h2,
+.panel-dark h3,
+.panel-dark h4 {
+  color: #fff !important;
+}
+.panel-dark .panel-muted {
+  color: #a3a3a3 !important;
+}
+
+/* Cards sitting on a fixed light panel keep their light surface in dark mode */
+html.dark main .panel-light .bg-white:not(.btn):not([class*='btn-']):not(a.btn):not(button) {
+  background-color: #fff !important;
+  border-color: #e5e5e5 !important;
+}
+html.dark main .panel-light .text-ink-950,
+html.dark main .panel-light .text-ink-900 {
+  color: #0d0f11 !important;
+}
+html.dark main .panel-light .text-ink-600 {
+  color: #525252 !important;
+}

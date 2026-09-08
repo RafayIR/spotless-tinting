@@ -14,6 +14,7 @@ import AutomotiveTintingPage from '@/pages/AutomotiveTintingPage';
 import CommercialTintingPage from '@/pages/CommercialTintingPage';
 import ResidentialTintingPage from '@/pages/ResidentialTintingPage';
 import PaintProtectionFilmPage from '@/pages/PaintProtectionFilmPage';
+import VehicleWrapsPage from '@/pages/VehicleWrapsPage';
 
 function ServiceHero({
   name,
@@ -519,6 +520,10 @@ export default function ServiceDetailPage() {
 
   if (slug === 'paint-protection-film') {
     return <PaintProtectionFilmPage />;
+  }
+
+  if (slug === 'vehicle-wrapping') {
+    return <VehicleWrapsPage />;
   }
 
   if (!pageContent) {
