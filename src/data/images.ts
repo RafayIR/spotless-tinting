@@ -55,6 +55,14 @@ export const images = {
     commercial: '/home/vehicle_service/commercial/commercial_1.jpeg',
     wrapping: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
   },
+  // Home "Excellence in Every Detail" section.
+  homeWhyChoose: {
+    car: encodeURI('/home/why-choose-us/main car image.png'),
+    warranty: '/home/why-choose-us/1.png',
+    films: '/home/why-choose-us/2.png',
+    precision: '/home/why-choose-us/3.png',
+    ppf: '/home/why-choose-us/4.png',
+  },
   homeBanner: {
     slide1: '/home/home-banner/header_1.jpg',
     slide2: '/home/home-banner/header_2.jpg',
@@ -349,26 +357,33 @@ export const images = {
     step6: encodeURI('/PPF (1)/Difference in installation/6.png'),
     step7: encodeURI('/PPF (1)/Difference in installation/7.png'),
   },
-  // Vehicle Wraps page.
-  // NOTE: no wrap-specific photography has been supplied yet — the entries below reuse the
-  // closest existing assets as placeholders. Swap them for genuine Spotless Tinting wrap
-  // photography before launch (see the Vehicle Wraps SEO copy brief).
+  // Vehicle Wraps page — supplied wrap artwork in /public/vihecle-wrapping.
+  // Chrome-delete before/after is still a placeholder: no trim close-ups supplied yet.
   vehicleWraps: {
-    hero: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
-    transformationBefore: encodeURI('/PPF (1)/protection in your finish/gloss.png'),
-    transformationAfter: encodeURI('/PPF (1)/protection in your finish/matte.png'),
-    options: {
-      full: encodeURI('/PPF (1)/protection in your finish/matte.png'),
-      partial: '/banner-03.jpeg',
-      custom: encodeURI('/PPF (1)/protection in your finish/gloss.png'),
-      commercial: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_2.jpeg',
+    hero: '/vihecle-wrapping/banner-cehicle.jpeg',
+    icons: {
+      customStyling: encodeURI('/vihecle-wrapping/star 2.png'),
+      partialWraps: '/vihecle-wrapping/car.png',
+      commercialBranding: '/vihecle-wrapping/building.png',
+      shield: encodeURI('/vihecle-wrapping/shield (1).png'),
     },
-    diagramCar: '/car-illustrator.png',
+    // Same car, same angle — a genuine colour-change comparison.
+    transformationBefore: '/vihecle-wrapping/Remove_buttons_from_car_image_2K_202609081636.jpeg',
+    transformationAfter: '/vihecle-wrapping/Provide_full_black_car_image_2K_202609081637.jpeg',
+    options: {
+      full: '/vihecle-wrapping/Provide_full_black_car_image_2K_202609081637.jpeg',
+      partial: '/vihecle-wrapping/Upscale_image_and_remove_icons_2K_202609081641.jpeg',
+      custom: '/vihecle-wrapping/Remove_buttons_from_car_image_2K_202609081636.jpeg',
+      commercial: '/vihecle-wrapping/replace._the_logo_icon_2K_202609081646.jpeg',
+    },
+    // Labelled styling diagram; the labels are baked into the artwork, so the page
+    // also lists them as real text underneath.
+    diagramCar: '/vihecle-wrapping/Upscale_image_and_remove_text_2K_202609081639.jpeg',
     chromeDeleteBefore: '/banner-02.jpeg',
     chromeDeleteAfter: '/banner-03.jpeg',
-    commercialBefore: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_2.jpeg',
-    commercialAfter: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
-    finalCta: encodeURI('/PPF (1)/protection in your finish/matte.png'),
+    commercialBefore: '/vihecle-wrapping/Upscale_and_extract_white_car_2K_202609081644.jpeg',
+    commercialAfter: '/vihecle-wrapping/replace._the_logo_icon_2K_202609081646.jpeg',
+    finalCta: '/vihecle-wrapping/Upscale_image_and_remove_icons_2K_202609081641.jpeg',
   },
   // Our Work / gallery page — real Spotless Tinting portfolio photography from /public/portfolio.
   gallery: {
@@ -403,6 +418,38 @@ export const images = {
       holdenSsv: '/portfolio/IMG_9427.png',
       residentialFilm: '/portfolio/IMG_7128.JPEG',
       shopfrontSignage: '/portfolio/AHSK9842.JPG',
+    },
+  },
+  // Ceramic coating page — supplied artwork in /public/creamic-coating.
+  // The hero, layer diagram, PPF split and footer artwork all carry baked-in text,
+  // so the page must not overlay its own copy on top of them.
+  // Benefit and process card photography has not been supplied yet (placeholders below).
+  ceramic: {
+    hero: '/creamic-coating/banner-image.jpeg',
+    layerDiagram: '/creamic-coating/more-than-a-shine.jpg',
+    ppfCombo: '/creamic-coating/ppf+creamic.jpg',
+    finalCta: '/creamic-coating/creamic-footer.jpeg',
+    icons: {
+      hydrophobic: '/creamic-coating/water.png',
+      gloss: '/creamic-coating/diamond.png',
+      uv: '/creamic-coating/sunny.png',
+      easierCare: '/creamic-coating/star.png',
+    },
+    benefits: {
+      hydrophobic: '/portfolio/IMG_7053.JPG',
+      gloss: encodeURI('/PPF (1)/protection in your finish/gloss.png'),
+      uv: '/portfolio/IMG_7052.JPG',
+      contaminants: '/banner-03.jpeg',
+      cleaning: '/home/vehicle_service/ppf/ppf_2.jpeg',
+      lasting: encodeURI('/PPF (1)/protection in your finish/matte.png'),
+    },
+    process: {
+      inspection: encodeURI('/PPF (1)/Difference in installation/1.png'),
+      deepClean: encodeURI('/PPF (1)/Difference in installation/2.png'),
+      preparation: encodeURI('/PPF (1)/Difference in installation/4.png'),
+      application: encodeURI('/PPF (1)/Difference in installation/5.png'),
+      curing: encodeURI('/PPF (1)/Difference in installation/6.png'),
+      finalInspection: encodeURI('/PPF (1)/Difference in installation/7.png'),
     },
   },
   carIllustration: '/car-illustrator.png',

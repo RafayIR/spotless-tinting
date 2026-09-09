@@ -233,6 +233,8 @@ html.dark main button.bg-white {
   }
   .reveal {
     opacity: 1 !important;
+    transform: none !important;
+    transition-delay: 0ms !important;
   }
 }
 

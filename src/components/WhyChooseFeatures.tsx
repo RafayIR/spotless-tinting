@@ -1,237 +1,206 @@
-import { ShieldCheck, Crosshair, Layers, Gem } from 'lucide-react';
+import { Cog, Layers, ShieldCheck, Trophy, type LucideIcon } from 'lucide-react';
 import { images } from '@/data/images';
 import Reveal from '@/components/Reveal';
 
 type Feature = {
   id: string;
-  icon: typeof ShieldCheck;
+  icon?: LucideIcon;
+  /** Used instead of an icon for the PPF badge */
+  badge?: string;
   title: string;
   desc: string;
-  /** Desktop card placement */
-  cardClass: string;
-  align: 'left' | 'right' | 'center';
-  /** Hotspot on the car diagram (%) */
-  spot: { left: string; top: string };
+  thumb: string;
+  thumbAlt: string;
 };
 
-const features: Feature[] = [
+const leftFeatures: Feature[] = [
   {
     id: 'warranty',
     icon: ShieldCheck,
     title: 'Lifetime Warranty',
     desc: 'We stand behind our work with industry-leading lifetime warranty for complete peace of mind.',
-    cardClass: 'lg:left-0 lg:top-[2%] lg:w-[250px] xl:w-[270px]',
-    align: 'left',
-    spot: { left: '44%', top: '30%' },
+    thumb: images.homeWhyChoose.warranty,
+    thumbAlt: 'Tinted car window badged with lifetime protection',
   },
   {
     id: 'precision',
-    icon: Crosshair,
+    icon: Cog,
     title: 'Precision Installation',
     desc: 'Expert installation with meticulous attention to detail and flawless finishes every time.',
-    cardClass: 'lg:left-0 lg:top-[38%] lg:w-[250px] xl:w-[270px]',
-    align: 'left',
-    spot: { left: '30%', top: '50%' },
+    thumb: images.homeWhyChoose.precision,
+    thumbAlt: 'Installer squeegeeing film onto glass',
   },
+];
+
+const rightFeatures: Feature[] = [
   {
     id: 'films',
     icon: Layers,
     title: 'Premium Window Films',
     desc: 'High-performance window films that reduce heat, block UV rays and enhance privacy and comfort.',
-    cardClass: 'lg:right-0 lg:top-[2%] lg:w-[250px] xl:w-[270px]',
-    align: 'right',
-    spot: { left: '60%', top: '36%' },
+    thumb: images.homeWhyChoose.films,
+    thumbAlt: 'Layered diagram of advanced window film technology',
   },
   {
     id: 'ppf',
-    icon: ShieldCheck,
+    badge: 'PPF',
     title: 'Paint Protection Film',
     desc: "Advanced PPF protects your vehicle's paintwork from stone chips, scratches and everyday wear and tear.",
-    cardClass: 'lg:right-0 lg:top-[42%] lg:w-[250px] xl:w-[270px]',
-    align: 'right',
-    spot: { left: '74%', top: '60%' },
-  },
-  {
-    id: 'detail',
-    icon: Gem,
-    title: 'Attention to Detail',
-    desc: 'From preparation to the final inspection, we focus on the small details that make a big difference.',
-    cardClass: 'lg:top-[78%] lg:left-1/2 lg:w-[280px] lg:-translate-x-1/2',
-    align: 'center',
-    spot: { left: '49.5%', top: '68%' },
+    thumb: images.homeWhyChoose.ppf,
+    thumbAlt: 'Paint protection film being laid onto a panel',
   },
 ];
 
-/** Approximate card anchor points (%) for dashed connectors */
-const lineAnchors: Record<string, { x: number; y: number }> = {
-  warranty: { x: 24, y: 14 },
-  precision: { x: 24, y: 48 },
-  films: { x: 76, y: 14 },
-  ppf: { x: 76, y: 52 },
-  detail: { x: 50, y: 78 },
-};
+const allFeatures = [leftFeatures[0], rightFeatures[0], leftFeatures[1], rightFeatures[1]];
 
-function FeatureCard({ feature }: { feature: Feature }) {
-  const Icon = feature.icon;
-  const isRight = feature.align === 'right';
-  const isCenter = feature.align === 'center';
+function FeatureBadge({ feature }: { feature: Feature }) {
+  return (
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ink-100 bg-white shadow-md shadow-ink-950/5">
+      {feature.badge ? (
+        <span className="text-[10px] font-extrabold tracking-wider text-accent-500">
+          {feature.badge}
+        </span>
+      ) : feature.icon ? (
+        <feature.icon className="h-5 w-5 text-accent-500" strokeWidth={1.75} />
+      ) : null}
+    </span>
+  );
+}
+
+function FeatureBlock({ feature, side }: { feature: Feature; side: 'left' | 'right' }) {
+  const isRight = side === 'right';
 
   return (
-    <div
-      className={`flex gap-3 ${isRight ? 'flex-row-reverse' : ''} ${
-        isCenter ? 'flex-col items-center' : 'items-start'
-      }`}
-    >
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-ink-100 bg-white shadow-md shadow-ink-950/5 dark:border-ink-700 dark:bg-ink-950">
-        {feature.id === 'ppf' ? (
-          <span className="text-[10px] font-extrabold tracking-wider text-accent-500">PPF</span>
-        ) : (
-          <Icon className="h-5 w-5 text-accent-500" strokeWidth={1.75} />
-        )}
+    <div className={`flex flex-col gap-5 ${isRight ? 'items-end text-right' : 'items-start text-left'}`}>
+      <div className={`flex items-start gap-3 ${isRight ? 'flex-row-reverse' : ''}`}>
+        <FeatureBadge feature={feature} />
+        <div className="max-w-[14rem] xl:max-w-[15rem]">
+          <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950">{feature.title}</h3>
+          <p className="mt-1.5 text-[13px] leading-relaxed text-ink-500">{feature.desc}</p>
+        </div>
       </div>
-      <div className={isCenter ? 'text-center' : isRight ? 'text-right' : 'text-left'}>
-        <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950 dark:text-white">{feature.title}</h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-400">{feature.desc}</p>
-      </div>
+      <img
+        src={feature.thumb}
+        alt={feature.thumbAlt}
+        className="h-28 w-28 rounded-full object-cover xl:h-32 xl:w-32"
+        loading="lazy"
+      />
+    </div>
+  );
+}
+
+function ExperienceStat({ className = '' }: { className?: string }) {
+  return (
+    <div className={`flex flex-col items-center text-center ${className}`}>
+      <span className="h-8 w-px bg-accent-500/60" aria-hidden />
+      <span className="flex h-14 w-14 items-center justify-center rounded-full border border-ink-100 bg-white shadow-md shadow-ink-950/5">
+        <Trophy className="h-6 w-6 text-accent-500" strokeWidth={1.75} />
+      </span>
+      <p className="mt-3 text-2xl font-bold uppercase tracking-tight text-accent-500 sm:text-3xl">
+        15+ Years
+      </p>
+      <p className="text-sm font-bold uppercase tracking-wide text-ink-950">Of Experience</p>
+      <p className="mt-2 max-w-sm text-[13px] leading-relaxed text-ink-500">
+        Trusted by thousands of customers across Hobart for quality, care and outstanding results.
+      </p>
     </div>
   );
 }
 
 export default function WhyChooseFeatures() {
   return (
-    <section className="section overflow-hidden bg-[#fafafa] dark:hidden">
+    <section className="panel-light section overflow-hidden py-14 md:py-16">
       <div className="container">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <span className="eyebrow">Why Choose Spotless Tinting</span>
-            <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl lg:text-[2.75rem]">
-              Excellence in Every Detail
+            <p className="flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-accent-500">
+              <span className="h-px w-7 bg-accent-500" aria-hidden />
+              Why Choose Spotless Tinting
+              <span className="h-px w-7 bg-accent-500" aria-hidden />
+            </p>
+            <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight text-ink-950 md:text-4xl lg:text-[2.75rem]">
+              Excellence in <span className="text-accent-500">Every Detail</span>
             </h2>
-            <p className="mt-5 text-ink-600 dark:text-ink-300">
+            <p className="panel-muted mt-5 text-sm leading-relaxed sm:text-base">
               We combine premium products, expert installation and unmatched attention to detail to
               deliver protection, performance and style you can rely on.
             </p>
           </div>
         </Reveal>
 
-        {/* Mobile / tablet */}
-        <div className="mt-12 lg:hidden">
-          <Reveal>
-            <div className="relative mx-auto max-w-lg">
-              <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 top-1/3 opacity-40 dark:hidden"
-                aria-hidden
-                style={{
-                  backgroundImage:
-                    'repeating-radial-gradient(ellipse 60% 35% at 50% 80%, #d4d8dd 0, #d4d8dd 1px, transparent 1px, transparent 40px)',
-                  maskImage: 'radial-gradient(ellipse 65% 50% at 50% 75%, black, transparent)',
-                }}
-              />
-              <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 top-1/3 hidden opacity-25 dark:block"
-                aria-hidden
-                style={{
-                  backgroundImage:
-                    'repeating-radial-gradient(ellipse 60% 35% at 50% 80%, #4d555f 0, #4d555f 1px, transparent 1px, transparent 40px)',
-                  maskImage: 'radial-gradient(ellipse 65% 50% at 50% 75%, black, transparent)',
-                }}
-              />
+        {/* DESKTOP — car with radiating callouts */}
+        <Reveal>
+          <div className="mt-10 hidden lg:block">
+            {/* The artwork draws its own connector lines out to where the copy sits,
+                so it spans the full width behind the three columns. */}
+            <div className="relative">
               <img
-                src={images.carIllustration}
-                alt="Technical wireframe illustration of a sports car"
-                className="relative z-10 mx-auto w-full max-w-md object-contain mix-blend-multiply dark:mix-blend-screen dark:invert"
+                src={images.homeWhyChoose.car}
+                alt="Car diagram with lines pointing to the areas Spotless Tinting protects"
+                className="pointer-events-none absolute inset-0 h-full w-full object-contain"
                 loading="lazy"
               />
+
+              <div className="relative grid grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)_minmax(0,1fr)] items-center gap-8 xl:gap-12">
+                <div className="flex h-full flex-col justify-between gap-12 py-2">
+                  {leftFeatures.map((feature) => (
+                    <FeatureBlock key={feature.id} feature={feature} side="left" />
+                  ))}
+                </div>
+
+                <div className="min-h-[26rem] xl:min-h-[30rem]" aria-hidden />
+
+                <div className="flex h-full flex-col justify-between gap-12 py-2">
+                  {rightFeatures.map((feature) => (
+                    <FeatureBlock key={feature.id} feature={feature} side="right" />
+                  ))}
+                </div>
+              </div>
             </div>
+
+            <ExperienceStat className="-mt-2" />
+          </div>
+        </Reveal>
+
+        {/* MOBILE / TABLET */}
+        <div className="mt-10 lg:hidden">
+          <Reveal>
+            <img
+              src={images.homeWhyChoose.car}
+              alt="Silver sports car detailed by Spotless Tinting"
+              className="mx-auto w-full max-w-md object-contain"
+              loading="lazy"
+            />
           </Reveal>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
-            {features.map((feature, i) => (
-              <Reveal key={feature.id} delay={i * 60}>
-                <FeatureCard feature={feature} />
+
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            {allFeatures.map((feature, i) => (
+              <Reveal key={feature.id} delay={i * 50}>
+                <div className="flex items-start gap-4">
+                  <img
+                    src={feature.thumb}
+                    alt={feature.thumbAlt}
+                    className="h-20 w-20 shrink-0 rounded-full object-cover"
+                    loading="lazy"
+                  />
+                  <div>
+                    <div className="flex items-center gap-2.5">
+                      <FeatureBadge feature={feature} />
+                      <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950">
+                        {feature.title}
+                      </h3>
+                    </div>
+                    <p className="mt-2 text-[13px] leading-relaxed text-ink-500">{feature.desc}</p>
+                  </div>
+                </div>
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={100}>
+            <ExperienceStat className="mt-10" />
+          </Reveal>
         </div>
-
-        {/* Desktop hotspot layout */}
-        <Reveal delay={80}>
-          <div className="relative mx-auto mt-14 hidden aspect-[16/11] max-w-6xl lg:block">
-            {/* Floor rings */}
-            <div
-              className="pointer-events-none absolute inset-x-[10%] bottom-[6%] top-[22%] opacity-45 dark:opacity-25"
-              aria-hidden
-              style={{
-                backgroundImage:
-                  'repeating-radial-gradient(ellipse 52% 26% at 50% 70%, #c8cdd4 0, #c8cdd4 1px, transparent 1px, transparent 38px)',
-                maskImage: 'radial-gradient(ellipse 58% 42% at 50% 68%, black 15%, transparent 72%)',
-              }}
-            />
-            <div
-              className="pointer-events-none absolute inset-x-[10%] bottom-[6%] top-[22%] hidden opacity-30 dark:block"
-              aria-hidden
-              style={{
-                backgroundImage:
-                  'repeating-radial-gradient(ellipse 52% 26% at 50% 70%, #4d555f 0, #4d555f 1px, transparent 1px, transparent 38px)',
-                maskImage: 'radial-gradient(ellipse 58% 42% at 50% 68%, black 15%, transparent 72%)',
-              }}
-            />
-
-            {/* Car — multiply hides white PNG bg in light mode; screen + invert in dark mode */}
-            <div className="absolute inset-[10%_20%_14%_20%] z-10 flex items-center justify-center">
-              <img
-                src={images.carIllustration}
-                alt="Technical wireframe illustration of a sports car"
-                className="h-full w-full object-contain mix-blend-multiply dark:mix-blend-screen dark:invert"
-                loading="lazy"
-              />
-            </div>
-
-            {/* Dashed connectors */}
-            <svg
-              className="pointer-events-none absolute inset-0 z-20 h-full w-full overflow-visible"
-              viewBox="0 0 100 100"
-              preserveAspectRatio="none"
-              aria-hidden
-            >
-              {features.map((f) => {
-                const from = lineAnchors[f.id];
-                const toX = parseFloat(f.spot.left);
-                const toY = parseFloat(f.spot.top);
-                return (
-                  <line
-                    key={`line-${f.id}`}
-                    x1={from.x}
-                    y1={from.y}
-                    x2={toX}
-                    y2={toY}
-                    stroke="#f97316"
-                    strokeWidth="1.5"
-                    strokeDasharray="4 4"
-                    vectorEffect="non-scaling-stroke"
-                    opacity="0.85"
-                  />
-                );
-              })}
-            </svg>
-
-            {/* Hotspots */}
-            {features.map((f) => (
-              <span
-                key={`spot-${f.id}`}
-                className="absolute z-30 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-500 ring-[5px] ring-accent-500/20"
-                style={{ left: f.spot.left, top: f.spot.top }}
-                aria-hidden
-              />
-            ))}
-
-            {/* Feature cards */}
-            {features.map((f) => (
-              <div key={f.id} className={`absolute z-40 ${f.cardClass}`}>
-                <FeatureCard feature={f} />
-              </div>
-            ))}
-          </div>
-        </Reveal>
       </div>
     </section>
   );

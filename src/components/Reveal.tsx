@@ -39,8 +39,12 @@ export default function Reveal({
   return (
     <div
       ref={ref}
-      className={`${visible ? 'is-visible' : 'reveal'} ${className}`}
-      style={{ animationDelay: `${delay}ms` }}
+      // `.reveal` must stay on the element: the shown state is styled as
+      // `.reveal.is-visible`, so both classes have to be present together.
+      className={`reveal ${visible ? 'is-visible' : ''} ${className}`}
+      // The reveal is a transition, not a keyframe animation, so the stagger
+      // has to be a transition-delay.
+      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </div>

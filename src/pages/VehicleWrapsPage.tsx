@@ -27,11 +27,11 @@ import Reveal from '@/components/Reveal';
 import { images } from '@/data/images';
 import { business } from '@/data/business';
 
-const heroBarItems: { icon: LucideIcon; label: string }[] = [
+const heroBarItems: { icon?: LucideIcon; iconSrc?: string; label: string }[] = [
   { icon: Palette, label: 'Colour Change' },
-  { icon: Sparkles, label: 'Custom Styling' },
-  { icon: CarFront, label: 'Partial Wraps' },
-  { icon: Building2, label: 'Commercial Branding' },
+  { iconSrc: images.vehicleWraps.icons.customStyling, label: 'Custom Styling' },
+  { iconSrc: images.vehicleWraps.icons.partialWraps, label: 'Partial Wraps' },
+  { iconSrc: images.vehicleWraps.icons.commercialBranding, label: 'Commercial Branding' },
   { icon: Repeat, label: 'Removable Vinyl' },
   { icon: Gem, label: 'Premium Finishes' },
 ];
@@ -108,26 +108,15 @@ const finishes: { name: string; desc: string; swatch: string }[] = [
   },
 ];
 
-type Callout = {
-  label: string;
-  side: 'left' | 'right';
-  /** Vertical position of the label, in % of the diagram box */
-  labelTop: number;
-  /** Where the connector turns, in % of the diagram box width */
-  elbowX: number;
-  anchorX: number;
-  anchorY: number;
-};
-
-/** Coordinates live in a shared 0–100 space used by both the labels and the SVG connectors. */
-const wrapCallouts: Callout[] = [
-  { label: 'Roof Wrap', side: 'left', labelTop: 22, elbowX: 24, anchorX: 47, anchorY: 20 },
-  { label: 'Mirror Wraps', side: 'left', labelTop: 42, elbowX: 22, anchorX: 62, anchorY: 33 },
-  { label: 'Bonnet Wrap', side: 'left', labelTop: 62, elbowX: 24, anchorX: 34, anchorY: 45 },
-  { label: 'Full Body Wrap', side: 'left', labelTop: 82, elbowX: 26, anchorX: 50, anchorY: 66 },
-  { label: 'Racing Stripes', side: 'right', labelTop: 22, elbowX: 76, anchorX: 58, anchorY: 26 },
-  { label: 'Accent Panels', side: 'right', labelTop: 45, elbowX: 78, anchorX: 74, anchorY: 44 },
-  { label: 'Chrome Delete', side: 'right', labelTop: 76, elbowX: 76, anchorX: 66, anchorY: 55 },
+/** Mirrors the labels drawn on the styling diagram artwork. */
+const wrapApplications = [
+  'Roof Wrap',
+  'Bonnet Wrap',
+  'Mirror Wraps',
+  'Racing Stripes',
+  'Accent Panels',
+  'Full Body Wrap',
+  'Chrome Delete',
 ];
 
 const whyWrap: { icon: LucideIcon; title: string; desc: string }[] = [
@@ -254,14 +243,14 @@ const galleryItems: { id: string; title: string; service: string; filter: string
     title: 'Colour Change Wrap',
     service: 'Full Vehicle Wrap',
     filter: 'Full Wraps',
-    image: images.vehicleWraps.options.custom,
+    image: images.vehicleWraps.options.full,
   },
   {
     id: 'w2',
     title: 'Roof & Mirror Wrap',
     service: 'Partial Wrap',
     filter: 'Partial Wraps',
-    image: images.vehicleWraps.options.full,
+    image: images.vehicleWraps.options.partial,
   },
   {
     id: 'w3',
@@ -419,61 +408,24 @@ function WrapFaqList({ items }: { items: { question: string; answer: string }[] 
 
 function WrapDiagram() {
   return (
-    <div className="relative mx-auto w-full max-w-2xl">
-      <div className="relative aspect-[4/3] w-full sm:aspect-[16/10]">
-        <img
-          src={images.vehicleWraps.diagramCar}
-          alt="Line illustration of a car showing areas that can be wrapped"
-          className="absolute inset-0 h-full w-full object-contain"
-          loading="lazy"
-        />
+    <div className="mx-auto w-full max-w-3xl">
+      <img
+        src={images.vehicleWraps.diagramCar}
+        alt="Car marked up with the areas that can be wrapped: roof, mirrors, bonnet accent panels, racing stripes, full body and chrome delete"
+        className="w-full object-contain"
+        loading="lazy"
+      />
 
-        {/* Connector lines — decorative, hidden on small screens where labels stack below */}
-        <svg
-          className="pointer-events-none absolute inset-0 hidden h-full w-full lg:block"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          {wrapCallouts.map((c) => (
-            <polyline
-              key={c.label}
-              points={`${c.elbowX},${c.labelTop} ${c.side === 'left' ? c.elbowX + 4 : c.elbowX - 4},${c.labelTop} ${c.anchorX},${c.anchorY}`}
-              fill="none"
-              stroke="#f97316"
-              strokeWidth="0.4"
-              vectorEffect="non-scaling-stroke"
-            />
-          ))}
-          {wrapCallouts.map((c) => (
-            <circle key={`${c.label}-dot`} cx={c.anchorX} cy={c.anchorY} r="0.7" fill="#f97316" />
-          ))}
-        </svg>
-
-        {/* Labels */}
-        {wrapCallouts.map((c) => (
-          <span
-            key={c.label}
-            className={`absolute hidden -translate-y-1/2 whitespace-nowrap text-[10px] font-bold uppercase tracking-wide text-ink-900 lg:block ${
-              c.side === 'left' ? 'text-right' : 'text-left'
-            }`}
-            style={
-              c.side === 'left'
-                ? { top: `${c.labelTop}%`, right: `${100 - c.elbowX}%`, paddingRight: '0.5rem' }
-                : { top: `${c.labelTop}%`, left: `${c.elbowX}%`, paddingLeft: '0.5rem' }
-            }
+      {/* The diagram labels are baked into the artwork, so they are repeated here as
+          real text for search engines and small screens. */}
+      <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-4">
+        {wrapApplications.map((label) => (
+          <li
+            key={label}
+            className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide text-ink-900"
           >
-            {c.label}
-          </span>
-        ))}
-      </div>
-
-      {/* Stacked label list for small screens */}
-      <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 lg:hidden">
-        {wrapCallouts.map((c) => (
-          <li key={c.label} className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide text-ink-900">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-500" aria-hidden />
-            {c.label}
+            {label}
           </li>
         ))}
       </ul>
@@ -582,7 +534,11 @@ export default function VehicleWrapsPage() {
               {heroBarItems.map((item) => (
                 <li key={item.label} className="flex items-center gap-3">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent-500/40 text-accent-500 sm:h-10 sm:w-10">
-                    <item.icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.75} />
+                    {item.iconSrc ? (
+                      <img src={item.iconSrc} alt="" className="h-4 w-4 object-contain sm:h-5 sm:w-5" />
+                    ) : item.icon ? (
+                      <item.icon className="h-4 w-4 sm:h-5 sm:w-5" strokeWidth={1.75} />
+                    ) : null}
                   </span>
                   <span className="text-[10px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[11px]">
                     {item.label}
@@ -861,9 +817,12 @@ export default function VehicleWrapsPage() {
 
             <Reveal delay={80}>
               <div className="flex h-full flex-col justify-center rounded-sm bg-black px-6 py-8">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-500 text-white">
-                  <ShieldCheck className="h-5 w-5" strokeWidth={2} />
-                </span>
+                <img
+                  src={images.vehicleWraps.icons.shield}
+                  alt=""
+                  className="h-12 w-12 object-contain"
+                  loading="lazy"
+                />
                 <h3 className="mt-4 text-lg font-bold uppercase leading-tight tracking-tight text-white">
                   Looking for impact protection?
                 </h3>

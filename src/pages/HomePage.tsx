@@ -455,28 +455,30 @@ export default function HomePage() {
           </div>
 
           <div className="border-t border-ink-100 bg-white">
-            <div className="container flex flex-col gap-6 py-4 sm:flex-row sm:items-center sm:gap-8 md:py-5">
-              <p className="shrink-0 text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500">
-                Trusted Brands
+            <div className="container flex flex-col gap-4 py-5 md:py-6">
+              <p className="text-left text-[11px] font-bold uppercase tracking-[0.18em] text-accent-500 sm:text-xs">
+                The Brands We Work With
               </p>
-              <div className="flex min-w-0 flex-1 flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-between md:gap-x-2">
-                {trustedBrands.map((brand) => (
-                  <div className='w-15 h-20' key={brand.name}>
-                    <img
-                      src={brand.logo}
-                      alt={brand.name}
-                      loading="lazy"
-                      className="h-full w-full object-contain"
-                    />
-                  </div>
-                ))}
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6 md:gap-8">
+                <div className="flex min-w-0 flex-1 flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-between md:gap-x-2">
+                  {trustedBrands.map((brand) => (
+                    <div className="h-20 w-15" key={brand.name}>
+                      <img
+                        src={brand.logo}
+                        alt={brand.name}
+                        loading="lazy"
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="hidden h-10 w-px shrink-0 bg-ink-200 lg:block" aria-hidden />
+                <p className="shrink-0 text-center text-[10px] font-bold uppercase leading-snug tracking-[0.16em] text-ink-400 sm:text-left lg:max-w-[7.5rem]">
+                  Quality Products
+                  <br />
+                  Real Results
+                </p>
               </div>
-              <div className="hidden h-10 w-px shrink-0 bg-ink-200 lg:block" aria-hidden />
-              <p className="shrink-0 text-center text-[10px] font-bold uppercase leading-snug tracking-[0.16em] text-ink-400 sm:text-left lg:max-w-[7.5rem]">
-                Quality Products
-                <br />
-                Real Results
-              </p>
             </div>
           </div>
         </section>
