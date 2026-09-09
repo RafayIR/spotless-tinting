@@ -119,26 +119,47 @@ function TintHeatArrows({ className }: { className?: string }) {
   );
 }
 
-const filmFactors: { title: string; desc: string }[] = [
+const filmFactors: {
+  title: string;
+  desc: string;
+  image: string;
+  imageHover: string;
+  category: string;
+}[] = [
   {
     title: 'Heat Performance',
+    category: 'Automotive',
     desc: 'Compare films based on the level of solar heat control you want for the cabin.',
+    image: encodeURI('/window-film/heat performance.jpeg'),
+    imageHover: encodeURI('/window-film/heat performance1.jpeg'),
   },
   {
     title: 'UV Protection',
+    category: 'Automotive',
     desc: 'Consider a film designed to reduce UV transmission through vehicle glass.',
+    image: encodeURI('/window-film/uv protection.jpeg'),
+    imageHover: encodeURI('/window-film/uv protection1.jpeg'),
   },
   {
     title: 'Tint Shade',
+    category: 'Automotive',
     desc: 'Choose an appropriate visible light transmission level for the window position and desired privacy.',
+    image: encodeURI('/window-film/tint shade.jpeg'),
+    imageHover: encodeURI('/window-film/tint shade1.jpeg'),
   },
   {
     title: 'Appearance',
+    category: 'Automotive',
     desc: 'Select a shade and finish that complements your vehicle without compromising the result you need.',
+    image: encodeURI('/window-film/appearance.jpeg'),
+    imageHover: encodeURI('/window-film/appearance1.jpeg'),
   },
   {
     title: 'Driving Visibility',
+    category: 'Automotive',
     desc: 'Balance privacy and style with comfortable visibility for everyday driving.',
+    image: encodeURI('/window-film/driver visibility.jpeg'),
+    imageHover: encodeURI('/window-film/driver visibility1.jpeg'),
   },
 ];
 
@@ -417,10 +438,45 @@ export default function AutomotiveTintingPage() {
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filmFactors.map((f, i) => (
                 <Reveal key={f.title} delay={i * 40}>
-                  <div className="border border-white/10 bg-white/5 p-6 backdrop-blur-[2px]">
-                    <h3 className="text-lg font-bold text-white">{f.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-300">{f.desc}</p>
-                  </div>
+                  <article className="group relative h-[26rem] overflow-hidden rounded-2xl bg-white shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
+                    {/* Image — expands to full card on hover */}
+                    <div className="absolute inset-x-3 top-3 z-10 h-[58%] overflow-hidden rounded-xl transition-[inset,height,border-radius] duration-500 ease-out group-hover:inset-0 group-hover:h-full group-hover:rounded-2xl">
+                      <img
+                        src={f.image}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
+                        loading="lazy"
+                      />
+                      <img
+                        src={f.imageHover}
+                        alt=""
+                        className="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition-[opacity,transform] duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
+                        loading="lazy"
+                      />
+                      <div
+                        className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 via-black/35 to-transparent opacity-0 transition-opacity duration-500 delay-100 group-hover:opacity-100"
+                        aria-hidden
+                      />
+                      {/* Category reveal from bottom */}
+                      <div className="absolute inset-x-0 bottom-0 translate-y-[110%] px-5 pb-6 pt-10 transition-transform duration-500 ease-out delay-150 group-hover:translate-y-0">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/80">
+                          {f.category}
+                        </p>
+                        <h3 className="mt-1 font-display text-2xl font-bold uppercase tracking-tight text-white sm:text-[1.65rem]">
+                          {f.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Resting text under image */}
+                    <div className="absolute inset-x-0 bottom-0 z-0 flex h-[38%] flex-col justify-start px-5 pb-5 pt-3 transition-all duration-300 group-hover:pointer-events-none group-hover:translate-y-3 group-hover:opacity-0">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-400">
+                        {f.category}
+                      </p>
+                      <h3 className="mt-2 text-lg font-bold text-ink-950">{f.title}</h3>
+                      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-600">{f.desc}</p>
+                    </div>
+                  </article>
                 </Reveal>
               ))}
             </div>

@@ -44,7 +44,7 @@ export const images = {
   siteBg2: '/site-bg-2.jpeg',
   contactHero: '/contact-page.jpeg',
   ppfHero: encodeURI('/PPF (1)/header.png'),
-  ppfHeader: encodeURI('/PPF (1)/header.png'),
+  ppfHeader: encodeURI('/PPF (1)/header.jpeg'),
   professionalTintingForEveryNeedAutomotive: '/window-tinting/professional-tinting-for-everyneed/automotive.png',
   professionalTintingForEveryNeedResidential: '/window-tinting/professional-tinting-for-everyneed/residential.png',
   professionalTintingForEveryNeedCommercial: '/window-tinting/professional-tinting-for-everyneed/commercial.png',
@@ -57,7 +57,8 @@ export const images = {
   },
   // Home "Excellence in Every Detail" section.
   homeWhyChoose: {
-    car: encodeURI('/home/why-choose-us/main car image.png'),
+    car: '/home/why-choose-us/why-choose-us-white.png',
+    carDark: '/home/why-choose-us/why-choose-us-dark.png',
     warranty: '/home/why-choose-us/1.png',
     films: '/home/why-choose-us/2.png',
     precision: '/home/why-choose-us/3.png',

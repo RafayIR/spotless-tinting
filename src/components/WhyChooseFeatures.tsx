@@ -1,11 +1,11 @@
-import { Cog, Layers, ShieldCheck, Trophy, type LucideIcon } from 'lucide-react';
+// import { Cog, Layers, ShieldCheck, Trophy, type LucideIcon } from 'lucide-react';
 import { images } from '@/data/images';
 import Reveal from '@/components/Reveal';
 
+/*
 type Feature = {
   id: string;
   icon?: LucideIcon;
-  /** Used instead of an icon for the PPF badge */
   badge?: string;
   title: string;
   desc: string;
@@ -106,11 +106,13 @@ function ExperienceStat({ className = '' }: { className?: string }) {
     </div>
   );
 }
+*/
 
 export default function WhyChooseFeatures() {
   return (
-    <section className="panel-light section overflow-hidden py-14 md:py-16">
+    <section className="section overflow-hidden bg-white py-14 md:py-16 dark:bg-ink-950">
       <div className="container">
+        {/*
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-accent-500">
@@ -127,12 +129,30 @@ export default function WhyChooseFeatures() {
             </p>
           </div>
         </Reveal>
+        */}
 
-        {/* DESKTOP — car with radiating callouts */}
+        <Reveal>
+          {/* Light mode: dark artwork on white bg */}
+          <img
+            src={images.homeWhyChoose.car}
+            alt="Why choose Spotless Tinting — lifetime warranty, premium films, precision installation, PPF and 15+ years of experience"
+            className="mx-auto w-full max-w-6xl object-contain dark:hidden"
+            loading="lazy"
+          />
+          {/* Dark mode: white artwork on dark bg */}
+          <img
+            src={images.homeWhyChoose.carDark}
+            alt="Why choose Spotless Tinting — lifetime warranty, premium films, precision installation, PPF and 15+ years of experience"
+            className="mx-auto hidden w-full max-w-6xl object-contain dark:block"
+            loading="lazy"
+          />
+        </Reveal>
+
+        {/*
+        Desktop callouts + mobile feature cards were replaced by the full graphic above.
+
         <Reveal>
           <div className="mt-10 hidden lg:block">
-            {/* The artwork draws its own connector lines out to where the copy sits,
-                so it spans the full width behind the three columns. */}
             <div className="relative">
               <img
                 src={images.homeWhyChoose.car}
@@ -140,16 +160,13 @@ export default function WhyChooseFeatures() {
                 className="pointer-events-none absolute inset-0 h-full w-full object-contain"
                 loading="lazy"
               />
-
               <div className="relative grid grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)_minmax(0,1fr)] items-center gap-8 xl:gap-12">
                 <div className="flex h-full flex-col justify-between gap-12 py-2">
                   {leftFeatures.map((feature) => (
                     <FeatureBlock key={feature.id} feature={feature} side="left" />
                   ))}
                 </div>
-
                 <div className="min-h-[26rem] xl:min-h-[30rem]" aria-hidden />
-
                 <div className="flex h-full flex-col justify-between gap-12 py-2">
                   {rightFeatures.map((feature) => (
                     <FeatureBlock key={feature.id} feature={feature} side="right" />
@@ -157,12 +174,10 @@ export default function WhyChooseFeatures() {
                 </div>
               </div>
             </div>
-
             <ExperienceStat className="-mt-2" />
           </div>
         </Reveal>
 
-        {/* MOBILE / TABLET */}
         <div className="mt-10 lg:hidden">
           <Reveal>
             <img
@@ -172,7 +187,6 @@ export default function WhyChooseFeatures() {
               loading="lazy"
             />
           </Reveal>
-
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             {allFeatures.map((feature, i) => (
               <Reveal key={feature.id} delay={i * 50}>
@@ -196,11 +210,11 @@ export default function WhyChooseFeatures() {
               </Reveal>
             ))}
           </div>
-
           <Reveal delay={100}>
             <ExperienceStat className="mt-10" />
           </Reveal>
         </div>
+        */}
       </div>
     </section>
   );

@@ -140,7 +140,7 @@ export default function HomeHeroSlider() {
         loop
         speed={900}
         autoplay={{
-          delay: 6500,
+          delay: 3000,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}

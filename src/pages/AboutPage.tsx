@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Shield, Wrench, MapPin, Eye, Phone } from 'lucide-react';
+import { ArrowRight, Shield, Wrench, MapPin, Eye, Phone, Award } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
@@ -11,6 +11,29 @@ const values = [
   { icon: Wrench, title: 'Expert Workmanship', desc: 'Every installation is carried out by experienced, meticulous technicians.' },
   { icon: MapPin, title: 'Local & Trusted', desc: 'Proudly Hobart-based, serving our local community with care.' },
   { icon: Eye, title: 'Attention to Detail', desc: 'We treat every vehicle and property as if it were our own.' },
+];
+
+const aboutUspItems = [
+  {
+    icon: Shield,
+    title: 'Premium Films',
+    desc: 'Quality products selected for performance, comfort and protection.',
+  },
+  {
+    icon: Wrench,
+    title: 'Precision Installation',
+    desc: 'Careful preparation and attention to detail from start to finish.',
+  },
+  {
+    icon: MapPin,
+    title: 'Local Hobart Service',
+    desc: 'Based in Moonah and proudly servicing Hobart and surrounding areas.',
+  },
+  {
+    icon: Award,
+    title: 'Quality Finish',
+    desc: 'Every installation is inspected before handover.',
+  },
 ];
 
 const teamTraits = [
@@ -32,29 +55,6 @@ const locations = [
     address: '107A Cambridge Road, Bellerive TAS',
     image: images.aboutLocations.bellerive,
     mapsQuery: '107A Cambridge Road, Bellerive TAS',
-  },
-];
-
-const aboutHighlights = [
-  {
-    icon: images.aboutBeneathHeader.trophy,
-    title: '15+ Years',
-    subtitle: 'Industry Experience',
-  },
-  {
-    icon: images.aboutBeneathHeader.location,
-    title: '2 Locations',
-    subtitle: 'Moonah & Bellerive',
-  },
-  {
-    icon: images.aboutBeneathHeader.map,
-    title: 'Tasmanian Local',
-    subtitle: 'Proudly Local',
-  },
-  {
-    icon: images.aboutBeneathHeader.diamond,
-    title: 'Premium Products',
-    subtitle: 'Quality Focused',
   },
 ];
 
@@ -121,42 +121,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* HIGHLIGHTS BAR */}
-      <section className="relative z-10">
-        <div
-          className="py-8 sm:py-9 -mt-4"
-          style={{
-            background:
-              'linear-gradient(180deg, rgba(255,244,236,0) 0%, #fff4ec 18%, #fff4ec 82%, rgba(255,244,236,0) 100%)',
-          }}
-        >
-          <div className="container">
-            <div className="grid grid-cols-1 divide-y divide-accent-200/50 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-accent-200/60">
-              {aboutHighlights.map((item) => (
-                <div
-                  key={item.title}
-                  className="flex min-h-[4.5rem] items-center justify-center gap-3 px-4 py-4 sm:min-h-[5rem] sm:px-5 lg:px-6"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center sm:h-[4rem] sm:w-[4rem]">
-                    <img
-                      src={item.icon}
-                      alt=""
-                      className="object-contain mix-blend-multiply sm:h-full sm:w-full"
-                      loading="lazy"
-                      aria-hidden
-                    />
+      {/* USP BAR — swapped from home */}
+      <section className="relative z-10 border-b border-ink-100 bg-white py-10 md:py-8" aria-label="Why choose Spotless Tinting">
+        <div className="container">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {aboutUspItems.map((item, i) => (
+              <Reveal key={item.title} delay={i * 40}>
+                <div className="flex gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
+                    <item.icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-bold uppercase tracking-wide text-accent-500 sm:text-xs">
-                      {item.title}
-                    </p>
-                    <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wide text-ink-700 sm:text-[11px]">
-                      {item.subtitle}
-                    </p>
+                    <h3 className="text-sm font-bold text-ink-950">{item.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-600">{item.desc}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
