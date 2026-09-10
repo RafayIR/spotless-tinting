@@ -171,8 +171,61 @@ const homepageFaqs = [
 
 const workFilters = ['All', 'Window Tinting', 'PPF', 'Vehicle Wraps', 'Residential', 'Commercial'] as const;
 
+const primaryServiceAreas = [
+  'Moonah',
+  'Bellerive',
+  'Hobart CBD',
+  'Glenorchy',
+  'Kingston',
+  'Sandy Bay',
+  'Bridgewater',
+  'Brighton',
+  'New Town',
+  'Howrah',
+  'Lindisfarne',
+  'Eastern Shore',
+];
+
+const greaterHobartServiceAreas = [
+  'North Hobart',
+  'West Hobart',
+  'South Hobart',
+  'Battery Point',
+  'Lenah Valley',
+  'Mount Stuart',
+  'Derwent Park',
+  'Goodwood',
+  'Claremont',
+  'Austins Ferry',
+  'Berriedale',
+  'Chigwell',
+  'Montrose',
+  'Rosetta',
+  'Old Beach',
+  'Granton',
+  'Blackmans Bay',
+  'Margate',
+  'Howden',
+  'Rosny',
+  'Rosny Park',
+  'Warrane',
+  'Mornington',
+  'Geilston Bay',
+  'Risdon Vale',
+  'Cambridge',
+  'Rokeby',
+  'Clarendon Vale',
+  'Oakdowns',
+  'Tranmere',
+  'Acton Park',
+  'Seven Mile Beach',
+  'Lauderdale',
+  'Sorell',
+];
+
 export default function HomePage() {
   const [workFilter, setWorkFilter] = useState<(typeof workFilters)[number]>('All');
+  const [showAllServiceAreas, setShowAllServiceAreas] = useState(false);
   const { hash } = useLocation();
 
   useEffect(() => {
@@ -525,16 +578,29 @@ export default function HomePage() {
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <Reveal>
                 <div>
-                  <h2 className="text-3xl font-bold text-ink-950 md:text-4xl">
-                    Window Tinting in Moonah, Hobart
+                  <span className="eyebrow">Proudly Tasmanian</span>
+                  <h2 className="mt-3 text-3xl font-bold text-ink-950 md:text-4xl">
+                    Window Tinting Across Hobart &amp; Greater Hobart
                   </h2>
                   <p className="mt-5 leading-relaxed text-ink-600">
-                    Spotless Tinting is based in Moonah, Tasmania, providing professional tinting and
-                    vehicle protection services to customers throughout Hobart and surrounding areas.
+                    Spotless Tinting provides professional window tinting and vehicle protection services
+                    across Hobart and Greater Hobart, with convenient locations in Moonah and Bellerive.
                   </p>
                   <p className="mt-4 leading-relaxed text-ink-600">
-                    Whether you need automotive tinting, residential or commercial window film, PPF,
-                    wraps or Smart Tint, our team can help you find the right solution for your project.
+                    From automotive window tinting to residential and commercial window film, Paint
+                    Protection Film (PPF), vehicle wraps, Smart Tint and ceramic coating, our experienced
+                    team provides quality solutions for vehicles, homes, offices, shopfronts and commercial
+                    properties.
+                  </p>
+                  <p className="mt-4 leading-relaxed text-ink-600">
+                    We also provide on-site window tinting for selected residential and commercial
+                    projects, bringing professional window film installation directly to your home,
+                    workplace or business.
+                  </p>
+                  <p className="mt-4 leading-relaxed text-ink-600">
+                    With 15+ years of industry experience, Spotless Tinting is proudly Tasmanian and
+                    committed to quality products, careful preparation, precision installation and
+                    professional results.
                   </p>
                   <div className="mt-6 space-y-3 text-sm">
                     <a
@@ -542,7 +608,7 @@ export default function HomePage() {
                       className="flex items-center gap-2.5 font-semibold text-ink-800 hover:text-accent-600"
                     >
                       <Phone className="h-4 w-4 text-accent-500" />
-                      {business.phone}
+                      0451 459 690
                     </a>
                     <a
                       href={business.emailHref}
@@ -553,29 +619,42 @@ export default function HomePage() {
                     </a>
                     <p className="flex items-center gap-2.5 text-ink-700">
                       <MapPin className="h-4 w-4 text-accent-500" />
-                      {business.location}
+                      Moonah &amp; Bellerive · Hobart, Tasmania
                     </p>
                   </div>
-                  <div className="mt-6 flex flex-wrap gap-2.5">
-                    {business.serviceAreas.map((area) => (
-                      <span
-                        key={area}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-accent-200 bg-accent-50 px-4 py-2 text-sm text-ink-700"
-                      >
-                        <MapPin className="h-3.5 w-3.5 text-accent-500" />
-                        {area}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-outline"
+
+                  <div className="mt-8">
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950">
+                      Areas We Service
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                      {primaryServiceAreas.join(' · ')}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setShowAllServiceAreas((open) => !open)}
+                      className="mt-4 text-xs font-bold uppercase tracking-wide text-accent-600 transition-colors hover:text-accent-500"
+                      aria-expanded={showAllServiceAreas}
                     >
-                      Get Directions
-                    </a>
+                      {showAllServiceAreas
+                        ? 'Hide Greater Hobart Service Areas −'
+                        : 'View All Greater Hobart Service Areas +'}
+                    </button>
+                    {showAllServiceAreas ? (
+                      <div className="mt-4 space-y-3">
+                        <p className="text-sm leading-relaxed text-ink-600">
+                          {greaterHobartServiceAreas.join(' · ')} and surrounding areas.
+                        </p>
+                        <p className="text-sm leading-relaxed text-ink-600">
+                          Don&apos;t see your suburb? We service customers throughout Greater Hobart and
+                          surrounding areas. Contact our team to check availability for your location and
+                          whether on-site service is available for your project.
+                        </p>
+                      </div>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-8">
                     <Link to="/quote" className="btn-primary">
                       Get a Free Quote
                       <ArrowRight className="h-4 w-4" />
@@ -587,9 +666,9 @@ export default function HomePage() {
                 <div className="overflow-hidden rounded-2xl">
                   <img
                     src={images.commercialBuilding}
-                    alt="Window tinting services available across Moonah and Hobart, Tasmania"
+                    alt="Window tinting services available across Moonah, Bellerive and Greater Hobart"
                     loading="lazy"
-                    className="aspect-[4/3] w-full object-cover"
+                    className="aspect-[4/3] w-full object-cover object-center"
                   />
                 </div>
               </Reveal>

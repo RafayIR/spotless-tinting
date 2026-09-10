@@ -31,7 +31,7 @@ export default function GalleryGrid({
 
               src={project.image}
 
-              alt={`${project.title} — ${project.service} in ${project.location}`}
+              alt={`${project.title} — ${project.service}${project.location ? ` in ${project.location}` : ''}`}
 
               loading="lazy"
 

@@ -38,9 +38,9 @@ const quickCards = [
   {
     icon: MapPin,
     title: 'Visit Us',
-    primary: 'Moonah, Hobart',
+    primary: 'Moonah & Bellerive',
     href: undefined,
-    note: 'Workshop by appointment.',
+    note: 'Two Hobart locations · by appointment.',
   },
   {
     icon: Clock,
@@ -74,6 +74,21 @@ const trustBadges = [
   { icon: MapPin, label: 'Local Hobart Business' },
 ];
 
+const locations = [
+  {
+    name: 'Moonah',
+    address: '9/14A Main Road, Moonah TAS 7009',
+    image: images.aboutLocations.moonah,
+    mapsQuery: '9/14A Main Road, Moonah TAS 7009',
+  },
+  {
+    name: 'Bellerive',
+    address: '107A Cambridge Road, Bellerive TAS',
+    image: images.aboutLocations.bellerive,
+    mapsQuery: '107A Cambridge Road, Bellerive TAS',
+  },
+];
+
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -88,19 +103,30 @@ export default function ContactPage() {
     name: business.name,
     telephone: business.phone,
     email: business.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Moonah',
-      addressRegion: 'TAS',
-      addressCountry: 'AU',
-    },
+    address: [
+      {
+        '@type': 'PostalAddress',
+        streetAddress: '9/14A Main Road',
+        addressLocality: 'Moonah',
+        addressRegion: 'TAS',
+        postalCode: '7009',
+        addressCountry: 'AU',
+      },
+      {
+        '@type': 'PostalAddress',
+        streetAddress: '107A Cambridge Road',
+        addressLocality: 'Bellerive',
+        addressRegion: 'TAS',
+        addressCountry: 'AU',
+      },
+    ],
   };
 
   return (
     <>
       <SEO
         title="Contact Us | Spotless Tinting — Hobart"
-        description="Contact Spotless Tinting in Moonah, Hobart. Call, email or send an enquiry for window tinting, PPF and vehicle wrapping."
+        description="Contact Spotless Tinting in Moonah and Bellerive, Hobart. Call, email or send an enquiry for window tinting, PPF and vehicle wrapping."
         path="/contact"
         schema={localBusinessSchema}
       />
@@ -358,42 +384,29 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* LOCATION */}
+      {/* LOCATIONS */}
       <section className="section bg-white dark:bg-ink-950">
         <div className="container">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-12">
             <Reveal>
-              <div className="overflow-hidden rounded-2xl border border-ink-100 dark:border-ink-800">
-                <iframe
-                  title="Spotless Tinting location — Moonah, Hobart"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.5!2d147.302!3d-42.86!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDUxJzM2LjAiUyAxNDfCsDE4JzA3LjIiRQ!5e0!3m2!1sen!2sau!4v1700000000000"
-                  width="100%"
-                  height="420"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
               <div>
-                <span className="eyebrow">Location</span>
+                <span className="eyebrow">Locations</span>
                 <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl">
                   Visit Spotless Tinting
                 </h2>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                  Two Hobart workshops — Moonah and Bellerive. Visits are by appointment, so please call
+                  ahead and we&apos;ll prepare for your arrival.
+                </p>
                 <ul className="mt-8 space-y-5">
-                  <li className="flex gap-4">
-                    <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
-                    <div>
-                      <p className="text-sm font-bold text-ink-950 dark:text-white">Address</p>
-                      <p className="mt-0.5 text-sm text-ink-600 dark:text-ink-300">{business.address}</p>
-                    </div>
-                  </li>
                   <li className="flex gap-4">
                     <Phone className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
                       <p className="text-sm font-bold text-ink-950 dark:text-white">Phone</p>
-                      <a href={business.phoneHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600 dark:text-ink-300 dark:hover:text-accent-400">
+                      <a
+                        href={business.phoneHref}
+                        className="mt-0.5 text-sm text-ink-600 hover:text-accent-600 dark:text-ink-300 dark:hover:text-accent-400"
+                      >
                         {business.phone}
                       </a>
                     </div>
@@ -402,7 +415,10 @@ export default function ContactPage() {
                     <Mail className="mt-0.5 h-5 w-5 shrink-0 text-accent-500" />
                     <div>
                       <p className="text-sm font-bold text-ink-950 dark:text-white">Email</p>
-                      <a href={business.emailHref} className="mt-0.5 text-sm text-ink-600 hover:text-accent-600 dark:text-ink-300 dark:hover:text-accent-400">
+                      <a
+                        href={business.emailHref}
+                        className="mt-0.5 text-sm text-ink-600 hover:text-accent-600 dark:text-ink-300 dark:hover:text-accent-400"
+                      >
                         {business.email}
                       </a>
                     </div>
@@ -412,7 +428,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm font-bold text-ink-950 dark:text-white">Workshop Access</p>
                       <p className="mt-0.5 text-sm text-ink-600 dark:text-ink-300">
-                        Visits are by appointment — please call ahead so we can prepare for your arrival.
+                        By appointment at both locations — call ahead so we can prepare for your visit.
                       </p>
                     </div>
                   </li>
@@ -429,6 +445,46 @@ export default function ContactPage() {
                     </div>
                   </div>
                 </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {locations.map((loc) => (
+                  <article
+                    key={loc.name}
+                    className="overflow-hidden rounded-xl bg-white shadow-[0_10px_30px_rgba(15,23,42,0.1)] ring-1 ring-ink-100/80 dark:bg-ink-900 dark:ring-ink-800"
+                  >
+                    <div className="overflow-hidden">
+                      <img
+                        src={loc.image}
+                        alt={`Spotless Tinting ${loc.name} storefront`}
+                        className="aspect-[16/10] w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="px-4 py-4">
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="h-4 w-4 shrink-0 text-accent-500" aria-hidden />
+                        <h3 className="text-sm font-bold uppercase tracking-wide text-ink-950 dark:text-white">
+                          {loc.name}
+                        </h3>
+                      </div>
+                      <p className="mt-1.5 text-[12px] leading-snug text-ink-500 dark:text-ink-400">
+                        {loc.address}
+                      </p>
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.mapsQuery)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-accent-500 transition-colors hover:text-accent-600"
+                      >
+                        Get Directions
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
+                  </article>
+                ))}
               </div>
             </Reveal>
           </div>

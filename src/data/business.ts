@@ -7,8 +7,8 @@ export const business = {
   address: 'Moonah, Hobart, TAS',
   phone: '+61 451 459 690',
   phoneHref: 'tel:+61451459690',
-  email: 'spotlesstinting@gmail.com',
-  emailHref: 'mailto:spotlesstinting@gmail.com',
+  email: 'info@spotlesstinting.com.au',
+  emailHref: 'mailto:info@spotlesstinting.com.au',
   website: 'spotlesstinting.com.au',
   hours: [
     { day: 'Monday', hours: 'By appointment' },

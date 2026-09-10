@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Reveal from '@/components/Reveal';
+import GalleryLightbox from '@/components/GalleryLightbox';
 import { projects } from '@/data/projects';
 import { reviews } from '@/data/reviews';
 import { images } from '@/data/images';
@@ -33,6 +34,7 @@ const filters = [
   'PPF',
   'Vehicle Wraps',
   'Smart Tint',
+  'Ceramic Coating',
 ] as const;
 
 type Filter = (typeof filters)[number];
@@ -45,10 +47,13 @@ const filterCategory: Record<Exclude<Filter, 'All'>, string> = {
   PPF: 'PPF',
   'Vehicle Wraps': 'Vehicle Wraps',
   'Smart Tint': 'Smart Tint',
+  'Ceramic Coating': 'Other',
 };
 
 function displayCategory(category: string) {
-  return category === 'Window Tinting' ? 'Automotive Tint' : category;
+  if (category === 'Window Tinting') return 'Automotive Tint';
+  if (category === 'Other') return 'Ceramic Coating';
+  return category;
 }
 
 const PROJECTS_PER_PAGE = 6;
@@ -87,8 +92,8 @@ const comparisons: {
 }[] = [
   {
     label: 'Vehicle Wrap',
-    beforeSrc: images.ppfFinish.gloss,
-    afterSrc: images.ppfFinish.matte,
+    beforeSrc: images.vehicleWraps.transformationBefore,
+    afterSrc: images.vehicleWraps.transformationAfter,
     caption: 'Full colour change for a bold new look.',
   },
   {
@@ -302,6 +307,7 @@ function TestimonialCarousel() {
 export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState<Filter>('All');
   const [showAll, setShowAll] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const filtered = projects.filter((p) =>
     activeFilter === 'All' ? true : p.category === filterCategory[activeFilter],
@@ -431,10 +437,15 @@ export default function GalleryPage() {
             {visible.map((project, i) => (
               <Reveal key={project.id} delay={i * 40}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-ink-100 bg-white shadow-sm transition-shadow hover:shadow-lg">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(filtered.indexOf(project))}
+                    className="relative aspect-[4/3] overflow-hidden bg-ink-100 text-left"
+                    aria-label={`Open ${project.title} in gallery viewer`}
+                  >
                     <img
                       src={project.image}
-                      alt={`${project.title} — ${project.service} in ${project.location}`}
+                      alt={`${project.title} — ${project.service}${project.location ? ` in ${project.location}` : ''}`}
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
@@ -446,7 +457,7 @@ export default function GalleryPage() {
                         {project.badge}
                       </span>
                     )}
-                  </div>
+                  </button>
                   <div className="flex flex-1 flex-col p-3">
                     <h3 className="text-[11px] font-bold leading-snug text-ink-950 sm:text-xs">
                       {project.title}
@@ -668,6 +679,14 @@ export default function GalleryPage() {
           </Reveal>
         </div>
       </section>
+
+      {lightboxIndex !== null && filtered[lightboxIndex] ? (
+        <GalleryLightbox
+          projects={filtered}
+          startIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
+      ) : null}
     </>
   );
 }
