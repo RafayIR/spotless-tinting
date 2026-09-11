@@ -183,8 +183,34 @@ html.dark main button.bg-white {
   background-color: #f5f5f5 !important;
   color: #171717 !important;
 }
+.ppf-split-light h1,
+.ppf-split-light h2,
+.ppf-split-light h3,
+.ppf-split-light h4,
+.ppf-split-light h5 {
+  color: #0d0f11 !important;
+}
 .ppf-split-light .ppf-split-muted {
   color: #525252 !important;
+}
+.ppf-split-light .text-ink-950,
+.ppf-split-light .text-ink-900,
+.ppf-split-light .text-ink-800,
+.ppf-split-light .text-ink-700 {
+  color: #0d0f11 !important;
+}
+.ppf-split-light .text-ink-600,
+.ppf-split-light .text-ink-500,
+.ppf-split-light .text-ink-400 {
+  color: #525252 !important;
+}
+.ppf-split-light .bg-ink-50,
+.ppf-split-light .bg-white {
+  background-color: #fff !important;
+}
+.ppf-split-light .border-ink-100,
+.ppf-split-light .border-ink-200 {
+  border-color: #e5e5e5 !important;
 }
 .ppf-split-dark {
   background-color: #000 !important;
@@ -286,4 +312,30 @@ html.dark main .panel-light .text-ink-900 {
 }
 html.dark main .panel-light .text-ink-600 {
   color: #525252 !important;
+}
+html.dark main .panel-light .text-ink-500,
+html.dark main .panel-light .text-ink-400 {
+  color: #737373 !important;
+}
+
+/* Ceramic coating vs wax table — stay light with dark text in dark mode */
+html.dark main .ceramic-compare-table {
+  background-color: #fff !important;
+  box-shadow: none !important;
+}
+html.dark main .ceramic-compare-table .bg-ink-100 {
+  background-color: #f4f4f5 !important;
+}
+html.dark main .ceramic-compare-table .border-ink-100 {
+  border-color: #e4e4e7 !important;
+}
+html.dark main .ceramic-compare-table .text-ink-900,
+html.dark main .ceramic-compare-table .text-ink-700 {
+  color: #0d0f11 !important;
+}
+html.dark main .ceramic-compare-table .text-white {
+  color: #fff !important;
+}
+html.dark main .ceramic-compare-table .bg-accent-500 {
+  background-color: theme('colors.accent.500') !important;
 }

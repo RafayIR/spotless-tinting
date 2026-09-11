@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,7 +15,6 @@ const slides = images.aboutUsCarousel.map((src, i) => ({
 
 export default function AboutUsCarousel({ className = '' }: { className?: string }) {
   const swiperRef = useRef<SwiperType | null>(null);
-  const [active, setActive] = useState(0);
 
   return (
     <div className={`relative overflow-hidden rounded-2xl bg-ink-100 ${className}`}>
@@ -29,7 +28,6 @@ export default function AboutUsCarousel({ className = '' }: { className?: string
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
-        onSlideChange={(swiper) => setActive(swiper.realIndex)}
         className="about-us-carousel aspect-[4/3] w-full [&_.swiper-pagination-bullet]:bg-white/70 [&_.swiper-pagination-bullet-active]:bg-accent-500"
       >
         {slides.map((slide) => (
@@ -60,10 +58,6 @@ export default function AboutUsCarousel({ className = '' }: { className?: string
       >
         <ChevronRight className="h-5 w-5" />
       </button>
-
-      <p className="pointer-events-none absolute bottom-3 right-3 z-10 rounded-full bg-ink-950/50 px-2.5 py-1 text-[10px] font-semibold tabular-nums text-white backdrop-blur-sm">
-        {active + 1} / {slides.length}
-      </p>
     </div>
   );
 }

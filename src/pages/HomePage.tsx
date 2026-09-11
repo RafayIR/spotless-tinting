@@ -278,15 +278,9 @@ export default function HomePage() {
       <HomeHeroSlider />
 
       <div className="relative z-10">
-        {/* USP STRIP */}
+        {/* USP STRIP — light cream band; keep dark text even in site dark mode */}
         <section className="relative z-10" aria-label="Spotless Tinting highlights">
-          <div
-            className="-mt-4 py-8 sm:py-9"
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(255,244,236,0) 0%, #fff4ec 18%, #fff4ec 82%, rgba(255,244,236,0) 100%)',
-            }}
-          >
+          <div className="-mt-4 bg-[#fff4ec] py-8 text-ink-800 sm:py-9 dark:text-ink-800">
             <div className="container">
               <div className="grid grid-cols-1 divide-y divide-accent-200/50 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-accent-200/60">
                 {homeHighlights.map((item) => (
@@ -304,10 +298,10 @@ export default function HomePage() {
                       />
                     </div>
                     <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wide text-accent-500 sm:text-xs">
+                      <p className="text-[11px] font-bold uppercase tracking-wide !text-accent-500 sm:text-xs">
                         {item.title}
                       </p>
-                      <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wide text-ink-700 sm:text-[11px]">
+                      <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wide !text-ink-700 sm:text-[11px]">
                         {item.subtitle}
                       </p>
                     </div>
@@ -459,8 +453,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* REVIEWS */}
-        <section id="reviews" className="bg-[#f4f4f5]">
+        {/* REVIEWS — panel-light keeps this band readable in dark mode */}
+        <section id="reviews" className="panel-light">
           <div className="container py-14 md:py-16">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(3,minmax(0,1fr))_0.58fr] lg:items-stretch lg:gap-4 xl:gap-5">
               <Reveal className="h-full sm:col-span-2 lg:col-span-1">

@@ -92,7 +92,7 @@ function SlideContent({ slide }: { slide: HeroSlide }) {
       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-500">
         {slide.eyebrow}
       </p>
-      <TitleTag className="mt-4 text-balance text-4xl font-bold leading-tight text-ink-950 sm:text-5xl lg:text-[3.1rem]">
+      <TitleTag className="mt-4 text-balance text-4xl font-bold leading-tight !text-ink-950 sm:text-5xl lg:text-[3.1rem]">
         {slide.title}
       </TitleTag>
       {slide.subtitle && (

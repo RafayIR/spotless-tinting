@@ -446,7 +446,7 @@ export default function CeramicCoatingPage() {
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="overflow-hidden rounded-sm bg-white">
+              <div className="ceramic-compare-table overflow-hidden rounded-sm bg-white">
                 <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)_minmax(0,1.1fr)] text-[10px] font-bold uppercase tracking-wide sm:text-[11px]">
                   <span className="bg-ink-100 px-3 py-3 text-ink-700">Feature</span>
                   <span className="bg-accent-500 px-3 py-3 text-center text-white">Ceramic Coating</span>
