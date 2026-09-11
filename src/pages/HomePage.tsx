@@ -26,6 +26,7 @@ import ServicesShowcase from '@/components/ServicesShowcase';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import GalleryGrid from '@/components/GalleryGrid';
 import TestimonialCard from '@/components/TestimonialCard';
+import AboutUsCarousel from '@/components/AboutUsCarousel';
 import {
   MoreThanDarkerGlassSection,
   WindowFilmTechnologySection,
@@ -344,14 +345,7 @@ export default function HomePage() {
           <div className="container">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal>
-                <div className="overflow-hidden rounded-2xl">
-                  <img
-                    src={images.installerWork}
-                    alt="Spotless Tinting technician preparing glass for professional window film installation in Hobart"
-                    loading="lazy"
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                </div>
+                <AboutUsCarousel />
               </Reveal>
               <Reveal delay={80}>
                 <div>
@@ -530,17 +524,24 @@ export default function HomePage() {
                 The Brands We Work With
               </p>
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6 md:gap-8">
-                <div className="flex min-w-0 flex-1 flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-between md:gap-x-2">
-                  {trustedBrands.map((brand) => (
-                    <div className="h-20 w-15" key={brand.name}>
-                      <img
-                        src={brand.logo}
-                        alt={brand.name}
-                        loading="lazy"
-                        className="h-full w-full object-contain"
-                      />
-                    </div>
-                  ))}
+                <div className="relative min-w-0 flex-1 overflow-hidden">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white to-transparent sm:w-12" aria-hidden />
+                  <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white to-transparent sm:w-12" aria-hidden />
+                  <div className="flex w-max animate-marquee items-center gap-10 hover:[animation-play-state:paused] sm:gap-14 md:gap-16">
+                    {[...trustedBrands, ...trustedBrands].map((brand, i) => (
+                      <div
+                        key={`${brand.name}-${i}`}
+                        className="flex h-16 w-28 shrink-0 items-center justify-center sm:h-20 sm:w-32"
+                      >
+                        <img
+                          src={brand.logo}
+                          alt={brand.name}
+                          loading="lazy"
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className="hidden h-10 w-px shrink-0 bg-ink-200 lg:block" aria-hidden />
                 <p className="shrink-0 text-center text-[10px] font-bold uppercase leading-snug tracking-[0.16em] text-ink-400 sm:text-left lg:max-w-[7.5rem]">

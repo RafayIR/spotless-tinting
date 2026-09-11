@@ -439,26 +439,26 @@ export default function AutomotiveTintingPage() {
               {filmFactors.map((f, i) => (
                 <Reveal key={f.title} delay={i * 40}>
                   <article className="group relative h-[26rem] overflow-hidden rounded-2xl bg-white shadow-[0_12px_40px_rgba(0,0,0,0.18)]">
-                    {/* Image — expands to full card on hover */}
-                    <div className="absolute inset-x-3 top-3 z-10 h-[58%] overflow-hidden rounded-xl transition-[inset,height,border-radius] duration-500 ease-out group-hover:inset-0 group-hover:h-full group-hover:rounded-2xl">
+                    {/* Image — full card at rest; smoothly shrinks on hover */}
+                    <div className="absolute left-0 right-0 top-0 z-10 h-full overflow-hidden rounded-2xl transition-[left,right,top,height,border-radius] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:left-3 group-hover:right-3 group-hover:top-3 group-hover:h-[58%] group-hover:rounded-xl">
                       <img
                         src={f.image}
                         alt=""
-                        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out group-hover:opacity-0"
+                        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out delay-100 group-hover:opacity-0 group-hover:delay-0"
                         loading="lazy"
                       />
                       <img
                         src={f.imageHover}
                         alt=""
-                        className="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition-[opacity,transform] duration-500 ease-out group-hover:scale-100 group-hover:opacity-100"
+                        className="absolute inset-0 h-full w-full scale-[1.08] object-cover opacity-0 transition-[opacity,transform] duration-700 ease-in-out delay-150 group-hover:scale-100 group-hover:opacity-100 group-hover:delay-100"
                         loading="lazy"
                       />
                       <div
-                        className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 via-black/35 to-transparent opacity-0 transition-opacity duration-500 delay-100 group-hover:opacity-100"
+                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-opacity duration-500 ease-out group-hover:opacity-0"
                         aria-hidden
                       />
-                      {/* Category reveal from bottom */}
-                      <div className="absolute inset-x-0 bottom-0 translate-y-[110%] px-5 pb-6 pt-10 transition-transform duration-500 ease-out delay-150 group-hover:translate-y-0">
+                      {/* Title on image — fades out as card opens */}
+                      <div className="absolute inset-x-0 bottom-0 px-5 pb-6 pt-12 transition-all duration-500 ease-out group-hover:translate-y-3 group-hover:opacity-0 group-hover:delay-0">
                         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/80">
                           {f.category}
                         </p>
@@ -468,8 +468,8 @@ export default function AutomotiveTintingPage() {
                       </div>
                     </div>
 
-                    {/* Resting text under image */}
-                    <div className="absolute inset-x-0 bottom-0 z-0 flex h-[38%] flex-col justify-start px-5 pb-5 pt-3 transition-all duration-300 group-hover:pointer-events-none group-hover:translate-y-3 group-hover:opacity-0">
+                    {/* White description panel — fades in after image starts shrinking */}
+                    <div className="absolute inset-x-0 bottom-0 z-0 flex h-[38%] translate-y-6 flex-col justify-start px-5 pb-5 pt-3 opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] delay-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:delay-200">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-400">
                         {f.category}
                       </p>
