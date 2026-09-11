@@ -111,7 +111,7 @@ export default function AboutPage() {
             </Link>
           </div>
 
-          <p className="pointer-events-none absolute bottom-8 right-6 text-right font-script text-2xl leading-tight text-ink-950 sm:bottom-10 sm:right-10 sm:text-3xl md:text-[2.15rem]">
+          <p className="pointer-events-none absolute bottom-8 right-6 text-right font-script text-2xl leading-tight text-white sm:bottom-10 sm:right-10 sm:text-3xl md:text-[2.15rem]">
             More Than a Tint
             <span
               className="mx-auto mt-1 block h-[3px] w-[4.75rem] rounded-full bg-accent-500 sm:ml-auto sm:mr-0"
