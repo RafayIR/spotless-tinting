@@ -112,7 +112,6 @@ export default function WhyChooseFeatures() {
   return (
     <section className="section overflow-hidden bg-white py-14 md:py-16 dark:bg-ink-950">
       <div className="container">
-        {/*
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-accent-500">
@@ -120,30 +119,29 @@ export default function WhyChooseFeatures() {
               Why Choose Spotless Tinting
               <span className="h-px w-7 bg-accent-500" aria-hidden />
             </p>
-            <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight text-ink-950 md:text-4xl lg:text-[2.75rem]">
+            <h2 className="mt-4 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl lg:text-[2.75rem]">
               Excellence in <span className="text-accent-500">Every Detail</span>
             </h2>
-            <p className="panel-muted mt-5 text-sm leading-relaxed sm:text-base">
+            <p className="mt-5 text-sm leading-relaxed text-ink-600 dark:text-ink-300 sm:text-base">
               We combine premium products, expert installation and unmatched attention to detail to
               deliver protection, performance and style you can rely on.
             </p>
           </div>
         </Reveal>
-        */}
 
         <Reveal>
           {/* Light mode: dark artwork on white bg */}
           <img
             src={images.homeWhyChoose.car}
             alt="Why choose Spotless Tinting — lifetime warranty, premium films, precision installation, PPF and 15+ years of experience"
-            className="mx-auto w-full max-w-6xl object-contain dark:hidden"
+            className="mx-auto mt-10 w-full max-w-6xl object-contain dark:hidden md:mt-4"
             loading="lazy"
           />
           {/* Dark mode: white artwork on dark bg */}
           <img
             src={images.homeWhyChoose.carDark}
             alt="Why choose Spotless Tinting — lifetime warranty, premium films, precision installation, PPF and 15+ years of experience"
-            className="mx-auto hidden w-full max-w-6xl object-contain dark:block"
+            className="mx-auto mt-10 hidden w-full max-w-6xl object-contain dark:block md:mt-4"
             loading="lazy"
           />
         </Reveal>

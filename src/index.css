@@ -333,9 +333,6 @@ html.dark main .ceramic-compare-table .text-ink-900,
 html.dark main .ceramic-compare-table .text-ink-700 {
   color: #0d0f11 !important;
 }
-html.dark main .ceramic-compare-table .text-white {
-  color: #fff !important;
-}
 html.dark main .ceramic-compare-table .bg-accent-500 {
   background-color: theme('colors.accent.500') !important;
 }
