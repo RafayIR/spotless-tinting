@@ -19,6 +19,7 @@ import GalleryPage from '@/pages/GalleryPage';
 import ContactPage from '@/pages/Contactpage';
 import QuotePage from '@/pages/QuotePage';
 import BookPage from '@/pages/BookPage';
+import FilmSimulatorPage from '@/pages/FilmSimulatorPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 // import PrivacyPolicy from '@/pages/PrivacyPolicy';
 // import TermsPage from '@/pages/TermsPage';
@@ -44,6 +45,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/quote" element={<QuotePage />} />
               <Route path="/book" element={<BookPage />} />
+              <Route path="/film-simulator" element={<FilmSimulatorPage />} />
               {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/cancellation-policy" element={<CancellationPolicy />} /> */}

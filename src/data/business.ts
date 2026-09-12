@@ -77,6 +77,7 @@ export const navItems: NavItem[] = [
   //   path: '/services/residential-window-tinting#smart-tint',
   // },
   { label: 'Our Work', path: '/gallery' },
+  { label: 'Film Visualizer', path: '/film-simulator' },
   { label: 'Contact', path: '/contact' },
 ];
 
