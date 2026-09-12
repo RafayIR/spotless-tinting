@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
+import { images } from '@/data/images';
 
 const SUNTEK_COMBINED_VIEWER =
   'https://suntekfilms.com/na/en/paint-protection-film/automotive-film-simulator/dealer-auto-tint-ppf-viewer/';
@@ -14,11 +15,23 @@ export default function FilmSimulatorPage() {
         title="Film Visualizer | Window Tint & PPF Simulator — Spotless Tinting"
         description="Preview automotive window tint and paint protection film coverage with the SunTek interactive film simulator. See how film looks before you buy."
         path="/film-simulator"
+        image={images.filmVisualizerBanner}
       />
 
-      <section className="bg-accent-50 py-12 md:py-16">
-        <div className="container">
+      <section className="relative min-h-[min(52vh,480px)] overflow-hidden bg-ink-950">
+        <div className="absolute inset-0" aria-hidden>
+          <img
+            src={images.filmVisualizerBanner}
+            alt=""
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-ink-950/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink-950/80 via-ink-950/45 to-transparent" />
+        </div>
+
+        <div className="container relative z-10 flex min-h-[min(52vh,480px)] flex-col justify-center py-14 md:py-16">
           <Breadcrumbs
+            light
             crumbs={[
               { label: 'Home', path: '/' },
               { label: 'Film Visualizer' },
@@ -28,7 +41,7 @@ export default function FilmSimulatorPage() {
             <h1 className="mt-6 text-3xl font-bold uppercase tracking-tight text-ink-950 md:text-4xl lg:text-5xl">
               Window Tint &amp; PPF <span className="text-accent-500">Visualizer</span>
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-600 sm:text-base">
+            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
               Explore coverage areas and film options with SunTek&apos;s interactive tool. Preview
               automotive window tint and paint protection film on a vehicle so you can choose with
               more confidence. Best experienced on mobile or tablet.

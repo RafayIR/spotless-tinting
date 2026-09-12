@@ -12,6 +12,7 @@ export const images = {
   modernHome: '/banner/residential-tinting-banner.png',
   commercialTintingBanner: '/banner/commercial-tinting-banner.png',
   aboutUsBanner: '/banner/about-us-banner.jpeg',
+  filmVisualizerBanner: '/banner/film-visualizer-banner.jpeg',
   aboutBeneathHeader: {
     trophy: '/about/beneath-header/trophy.png',
     location: '/about/beneath-header/location.png',
@@ -396,15 +397,15 @@ export const images = {
   },
   // Our Work / gallery page — real Spotless Tinting portfolio photography from /public/portfolio-images.
   gallery: {
-    heroCarDark: '/portfolio-images/gwm-black-legal-tint/gwm-1.jpg',
-    heroCarSilver: '/portfolio-images/lexus-es-hybrid-silver/lexus-6.jpeg',
-    heroCarWhite: '/portfolio-images/bmw-x-full-windows-legal-tint/bmw-2.jpeg',
-    featuredCeramic: '/portfolio-images/ceramic-coating/ceramic-2.jpg',
-    featuredTintDetail: '/portfolio-images/lexus-es-hybrid-silver/lexus-7.jpeg',
-    featuredResidential: '/portfolio-images/residential/howrah-residential/howrah-1.jpeg',
-    serviceAutomotive: '/portfolio-images/mitsubishi-lancer-ccce-generation/mitsubishi-1.jpeg',
-    serviceResidential: '/portfolio-images/residential/howrah-residential/howrah-1.jpeg',
-    serviceCommercial: '/portfolio-images/commercial-tint/commercial-1.jpg',
+    heroCarDark: '/portfolio/IMG_7053.JPG',
+    heroCarSilver: '/portfolio/IMG_8644.png',
+    heroCarWhite: '/portfolio/IMG_7737.png',
+    featuredCeramic: '/portfolio/IMG_7053.JPG',
+    featuredTintDetail: '/portfolio/IMG_8633.png',
+    featuredResidential: '/portfolio/IMG_7128.JPEG',
+    serviceAutomotive: '/portfolio/IMG_8629.png',
+    serviceResidential: '/portfolio/IMG_7128.JPEG',
+    serviceCommercial: '/portfolio/AHSK9842.JPG',
     // No PPF, vehicle wrap or Smart Tint photography supplied yet — placeholders.
     servicePpf: '/home/vehicle_service/ppf/ppf_1.jpeg',
     serviceWraps: '/home/vehicle_service/vehicle-wrapping/vehicle-wrapping_1.jpeg',
