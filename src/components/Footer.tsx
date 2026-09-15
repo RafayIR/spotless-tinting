@@ -40,6 +40,7 @@ export default function Footer() {
               <li><Link to="/services" className="hover:text-accent-600 dark:hover:text-accent-400">Services</Link></li>
               <li><Link to="/gallery" className="hover:text-accent-600 dark:hover:text-accent-400">Our Work</Link></li>
               <li><Link to="/film-simulator" className="hover:text-accent-600 dark:hover:text-accent-400">Film Visualizer</Link></li>
+              <li><Link to="/3d-tint-viewer" className="hover:text-accent-600 dark:hover:text-accent-400">3D Tint Viewer</Link></li>
               <li><Link to="/reviews" className="hover:text-accent-600 dark:hover:text-accent-400">Reviews</Link></li>
               <li><Link to="/faq" className="hover:text-accent-600 dark:hover:text-accent-400">FAQs</Link></li>
               <li><Link to="/contact" className="hover:text-accent-600 dark:hover:text-accent-400">Contact</Link></li>

@@ -278,7 +278,7 @@ export default function HomePage() {
       <HomeHeroSlider />
 
       <div className="relative z-10">
-        {/* USP STRIP — light cream band; keep dark text even in site dark mode */}
+        {/* USP STRIP */}
         <section className="relative z-10" aria-label="Spotless Tinting highlights">
           <div className="-mt-4 bg-[#fff4ec] py-8 text-ink-800 sm:py-9 dark:text-ink-800">
             <div className="container">

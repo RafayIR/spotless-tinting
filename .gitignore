@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+
+# Build
+dist
+dist-ssr
+
+# Env / secrets — never commit
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs / OS / IDE
+logs
+*.log
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Vercel
+.vercel
