@@ -359,10 +359,19 @@ export default function HomePage() {
                     commercial glass or protecting vehicle paintwork, our goal is simple: deliver a
                     professional result customers can feel confident in.
                   </p>
-                  <Link to="/about" className="btn-primary mt-8">
-                    About Spotless Tinting
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Link to="/about" className="btn-primary">
+                      About Spotless Tinting
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <a
+                      href={business.phoneHref}
+                      className="btn inline-flex border border-ink-900 bg-white text-ink-950 hover:border-accent-500 hover:bg-accent-50"
+                    >
+                      <Phone className="h-4 w-4 text-accent-500" />
+                      {business.phone}
+                    </a>
+                  </div>
                 </div>
               </Reveal>
             </div>

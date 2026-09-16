@@ -654,18 +654,18 @@ export function FindYourPerfectShadeSection({
           className="h-full w-full object-cover object-center"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-ink-950/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/75 to-ink-950/55" />
+        <div className="absolute inset-0 bg-accent-100/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-accent-100/85 via-accent-100/55 to-accent-50/30" />
       </div>
 
       <div className="container relative z-10">
         <Reveal>
-          <h2 className="text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
+          <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
             Find Your Perfect Shade
           </h2>
-          <p className="mt-2 text-xs text-ink-300 sm:text-sm">
+          <p className="mt-2 text-xs text-ink-600 sm:text-sm">
             Different shades.{' '}
-            <span className="text-accent-500">Same premium quality.</span>
+            <span className="text-accent-600">Same premium quality.</span>
           </p>
         </Reveal>
 
@@ -675,28 +675,28 @@ export function FindYourPerfectShadeSection({
               <PerfectShadeCard key={shade.image} shade={shade} />
             ))}
 
-            <aside className="relative col-span-2 flex min-h-[300px] flex-col overflow-hidden rounded-sm border border-white/10 bg-[#1a1a1a]/80 p-5 sm:col-span-3 sm:min-h-[320px] sm:p-6 lg:col-span-1 lg:min-h-0">
+            <aside className="relative col-span-2 flex min-h-[300px] flex-col overflow-hidden rounded-sm border border-ink-900/10 bg-white/80 p-5 shadow-sm backdrop-blur-sm sm:col-span-3 sm:min-h-[320px] sm:p-6 lg:col-span-1 lg:min-h-0">
               <img
                 src={images.automotiveTinting.tasmaniaMap}
                 alt=""
                 aria-hidden
-                className="pointer-events-none absolute left-1/2 top-[58%] w-[190%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain opacity-55"
+                className="pointer-events-none absolute left-1/2 top-[58%] w-[190%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain opacity-40"
                 style={{ objectPosition: '72% 78%' }}
                 loading="lazy"
               />
               <div className="relative z-10 flex flex-1 flex-col">
-                <h3 className="text-sm font-bold uppercase tracking-wide text-accent-500">
+                <h3 className="text-sm font-bold uppercase tracking-wide text-accent-600">
                   Tasmanian Tint Laws
                 </h3>
-                <p className="mt-3 text-xs leading-relaxed text-ink-200 sm:text-sm">
+                <p className="mt-3 text-xs leading-relaxed text-ink-700 sm:text-sm">
                   We ensure all installations comply with Tasmania&apos;s window tint regulations.
                 </p>
-                <p className="mt-2 text-xs leading-relaxed text-ink-200 sm:text-sm">
+                <p className="mt-2 text-xs leading-relaxed text-ink-700 sm:text-sm">
                   Our team will guide you to the right shade for your needs.
                 </p>
                 <a
                   href={lawsHref}
-                  className="mt-6 inline-flex w-fit items-center justify-center gap-2 border border-white/70 px-5 py-2.5 text-[10px] font-bold uppercase leading-none tracking-wide text-white transition-colors hover:border-accent-500 hover:text-accent-500 sm:mt-auto sm:text-xs"
+                  className="mt-6 inline-flex w-fit items-center justify-center gap-2 border border-ink-900 px-5 py-2.5 text-[10px] font-bold uppercase leading-none tracking-wide text-ink-950 transition-colors hover:border-accent-500 hover:bg-accent-500 hover:text-white sm:mt-auto sm:text-xs"
                 >
                   Learn More
                   <ArrowRight className="h-3.5 w-3.5 shrink-0" />
@@ -705,7 +705,7 @@ export function FindYourPerfectShadeSection({
             </aside>
           </div>
 
-          <p className="mt-4 max-w-3xl text-[9px] leading-relaxed text-ink-400 sm:text-[10px]">
+          <p className="mt-4 max-w-3xl text-[9px] leading-relaxed text-ink-500 sm:text-[10px]">
             *VLT = Visible Light Transmission. Legal requirements vary by state and application.
           </p>
         </Reveal>
@@ -724,8 +724,8 @@ export function ChoosingRightFilmSection() {
           className="h-full w-full object-cover object-center"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-ink-950/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/90 via-ink-950/75 to-ink-950/55" />
+        <div className="absolute inset-0 bg-accent-100/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-accent-100/85 via-accent-100/55 to-accent-50/30" />
       </div>
 
       <div className="container relative z-10">
@@ -733,7 +733,7 @@ export function ChoosingRightFilmSection() {
           <Reveal>
             <div className="lg:pr-10 xl:pr-14">
               <div className="h-0.5 w-10 bg-accent-500" />
-              <h2 className="mt-4 text-2xl font-bold uppercase tracking-tight text-white md:text-3xl">
+              <h2 className="mt-4 text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
                 Choosing the Right Film
               </h2>
               <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-300 sm:text-base">
@@ -746,8 +746,8 @@ export function ChoosingRightFilmSection() {
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
                       <Check className="h-3 w-3" strokeWidth={3} />
                     </span>
-                    <span className="text-sm text-ink-200">
-                      <span className="font-bold text-white">{item.title}</span>
+                    <span className="text-sm text-ink-700">
+                      <span className="font-bold text-ink-950">{item.title}</span>
                       {' – '}
                       {item.desc}
                     </span>
@@ -756,7 +756,7 @@ export function ChoosingRightFilmSection() {
               </ul>
               <Link
                 to="/contact"
-                className="mt-10 inline-flex items-center gap-2 border border-accent-500 px-6 py-3.5 text-xs font-bold uppercase tracking-wide text-accent-500 transition-colors hover:bg-accent-500 hover:text-white sm:text-sm"
+                className="mt-10 inline-flex items-center gap-2 border border-accent-500 bg-white/70 px-6 py-3.5 text-xs font-bold uppercase tracking-wide text-accent-600 shadow-sm backdrop-blur-sm transition-colors hover:bg-accent-500 hover:text-white sm:text-sm"
               >
                 Talk to Our Team
                 <ArrowRight className="h-4 w-4" />
@@ -766,11 +766,11 @@ export function ChoosingRightFilmSection() {
 
           <Reveal delay={80}>
             <div className="border-t border-accent-500 pt-10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0 xl:pl-10">
-              <h3 className="text-lg font-bold uppercase tracking-tight text-white sm:text-xl">
+              <h3 className="text-lg font-bold uppercase tracking-tight text-ink-950 sm:text-xl">
                 Find Your Look
               </h3>
-              <p className="mt-1.5 text-xs text-ink-300 sm:text-sm">
-                Different shades. <span className="text-accent-500">Same</span> premium quality.
+              <p className="mt-1.5 text-xs text-ink-600 sm:text-sm">
+                Different shades. <span className="text-accent-600">Same</span> premium quality.
               </p>
 
               <div className="mt-5 flex gap-1.5 sm:mt-6 sm:gap-2">
@@ -779,7 +779,7 @@ export function ChoosingRightFilmSection() {
                 ))}
               </div>
 
-              <p className="mt-4 text-[9px] leading-relaxed text-ink-400 sm:text-[10px]">
+              <p className="mt-4 text-[9px] leading-relaxed text-ink-500 sm:text-[10px]">
                 *VLT — Visible Light Transmission. Legal requirements vary by state and application.
               </p>
             </div>

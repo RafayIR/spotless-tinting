@@ -13,20 +13,35 @@ export default function Footer() {
           <div>
             <Logo className="h-10 w-auto" />
             <p className="mt-4 text-sm leading-relaxed text-ink-500 dark:text-ink-400">
-              Premium automotive, residential and commercial window tinting, PPF and vehicle wrapping in Moonah, Hobart.
+              Premium automotive, residential and commercial window tinting, PPF and vehicle wrapping
+              in Moonah &amp; Bellerive, Hobart.
             </p>
             <div className="mt-6 space-y-3 text-sm">
               <div className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" />
-                <span>{business.address}</span>
+                <div className="space-y-1">
+                  {business.locations.map((loc) => (
+                    <p key={loc}>{loc}</p>
+                  ))}
+                </div>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-accent-500" />
-                <a href={business.phoneHref} className="hover:text-accent-600 dark:hover:text-accent-400">{business.phone}</a>
+                <a
+                  href={business.phoneHref}
+                  className="hover:text-accent-600 dark:hover:text-accent-400"
+                >
+                  {business.phoneDisplay}
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-accent-500" />
-                <a href={business.emailHref} className="hover:text-accent-600 dark:hover:text-accent-400">{business.email}</a>
+                <a
+                  href={business.emailHref}
+                  className="hover:text-accent-600 dark:hover:text-accent-400"
+                >
+                  {business.email}
+                </a>
               </div>
             </div>
           </div>
@@ -40,7 +55,7 @@ export default function Footer() {
               <li><Link to="/services" className="hover:text-accent-600 dark:hover:text-accent-400">Services</Link></li>
               <li><Link to="/gallery" className="hover:text-accent-600 dark:hover:text-accent-400">Our Work</Link></li>
               <li><Link to="/film-simulator" className="hover:text-accent-600 dark:hover:text-accent-400">Film Visualizer</Link></li>
-              <li><Link to="/3d-tint-viewer" className="hover:text-accent-600 dark:hover:text-accent-400">3D Tint Viewer</Link></li>
+              {/* <li><Link to="/3d-tint-viewer" className="hover:text-accent-600 dark:hover:text-accent-400">3D Tint Viewer</Link></li> */}
               <li><Link to="/reviews" className="hover:text-accent-600 dark:hover:text-accent-400">Reviews</Link></li>
               <li><Link to="/faq" className="hover:text-accent-600 dark:hover:text-accent-400">FAQs</Link></li>
               <li><Link to="/contact" className="hover:text-accent-600 dark:hover:text-accent-400">Contact</Link></li>
@@ -76,7 +91,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm">
               <li><Link to="/privacy-policy" className="hover:text-accent-600 dark:hover:text-accent-400">Privacy Policy</Link></li>
               <li><Link to="/terms" className="hover:text-accent-600 dark:hover:text-accent-400">Terms &amp; Conditions</Link></li>
-              <li><Link to="/cancellation-policy" className="hover:text-accent-600 dark:hover:text-accent-400">Cancellation Policy</Link></li>
+              <li><Link to="/cancellation-policy" className="hover:text-accent-600 dark:hover:text-accent-400">Cancellation &amp; Rescheduling</Link></li>
             </ul>
             <div className="mt-6 flex gap-3">
               <a href={business.social.facebook} aria-label="Facebook" className="rounded-full bg-white p-2.5 text-ink-500 ring-1 ring-ink-200 hover:bg-accent-500 hover:text-white dark:bg-ink-900 dark:text-ink-300 dark:ring-ink-700">
@@ -90,7 +105,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-ink-200 pt-6 text-xs text-ink-400 dark:border-ink-800">
-          <p>&copy; {new Date().getFullYear()} {business.name}. All rights reserved. ABN [BUSINESS ABN].</p>
+          <p>
+            &copy; {new Date().getFullYear()} {business.name}. All rights reserved. ABN{' '}
+            {business.abn}.
+          </p>
         </div>
       </div>
     </footer>

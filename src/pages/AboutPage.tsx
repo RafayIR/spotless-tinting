@@ -105,10 +105,19 @@ export default function AboutPage() {
               Professional tinting and vehicle protection solutions, delivered with quality
               workmanship and attention to detail across Hobart.
             </p>
-            <Link to="/quote" className="btn-primary mt-8 inline-flex uppercase tracking-wide">
-              Get a Free Quote
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link to="/quote" className="btn-primary inline-flex uppercase tracking-wide">
+                Get a Free Quote
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <a
+                href={business.phoneHref}
+                className="btn inline-flex border border-ink-900 bg-white uppercase tracking-wide text-ink-950 hover:border-accent-500 hover:bg-accent-50"
+              >
+                <Phone className="h-4 w-4 text-accent-500" />
+                {business.phone}
+              </a>
+            </div>
           </div>
 
           <p className="pointer-events-none absolute bottom-8 right-6 text-right font-script text-2xl leading-tight text-white sm:bottom-10 sm:right-10 sm:text-3xl md:text-[2.15rem]">

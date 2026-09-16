@@ -22,13 +22,13 @@ import ContactPage from '@/pages/Contactpage';
 import QuotePage from '@/pages/QuotePage';
 import BookPage from '@/pages/BookPage';
 import FilmSimulatorPage from '@/pages/FilmSimulatorPage';
-import CarViewerPage from '@/pages/CarViewerPage';
+// import CarViewerPage from '@/pages/CarViewerPage';
 import AdminLoginPage from '@/pages/admin/AdminLoginPage';
 import AdminDashboardPage from '@/pages/admin/AdminDashboardPage';
 import NotFoundPage from '@/pages/NotFoundPage';
-// import PrivacyPolicy from '@/pages/PrivacyPolicy';
-// import TermsPage from '@/pages/TermsPage';
-// import CancellationPolicy from '@/pages/CancellationPolicy';
+import PrivacyPolicy from '@/pages/PrivacyPolicy';
+import TermsPage from '@/pages/TermsPage';
+import CancellationPolicy from '@/pages/CancellationPolicy';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -63,10 +63,10 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/quote" element={<QuotePage />} />
                 <Route path="/book" element={<BookPage />} />
                 <Route path="/film-simulator" element={<FilmSimulatorPage />} />
-                <Route path="/3d-tint-viewer" element={<CarViewerPage />} />
-                {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                {/* <Route path="/3d-tint-viewer" element={<CarViewerPage />} /> */}
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<TermsPage />} />
-                <Route path="/cancellation-policy" element={<CancellationPolicy />} /> */}
+                <Route path="/cancellation-policy" element={<CancellationPolicy />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Routes>

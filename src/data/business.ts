@@ -2,21 +2,35 @@
 
 export const business = {
   name: 'Spotless Tinting',
+  legalName: 'Spotless Tinting Pty Ltd',
+  abn: '59 645 122 916',
   tagline: 'Premium Tinting & Vehicle Protection',
-  location: 'Moonah, Hobart, Tasmania',
+  location: 'Moonah & Bellerive, Hobart, Tasmania',
   address: 'Moonah, Hobart, TAS',
+  locations: ['Moonah, Hobart, TAS', 'Bellerive, Hobart, TAS'],
+  workshopLocations: [
+    {
+      name: 'Moonah',
+      lines: ['Unit 9, 14A Main Road', 'Moonah TAS 7009'],
+    },
+    {
+      name: 'Bellerive',
+      lines: ['107A Cambridge Road', 'Bellerive TAS 7018'],
+    },
+  ],
   phone: '+61 451 459 690',
+  phoneDisplay: '0451 459 690',
   phoneHref: 'tel:+61451459690',
-  email: 'info@spotlesstinting.com.au',
-  emailHref: 'mailto:info@spotlesstinting.com.au',
+  email: 'spotlesstinting@gmail.com',
+  emailHref: 'mailto:spotlesstinting@gmail.com',
   website: 'spotlesstinting.com.au',
   hours: [
-    { day: 'Monday', hours: 'By appointment' },
-    { day: 'Tuesday', hours: 'By appointment' },
-    { day: 'Wednesday', hours: 'By appointment' },
-    { day: 'Thursday', hours: 'By appointment' },
-    { day: 'Friday', hours: 'By appointment' },
-    { day: 'Saturday', hours: 'By appointment' },
+    { day: 'Monday', hours: '8 AM – 5 PM' },
+    { day: 'Tuesday', hours: '8 AM – 5 PM' },
+    { day: 'Wednesday', hours: '8 AM – 5 PM' },
+    { day: 'Thursday', hours: '8 AM – 5 PM' },
+    { day: 'Friday', hours: '8 AM – 5 PM' },
+    { day: 'Saturday', hours: '8 AM – 5 PM' },
     { day: 'Sunday', hours: 'Closed' },
   ],
   social: {
@@ -24,7 +38,7 @@ export const business = {
     instagram: '[INSTAGRAM URL]',
     google: 'https://www.google.com/search?q=Spotless+Tinting+Hobart',
   },
-  serviceAreas: ['Moonah', 'Glenorchy', 'Hobart CBD', 'New Town', 'Greater Hobart'],
+  serviceAreas: ['Moonah', 'Bellerive', 'Glenorchy', 'Hobart CBD', 'New Town', 'Greater Hobart'],
 };
 
 export interface NavDropdownItem {
@@ -78,13 +92,14 @@ export const navItems: NavItem[] = [
   // },
   { label: 'Our Work', path: '/gallery' },
   {
-    label: 'Visualizers',
+    label: 'Film Visualizer',
     path: '/film-simulator',
-    matchPaths: ['/film-simulator', '/3d-tint-viewer'],
-    dropdown: [
-      { label: 'Film Visualizer', path: '/film-simulator' },
-      { label: '3D Tint Viewer', path: '/3d-tint-viewer' },
-    ],
+    matchPaths: ['/film-simulator'],
+    // 3D Tint Viewer temporarily hidden
+    // dropdown: [
+    //   { label: 'Film Visualizer', path: '/film-simulator' },
+    //   { label: '3D Tint Viewer', path: '/3d-tint-viewer' },
+    // ],
   },
   { label: 'Contact', path: '/contact' },
 ];

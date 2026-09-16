@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
 import { images } from '@/data/images';
+import { business } from '@/data/business';
 
 const SUNTEK_COMBINED_VIEWER =
   'https://suntekfilms.com/na/en/paint-protection-film/automotive-film-simulator/dealer-auto-tint-ppf-viewer/';
@@ -86,10 +87,19 @@ export default function FilmSimulatorPage() {
                   your vehicle.
                 </p>
               </div>
-              <Link to="/quote" className="btn-primary shrink-0">
-                Get a Free Quote
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+                <Link to="/quote" className="btn-primary">
+                  Get a Free Quote
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href={business.phoneHref}
+                  className="btn inline-flex border border-ink-900 bg-white text-ink-950 hover:border-accent-500 hover:bg-accent-50"
+                >
+                  <Phone className="h-4 w-4 text-accent-500" />
+                  {business.phoneDisplay}
+                </a>
+              </div>
             </div>
           </Reveal>
 
