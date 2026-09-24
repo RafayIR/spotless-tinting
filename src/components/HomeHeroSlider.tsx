@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { images } from '@/data/images';
+import { business } from '@/data/business';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
@@ -110,18 +111,21 @@ function SlideContent({ slide }: { slide: HeroSlide }) {
           {paragraph}
         </p>
       ))}
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Link to={slide.primaryCta.to} className="btn-primary">
-          {slide.primaryCta.label}
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <Link
           to={slide.secondaryCta.to}
-          className="btn border border-ink-900 bg-white text-ink-950 hover:border-accent-500 hover:text-accent-600"
+          className="btn-primary"
         >
           {slide.secondaryCta.label}
           <ArrowRight className="h-4 w-4" />
         </Link>
+        <a
+          href={business.phoneHref}
+          className="btn inline-flex border border-ink-900 bg-white text-ink-950 hover:border-accent-500 hover:bg-accent-50"
+        >
+          <Phone className="h-4 w-4 text-accent-500" />
+          {business.phoneDisplay}
+        </a>
       </div>
     </div>
   );

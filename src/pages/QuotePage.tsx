@@ -3,6 +3,10 @@ import { Check, Send, Car, Home, Building } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
+import GoogleRecaptcha from '@/components/forms/GoogleRecaptcha';
+import { SafeInput, SafeTextarea } from '@/components/forms/SafeFields';
+import { FORM_CHAR_HINT } from '@/lib/formValidation';
+import { formDataToPayload, submitEnquiry } from '@/lib/submitEnquiry';
 import { services } from '@/data/services';
 
 type QuoteType = 'automotive' | 'residential' | 'commercial';
@@ -10,10 +14,34 @@ type QuoteType = 'automotive' | 'residential' | 'commercial';
 export default function QuotePage() {
   const [quoteType, setQuoteType] = useState<QuoteType>('automotive');
   const [submitted, setSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setFormError(null);
+
+    if (!captchaToken) {
+      setFormError('Please complete the captcha.');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await submitEnquiry(
+        formDataToPayload(e.currentTarget, {
+          formType: 'quote',
+          captchaToken,
+        }),
+      );
+      setSubmitted(true);
+      setCaptchaToken(null);
+    } catch (err) {
+      setFormError(err instanceof Error ? err.message : 'Failed to send quote request.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const quoteTypes = [
@@ -35,7 +63,7 @@ export default function QuotePage() {
           <Breadcrumbs crumbs={[{ label: 'Home', path: '/' }, { label: 'Get a Free Quote' }]} />
           <h1 className="mt-6 text-4xl font-bold text-ink-950 md:text-5xl">Get a Free Quote</h1>
           <p className="mt-4 max-w-2xl text-ink-600">
-            Tell us about your vehicle or property and we'll get back to you with a tailored quote. It only takes a minute.
+            Tell us about your vehicle or property and we&apos;ll get back to you with a tailored quote. It only takes a minute.
           </p>
         </div>
       </section>
@@ -50,7 +78,7 @@ export default function QuotePage() {
                 </div>
                 <h2 className="mt-6 text-2xl font-bold text-ink-950">Quote Request Received!</h2>
                 <p className="mt-3 max-w-md text-ink-600">
-                  Thanks for your enquiry. We'll review your details and get back to you with a quote as soon as possible.
+                  Thanks for your enquiry. We&apos;ll review your details and get back to you with a quote as soon as possible.
                 </p>
                 <button onClick={() => setSubmitted(false)} className="btn-outline mt-8">Submit Another Request</button>
               </div>
@@ -58,11 +86,11 @@ export default function QuotePage() {
           ) : (
             <Reveal>
               <div className="card-surface p-6 md:p-8">
-                {/* Quote type selector */}
                 <div className="mb-6 grid grid-cols-3 gap-3">
                   {quoteTypes.map((qt) => (
                     <button
                       key={qt.id}
+                      type="button"
                       onClick={() => setQuoteType(qt.id)}
                       className={`flex flex-col items-center gap-2 rounded-xl border p-4 text-sm font-medium transition-colors ${quoteType === qt.id
                           ? 'border-accent-500 bg-accent-50 text-accent-700'
@@ -75,40 +103,41 @@ export default function QuotePage() {
                   ))}
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
+                <form onSubmit={handleSubmit} className="min-w-0 space-y-4">
+                  <p className="text-xs text-ink-500">{FORM_CHAR_HINT}</p>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="min-w-0">
                       <label htmlFor="name" className="label-field">Name *</label>
-                      <input id="name" name="name" required className="input-field" placeholder="Your name" />
+                      <SafeInput id="name" name="name" mode="text" required className="input-field" placeholder="Your name" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <label htmlFor="phone" className="label-field">Phone *</label>
-                      <input id="phone" name="phone" required className="input-field" placeholder="Your phone" />
+                      <SafeInput id="phone" name="phone" mode="numbers" required className="input-field" placeholder="Your phone" />
                     </div>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label htmlFor="email" className="label-field">Email *</label>
-                    <input id="email" name="email" type="email" required className="input-field" placeholder="your@email.com" />
+                    <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
                   </div>
 
                   {quoteType === 'automotive' ? (
                     <>
-                      <div className="grid gap-4 sm:grid-cols-3">
-                        <div>
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                        <div className="min-w-0">
                           <label htmlFor="make" className="label-field">Vehicle Make *</label>
-                          <input id="make" name="make" required className="input-field" placeholder="Toyota" />
+                          <SafeInput id="make" name="make" mode="text" required className="input-field" placeholder="Toyota" />
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <label htmlFor="model" className="label-field">Vehicle Model *</label>
-                          <input id="model" name="model" required className="input-field" placeholder="Hilux" />
+                          <SafeInput id="model" name="model" mode="text" required className="input-field" placeholder="Hilux" />
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <label htmlFor="year" className="label-field">Vehicle Year</label>
-                          <input id="year" name="year" className="input-field" placeholder="2022" />
+                          <SafeInput id="year" name="year" mode="numbers" className="input-field" placeholder="2022" />
                         </div>
                       </div>
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        <div>
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div className="min-w-0">
                           <label htmlFor="service-req" className="label-field">Service Required *</label>
                           <select id="service-req" name="service-req" required className="input-field">
                             <option value="">Select a service</option>
@@ -117,7 +146,7 @@ export default function QuotePage() {
                             ))}
                           </select>
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <label htmlFor="tint-pref" className="label-field">Tint Preference</label>
                           <select id="tint-pref" name="tint-pref" className="input-field">
                             <option value="">No preference</option>
@@ -128,19 +157,19 @@ export default function QuotePage() {
                           </select>
                         </div>
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <label htmlFor="windows" className="label-field">Number / Type of Windows</label>
-                        <input id="windows" name="windows" className="input-field" placeholder="e.g. 4 doors + rear window" />
+                        <SafeInput id="windows" name="windows" mode="text" className="input-field" placeholder="e.g. 4 doors rear window" />
                       </div>
                     </>
                   ) : (
                     <>
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        <div>
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div className="min-w-0">
                           <label htmlFor="prop-type" className="label-field">Property Type *</label>
-                          <input id="prop-type" name="prop-type" required className="input-field" placeholder={quoteType === 'residential' ? 'e.g. House, Unit' : 'e.g. Office, Shopfront'} />
+                          <SafeInput id="prop-type" name="prop-type" mode="text" required className="input-field" placeholder={quoteType === 'residential' ? 'e.g. House Unit' : 'e.g. Office Shopfront'} />
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <label htmlFor="service-req" className="label-field">Service Required *</label>
                           <select id="service-req" name="service-req" required className="input-field">
                             <option value="">Select a service</option>
@@ -150,34 +179,37 @@ export default function QuotePage() {
                           </select>
                         </div>
                       </div>
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        <div>
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div className="min-w-0">
                           <label htmlFor="window-count" className="label-field">Approx. Window Count / Size</label>
-                          <input id="window-count" name="window-count" className="input-field" placeholder="e.g. 8 windows, various sizes" />
+                          <SafeInput id="window-count" name="window-count" mode="text" className="input-field" placeholder="e.g. 8 windows various sizes" />
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           <label htmlFor="suburb" className="label-field">Address / Suburb</label>
-                          <input id="suburb" name="suburb" className="input-field" placeholder="e.g. Moonah, TAS" />
+                          <SafeInput id="suburb" name="suburb" mode="text" className="input-field" placeholder="e.g. Moonah TAS" />
                         </div>
                       </div>
                     </>
                   )}
 
-                  <div>
+                  <div className="min-w-0">
                     <label htmlFor="notes" className="label-field">Additional Notes</label>
-                    <textarea id="notes" name="notes" rows={3} className="input-field" placeholder="Anything else we should know?" />
+                    <SafeTextarea id="notes" name="notes" mode="text" rows={3} className="input-field" placeholder="Anything else we should know" />
                   </div>
-                  <div>
-                    <label htmlFor="image" className="label-field">Optional Image Upload</label>
-                    <input id="image" name="image" type="file" accept="image/*" className="input-field file:mr-3 file:rounded-lg file:border-0 file:bg-ink-100 file:px-3 file:py-2 file:text-sm" />
-                    <p className="mt-1 text-xs text-ink-400">Upload a photo of your vehicle or windows (optional).</p>
-                  </div>
+            
 
-                  <button type="submit" className="btn-primary w-full">
-                    <Send className="h-4 w-4" /> Submit Quote Request
+                  <GoogleRecaptcha onChange={setCaptchaToken} className="max-w-full overflow-x-auto" />
+                  {formError && (
+                    <p className="text-sm text-red-600" role="alert">
+                      {formError}
+                    </p>
+                  )}
+
+                  <button type="submit" disabled={submitting} className="btn-primary w-full disabled:opacity-60">
+                    <Send className="h-4 w-4" /> {submitting ? 'Verifying…' : 'Submit Quote Request'}
                   </button>
                   <p className="text-center text-xs text-ink-400">
-                    We'll review your request and get back to you with a personalised quote. This is not an instant price.
+                    We&apos;ll review your request and get back to you with a personalised quote. This is not an instant price.
                   </p>
                 </form>
               </div>

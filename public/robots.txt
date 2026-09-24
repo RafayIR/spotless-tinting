@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Do not index admin
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://spotlesstinting.com.au/sitemap.xml

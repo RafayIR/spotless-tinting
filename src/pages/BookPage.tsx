@@ -3,14 +3,42 @@ import { Check, Calendar, Clock } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
+import GoogleRecaptcha from '@/components/forms/GoogleRecaptcha';
+import { SafeInput, SafeTextarea } from '@/components/forms/SafeFields';
+import { FORM_CHAR_HINT } from '@/lib/formValidation';
+import { formDataToPayload, submitEnquiry } from '@/lib/submitEnquiry';
 import { services } from '@/data/services';
 
 export default function BookPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setFormError(null);
+
+    if (!captchaToken) {
+      setFormError('Please complete the captcha.');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await submitEnquiry(
+        formDataToPayload(e.currentTarget, {
+          formType: 'book',
+          captchaToken,
+        }),
+      );
+      setSubmitted(true);
+      setCaptchaToken(null);
+    } catch (err) {
+      setFormError(err instanceof Error ? err.message : 'Failed to send booking request.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const timeSlots = ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
@@ -28,7 +56,7 @@ export default function BookPage() {
           <Breadcrumbs crumbs={[{ label: 'Home', path: '/' }, { label: 'Book Now' }]} />
           <h1 className="mt-6 text-4xl font-bold text-ink-950 md:text-5xl">Book Now</h1>
           <p className="mt-4 max-w-2xl text-ink-600">
-            Request a booking for your tinting, PPF or vehicle wrapping service. We'll confirm your appointment with you directly.
+            Request a booking for your tinting, PPF or vehicle wrapping service. We&apos;ll confirm your appointment with you directly.
           </p>
         </div>
       </section>
@@ -43,7 +71,7 @@ export default function BookPage() {
                 </div>
                 <h2 className="mt-6 text-2xl font-bold text-ink-950">Booking Request Sent!</h2>
                 <p className="mt-3 max-w-md text-ink-600">
-                  Thanks for your booking request. This is not yet a confirmed appointment — we'll contact you shortly to confirm your date and time.
+                  Thanks for your booking request. This is not yet a confirmed appointment — we&apos;ll contact you shortly to confirm your date and time.
                 </p>
                 <button onClick={() => setSubmitted(false)} className="btn-outline mt-8">Make Another Booking</button>
               </div>
@@ -57,6 +85,7 @@ export default function BookPage() {
                   </p>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  <p className="text-xs text-ink-500">{FORM_CHAR_HINT}</p>
                   <div>
                     <label htmlFor="service" className="label-field">Service *</label>
                     <select id="service" name="service" required className="input-field">
@@ -90,27 +119,33 @@ export default function BookPage() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className="label-field">Name *</label>
-                      <input id="name" name="name" required className="input-field" placeholder="Your name" />
+                      <SafeInput id="name" name="name" mode="text" required className="input-field" placeholder="Your name" />
                     </div>
                     <div>
                       <label htmlFor="phone" className="label-field">Phone *</label>
-                      <input id="phone" name="phone" required className="input-field" placeholder="Your phone" />
+                      <SafeInput id="phone" name="phone" mode="numbers" required className="input-field" placeholder="Your phone" />
                     </div>
                   </div>
                   <div>
                     <label htmlFor="email" className="label-field">Email *</label>
-                    <input id="email" name="email" type="email" required className="input-field" placeholder="your@email.com" />
+                    <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
                   </div>
                   <div>
                     <label htmlFor="vehicle-detail" className="label-field">Vehicle / Property Details</label>
-                    <input id="vehicle-detail" name="vehicle-detail" className="input-field" placeholder="e.g. 2022 Toyota Hilux or residential home in Moonah" />
+                    <SafeInput id="vehicle-detail" name="vehicle-detail" mode="text" className="input-field" placeholder="e.g. 2022 Toyota Hilux or residential home in Moonah" />
                   </div>
                   <div>
                     <label htmlFor="notes" className="label-field">Notes</label>
-                    <textarea id="notes" name="notes" rows={3} className="input-field" placeholder="Any additional information or special requests" />
+                    <SafeTextarea id="notes" name="notes" mode="text" rows={3} className="input-field" placeholder="Any additional information or special requests" />
                   </div>
-                  <button type="submit" className="btn-primary w-full">
-                    Request Booking
+                  <GoogleRecaptcha onChange={setCaptchaToken} />
+                  {formError && (
+                    <p className="text-sm text-red-600" role="alert">
+                      {formError}
+                    </p>
+                  )}
+                  <button type="submit" disabled={submitting} className="btn-primary w-full disabled:opacity-60">
+                    {submitting ? 'Verifying…' : 'Request Booking'}
                   </button>
                 </form>
               </div>

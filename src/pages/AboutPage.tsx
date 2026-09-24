@@ -74,11 +74,19 @@ export default function AboutPage() {
           <img
             src={images.aboutUsBanner}
             alt=""
-            className="h-full w-full object-cover object-[68%_center]"
+            className="h-full w-full object-cover object-[72%_center] md:object-[68%_center]"
           />
-          {/* Soft feathered white fade — no hard edge */}
+          {/* Mobile: full-bleed readable scrub — left fade alone fails over dark clothing */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 md:hidden"
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.94) 42%, rgba(255,255,255,0.88) 68%, rgba(255,255,255,0.72) 100%)',
+            }}
+          />
+          {/* Desktop: soft feathered left-to-right white fade */}
+          <div
+            className="absolute inset-0 hidden md:block"
             style={{
               background:
                 'linear-gradient(90deg, #fff 0%, #fff 34%, rgba(255,255,255,0.92) 44%, rgba(255,255,255,0.55) 54%, rgba(255,255,255,0.18) 64%, transparent 76%)',
@@ -101,7 +109,7 @@ export default function AboutPage() {
               15+ Years of Precision, Protection &{' '}
               <span className="text-accent-500">Craftsmanship.</span>
             </h1>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-600 sm:text-base">
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-700 sm:text-base">
               Professional tinting and vehicle protection solutions, delivered with quality
               workmanship and attention to detail across Hobart.
             </p>
@@ -120,7 +128,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <p className="pointer-events-none absolute bottom-8 right-6 text-right font-script text-2xl leading-tight text-white sm:bottom-10 sm:right-10 sm:text-3xl md:text-[2.15rem]">
+          <p className="pointer-events-none absolute bottom-8 right-6 text-right font-script text-2xl leading-tight text-ink-800 md:text-white sm:bottom-10 sm:right-10 sm:text-3xl md:text-[2.15rem]">
             More Than a Tint
             <span
               className="mx-auto mt-1 block h-[3px] w-[4.75rem] rounded-full bg-accent-500 sm:ml-auto sm:mr-0"

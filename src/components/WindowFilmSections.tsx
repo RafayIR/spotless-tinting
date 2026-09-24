@@ -9,6 +9,7 @@ import {
   Home,
   KeyRound,
   Lock,
+  Phone,
   Plus,
   Shield,
   Sparkles,
@@ -18,6 +19,7 @@ import {
 } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import { images } from '@/data/images';
+import { business } from '@/data/business';
 
 const choosingFactors: { title: string; desc: string }[] = [
   {
@@ -564,7 +566,7 @@ function TintShadeCard({
   shade: (typeof tintShades)[number];
 }) {
   return (
-    <div className="min-w-[4.75rem] flex-1 overflow-hidden rounded-sm border border-white/15 bg-[#101010] sm:min-w-0">
+    <div className="min-w-0 overflow-hidden rounded-sm border border-white/15 bg-[#101010]">
       <div className="aspect-[3/4] overflow-hidden bg-[#1a1a1a]">
         <img
           src={shade.image}
@@ -573,11 +575,11 @@ function TintShadeCard({
           className="h-full w-full scale-[1.45] object-cover object-[58%_54%]"
         />
       </div>
-      <div className="px-1 py-2 text-center">
-        <p className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
+      <div className="px-0.5 py-2 text-center sm:px-1">
+        <p className="text-[8px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
           {shade.name}
         </p>
-        <p className="mt-0.5 text-[8px] text-ink-300 sm:text-[9px]">{shade.vlt}</p>
+        <p className="mt-0.5 text-[7px] text-ink-300 sm:text-[9px]">{shade.vlt}</p>
       </div>
     </div>
   );
@@ -585,7 +587,7 @@ function TintShadeCard({
 
 export function FindYourLookSection({ id }: { id?: string }) {
   return (
-    <section id={id} className="bg-black py-16 md:py-20">
+    <section id={id} className="overflow-x-hidden bg-black py-16 md:py-20">
       <div className="container">
         <Reveal>
           <div className="border-l-4 border-accent-500 pl-5 sm:pl-6">
@@ -596,7 +598,7 @@ export function FindYourLookSection({ id }: { id?: string }) {
               Different shades. <span className="text-accent-500">Same</span> premium quality.
             </p>
 
-            <div className="mt-5 flex gap-1.5 sm:mt-6 sm:gap-2">
+            <div className="mt-5 grid grid-cols-5 gap-1 sm:mt-6 sm:gap-2">
               {tintShades.map((shade) => (
                 <TintShadeCard key={shade.image} shade={shade} />
               ))}
@@ -680,7 +682,7 @@ export function FindYourPerfectShadeSection({
                 src={images.automotiveTinting.tasmaniaMap}
                 alt=""
                 aria-hidden
-                className="pointer-events-none absolute left-1/2 top-[58%] w-[190%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain opacity-40"
+                className="pointer-events-none absolute left-1/2 top-[58%] w-[140%] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain opacity-40 sm:w-[190%]"
                 style={{ objectPosition: '72% 78%' }}
                 loading="lazy"
               />
@@ -721,22 +723,22 @@ export function ChoosingRightFilmSection() {
         <img
           src={images.siteBg1}
           alt=""
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-[center_35%] sm:object-center"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-accent-100/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-accent-100/85 via-accent-100/55 to-accent-50/30" />
+        <div className="absolute inset-0 bg-accent-50/90 sm:bg-accent-100/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-accent-50/75 to-accent-50/55 sm:bg-gradient-to-r sm:from-accent-100/85 sm:via-accent-100/55 sm:to-accent-50/30" />
       </div>
 
-      <div className="container relative z-10">
+      <div className="container relative z-10 min-w-0">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-0">
           <Reveal>
-            <div className="lg:pr-10 xl:pr-14">
+            <div className="min-w-0 lg:pr-10 xl:pr-14">
               <div className="h-0.5 w-10 bg-accent-500" />
               <h2 className="mt-4 text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
                 Choosing the Right Film
               </h2>
-              <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-300 sm:text-base">
+              <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-700 sm:text-base">
                 The right window film is engineered to your glass, application and performance needs.
                 Our team will guide you through the options to find the perfect fit for your space.
               </p>
@@ -746,7 +748,7 @@ export function ChoosingRightFilmSection() {
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-500 text-white">
                       <Check className="h-3 w-3" strokeWidth={3} />
                     </span>
-                    <span className="text-sm text-ink-700">
+                    <span className="min-w-0 text-sm leading-relaxed text-ink-700">
                       <span className="font-bold text-ink-950">{item.title}</span>
                       {' – '}
                       {item.desc}
@@ -756,16 +758,16 @@ export function ChoosingRightFilmSection() {
               </ul>
               <Link
                 to="/contact"
-                className="mt-10 inline-flex items-center gap-2 border border-accent-500 bg-white/70 px-6 py-3.5 text-xs font-bold uppercase tracking-wide text-accent-600 shadow-sm backdrop-blur-sm transition-colors hover:bg-accent-500 hover:text-white sm:text-sm"
+                className="mt-10 inline-flex max-w-full items-center gap-2 border border-accent-500 bg-white/90 px-5 py-3.5 text-xs font-bold uppercase tracking-wide text-accent-600 shadow-sm backdrop-blur-sm transition-colors hover:bg-accent-500 hover:text-white sm:px-6 sm:text-sm"
               >
                 Talk to Our Team
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 shrink-0" />
               </Link>
             </div>
           </Reveal>
 
           <Reveal delay={80}>
-            <div className="border-t border-accent-500 pt-10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0 xl:pl-10">
+            <div className="min-w-0 border-t border-accent-500 pt-10 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0 xl:pl-10">
               <h3 className="text-lg font-bold uppercase tracking-tight text-ink-950 sm:text-xl">
                 Find Your Look
               </h3>
@@ -773,7 +775,7 @@ export function ChoosingRightFilmSection() {
                 Different shades. <span className="text-accent-600">Same</span> premium quality.
               </p>
 
-              <div className="mt-5 flex gap-1.5 sm:mt-6 sm:gap-2">
+              <div className="mt-5 grid grid-cols-5 gap-1 sm:mt-6 sm:gap-2">
                 {tintShades.map((shade) => (
                   <TintShadeCard key={shade.image} shade={shade} />
                 ))}
@@ -1144,10 +1146,19 @@ export function WindowFilmTechnologySection() {
               <p className="mt-5 max-w-md leading-relaxed text-ink-600">
                 Different films provide different levels of solar heat control, UV rejection, visible light transmission, glare reduction and privacy, allowing us to recommend a solution based on what you actually want to achieve.
               </p>
-              <Link to="/quote" className="btn-outline mt-8 uppercase tracking-wide">
-                Learn More About Our Films
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <Link to="/quote" className="btn-outline uppercase tracking-wide">
+                  Learn More About Our Films
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href={business.phoneHref}
+                  className="btn inline-flex border border-ink-900 bg-white text-ink-950 hover:border-accent-500 hover:bg-accent-50"
+                >
+                  <Phone className="h-4 w-4 text-accent-500" />
+                  {business.phoneDisplay}
+                </a>
+              </div>
             </div>
           </Reveal>
 

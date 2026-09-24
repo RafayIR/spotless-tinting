@@ -12,9 +12,10 @@ export default function Layout() {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-white transition-colors duration-300 dark:bg-ink-950">
+    <div className="flex min-h-screen flex-col overflow-x-hidden bg-white transition-colors duration-300 dark:bg-ink-950">
       <Header />
-      <main className="relative z-10 flex-1 pt-16 lg:pt-14">
+      {/* pt accounts for fixed header: logo h-11 + py-3 ≈ 4.25rem on mobile */}
+      <main className="relative z-10 flex-1 pt-[4.5rem] lg:pt-14">
         <Outlet />
       </main>
       <Footer />

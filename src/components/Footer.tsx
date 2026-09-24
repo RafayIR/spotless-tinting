@@ -55,9 +55,22 @@ export default function Footer() {
               <li><Link to="/services" className="hover:text-accent-600 dark:hover:text-accent-400">Services</Link></li>
               <li><Link to="/gallery" className="hover:text-accent-600 dark:hover:text-accent-400">Our Work</Link></li>
               <li><Link to="/film-simulator" className="hover:text-accent-600 dark:hover:text-accent-400">Film Visualizer</Link></li>
-              {/* <li><Link to="/3d-tint-viewer" className="hover:text-accent-600 dark:hover:text-accent-400">3D Tint Viewer</Link></li> */}
-              <li><Link to="/reviews" className="hover:text-accent-600 dark:hover:text-accent-400">Reviews</Link></li>
-              <li><Link to="/faq" className="hover:text-accent-600 dark:hover:text-accent-400">FAQs</Link></li>
+              {/* Reviews / FAQ pages not published yet
+              <li><Link to="/reviews" ...>Reviews</Link></li>
+              <li><Link to="/faq" ...>FAQs</Link></li>
+              */}
+              {business.social.google && !business.social.google.startsWith('[') && (
+                <li>
+                  <a
+                    href={business.social.google}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent-600 dark:hover:text-accent-400"
+                  >
+                    Google Reviews
+                  </a>
+                </li>
+              )}
               <li><Link to="/contact" className="hover:text-accent-600 dark:hover:text-accent-400">Contact</Link></li>
               <li><Link to="/book" className="hover:text-accent-600 dark:hover:text-accent-400">Book Now</Link></li>
               <li><Link to="/quote" className="font-semibold text-accent-600 hover:text-accent-700 dark:text-accent-400">Get a Free Quote</Link></li>

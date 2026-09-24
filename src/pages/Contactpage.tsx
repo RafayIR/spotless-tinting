@@ -16,6 +16,10 @@ import {
 } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Reveal from '@/components/Reveal';
+import GoogleRecaptcha from '@/components/forms/GoogleRecaptcha';
+import { SafeInput, SafeTextarea } from '@/components/forms/SafeFields';
+import { FORM_CHAR_HINT } from '@/lib/formValidation';
+import { formDataToPayload, submitEnquiry } from '@/lib/submitEnquiry';
 import { business } from '@/data/business';
 import { services } from '@/data/services';
 import { images } from '@/data/images';
@@ -91,10 +95,35 @@ const locations = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setFormError(null);
+
+    if (!captchaToken) {
+      setFormError('Please complete the captcha.');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const payload = formDataToPayload(e.currentTarget, {
+        formType: 'contact',
+        captchaToken,
+      });
+      // Prefer message field from enquiry details
+      if (!payload.message && payload.details) payload.message = payload.details;
+      await submitEnquiry(payload);
+      setSubmitted(true);
+      setCaptchaToken(null);
+    } catch (err) {
+      setFormError(err instanceof Error ? err.message : 'Failed to send enquiry.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const localBusinessSchema = {
@@ -133,9 +162,9 @@ export default function ContactPage() {
 
       {/* HERO — diagonal split */}
       <section className="relative overflow-hidden bg-white dark:bg-ink-950">
-        <div className="relative flex min-h-[560px] flex-col lg:min-h-[660px] lg:flex-row">
+        <div className="relative flex flex-col lg:min-h-[660px] lg:flex-row">
           {/* Text */}
-          <div className="relative z-20 flex w-full flex-col justify-center px-6 py-14 sm:px-10 lg:w-[48%] lg:px-12 lg:py-20 xl:w-[42%] xl:px-16">
+          <div className="relative z-20 flex w-full flex-col justify-center px-6 py-12 sm:px-10 sm:py-14 lg:w-[48%] lg:px-12 lg:py-20 xl:w-[42%] xl:px-16">
             <Reveal>
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.22em] text-accent-500">
@@ -169,7 +198,7 @@ export default function ContactPage() {
             </Reveal>
           </div>
 
-          {/* Diagonal image — desktop */}
+          {/* Diagonal image — desktop only */}
           <div className="relative hidden min-h-full flex-1 lg:block" aria-hidden>
             <div
               className="absolute inset-0 overflow-hidden"
@@ -188,16 +217,6 @@ export default function ContactPage() {
                 }}
               />
             </div>
-          </div>
-
-          {/* Image — mobile */}
-          <div className="relative h-64 sm:h-80 lg:hidden">
-            <img
-              src={images.contactHero}
-              alt="Spotless Tinting — premium automotive window tinting"
-              className="h-full w-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-ink-950" />
           </div>
         </div>
       </section>
@@ -234,20 +253,24 @@ export default function ContactPage() {
       </section>
 
       {/* FORM + FASTER QUOTE */}
-      <section className="section bg-ink-50 dark:bg-ink-900">
-        <div className="container">
-          <Reveal>
-            <div className="mx-auto mb-10 max-w-2xl text-center">
-              <span className="eyebrow">Enquiry</span>
-              <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl">
-                Tell Us What You Need
-              </h2>
-            </div>
-          </Reveal>
+      <section className="section overflow-x-clip bg-ink-50 dark:bg-ink-900">
+        <div className="container max-w-full">
+          <div className="mx-auto mb-10 max-w-2xl text-center">
+            <span className="eyebrow">Enquiry</span>
+            <h2 className="mt-3 text-3xl font-bold uppercase tracking-tight text-ink-950 dark:text-white md:text-4xl">
+              Tell Us What You Need
+            </h2>
+          </div>
 
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-            <Reveal>
-              <div className="rounded-2xl border border-ink-100 bg-white p-6 shadow-sm dark:border-ink-800 dark:bg-ink-950 md:p-8">
+          {/*
+            Mobile: always stacked (CSS class — avoids Tailwind flex/grid conflicts).
+            Desktop: 2 columns via media query in index.css.
+          */}
+          <div
+            className="contact-enquiry-layout"
+            style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%' }}
+          >
+            <div className="contact-enquiry-form w-full max-w-full rounded-2xl border border-ink-100 bg-white p-5 shadow-sm dark:border-ink-800 dark:bg-ink-950 sm:p-6 md:p-8">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent-50 text-accent-600 dark:bg-accent-500/15">
@@ -262,28 +285,29 @@ export default function ContactPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
+                  <form onSubmit={handleSubmit} className="contact-enquiry-fields w-full max-w-full space-y-4">
+                    <p className="text-xs text-ink-500 dark:text-ink-400">{FORM_CHAR_HINT}</p>
+                    <div className="contact-enquiry-field-row">
+                      <div className="min-w-0">
                         <label htmlFor="name" className="label-field">Full Name *</label>
-                        <input id="name" name="name" required className="input-field" placeholder="Your full name" />
+                        <SafeInput id="name" name="name" mode="text" required className="input-field" placeholder="Your full name" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <label htmlFor="phone" className="label-field">Phone Number *</label>
-                        <input id="phone" name="phone" required className="input-field" placeholder="Your phone" />
+                        <SafeInput id="phone" name="phone" mode="numbers" required className="input-field" placeholder="Your phone" />
                       </div>
                     </div>
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
+                    <div className="contact-enquiry-field-row">
+                      <div className="min-w-0">
                         <label htmlFor="email" className="label-field">Email *</label>
-                        <input id="email" name="email" type="email" required className="input-field" placeholder="your@email.com" />
+                        <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <label htmlFor="suburb" className="label-field">Suburb / Location</label>
-                        <input id="suburb" name="suburb" className="input-field" placeholder="e.g. Moonah" />
+                        <SafeInput id="suburb" name="suburb" mode="text" className="input-field" placeholder="e.g. Moonah" />
                       </div>
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <label htmlFor="service" className="label-field">Service Required</label>
                       <select id="service" name="service" className="input-field">
                         <option value="">Select a service</option>
@@ -292,27 +316,29 @@ export default function ContactPage() {
                         ))}
                       </select>
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <label htmlFor="vehicle" className="label-field">Vehicle Make &amp; Model</label>
-                      <input
+                      <SafeInput
                         id="vehicle"
                         name="vehicle"
+                        mode="text"
                         className="input-field"
                         placeholder="e.g. 2022 Toyota Hilux — or leave blank for property jobs"
                       />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <label htmlFor="message" className="label-field">Enquiry Details *</label>
-                      <textarea
+                      <SafeTextarea
                         id="message"
                         name="message"
+                        mode="text"
                         required
                         rows={4}
                         className="input-field"
-                        placeholder="Tell us about your project, goals and any preferences…"
+                        placeholder="Tell us about your project goals and any preferences"
                       />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <label htmlFor="contact-method" className="label-field">Preferred Contact Method</label>
                       <select id="contact-method" name="contact-method" className="input-field">
                         <option value="phone">Phone</option>
@@ -321,17 +347,21 @@ export default function ContactPage() {
                         <option value="either">Either</option>
                       </select>
                     </div>
-                    <button type="submit" className="btn-primary w-full">
-                      Send Enquiry
+                    <GoogleRecaptcha onChange={setCaptchaToken} className="max-w-full overflow-x-auto" />
+                    {formError && (
+                      <p className="text-sm text-red-600" role="alert">
+                        {formError}
+                      </p>
+                    )}
+                    <button type="submit" disabled={submitting} className="btn-primary w-full disabled:opacity-60">
+                      {submitting ? 'Verifying…' : 'Send Enquiry'}
                       <ArrowRight className="h-4 w-4" />
                     </button>
                   </form>
                 )}
-              </div>
-            </Reveal>
+            </div>
 
-            <Reveal delay={80}>
-              <div className="flex h-full flex-col rounded-2xl bg-ink-950 p-6 text-white md:p-8">
+            <aside className="contact-enquiry-aside flex w-full max-w-full flex-col rounded-2xl bg-ink-950 p-5 text-white sm:p-6 md:p-8">
                 <h3 className="text-lg font-bold uppercase tracking-wide">Want a Faster Quote?</h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-300">
                   Call or message us directly — photos of your vehicle or windows help us quote accurately.
@@ -341,9 +371,9 @@ export default function ContactPage() {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-500/15 text-accent-400">
                       <Phone className="h-4 w-4" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs font-bold uppercase tracking-wide text-accent-400">Phone</p>
-                      <a href={business.phoneHref} className="mt-0.5 text-sm font-semibold hover:text-accent-400">
+                      <a href={business.phoneHref} className="mt-0.5 break-all text-sm font-semibold hover:text-accent-400">
                         {business.phone}
                       </a>
                     </div>
@@ -352,9 +382,9 @@ export default function ContactPage() {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-500/15 text-accent-400">
                       <MessageCircle className="h-4 w-4" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs font-bold uppercase tracking-wide text-accent-400">WhatsApp / SMS</p>
-                      <a href={business.phoneHref} className="mt-0.5 text-sm font-semibold hover:text-accent-400">
+                      <a href={business.phoneHref} className="mt-0.5 break-words text-sm font-semibold hover:text-accent-400">
                         Message us on {business.phone}
                       </a>
                     </div>
@@ -363,7 +393,7 @@ export default function ContactPage() {
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent-500/15 text-accent-400">
                       <Camera className="h-4 w-4" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs font-bold uppercase tracking-wide text-accent-400">Send Photos</p>
                       <p className="mt-0.5 text-sm text-ink-300">
                         Vehicle or window photos speed up your quote.
@@ -373,13 +403,12 @@ export default function ContactPage() {
                 </ul>
                 <a
                   href={business.phoneHref}
-                  className="btn mt-auto border border-accent-500 bg-transparent text-accent-400 hover:bg-accent-500 hover:text-white"
+                  className="btn mt-8 w-full border border-accent-500 bg-transparent text-accent-400 hover:bg-accent-500 hover:text-white lg:mt-auto"
                 >
                   Call / Message Us
                   <ArrowRight className="h-4 w-4" />
                 </a>
-              </div>
-            </Reveal>
+            </aside>
           </div>
         </div>
       </section>

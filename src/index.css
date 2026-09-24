@@ -8,9 +8,13 @@
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    max-width: 100%;
   }
   body {
     @apply bg-white font-sans text-ink-800 antialiased transition-colors duration-300;
+    overflow-x: hidden;
+    max-width: 100%;
   }
   h1, h2, h3, h4, h5 {
     @apply font-display tracking-tight text-ink-950;
@@ -261,6 +265,43 @@ html.dark main button.bg-white {
     opacity: 1 !important;
     transform: none !important;
     transition-delay: 0ms !important;
+  }
+}
+
+/* Contact enquiry — stacked on small screens, 2-col only from 1024px up */
+.contact-enquiry-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2rem;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+.contact-enquiry-layout > .contact-enquiry-form,
+.contact-enquiry-layout > .contact-enquiry-aside {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+  flex: 0 0 auto !important;
+}
+.contact-enquiry-field-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .contact-enquiry-field-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  }
+}
+@media (min-width: 1024px) {
+  .contact-enquiry-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) !important;
+    align-items: start;
+    flex-direction: unset !important;
   }
 }
 

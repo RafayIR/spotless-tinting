@@ -776,7 +776,7 @@ export default function ResidentialTintingPage() {
         </section>
 
         {/* PROTECT + PRIVACY */}
-        <section className="bg-white py-6 md:py-8">
+        <section className="scroll-mt-24 bg-white py-6 md:py-8">
           <div className="container">
             <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-8">
               <Reveal>
@@ -805,7 +805,7 @@ export default function ResidentialTintingPage() {
 
               <Reveal delay={80}>
                 <div>
-                  <h2 className="text-2xl font-bold uppercase tracking-tight text-ink-950 md:text-3xl">
+                  <h2 className="text-2xl font-bold uppercase leading-tight tracking-tight text-ink-950 md:text-3xl">
                     Privacy Window Film for Your Home
                   </h2>
                   <div className="mt-3 h-1 w-10 bg-accent-500" aria-hidden />
@@ -814,11 +814,11 @@ export default function ResidentialTintingPage() {
                     film options based on how much privacy, natural light and visibility you want, as
                     well as the lighting conditions around the glass.
                   </p>
-                  <div className="mt-6 grid grid-cols-3 gap-2 sm:gap-2.5">
+                  <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-2.5">
                     {privacyOptions.map((opt) => (
                       <div
                         key={opt.title}
-                        className="relative aspect-[4/3] overflow-hidden rounded-md"
+                        className="relative aspect-[16/10] overflow-hidden rounded-md sm:aspect-[4/3]"
                       >
                         <img
                           src={opt.image}
@@ -826,18 +826,18 @@ export default function ResidentialTintingPage() {
                           loading="lazy"
                           className="h-full w-full object-cover"
                         />
-                        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center bg-black/75 px-2 py-2.5 text-center sm:px-3 sm:py-3">
-                          <p className="text-[10px] font-bold uppercase tracking-wide text-white sm:text-[11px]">
+                        <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center bg-black/75 px-3 py-3 text-center sm:px-3 sm:py-3">
+                          <p className="text-[11px] font-bold uppercase tracking-wide text-white sm:text-[11px]">
                             {opt.title}
                           </p>
-                          <p className="mt-0.5 text-[9px] leading-snug text-white/90 sm:text-[10px]">
+                          <p className="mt-0.5 text-[10px] leading-snug text-white/90 sm:text-[10px]">
                             {opt.subtitle}
                           </p>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <p className="mt-3 text-right text-[10px] leading-relaxed text-ink-400 sm:text-xs">
+                  <p className="mt-3 text-left text-[10px] leading-relaxed text-ink-400 sm:text-right sm:text-xs">
                     Privacy performance depends on film type and lighting conditions. Reflective films
                     that provide daytime privacy may provide less privacy at night when the interior is
                     brighter than outside.

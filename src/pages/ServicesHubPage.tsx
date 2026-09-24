@@ -214,11 +214,11 @@ export default function ServicesHubPage() {
           </div>
 
           {/* Image — mobile / tablet */}
-          <div className="relative h-64 sm:h-80 lg:hidden">
+          <div className="relative h-56 overflow-hidden sm:h-80 lg:hidden">
             <img
               src={images.banner02}
               alt="Professional window tinting"
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full object-cover object-[center_40%]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
           </div>

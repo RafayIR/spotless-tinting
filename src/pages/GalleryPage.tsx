@@ -544,7 +544,7 @@ export default function GalleryPage() {
                   <div className="relative">
                     <img
                       src={item.image}
-                      alt={item.title}
+                      alt=""
                       className="aspect-[16/9] w-full object-cover"
                       loading="lazy"
                     />
