@@ -57,7 +57,47 @@ If admin gallery returns a server error, check Vercel logs for the exact message
 
 ### Form emails
 
-Contact, Quote and Book submit to `/api/send-enquiry`, which verifies reCAPTCHA then emails the owner via [Resend](https://resend.com). Create a free Resend account, add `RESEND_API_KEY`, set `CONTACT_TO_EMAIL`, and (for production) verify your domain then set `CONTACT_FROM_EMAIL`.
+Contact, Quote, Book and Careers submit to `/api/send-enquiry`, which verifies reCAPTCHA then emails the owner via [Resend](https://resend.com). Create a free Resend account, add `RESEND_API_KEY`, set `CONTACT_TO_EMAIL`, and (for production) verify your domain then set `CONTACT_FROM_EMAIL`.
+
+## Wix CMS (portfolio projects)
+
+Portfolio projects can be managed in Wix CMS while this site stays on its current hosting. The browser never talks to Wix: `GET /api/wix-portfolio` reads the collection with a server-only API key and returns only items where `published` is true.
+
+| Piece | File |
+| --- | --- |
+| Serverless endpoint | `api/wix-portfolio.ts` |
+| Client service (maps items to the site's `Project` type) | `src/lib/wixPortfolio.ts` |
+| React hook (`projects`, `loading`, `error`) | `src/lib/useWixProjects.ts` |
+
+The existing gallery still renders from `src/data/projects.ts`. To switch it to Wix later, use `useWixProjects()` in place of the static `projects` import — items already match the `Project` type.
+
+### Setup
+
+1. **Create the collection** — Wix Dashboard → CMS → *Create Collection* named **PortfolioProjects** (collection ID must be `PortfolioProjects`, or set `WIX_PORTFOLIO_COLLECTION`). Add these fields:
+
+   | Field key | Type | Notes |
+   | --- | --- | --- |
+   | `title` | Text | Required |
+   | `slug` | Text | Required, unique, URL-friendly |
+   | `shortDescription` | Text | Shown on cards |
+   | `description` | Text | Full description (plain Text, not Rich content) |
+   | `coverImage` | Image | Required (items without any image are skipped) |
+   | `galleryImages` | Media gallery | Multiple images |
+   | `category` | Text | Plain Text, not Tags. Use: Window Tinting, PPF, Vehicle Wraps, Residential, Commercial, Smart Tint, Other |
+   | `technologies` | Tags / Text | Optional |
+   | `projectUrl` | URL | Optional |
+   | `featured` | Boolean | |
+   | `displayOrder` | Number | Lower shows first |
+   | `published` | Boolean | Only `true` appears on the site |
+   | `location` | Text | Optional (e.g. "Howrah, Tasmania") |
+   | `service` | Text | Optional (defaults from category) |
+
+2. **Permissions** — leave the collection on the default (*Admin* can read/write; nobody else). The server API key does the reading, so do **not** make the collection publicly readable or writable.
+3. **API key** — Wix Dashboard → Settings → *API Keys* → Generate. Grant only the Wix Data permission to read items. Copy the key and your **Site ID** (the GUID in the dashboard URL).
+4. **Environment** — set `WIX_API_KEY` and `WIX_SITE_ID` in `.env.local` and in Vercel (Production + Preview). No `VITE_` prefix; redeploy after adding them.
+5. **Test locally** — `vercel dev`, then open `http://localhost:3000/api/wix-portfolio`. You should see `{ "projects": [...] }` with only published items. (`npm run dev` does not run `/api`.)
+
+Edits in Wix appear on the site within about a minute (CDN cache `s-maxage=60`). Unpublishing an item removes it on the next refresh.
 
 ## SEO files
 

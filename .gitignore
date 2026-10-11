@@ -21,3 +21,6 @@ logs
 
 # Vercel
 .vercel
+
+# Wix migration upload cache
+scripts/.wix-migration-cache.json

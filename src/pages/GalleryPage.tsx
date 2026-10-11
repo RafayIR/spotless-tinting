@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowDown,
@@ -21,7 +21,9 @@ import {
 import SEO from '@/components/SEO';
 import Reveal from '@/components/Reveal';
 import GalleryLightbox from '@/components/GalleryLightbox';
-import { projects } from '@/data/projects';
+import { projects as staticProjects } from '@/data/projects';
+import { mergeWithStatic } from '@/lib/wixPortfolio';
+import { useWixProjects } from '@/lib/useWixProjects';
 import { reviews } from '@/data/reviews';
 import { images } from '@/data/images';
 import { business } from '@/data/business';
@@ -308,6 +310,14 @@ export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState<Filter>('All');
   const [showAll, setShowAll] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Static projects render immediately; Wix CMS projects are merged in once loaded.
+  // If Wix is unreachable, `wixProjects` stays empty and the static gallery is shown as before.
+  const { projects: wixProjects } = useWixProjects();
+  const projects = useMemo(
+    () => mergeWithStatic(wixProjects, staticProjects),
+    [wixProjects],
+  );
 
   const filtered = projects.filter((p) =>
     activeFilter === 'All' ? true : p.category === filterCategory[activeFilter],

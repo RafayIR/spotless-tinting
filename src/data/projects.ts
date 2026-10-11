@@ -296,11 +296,11 @@ export const projects: Project[] = [
     category: 'Commercial',
     location: 'Hobart, Tasmania',
     description: 'Privacy film installation on glass at Elizabeth Pier for a clean, professional result.',
-    image: `${base}/commercial-tint/elizabeth-pier-privacy-film-installation-on-glass/elizabeth-1.jpg`,
+    image: `${base}/commercial-tint/elizabeth-1.jpg`,
     gallery: Array.from(
       { length: 10 },
       (_, i) =>
-        `${base}/commercial-tint/elizabeth-pier-privacy-film-installation-on-glass/elizabeth-${i + 1}.jpg`,
+        `${base}/commercial-tint/elizabeth-${i + 1}.jpg`,
     ),
     service: 'Commercial Window Tinting',
   },

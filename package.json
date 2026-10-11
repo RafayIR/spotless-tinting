@@ -8,12 +8,16 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "migrate:wix": "esbuild scripts/migrate-gallery-to-wix.ts --bundle --platform=node --format=esm --packages=external --log-level=warning --outfile=node_modules/.cache/migrate-wix.mjs && node node_modules/.cache/migrate-wix.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@supabase/supabase-js": "^2.116.0",
+    "@wix/data": "^1.0.527",
+    "@wix/media": "^1.0.277",
+    "@wix/sdk": "^1.21.17",
     "lucide-react": "^0.446.0",
     "postprocessing": "^6.39.5",
     "react": "^18.3.1",
