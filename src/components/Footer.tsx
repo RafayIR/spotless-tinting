@@ -52,6 +52,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm">
               <li><Link to="/" className="hover:text-accent-600 dark:hover:text-accent-400">Home</Link></li>
               <li><Link to="/about" className="hover:text-accent-600 dark:hover:text-accent-400">About</Link></li>
+              <li><Link to="/careers" className="hover:text-accent-600 dark:hover:text-accent-400">Careers</Link></li>
               <li><Link to="/services" className="hover:text-accent-600 dark:hover:text-accent-400">Services</Link></li>
               <li><Link to="/gallery" className="hover:text-accent-600 dark:hover:text-accent-400">Our Work</Link></li>
               <li><Link to="/film-simulator" className="hover:text-accent-600 dark:hover:text-accent-400">Film Visualizer</Link></li>

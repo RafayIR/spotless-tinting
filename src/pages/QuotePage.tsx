@@ -17,6 +17,8 @@ export default function QuotePage() {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // Bumped after a failed send so the single-use captcha is re-issued
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,6 +41,8 @@ export default function QuotePage() {
       setCaptchaToken(null);
     } catch (err) {
       setFormError(err instanceof Error ? err.message : 'Failed to send quote request.');
+      setCaptchaToken(null);
+      setCaptchaKey((k) => k + 1);
     } finally {
       setSubmitting(false);
     }
@@ -105,30 +109,39 @@ export default function QuotePage() {
 
                 <form onSubmit={handleSubmit} className="min-w-0 space-y-4">
                   <p className="text-xs text-ink-500">{FORM_CHAR_HINT}</p>
+                  <p className="text-xs text-ink-500">
+                    Fields marked <span className="font-semibold text-red-500">*</span> are required.
+                  </p>
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <div className="min-w-0">
-                      <label htmlFor="name" className="label-field">Name *</label>
+                      <label htmlFor="name" className="label-field label-required">Name</label>
                       <SafeInput id="name" name="name" mode="text" required className="input-field" placeholder="Your name" />
                     </div>
                     <div className="min-w-0">
-                      <label htmlFor="phone" className="label-field">Phone *</label>
+                      <label htmlFor="phone" className="label-field label-required">Phone</label>
                       <SafeInput id="phone" name="phone" mode="numbers" required className="input-field" placeholder="Your phone" />
                     </div>
                   </div>
-                  <div className="min-w-0">
-                    <label htmlFor="email" className="label-field">Email *</label>
-                    <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <div className="min-w-0">
+                      <label htmlFor="email" className="label-field label-required">Email</label>
+                      <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
+                    </div>
+                    <div className="min-w-0">
+                      <label htmlFor="suburb" className="label-field label-required">Suburb</label>
+                      <SafeInput id="suburb" name="suburb" mode="text" required autoComplete="address-level2" className="input-field" placeholder="e.g. Moonah" />
+                    </div>
                   </div>
 
                   {quoteType === 'automotive' ? (
                     <>
                       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                         <div className="min-w-0">
-                          <label htmlFor="make" className="label-field">Vehicle Make *</label>
+                          <label htmlFor="make" className="label-field label-required">Vehicle Make</label>
                           <SafeInput id="make" name="make" mode="text" required className="input-field" placeholder="Toyota" />
                         </div>
                         <div className="min-w-0">
-                          <label htmlFor="model" className="label-field">Vehicle Model *</label>
+                          <label htmlFor="model" className="label-field label-required">Vehicle Model</label>
                           <SafeInput id="model" name="model" mode="text" required className="input-field" placeholder="Hilux" />
                         </div>
                         <div className="min-w-0">
@@ -138,7 +151,7 @@ export default function QuotePage() {
                       </div>
                       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div className="min-w-0">
-                          <label htmlFor="service-req" className="label-field">Service Required *</label>
+                          <label htmlFor="service-req" className="label-field label-required">Service Required</label>
                           <select id="service-req" name="service-req" required className="input-field">
                             <option value="">Select a service</option>
                             {services.map((s) => (
@@ -166,11 +179,11 @@ export default function QuotePage() {
                     <>
                       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div className="min-w-0">
-                          <label htmlFor="prop-type" className="label-field">Property Type *</label>
+                          <label htmlFor="prop-type" className="label-field label-required">Property Type</label>
                           <SafeInput id="prop-type" name="prop-type" mode="text" required className="input-field" placeholder={quoteType === 'residential' ? 'e.g. House Unit' : 'e.g. Office Shopfront'} />
                         </div>
                         <div className="min-w-0">
-                          <label htmlFor="service-req" className="label-field">Service Required *</label>
+                          <label htmlFor="service-req" className="label-field label-required">Service Required</label>
                           <select id="service-req" name="service-req" required className="input-field">
                             <option value="">Select a service</option>
                             {services.map((s) => (
@@ -185,8 +198,8 @@ export default function QuotePage() {
                           <SafeInput id="window-count" name="window-count" mode="text" className="input-field" placeholder="e.g. 8 windows various sizes" />
                         </div>
                         <div className="min-w-0">
-                          <label htmlFor="suburb" className="label-field">Address / Suburb</label>
-                          <SafeInput id="suburb" name="suburb" mode="text" className="input-field" placeholder="e.g. Moonah TAS" />
+                          <label htmlFor="address" className="label-field">Property Address</label>
+                          <SafeInput id="address" name="address" mode="text" className="input-field" placeholder="e.g. 12 Main Road" />
                         </div>
                       </div>
                     </>
@@ -198,7 +211,7 @@ export default function QuotePage() {
                   </div>
             
 
-                  <GoogleRecaptcha onChange={setCaptchaToken} className="max-w-full overflow-x-auto" />
+                  <GoogleRecaptcha key={captchaKey} onChange={setCaptchaToken} className="max-w-full overflow-x-auto" />
                   {formError && (
                     <p className="text-sm text-red-600" role="alert">
                       {formError}

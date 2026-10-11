@@ -81,6 +81,11 @@
   .label-field {
     @apply mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-300;
   }
+  /* Red asterisk after the label of a required field */
+  .label-required::after {
+    content: ' *';
+    @apply font-semibold text-red-500;
+  }
 }
 
 @layer utilities {

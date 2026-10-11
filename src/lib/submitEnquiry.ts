@@ -1,5 +1,5 @@
 export type EnquiryPayload = {
-  formType: 'contact' | 'quote' | 'book';
+  formType: 'contact' | 'quote' | 'book' | 'careers';
   captchaToken: string;
   name: string;
   phone: string;
@@ -39,6 +39,8 @@ export function formDataToPayload(
   for (const [key, value] of data.entries()) {
     if (value instanceof File) continue;
     if (key in payload && ['name', 'phone', 'email'].includes(key)) continue;
+    // The reCAPTCHA widget injects its own hidden field; the token is already in captchaToken
+    if (key === 'g-recaptcha-response') continue;
     payload[key] = String(value);
   }
 

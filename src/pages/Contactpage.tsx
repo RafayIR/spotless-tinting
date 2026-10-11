@@ -98,6 +98,8 @@ export default function ContactPage() {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // Bumped after a failed send so the single-use captcha is re-issued
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -121,6 +123,8 @@ export default function ContactPage() {
       setCaptchaToken(null);
     } catch (err) {
       setFormError(err instanceof Error ? err.message : 'Failed to send enquiry.');
+      setCaptchaToken(null);
+      setCaptchaKey((k) => k + 1);
     } finally {
       setSubmitting(false);
     }
@@ -287,24 +291,27 @@ export default function ContactPage() {
                 ) : (
                   <form onSubmit={handleSubmit} className="contact-enquiry-fields w-full max-w-full space-y-4">
                     <p className="text-xs text-ink-500 dark:text-ink-400">{FORM_CHAR_HINT}</p>
+                    <p className="text-xs text-ink-500 dark:text-ink-400">
+                      Fields marked <span className="font-semibold text-red-500">*</span> are required.
+                    </p>
                     <div className="contact-enquiry-field-row">
                       <div className="min-w-0">
-                        <label htmlFor="name" className="label-field">Full Name *</label>
+                        <label htmlFor="name" className="label-field label-required">Full Name</label>
                         <SafeInput id="name" name="name" mode="text" required className="input-field" placeholder="Your full name" />
                       </div>
                       <div className="min-w-0">
-                        <label htmlFor="phone" className="label-field">Phone Number *</label>
+                        <label htmlFor="phone" className="label-field label-required">Phone Number</label>
                         <SafeInput id="phone" name="phone" mode="numbers" required className="input-field" placeholder="Your phone" />
                       </div>
                     </div>
                     <div className="contact-enquiry-field-row">
                       <div className="min-w-0">
-                        <label htmlFor="email" className="label-field">Email *</label>
+                        <label htmlFor="email" className="label-field label-required">Email</label>
                         <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
                       </div>
                       <div className="min-w-0">
-                        <label htmlFor="suburb" className="label-field">Suburb / Location</label>
-                        <SafeInput id="suburb" name="suburb" mode="text" className="input-field" placeholder="e.g. Moonah" />
+                        <label htmlFor="suburb" className="label-field label-required">Suburb</label>
+                        <SafeInput id="suburb" name="suburb" mode="text" required autoComplete="address-level2" className="input-field" placeholder="e.g. Moonah" />
                       </div>
                     </div>
                     <div className="min-w-0">
@@ -327,7 +334,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div className="min-w-0">
-                      <label htmlFor="message" className="label-field">Enquiry Details *</label>
+                      <label htmlFor="message" className="label-field label-required">Enquiry Details</label>
                       <SafeTextarea
                         id="message"
                         name="message"
@@ -347,7 +354,7 @@ export default function ContactPage() {
                         <option value="either">Either</option>
                       </select>
                     </div>
-                    <GoogleRecaptcha onChange={setCaptchaToken} className="max-w-full overflow-x-auto" />
+                    <GoogleRecaptcha key={captchaKey} onChange={setCaptchaToken} className="max-w-full overflow-x-auto" />
                     {formError && (
                       <p className="text-sm text-red-600" role="alert">
                         {formError}

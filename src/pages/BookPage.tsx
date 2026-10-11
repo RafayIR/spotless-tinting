@@ -14,6 +14,8 @@ export default function BookPage() {
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  // Bumped after a failed send so the single-use captcha is re-issued
+  const [captchaKey, setCaptchaKey] = useState(0);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,6 +38,8 @@ export default function BookPage() {
       setCaptchaToken(null);
     } catch (err) {
       setFormError(err instanceof Error ? err.message : 'Failed to send booking request.');
+      setCaptchaToken(null);
+      setCaptchaKey((k) => k + 1);
     } finally {
       setSubmitting(false);
     }
@@ -86,8 +90,11 @@ export default function BookPage() {
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <p className="text-xs text-ink-500">{FORM_CHAR_HINT}</p>
+                  <p className="text-xs text-ink-500">
+                    Fields marked <span className="font-semibold text-red-500">*</span> are required.
+                  </p>
                   <div>
-                    <label htmlFor="service" className="label-field">Service *</label>
+                    <label htmlFor="service" className="label-field label-required">Service</label>
                     <select id="service" name="service" required className="input-field">
                       <option value="">Select a service</option>
                       {services.map((s) => (
@@ -97,14 +104,14 @@ export default function BookPage() {
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="date" className="label-field">Preferred Date *</label>
+                      <label htmlFor="date" className="label-field label-required">Preferred Date</label>
                       <div className="relative">
                         <Calendar className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" />
                         <input id="date" name="date" type="date" required className="input-field pl-10" />
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="time" className="label-field">Preferred Time *</label>
+                      <label htmlFor="time" className="label-field label-required">Preferred Time</label>
                       <div className="relative">
                         <Clock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-400" />
                         <select id="time" name="time" required className="input-field pl-10">
@@ -118,17 +125,23 @@ export default function BookPage() {
                   </div>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="label-field">Name *</label>
+                      <label htmlFor="name" className="label-field label-required">Name</label>
                       <SafeInput id="name" name="name" mode="text" required className="input-field" placeholder="Your name" />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="label-field">Phone *</label>
+                      <label htmlFor="phone" className="label-field label-required">Phone</label>
                       <SafeInput id="phone" name="phone" mode="numbers" required className="input-field" placeholder="Your phone" />
                     </div>
                   </div>
-                  <div>
-                    <label htmlFor="email" className="label-field">Email *</label>
-                    <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="email" className="label-field label-required">Email</label>
+                      <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
+                    </div>
+                    <div>
+                      <label htmlFor="suburb" className="label-field label-required">Suburb</label>
+                      <SafeInput id="suburb" name="suburb" mode="text" required autoComplete="address-level2" className="input-field" placeholder="e.g. Moonah" />
+                    </div>
                   </div>
                   <div>
                     <label htmlFor="vehicle-detail" className="label-field">Vehicle / Property Details</label>
@@ -138,7 +151,7 @@ export default function BookPage() {
                     <label htmlFor="notes" className="label-field">Notes</label>
                     <SafeTextarea id="notes" name="notes" mode="text" rows={3} className="input-field" placeholder="Any additional information or special requests" />
                   </div>
-                  <GoogleRecaptcha onChange={setCaptchaToken} />
+                  <GoogleRecaptcha key={captchaKey} onChange={setCaptchaToken} />
                   {formError && (
                     <p className="text-sm text-red-600" role="alert">
                       {formError}
