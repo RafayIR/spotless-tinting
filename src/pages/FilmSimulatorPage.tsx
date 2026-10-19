@@ -55,27 +55,28 @@ export default function FilmSimulatorPage() {
         <div className="container">
           <Reveal>
             <div className="overflow-hidden rounded-xl border border-ink-100 bg-ink-50 shadow-sm">
-              <object
-                data={SUNTEK_COMBINED_VIEWER}
-                type="text/html"
+              <iframe
+                src={SUNTEK_COMBINED_VIEWER}
                 title="SunTek automotive window tint and PPF film simulator"
-                className="block w-full"
+                className="block w-full border-0"
                 style={{ height: '1000px', minHeight: '1000px' }}
-              >
-                <p className="p-8 text-center text-sm text-ink-600">
-                  This interactive viewer needs a modern browser with network access.{' '}
-                  <a
-                    href={SUNTEK_COMBINED_VIEWER}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-accent-600 hover:text-accent-700"
-                  >
-                    Open the SunTek film simulator in a new tab
-                  </a>
-                  .
-                </p>
-              </object>
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allow="fullscreen"
+              />
             </div>
+            <p className="mt-3 text-center text-xs text-ink-500">
+              Viewer not loading?{' '}
+              <a
+                href={SUNTEK_COMBINED_VIEWER}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent-600 hover:text-accent-700"
+              >
+                Open the SunTek film simulator in a new tab
+              </a>
+              .
+            </p>
           </Reveal>
 
           <Reveal delay={80}>
