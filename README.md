@@ -57,7 +57,7 @@ If admin gallery returns a server error, check Vercel logs for the exact message
 
 ### Form emails
 
-Contact, Quote, Book and Careers submit to `/api/send-enquiry`, which verifies reCAPTCHA then emails the owner via [Resend](https://resend.com). Create a free Resend account, add `RESEND_API_KEY`, set `CONTACT_TO_EMAIL`, and (for production) verify your domain then set `CONTACT_FROM_EMAIL`.
+Contact, Quote, Book and Careers submit to `/api/send-enquiry`, which verifies reCAPTCHA then emails the owner via [Resend](https://resend.com) and saves the submission to Wix CMS (see [Wix CMS (form enquiries)](#wix-cms-form-enquiries)). Create a free Resend account, add `RESEND_API_KEY`, set `CONTACT_TO_EMAIL`, and (for production) verify your domain then set `CONTACT_FROM_EMAIL`.
 
 ## Wix CMS (portfolio projects)
 
@@ -98,6 +98,24 @@ The existing gallery still renders from `src/data/projects.ts`. To switch it to 
 5. **Test locally** — `vercel dev`, then open `http://localhost:3000/api/wix-portfolio`. You should see `{ "projects": [...] }` with only published items. (`npm run dev` does not run `/api`.)
 
 Edits in Wix appear on the site within about a minute (CDN cache `s-maxage=60`). Unpublishing an item removes it on the next refresh.
+
+## Wix CMS (form enquiries)
+
+Every Contact, Quote, Book and Careers submission is also saved as an item in a Wix CMS collection (`api/_lib/wixEnquiries.ts`), alongside the Resend email. Email and Wix run side by side: if one fails the other still goes through (check Vercel logs), and the visitor only sees an error if both fail. If `WIX_API_KEY` / `WIX_SITE_ID` are not set, the Wix step is skipped.
+
+1. **Create the collection** — Wix Dashboard → CMS → *Create Collection* named **Enquiries** (or set `WIX_ENQUIRIES_COLLECTION`). Leave permissions on *Admin* only. Add these fields (all Text):
+
+   | Field key | Notes |
+   | --- | --- |
+   | `title` | Default primary field, e.g. "New quote request — Jane Smith" |
+   | `formType` | `contact`, `quote`, `book` or `careers` |
+   | `name`, `email`, `phone`, `suburb` | Contact details |
+   | `message` | Message / notes, if given |
+   | `details` | Every submitted field as `Label: value` lines |
+   | `status` | Starts as `New`; change it in Wix as you follow up |
+
+   Submission time is Wix's built-in *Created Date*.
+2. **API key permission** — the key must be allowed to **write/manage** Wix Data items, not just read them (Settings → *API Keys* → edit the key).
 
 ## SEO files
 

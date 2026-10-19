@@ -1,4 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { isWixEnquiriesConfigured, saveEnquiryToWix } from './_lib/wixEnquiries';
 
 type FormType = 'contact' | 'quote' | 'book' | 'careers';
 
@@ -65,7 +66,8 @@ async function verifyRecaptcha(token: string, secret: string): Promise<boolean> 
 
 /**
  * POST /api/send-enquiry
- * Verifies the Google reCAPTCHA token, then emails the submission to the owner via Resend.
+ * Verifies the Google reCAPTCHA token, then emails the submission to the owner via Resend and
+ * saves it to the Wix CMS `Enquiries` collection. Succeeds if at least one of the two works.
  * Used by the Contact, Quote, Book and Careers forms.
  */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -81,8 +83,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const toEmail = process.env.CONTACT_TO_EMAIL;
   const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Spotless Tinting <onboarding@resend.dev>';
 
-  if (!recaptchaSecret || !resendKey || !toEmail) {
-    console.error('[api/send-enquiry] Missing RECAPTCHA_SECRET_KEY, RESEND_API_KEY or CONTACT_TO_EMAIL');
+  const emailConfigured = Boolean(resendKey && toEmail);
+  const wixConfigured = isWixEnquiriesConfigured();
+
+  if (!recaptchaSecret || (!emailConfigured && !wixConfigured)) {
+    console.error(
+      '[api/send-enquiry] Missing RECAPTCHA_SECRET_KEY, or neither Resend (RESEND_API_KEY + CONTACT_TO_EMAIL) nor Wix (WIX_API_KEY + WIX_SITE_ID) is configured',
+    );
     return res.status(500).json({ error: 'The form is not configured yet. Please call us instead.' });
   }
 
@@ -129,24 +136,42 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       .join('')}</table>`;
     const text = rows.map(([label, value]) => `${label}: ${value}`).join('\n');
 
-    const sendRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${resendKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: fields.email,
-        subject: `${SUBJECTS[formType as FormType]} — ${fields.name}`,
-        html,
-        text,
-      }),
+    const subject = SUBJECTS[formType as FormType];
+
+    const sendEmail = async () => {
+      const sendRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${resendKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: fromEmail,
+          to: [toEmail],
+          reply_to: fields.email,
+          subject: `${subject} — ${fields.name}`,
+          html,
+          text,
+        }),
+      });
+      if (!sendRes.ok) {
+        throw new Error(`Resend ${sendRes.status}: ${await sendRes.text()}`);
+      }
+    };
+
+    // Email and Wix run side by side; the visitor only sees an error if both fail
+    const tasks: Array<[string, Promise<void>]> = [];
+    if (emailConfigured) tasks.push(['email', sendEmail()]);
+    if (wixConfigured) tasks.push(['wix', saveEnquiryToWix({ formType, subject, fields, rows })]);
+
+    const results = await Promise.allSettled(tasks.map(([, task]) => task));
+    results.forEach((result, i) => {
+      if (result.status === 'rejected') {
+        console.error(`[api/send-enquiry] ${tasks[i][0]} failed`, result.reason);
+      }
     });
 
-    if (!sendRes.ok) {
-      console.error('[api/send-enquiry] Resend error', sendRes.status, await sendRes.text());
+    if (!results.some((result) => result.status === 'fulfilled')) {
       return res.status(502).json({ error: 'Could not send your message. Please try again or call us.' });
     }
 
