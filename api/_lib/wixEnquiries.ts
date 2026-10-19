@@ -1,7 +1,8 @@
 import { createClient, ApiKeyStrategy } from '@wix/sdk';
-import { items } from '@wix/data';
+import { collections, items } from '@wix/data';
 
-const DEFAULT_COLLECTION = 'Enquiries';
+/** Collection IDs are case-sensitive — this site's ID is lowercase. */
+const DEFAULT_COLLECTION = 'enquiries';
 
 /** Keys stored in their own CMS columns; everything else goes into `details`. */
 const COLUMN_FIELDS = ['name', 'email', 'phone', 'suburb'] as const;
@@ -28,16 +29,33 @@ export async function saveEnquiryToWix(input: {
   const collectionId = process.env.WIX_ENQUIRIES_COLLECTION || DEFAULT_COLLECTION;
   const wix = createClient({
     auth: ApiKeyStrategy({ apiKey, siteId }),
-    modules: { items },
+    modules: { items, collections },
   });
 
   const { fields } = input;
-  await wix.items.insert(collectionId, {
-    title: `${input.subject} — ${fields.name}`,
-    formType: input.formType,
-    ...Object.fromEntries(COLUMN_FIELDS.map((key) => [key, fields[key] ?? ''])),
-    message: fields.message || fields.notes || '',
-    details: input.rows.map(([label, value]) => `${label}: ${value}`).join('\n'),
-    status: 'New',
-  });
+  try {
+    await wix.items.insert(collectionId, {
+      title: `${input.subject} — ${fields.name}`,
+      formType: input.formType,
+      ...Object.fromEntries(COLUMN_FIELDS.map((key) => [key, fields[key] ?? ''])),
+      message: fields.message || fields.notes || '',
+      details: input.rows.map(([label, value]) => `${label}: ${value}`).join('\n'),
+      status: 'New',
+    });
+  } catch (err) {
+    // Wix doesn't show collection IDs prominently — list the real ones so the logs say what to set
+    if (String(err).includes('WDE0025')) {
+      const available = await wix.collections
+        .listDataCollections()
+        .then((res) =>
+          (res.collections ?? []).map((c) => `${c._id} ("${c.displayName ?? ''}")`).join(', '),
+        )
+        .catch(() => 'could not list collections');
+      throw new Error(
+        `Wix collection "${collectionId}" not found. Set WIX_ENQUIRIES_COLLECTION to one of: ${available}`,
+        { cause: err },
+      );
+    }
+    throw err;
+  }
 }

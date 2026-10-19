@@ -103,7 +103,7 @@ Edits in Wix appear on the site within about a minute (CDN cache `s-maxage=60`).
 
 Every Contact, Quote, Book and Careers submission is also saved as an item in a Wix CMS collection (`api/_lib/wixEnquiries.ts`), alongside the Resend email. Email and Wix run side by side: if one fails the other still goes through (check Vercel logs), and the visitor only sees an error if both fail. If `WIX_API_KEY` / `WIX_SITE_ID` are not set, the Wix step is skipped.
 
-1. **Create the collection** — Wix Dashboard → CMS → *Create Collection* named **Enquiries** (or set `WIX_ENQUIRIES_COLLECTION`). Leave permissions on *Admin* only. Add these fields (all Text):
+1. **Create the collection** — Wix Dashboard → CMS → *Create Collection* named **Enquiries**. The code uses the collection **ID** `enquiries`; IDs are case-sensitive and shown at the end of the collection's dashboard URL (`.../database/data/<id>`). If yours differs, set `WIX_ENQUIRIES_COLLECTION`. Leave permissions on *Admin* only. Add these fields (all Text):
 
    | Field key | Notes |
    | --- | --- |
