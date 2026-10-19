@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getAdminDb, requireAuth } from './_lib/auth';
-import { createAnonClient } from './_lib/supabase';
+import { getAdminDb, requireAuth } from './_lib/auth.js';
+import { createAnonClient } from './_lib/supabase.js';
 
 const TABLE = 'portfolio_items';
 const CATEGORIES = new Set(['tint', 'ppf', 'wrap']);

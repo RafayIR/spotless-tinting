@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { isWixEnquiriesConfigured, saveEnquiryToWix } from './_lib/wixEnquiries';
+import { isWixEnquiriesConfigured, saveEnquiryToWix } from './_lib/wixEnquiries.js';
 
 type FormType = 'contact' | 'quote' | 'book' | 'careers';
 

@@ -1,5 +1,5 @@
 import type { VercelRequest } from '@vercel/node';
-import { createAnonClient, createServiceClient } from './supabase';
+import { createAnonClient, createServiceClient } from './supabase.js';
 
 export type AuthResult =
   | { ok: true; userId: string }
