@@ -33,7 +33,8 @@ import {
 } from '@/components/WindowFilmSections';
 import { services } from '@/data/services';
 import { reviews, overallRating, trustedBrands } from '@/data/reviews';
-import { projects } from '@/data/projects';
+import type { Project } from '@/data/projects';
+import { usePortfolioProjects } from '@/lib/useWixProjects';
 import { business } from '@/data/business';
 import { images } from '@/data/images';
 
@@ -224,8 +225,11 @@ const greaterHobartServiceAreas = [
   'Sorell',
 ];
 
+const isFeatured = (p: Project) => 'featured' in p && p.featured === true;
+
 export default function HomePage() {
   const [workFilter, setWorkFilter] = useState<(typeof workFilters)[number]>('All');
+  const projects = usePortfolioProjects();
   const [showAllServiceAreas, setShowAllServiceAreas] = useState(false);
   const { hash } = useLocation();
 
@@ -241,8 +245,10 @@ export default function HomePage() {
     }
   }, [hash]);
 
+  // Projects marked "featured" in Wix are shown first (stable sort keeps the gallery order otherwise)
   const filteredProjects = projects
     .filter((p) => (workFilter === 'All' ? true : p.category === workFilter))
+    .sort((a, b) => Number(isFeatured(b)) - Number(isFeatured(a)))
     .slice(0, 6);
 
   const localBusinessSchema = {

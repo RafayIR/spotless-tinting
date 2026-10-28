@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { getWixProjects, type WixProject } from '@/lib/wixPortfolio';
+import { useEffect, useMemo, useState } from 'react';
+import { projects as staticProjects, type Project } from '@/data/projects';
+import { getWixProjects, mergeWithStatic, type WixProject } from '@/lib/wixPortfolio';
 
 export type WixProjectsState = {
   projects: WixProject[];
@@ -39,4 +40,13 @@ export function useWixProjects(): WixProjectsState {
   }, []);
 
   return state;
+}
+
+/**
+ * The site-wide portfolio: static projects render immediately and Wix CMS projects are merged
+ * in once loaded. If Wix is unreachable the static list is returned unchanged.
+ */
+export function usePortfolioProjects(): Project[] {
+  const { projects: wixProjects } = useWixProjects();
+  return useMemo(() => mergeWithStatic(wixProjects, staticProjects), [wixProjects]);
 }

@@ -26,6 +26,8 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import Reveal from '@/components/Reveal';
 import { images } from '@/data/images';
 import { business } from '@/data/business';
+import { projectMatches, type ProjectCard } from '@/lib/wixPortfolio';
+import { usePortfolioProjects } from '@/lib/useWixProjects';
 
 const heroBarItems: { icon?: LucideIcon; iconSrc?: string; label: string }[] = [
   { icon: Palette, label: 'Colour Change' },
@@ -233,37 +235,40 @@ const processSteps: { num: string; title: string; desc: string }[] = [
 
 const galleryFilters = ['All', 'Full Wraps', 'Partial Wraps', 'Chrome Delete', 'Commercial'];
 
-/**
- * TODO: replace with genuine Spotless Tinting project photography and real project details
- * (vehicle and location) before launch — the copy brief requires actual projects here.
- */
-const galleryItems: { id: string; title: string; service: string; filter: string; image: string }[] = [
+/** How each filter is recognised in a project's title, service or Wix tags. */
+const filterPatterns: Record<string, RegExp> = {
+  'Full Wraps': /full[\s-]*(vehicle[\s-]*)?wrap|colou?r[\s-]*change/i,
+  'Partial Wraps': /partial|roof|mirror|bonnet|hood|spoiler|pillar/i,
+  'Chrome Delete': /chrome/i,
+  Commercial: /commercial|fleet|brand|signage|work[\s-]*(vehicle|ute|van)/i,
+};
+
+const MAX_GALLERY_CARDS = 4;
+
+/** Placeholder cards, shown only until a vehicle wrap project is available from Wix or the static gallery. */
+const placeholderItems: ProjectCard[] = [
   {
     id: 'w1',
     title: 'Colour Change Wrap',
     service: 'Full Vehicle Wrap',
-    filter: 'Full Wraps',
     image: images.vehicleWraps.options.full,
   },
   {
     id: 'w2',
     title: 'Roof & Mirror Wrap',
     service: 'Partial Wrap',
-    filter: 'Partial Wraps',
     image: images.vehicleWraps.options.partial,
   },
   {
     id: 'w3',
     title: 'Trim Chrome Delete',
     service: 'Chrome Delete',
-    filter: 'Chrome Delete',
     image: images.vehicleWraps.chromeDeleteAfter,
   },
   {
     id: 'w4',
     title: 'Branded Work Vehicle',
     service: 'Commercial Wrap',
-    filter: 'Commercial',
     image: images.vehicleWraps.options.commercial,
   },
 ];
@@ -435,8 +440,13 @@ function WrapDiagram() {
 
 export default function VehicleWrapsPage() {
   const [activeFilter, setActiveFilter] = useState('All');
-  const filteredGallery =
-    activeFilter === 'All' ? galleryItems : galleryItems.filter((g) => g.filter === activeFilter);
+  const wrapProjects = usePortfolioProjects().filter((p) => p.category === 'Vehicle Wraps');
+  const galleryItems = wrapProjects.length > 0 ? wrapProjects : placeholderItems;
+  const filteredGallery = (
+    activeFilter === 'All'
+      ? galleryItems
+      : galleryItems.filter((g) => projectMatches(g, filterPatterns[activeFilter]))
+  ).slice(0, MAX_GALLERY_CARDS);
 
   const schema = {
     '@context': 'https://schema.org',
@@ -1029,6 +1039,11 @@ export default function VehicleWrapsPage() {
                   </Reveal>
                 ))}
               </div>
+              {filteredGallery.length === 0 && (
+                <p className="panel-muted mt-6 text-center text-sm lg:text-left">
+                  No {activeFilter.toLowerCase()} projects to show yet — see our full gallery for more.
+                </p>
+              )}
               <Reveal delay={80}>
                 <div className="mt-8 text-center lg:text-left">
                   <Link

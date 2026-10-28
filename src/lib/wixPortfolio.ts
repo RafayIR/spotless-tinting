@@ -106,6 +106,14 @@ export function mergeWithStatic(wix: WixProject[], fallback: Project[]): Project
   return [...wixOnly, ...merged];
 }
 
+/** Fields a service page's sub-filter (e.g. "Full Front", "Chrome Delete") is matched against. */
+export type ProjectCard = Pick<Project, 'id' | 'title' | 'service' | 'image'> & { technologies?: string[] };
+
+/** True when a project's title, service or Wix tags match `pattern`. */
+export function projectMatches(project: ProjectCard, pattern: RegExp): boolean {
+  return pattern.test([project.title, project.service, ...(project.technologies ?? [])].join(' '));
+}
+
 const API = '/api/wix-portfolio';
 
 /** Fetch one page of published projects from Wix CMS (via the server proxy). */

@@ -19,6 +19,8 @@ import SEO from '@/components/SEO';
 import Reveal from '@/components/Reveal';
 import { images } from '@/data/images';
 import { business } from '@/data/business';
+import { projectMatches, type ProjectCard } from '@/lib/wixPortfolio';
+import { usePortfolioProjects } from '@/lib/useWixProjects';
 
 const heroBarItems: { iconSrc?: string; icon?: LucideIcon; label: string }[] = [
   { iconSrc: images.ppfBar.stoneChip, label: 'Stone Chip Protection' },
@@ -177,33 +179,40 @@ const installSteps = [
 
 const galleryFilters = ['All', 'Full Front', 'Full Vehicle', 'High Impact', 'Matte PPF'];
 
-const galleryItems = [
+/** How each filter is recognised in a project's title, service or Wix tags. */
+const filterPatterns: Record<string, RegExp> = {
+  'Full Front': /full[\s-]*front/i,
+  'Full Vehicle': /full[\s-]*(vehicle|body|car)/i,
+  'High Impact': /high[\s-]*impact|track/i,
+  'Matte PPF': /matte|satin|stealth/i,
+};
+
+const MAX_GALLERY_CARDS = 4;
+
+/** Placeholder cards, shown only until the first PPF project is published in Wix. */
+const placeholderItems: ProjectCard[] = [
   {
     id: '1',
-    vehicle: 'Porsche 911',
+    title: 'Porsche 911',
     service: 'Full Front PPF',
-    filter: 'Full Front',
     image: images.ppfPackages.frontEnd,
   },
   {
     id: '2',
-    vehicle: 'Audi RS6',
+    title: 'Audi RS6',
     service: 'Full Front PPF',
-    filter: 'Full Front',
     image: images.ppfPackages.essential,
   },
   {
     id: '3',
-    vehicle: 'Tesla Model 3',
+    title: 'Tesla Model 3',
     service: 'Full Vehicle PPF',
-    filter: 'Full Vehicle',
     image: images.ppfPackages.fullVehicle,
   },
   {
     id: '4',
-    vehicle: 'BMW M4',
+    title: 'BMW M4',
     service: 'High Impact PPF',
-    filter: 'High Impact',
     image: images.ppfPackages.track,
   },
 ];
@@ -353,10 +362,13 @@ function BeforeAfterSlider() {
 
 export default function PaintProtectionFilmPage() {
   const [activeFilter, setActiveFilter] = useState('All');
-  const filtered =
+  const ppfProjects = usePortfolioProjects().filter((p) => p.category === 'PPF');
+  const galleryItems = ppfProjects.length > 0 ? ppfProjects : placeholderItems;
+  const filtered = (
     activeFilter === 'All'
       ? galleryItems
-      : galleryItems.filter((g) => g.filter === activeFilter);
+      : galleryItems.filter((g) => projectMatches(g, filterPatterns[activeFilter]))
+  ).slice(0, MAX_GALLERY_CARDS);
 
   return (
     <>
@@ -842,14 +854,14 @@ export default function PaintProtectionFilmPage() {
                       <div className="relative min-h-0 flex-[2] overflow-hidden bg-ink-100">
                         <img
                           src={item.image}
-                          alt={`${item.vehicle} — ${item.service}`}
+                          alt={`${item.title} — ${item.service}`}
                           className="absolute inset-0 h-full w-full object-cover"
                           loading="lazy"
                         />
                       </div>
                       <div className="flex flex-col items-center justify-center px-2 py-2 text-center sm:px-3 sm:py-3">
                         <p className="text-[9px] font-bold uppercase leading-tight tracking-wide text-white sm:text-[10px]">
-                          {item.vehicle}
+                          {item.title}
                         </p>
                         <p className="mt-1 text-[8px] leading-tight text-ink-300 sm:text-[9px]">
                           {item.service}
@@ -859,6 +871,11 @@ export default function PaintProtectionFilmPage() {
                   </Reveal>
                 ))}
               </div>
+              {filtered.length === 0 && (
+                <p className="mt-6 text-center text-sm text-ink-500">
+                  No {activeFilter} projects to show yet — see our full gallery for more.
+                </p>
+              )}
               <Reveal delay={80}>
                 <div className="mt-8 text-center">
                   <Link
