@@ -35,7 +35,7 @@ export const cancellationDoc: LegalDoc = {
         },
         {
           type: 'ul',
-          items: ['Phone: 0451 459 690', 'Email: spotlesstinting@gmail.com'],
+          items: ['Phone: 0451 459 690', 'Email: info@spotlesstinting.com.au'],
         },
         {
           type: 'p',

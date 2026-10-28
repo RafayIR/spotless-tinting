@@ -6,8 +6,8 @@ export const business = {
   abn: '59 645 122 916',
   tagline: 'Premium Tinting & Vehicle Protection',
   location: 'Moonah & Bellerive, Hobart, Tasmania',
-  address: 'Moonah, Hobart, TAS',
-  locations: ['Moonah, Hobart, TAS', 'Bellerive, Hobart, TAS'],
+  address: 'Unit 9/14A Main Rd, Moonah TAS 7009',
+  locations: ['Unit 9/14A Main Rd, Moonah TAS 7009', 'Bellerive — by appointment only'],
   workshopLocations: [
     {
       name: 'Moonah',
@@ -21,8 +21,8 @@ export const business = {
   phone: '+61 451 459 690',
   phoneDisplay: '0451 459 690',
   phoneHref: 'tel:+61451459690',
-  email: 'spotlesstinting@gmail.com',
-  emailHref: 'mailto:spotlesstinting@gmail.com',
+  email: 'info@spotlesstinting.com.au',
+  emailHref: 'mailto:info@spotlesstinting.com.au',
   website: 'spotlesstinting.com.au',
   hours: [
     { day: 'Monday', hours: '8 AM – 5 PM' },

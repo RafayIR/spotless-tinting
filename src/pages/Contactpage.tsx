@@ -309,9 +309,15 @@ export default function ContactPage() {
                         <label htmlFor="email" className="label-field label-required">Email</label>
                         <SafeInput id="email" name="email" mode="email" type="email" required className="input-field" placeholder="your@email.com" />
                       </div>
-                      <div className="min-w-0">
-                        <label htmlFor="suburb" className="label-field label-required">Suburb</label>
-                        <SafeInput id="suburb" name="suburb" mode="text" required autoComplete="address-level2" className="input-field" placeholder="e.g. Moonah" />
+                      <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_7rem] gap-3">
+                        <div className="min-w-0">
+                          <label htmlFor="suburb" className="label-field label-required">Suburb</label>
+                          <SafeInput id="suburb" name="suburb" mode="text" required autoComplete="address-level2" className="input-field" placeholder="e.g. Moonah" />
+                        </div>
+                        <div className="min-w-0">
+                          <label htmlFor="postcode" className="label-field label-required">Postcode</label>
+                          <SafeInput id="postcode" name="postcode" mode="numbers" required maxLength={4} pattern="[0-9]{4}" title="4-digit postcode" autoComplete="postal-code" className="input-field" placeholder="e.g. 7009" />
+                        </div>
                       </div>
                     </div>
                     <div className="min-w-0">

@@ -522,8 +522,10 @@ const residentialPageSchema = {
     email: business.email,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Unit 9/14A Main Rd',
       addressLocality: 'Moonah',
       addressRegion: 'TAS',
+      postalCode: '7009',
       addressCountry: 'AU',
     },
   },
