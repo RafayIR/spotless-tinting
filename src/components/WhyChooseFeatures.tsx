@@ -134,14 +134,14 @@ export default function WhyChooseFeatures() {
           <img
             src={images.homeWhyChoose.car}
             alt="Why choose Spotless Tinting — lifetime warranty, premium films, precision installation, PPF and 15+ years of experience"
-            className="mx-auto mt-10 w-full max-w-5xl object-contain dark:hidden md:mt-4"
+            className="mx-auto mt-10 w-full max-w-6xl object-contain dark:hidden md:mt-4"
             loading="lazy"
           />
           {/* Dark mode: white artwork on dark bg */}
           <img
             src={images.homeWhyChoose.carDark}
             alt="Why choose Spotless Tinting — lifetime warranty, premium films, precision installation, PPF and 15+ years of experience"
-            className="mx-auto mt-10 hidden w-full max-w-5xl object-contain dark:block md:mt-4"
+            className="mx-auto mt-10 hidden w-full max-w-6xl object-contain dark:block md:mt-4"
             loading="lazy"
           />
         </Reveal>
